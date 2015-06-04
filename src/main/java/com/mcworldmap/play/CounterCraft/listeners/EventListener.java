@@ -34,30 +34,10 @@ public class EventListener implements Listener
 				predator = (Player) e1.getDamager();
 			}
 		}
-
-		for (Person p : CounterCraft.team.getCT())
-		{
-			if (p.getPlayer() == prey)
-			{
-				p.setDeaths(p.getDeaths() + 1);
-				p.setAlive(false);
-			}
-			if (p.getPlayer() == predator)
-			{
-				p.setKills(p.getKills() + 1);
-			}
-		}
-		for (Person p : CounterCraft.team.getT())
-		{
-			if (p.getPlayer() == prey)
-			{
-				p.setDeaths(p.getDeaths() + 1);
-				p.setAlive(false);
-			}
-			if (p.getPlayer() == predator)
-			{
-				p.setKills(p.getKills() + 1);
-			}
-		}
+		Person preyPerson = CounterCraft.team.findPerson(prey);
+		Person predatorPerson = CounterCraft.team.findPerson(predator);
+		preyPerson.setDeaths(preyPerson.getDeaths() + 1);
+		preyPerson.setAlive(false);
+		predatorPerson.setKills(predatorPerson.getKills() + 1);
 	}
 }

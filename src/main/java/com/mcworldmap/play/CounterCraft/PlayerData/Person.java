@@ -1,5 +1,7 @@
 package com.mcworldmap.play.CounterCraft.PlayerData;
 
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 public class Person
@@ -25,6 +27,24 @@ public class Person
 		else
 			return "Dead | " + this.player.getDisplayName() + " | " + this.money + " | " + this.kills + " | " + this.deaths + " | " + this.score;
 
+	}
+
+	public void respawnT()
+	{
+		World world = player.getWorld();
+		//TODO: Read respawn location from config
+		Location location = new Location(world, 0, 64, 0);
+		player.teleport(location);
+		player.setHealth(player.getMaxHealth());
+	}
+
+	public void respawnCT()
+	{
+		World world = player.getWorld();
+		//TODO: Read respawn location from config
+		Location location = new Location(world, 5, 64, 5);
+		player.teleport(location);
+		player.setHealth(player.getMaxHealth());
 	}
 
 	public boolean isAlive()

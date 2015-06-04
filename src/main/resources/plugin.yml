@@ -1,0 +1,9 @@
+name: CounterCraft
+main: com.mcworldmap.play.CounterCraft.CounterCraft
+version: 1.0
+commands:
+   join:
+      description: Join a team
+      usage: /join [T|CT]
+      permission: <plugin CounterCraft.basic
+      permission-message: You can't join a team

@@ -2,13 +2,17 @@ package com.mcworldmap.play.CounterCraft.listeners;
 
 import com.mcworldmap.play.CounterCraft.CounterCraft;
 import com.mcworldmap.play.CounterCraft.PlayerData.Person;
+import org.bukkit.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.ThrownExpBottle;
+import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.entity.PotionSplashEvent;
 
 public class EventListener implements Listener
 {
@@ -39,5 +43,25 @@ public class EventListener implements Listener
 		preyPerson.setDeaths(preyPerson.getDeaths() + 1);
 		preyPerson.setAlive(false);
 		predatorPerson.setKills(predatorPerson.getKills() + 1);
+	}
+	//TODO:Finish adding grenades
+	public void onDecoyImpact(ThrownExpBottle event){
+		Location l = event.getLocation();
+		World w = event.getWorld();
+		w.playEffect(l, Effect.FOOTSTEP, 1);
+		w.playSound(l, Sound.ARROW_HIT, 10, 1);
+		w.playSound(l, Sound.FALL_BIG, 10, 1);
+		w.playEffect(l, Effect.FOOTSTEP, 1);
+		w.playSound(l, Sound.ARROW_HIT, 10, 1);
+		w.playSound(l, Sound.FALL_BIG, 10, 1);
+		w.playEffect(l, Effect.FOOTSTEP, 1);
+		w.playSound(l, Sound.ARROW_HIT, 10, 1);
+		w.playSound(l, Sound.FALL_BIG, 10, 1);
+
+	}
+	public void onNadeImpact(PotionSplashEvent event){
+		ThrownPotion nade = event.getPotion();
+		Location l = nade.getLocation();
+
 	}
 }

@@ -32,7 +32,7 @@ public class CounterCraft extends JavaPlugin
 		{
 			Player player = (Player) sender;
 			if (player.hasPermission("some.pointless.permission")) {
-				if (Globals.ts == 5 && Globals.cts == 5){
+				if (Constants.ts == 5 && Constants.cts == 5){
 					//TODO: Add stuff that starts the match
 					//Teleport players to their spawns
 				}else{
@@ -52,17 +52,17 @@ public class CounterCraft extends JavaPlugin
 				sender.sendMessage("Not enough arguments!");
 			else
 			{
-				if (args[0].equalsIgnoreCase("t") && Globals.ts < 5)
+				if (args[0].equalsIgnoreCase("t") && Constants.ts < 5)
 				{
 					Player player = (Player) sender;
-					Globals.team.getT()[Globals.ts] = new Person(player);
-					Globals.ts += 1;
+					Constants.team.getT()[Constants.ts] = new Person(player);
+					Constants.ts += 1;
 				}
-				else if (args[0].equalsIgnoreCase("ct") && Globals.cts < 5)
+				else if (args[0].equalsIgnoreCase("ct") && Constants.cts < 5)
 				{
 					Player player = (Player) sender;
-					Globals.team.getCT()[Globals.cts] = new Person(player);
-					Globals.cts += 1;
+					Constants.team.getCT()[Constants.cts] = new Person(player);
+					Constants.cts += 1;
 				}
 				else
 				{

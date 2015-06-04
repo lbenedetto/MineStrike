@@ -10,13 +10,13 @@ public class EventListener implements Listener
 	@EventHandler
 	public void onDeath(PlayerDeathEvent event)
 	{
-		for (Person p : Globals.team.getCT())
+		for (Person p : Constants.team.getCT())
 			if (p.getPlayer() == event.getEntity())
 			{
 				p.setDeaths(p.getDeaths() + 1);
 				p.setAlive(false);
 			}
-		for (Person p : Globals.team.getT())
+		for (Person p : Constants.team.getT())
 			if (p.getPlayer() == event.getEntity())
 			{
 				p.setDeaths(p.getDeaths() + 1);

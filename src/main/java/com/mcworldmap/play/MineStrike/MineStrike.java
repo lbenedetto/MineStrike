@@ -18,7 +18,7 @@ public class MineStrike extends JavaPlugin
 	{
 		getServer().getPluginManager().registerEvents(new EventListener(), this);
         getCommand("buy").setExecutor(new CmdBuy());
-        getCommand("startmatch").setExecutor(new CmdStart());
+        getCommand("start").setExecutor(new CmdStart());
         getCommand("join").setExecutor(new CmdJoin());
 		getLogger().info("MineStrike Enabled");
 

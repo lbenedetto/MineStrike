@@ -32,8 +32,7 @@ public class Person
 	public void respawnT()
 	{
 		World world = player.getWorld();
-		//TODO: Read respawn location from config
-		Location location = new Location(world, 0, 64, 0);
+		Location location = new Location(world, config.getInteger("t-spawn-xcoord"), config.getInteger("t-spawn-ycoord"), config.getInteger("t-spawn-zcoord"));
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
 	}
@@ -41,8 +40,7 @@ public class Person
 	public void respawnCT()
 	{
 		World world = player.getWorld();
-		//TODO: Read respawn location from config
-		Location location = new Location(world, 5, 64, 5);
+		Location location = new Location(world, config.getInteger("ct-spawn-xcoord"), config.getInteger("ct-spawn-ycoord"), config.getInteger("ct-spawn-zcoord"));
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
 	}

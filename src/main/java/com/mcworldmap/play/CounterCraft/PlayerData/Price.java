@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class Price
 {
-	public HashMap<String,Integer> price = new HashMap<String,Integer>();
+	public HashMap<String,Integer> price = new HashMap<>();
 	public Price(){
 		price.put("kevlar", 650);
 		price.put("helmet", 350);

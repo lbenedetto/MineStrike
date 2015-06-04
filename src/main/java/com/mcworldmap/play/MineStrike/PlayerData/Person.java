@@ -1,5 +1,6 @@
 package com.mcworldmap.play.MineStrike.PlayerData;
 
+import com.mcworldmap.play.MineStrike.MineStrike;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -32,8 +33,7 @@ public class Person
 	public void respawnT()
 	{
 		World world = player.getWorld();
-		//TODO: Read respawn location from config
-		Location location = new Location(world, 0, 64, 0);
+		Location location = MineStrike.spawnpoint.getRandTSpawn();
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
 	}
@@ -41,8 +41,7 @@ public class Person
 	public void respawnCT()
 	{
 		World world = player.getWorld();
-		//TODO: Read respawn location from config
-		Location location = new Location(world, 5, 64, 5);
+		Location location = MineStrike.spawnpoint.getRandCTSpawn();
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
 	}

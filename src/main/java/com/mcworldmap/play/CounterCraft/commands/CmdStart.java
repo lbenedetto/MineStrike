@@ -13,10 +13,15 @@ public class CmdStart implements CommandExecutor
 	public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
 	{
 		Player player = (Player) sender;
-		if (player.hasPermission("CounterCraft.start"))
+		if (player.hasPermission("some.pointless.permission"))
 		{
 			if (CounterCraft.ts == 5 && CounterCraft.cts == 5)
 			{
+				if (args[0].equalsIgnoreCase("armsrace")) {
+					CounterCraft.gamemode = "armsrace";
+				} else if (args[0].equalsIgnoreCase("competitive")) {
+					CounterCraft.gamemode = "competitive";
+				}
 				//TODO: Add stuff that starts the match
 				//Teleport players to their spawns
 				for (Person p : CounterCraft.team.getCT())

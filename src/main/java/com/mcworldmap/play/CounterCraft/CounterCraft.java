@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class CounterCraft extends JavaPlugin
 {
+	public static String gamemode;
     public static Team team = new Team();
     public static int ts = 0, cts = 0;
 

@@ -13,7 +13,7 @@ public class CmdStart implements CommandExecutor
 	public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
 	{
 		Player player = (Player) sender;
-		if (player.hasPermission("some.pointless.permission"))
+		if (player.hasPermission("CounterCraft.start"))
 		{
 			if (CounterCraft.ts == 5 && CounterCraft.cts == 5)
 			{

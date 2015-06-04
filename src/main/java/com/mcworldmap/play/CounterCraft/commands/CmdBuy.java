@@ -15,24 +15,27 @@ public class CmdBuy implements CommandExecutor
 	{
 		if (!(sender instanceof Player))
 			sender.sendMessage("This command can only be run by a player.");
-		else if (args.length > 1)
-			sender.sendMessage("Too many arguments!");
-		else if (args.length < 1)
-			sender.sendMessage("Not enough arguments!");
-		else
+		if (sender.hasPermission("CounterCraft.start"))
 		{
-			Person p = CounterCraft.team.findPerson((Player) sender);
-			sender.sendMessage("You have $" + p.getMoney());
-			if (args[0].equalsIgnoreCase("helmet"))
-				if (p.getMoney() >= 350)
-					p.setMoney(p.getMoney() - 350);
-				else
-					sender.sendMessage("You do not have enough money");
-			if (args[0].equalsIgnoreCase("kevlar"))
-				if (p.getMoney() >= 650)
-					p.setMoney(p.getMoney() - 650);
-				else
-					sender.sendMessage("You do not have enough money");
+			if (args.length > 1)
+				sender.sendMessage("Too many arguments!");
+			else if (args.length < 1)
+				sender.sendMessage("Not enough arguments!");
+			else
+			{
+				Person p = CounterCraft.team.findPerson((Player) sender);
+				sender.sendMessage("You have $" + p.getMoney());
+				if (args[0].equalsIgnoreCase("helmet"))
+					if (p.getMoney() >= 350)
+						p.setMoney(p.getMoney() - 350);
+					else
+						sender.sendMessage("You do not have enough money");
+				if (args[0].equalsIgnoreCase("kevlar"))
+					if (p.getMoney() >= 650)
+						p.setMoney(p.getMoney() - 650);
+					else
+						sender.sendMessage("You do not have enough money");
+			}
 		}
 		return false;
 	}

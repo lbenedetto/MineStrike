@@ -5,5 +5,15 @@ commands:
    join:
       description: Join a team
       usage: /join [T|CT]
-      permission: <plugin CounterCraft.basic
+      permission: CounterCraft.join
       permission-message: You can't join a team
+   buy:
+      description: Buy stuff
+      usage: /buy [weaponName]
+      permission: CounterCraft.buy
+      permission-message: You can't buy stuff
+   start:
+      description: Start game
+      usage: /start [gameType]
+      permission: CounterCraft.start
+      permission-message: You can't start the game

@@ -12,16 +12,16 @@ public class MineStrike extends JavaPlugin
 	FileConfiguration config = getConfig();
 	
 	public static String gamemode;
-    public static Team team = new Team();
-    public static int ts = 0, cts = 0;
+	public static Team team = new Team();
+	public static int ts = 0, cts = 0;
 
 	@Override
 	public void onEnable()
 	{
 		getServer().getPluginManager().registerEvents(new EventListener(), this);
-        getCommand("buy").setExecutor(new CmdBuy());
-        getCommand("start").setExecutor(new CmdStart());
-        getCommand("join").setExecutor(new CmdJoin());
+		getCommand("buy").setExecutor(new CmdBuy());
+		getCommand("start").setExecutor(new CmdStart());
+		getCommand("join").setExecutor(new CmdJoin());
 		getLogger().info("MineStrike Enabled");
 		
 		// Terrorist default spawn coords (config)

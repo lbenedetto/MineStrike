@@ -95,6 +95,8 @@ public class Person
 	public void setMoney(int money)
 	{
 		this.money = money;
+		if(this.money > 16000)
+			this.money = 16000;
 	}
 
 	public Player getPlayer()

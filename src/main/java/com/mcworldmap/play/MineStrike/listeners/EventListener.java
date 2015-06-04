@@ -1,7 +1,7 @@
-package com.mcworldmap.play.CounterCraft.listeners;
+package com.mcworldmap.play.MineStrike.listeners;
 
-import com.mcworldmap.play.CounterCraft.CounterCraft;
-import com.mcworldmap.play.CounterCraft.PlayerData.Person;
+import com.mcworldmap.play.MineStrike.CounterCraft;
+import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.*;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;

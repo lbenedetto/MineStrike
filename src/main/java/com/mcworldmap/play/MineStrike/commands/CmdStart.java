@@ -1,7 +1,7 @@
-package com.mcworldmap.play.CounterCraft.commands;
+package com.mcworldmap.play.MineStrike.commands;
 
-import com.mcworldmap.play.CounterCraft.CounterCraft;
-import com.mcworldmap.play.CounterCraft.PlayerData.Person;
+import com.mcworldmap.play.MineStrike.CounterCraft;
+import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

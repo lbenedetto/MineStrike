@@ -1,8 +1,8 @@
-package com.mcworldmap.play.CounterCraft.commands;
+package com.mcworldmap.play.MineStrike.commands;
 
-import com.mcworldmap.play.CounterCraft.CounterCraft;
-import com.mcworldmap.play.CounterCraft.PlayerData.Person;
-import com.mcworldmap.play.CounterCraft.PlayerData.Price;
+import com.mcworldmap.play.MineStrike.CounterCraft;
+import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import com.mcworldmap.play.MineStrike.PlayerData.Price;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,7 +16,7 @@ public class CmdBuy implements CommandExecutor
 		Price item = new Price();
 		if (!(sender instanceof Player))
 			sender.sendMessage("This command can only be run by a player.");
-		if (sender.hasPermission("CounterCraft.start"))
+		if (sender.hasPermission("MineStrike.start"))
 		{
 			if (args.length > 1)
 				sender.sendMessage("Too many arguments!");

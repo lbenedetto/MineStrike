@@ -1,6 +1,6 @@
-package com.mcworldmap.play.CounterCraft.PlayerData;
+package com.mcworldmap.play.MineStrike.PlayerData;
 
-import com.mcworldmap.play.CounterCraft.CounterCraft;
+import com.mcworldmap.play.MineStrike.CounterCraft;
 import org.bukkit.entity.Player;
 
 public class Team

@@ -1,4 +1,4 @@
-package com.mcworldmap.play.CounterCraft.PlayerData;
+package com.mcworldmap.play.MineStrike.PlayerData;
 
 import org.bukkit.Location;
 import org.bukkit.World;

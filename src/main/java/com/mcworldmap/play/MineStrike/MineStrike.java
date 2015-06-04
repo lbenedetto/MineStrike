@@ -17,11 +17,10 @@ public class MineStrike extends JavaPlugin
 	public void onEnable()
 	{
 		getServer().getPluginManager().registerEvents(new EventListener(), this);
-		getLogger().info("MineStrike Enabled");
-
         getCommand("buy").setExecutor(new CmdBuy());
         getCommand("startmatch").setExecutor(new CmdStart());
         getCommand("join").setExecutor(new CmdJoin());
+		getLogger().info("MineStrike Enabled");
 
     }
 

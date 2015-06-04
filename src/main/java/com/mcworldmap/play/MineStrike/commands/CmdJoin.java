@@ -14,7 +14,7 @@ public class CmdJoin implements CommandExecutor
 	{
 		if (!(sender instanceof Player))
 			sender.sendMessage("This command can only be run by a player.");
-		if (sender.hasPermission("MineStrike.join"))
+		if (!sender.hasPermission("MineStrike.join"))
 		{
 			if (args.length > 1)
 				sender.sendMessage("Too many arguments!");

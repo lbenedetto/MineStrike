@@ -7,7 +7,7 @@ import com.mcworldmap.play.MineStrike.commands.CmdStart;
 import com.mcworldmap.play.MineStrike.listeners.EventListener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class CounterCraft extends JavaPlugin
+public class MineStrike extends JavaPlugin
 {
 	public static String gamemode;
     public static Team team = new Team();

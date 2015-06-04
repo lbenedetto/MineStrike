@@ -1,6 +1,6 @@
 package com.mcworldmap.play.MineStrike.commands;
 
-import com.mcworldmap.play.MineStrike.CounterCraft;
+import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,18 +15,18 @@ public class CmdStart implements CommandExecutor
 		Player player = (Player) sender;
 		if (player.hasPermission("some.pointless.permission"))
 		{
-			if (CounterCraft.ts == 5 && CounterCraft.cts == 5)
+			if (MineStrike.ts == 5 && MineStrike.cts == 5)
 			{
 				if (args[0].equalsIgnoreCase("armsrace")) {
-					CounterCraft.gamemode = "armsrace";
+					MineStrike.gamemode = "armsrace";
 				} else if (args[0].equalsIgnoreCase("competitive")) {
-					CounterCraft.gamemode = "competitive";
+					MineStrike.gamemode = "competitive";
 				}
 				//TODO: Add stuff that starts the match
 				//Teleport players to their spawns
-				for (Person p : CounterCraft.team.getCT())
+				for (Person p : MineStrike.team.getCT())
 					p.respawnCT();
-				for (Person p : CounterCraft.team.getT())
+				for (Person p : MineStrike.team.getT())
 					p.respawnT();
 			} else
 			{

@@ -1,19 +1,19 @@
-name: CounterCraft
-main: com.mcworldmap.play.CounterCraft.CounterCraft
+name: MineStrike
+main: com.mcworldmap.play.MineStrike.MineStrike
 version: 1.0
 commands:
    join:
       description: Join a team
       usage: /join [T|CT]
-      permission: CounterCraft.join
+      permission: MineStrike.join
       permission-message: You can't join a team
    buy:
       description: Buy stuff
       usage: /buy [weaponName]
-      permission: CounterCraft.buy
+      permission: MineStrike.buy
       permission-message: You can't buy stuff
    start:
       description: Start game
       usage: /start [gameType]
-      permission: CounterCraft.start
+      permission: MineStrike.start
       permission-message: You can't start the game

@@ -1,6 +1,6 @@
 package com.mcworldmap.play.MineStrike.PlayerData;
 
-import com.mcworldmap.play.MineStrike.CounterCraft;
+import com.mcworldmap.play.MineStrike.MineStrike;
 import org.bukkit.entity.Player;
 
 public class Team
@@ -26,14 +26,14 @@ public class Team
 
 	public Person findPerson(Player player)
 	{
-		for (Person p : CounterCraft.team.getCT())
+		for (Person p : MineStrike.team.getCT())
 		{
 			if (p.getPlayer() == player)
 			{
 				return p;
 			}
 		}
-		for (Person p : CounterCraft.team.getT())
+		for (Person p : MineStrike.team.getT())
 		{
 			if (p.getPlayer() == player)
 			{

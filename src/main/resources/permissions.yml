@@ -1,0 +1,14 @@
+MineStrike.OP:
+  description: Gives all permissions
+  default: false
+  children:
+    MineStrike.join: true
+    MineStrike.start: true
+    MineStrike.buy: true
+MineStrike.default:
+  description: default permissions
+  default: true
+  children:
+    MineStrike.join: true
+    MineStrike.start: false
+    MineStrike.buy: true

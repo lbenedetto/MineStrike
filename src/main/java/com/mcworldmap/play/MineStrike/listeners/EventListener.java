@@ -1,6 +1,6 @@
 package com.mcworldmap.play.MineStrike.listeners;
 
-import com.mcworldmap.play.MineStrike.CounterCraft;
+import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.*;
 import org.bukkit.entity.Arrow;
@@ -38,13 +38,14 @@ public class EventListener implements Listener
 				predator = (Player) e1.getDamager();
 			}
 		}
-		Person preyPerson = CounterCraft.team.findPerson(prey);
-		Person predatorPerson = CounterCraft.team.findPerson(predator);
+		Person preyPerson = MineStrike.team.findPerson(prey);
+		Person predatorPerson = MineStrike.team.findPerson(predator);
 		preyPerson.setDeaths(preyPerson.getDeaths() + 1);
 		preyPerson.setAlive(false);
 		predatorPerson.setKills(predatorPerson.getKills() + 1);
 	}
 	//TODO:Finish adding grenades
+	@EventHandler
 	public void onDecoyImpact(ThrownExpBottle event){
 		Location l = event.getLocation();
 		World w = event.getWorld();
@@ -59,6 +60,7 @@ public class EventListener implements Listener
 		w.playSound(l, Sound.FALL_BIG, 10, 1);
 
 	}
+	@EventHandler
 	public void onNadeImpact(PotionSplashEvent event){
 		ThrownPotion nade = event.getPotion();
 		Location l = nade.getLocation();

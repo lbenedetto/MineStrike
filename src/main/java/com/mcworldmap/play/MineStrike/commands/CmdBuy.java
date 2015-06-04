@@ -1,6 +1,6 @@
 package com.mcworldmap.play.MineStrike.commands;
 
-import com.mcworldmap.play.MineStrike.CounterCraft;
+import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.PlayerData.Price;
 import org.bukkit.command.Command;
@@ -24,7 +24,7 @@ public class CmdBuy implements CommandExecutor
 				sender.sendMessage("Not enough arguments!");
 			else
 			{
-				Person p = CounterCraft.team.findPerson((Player) sender);
+				Person p = MineStrike.team.findPerson((Player) sender);
 				sender.sendMessage("You have $" + p.getMoney());
 				if (p.getMoney() >= item.price.get(args[0])){
 					p.setMoney(p.getMoney() - item.price.get(args[0]));

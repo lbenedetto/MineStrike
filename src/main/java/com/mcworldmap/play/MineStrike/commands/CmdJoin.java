@@ -1,6 +1,6 @@
 package com.mcworldmap.play.MineStrike.commands;
 
-import com.mcworldmap.play.MineStrike.CounterCraft;
+import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,16 +22,16 @@ public class CmdJoin implements CommandExecutor
 				sender.sendMessage("Not enough arguments!");
 			else
 			{
-				if (args[0].equalsIgnoreCase("t") && CounterCraft.ts < 5)
+				if (args[0].equalsIgnoreCase("t") && MineStrike.ts < 5)
 				{
 					Player player = (Player) sender;
-					CounterCraft.team.getT()[CounterCraft.ts] = new Person(player);
-					CounterCraft.ts += 1;
-				} else if (args[0].equalsIgnoreCase("ct") && CounterCraft.cts < 5)
+					MineStrike.team.getT()[MineStrike.ts] = new Person(player);
+					MineStrike.ts += 1;
+				} else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < 5)
 				{
 					Player player = (Player) sender;
-					CounterCraft.team.getCT()[CounterCraft.cts] = new Person(player);
-					CounterCraft.cts += 1;
+					MineStrike.team.getCT()[MineStrike.cts] = new Person(player);
+					MineStrike.cts += 1;
 				} else
 				{
 					sender.sendMessage("Must enter either T or CT");

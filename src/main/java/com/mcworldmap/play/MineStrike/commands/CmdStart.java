@@ -13,7 +13,7 @@ public class CmdStart implements CommandExecutor
 	public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
 	{
 		Player player = (Player) sender;
-		if (player.hasPermission("some.pointless.permission"))
+		if (player.hasPermission("MineStrike.start"))
 		{
 			if (MineStrike.ts == 5 && MineStrike.cts == 5)
 			{

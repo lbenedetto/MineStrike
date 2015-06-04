@@ -15,7 +15,7 @@ public class EventListener implements Listener
 	@EventHandler
 	public void onDeath(PlayerDeathEvent event)
 	{
-		Player prey = (Player) event.getEntity();
+		Player prey = event.getEntity();
 		EntityDamageEvent e0 = prey.getLastDamageCause();
 		Player predator = null;
 		if (e0 instanceof EntityDamageByEntityEvent)

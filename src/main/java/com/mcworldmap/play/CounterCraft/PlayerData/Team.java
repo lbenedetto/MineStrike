@@ -1,4 +1,4 @@
-package com.mcworldmap.play.CounterCraft;
+package com.mcworldmap.play.CounterCraft.PlayerData;
 
 public class Team
 {

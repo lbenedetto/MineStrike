@@ -1,5 +1,8 @@
 package com.mcworldmap.play.CounterCraft;
 
+import com.mcworldmap.play.CounterCraft.PlayerData.Person;
+import com.mcworldmap.play.CounterCraft.PlayerData.Team;
+import com.mcworldmap.play.CounterCraft.listeners.EventListener;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -7,6 +10,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class CounterCraft extends JavaPlugin
 {
+    public static Team team = new Team();
+    public static int ts = 0, cts = 0;
+
 	@Override
 	public void onEnable()
 	{
@@ -32,7 +38,7 @@ public class CounterCraft extends JavaPlugin
 		{
 			Player player = (Player) sender;
 			if (player.hasPermission("some.pointless.permission")) {
-				if (Constants.ts == 5 && Constants.cts == 5){
+				if (ts == 5 && cts == 5){
 					//TODO: Add stuff that starts the match
 					//Teleport players to their spawns
 				}else{
@@ -52,17 +58,17 @@ public class CounterCraft extends JavaPlugin
 				sender.sendMessage("Not enough arguments!");
 			else
 			{
-				if (args[0].equalsIgnoreCase("t") && Constants.ts < 5)
+				if (args[0].equalsIgnoreCase("t") && ts < 5)
 				{
 					Player player = (Player) sender;
-					Constants.team.getT()[Constants.ts] = new Person(player);
-					Constants.ts += 1;
+					team.getT()[ts] = new Person(player);
+					ts += 1;
 				}
-				else if (args[0].equalsIgnoreCase("ct") && Constants.cts < 5)
+				else if (args[0].equalsIgnoreCase("ct") && cts < 5)
 				{
 					Player player = (Player) sender;
-					Constants.team.getCT()[Constants.cts] = new Person(player);
-					Constants.cts += 1;
+					team.getCT()[cts] = new Person(player);
+					cts += 1;
 				}
 				else
 				{

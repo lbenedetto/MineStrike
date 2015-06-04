@@ -10,7 +10,7 @@ Competitive:
             10 second asynchronous countdown is started:
                 Players buy items from chest GUI
             10 second countdown ends:
-                Players unfrozen
+                Players unfrozen 
             2 minute asynchronous countdown is started:
                 EventListeners respond to deaths, ect
             2 minute Timer ends

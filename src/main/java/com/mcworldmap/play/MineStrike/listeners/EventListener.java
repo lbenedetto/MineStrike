@@ -43,6 +43,7 @@ public class EventListener implements Listener
 		preyPerson.setDeaths(preyPerson.getDeaths() + 1);
 		preyPerson.setAlive(false);
 		predatorPerson.setKills(predatorPerson.getKills() + 1);
+		predatorPerson.setScore(predatorPerson.getScore() + 2);
 	}
 	//TODO:Finish adding grenades
 	@EventHandler

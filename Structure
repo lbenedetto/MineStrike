@@ -34,3 +34,15 @@ Competitive:
                 Teamkilling will result in a penalty of -$300
             If not halftime, new round
             else switch teams, reset money, new round
+
+
+The points are distributed as follows:
+
+2 points for a bomb plant. (Terrorist Only)
+2 points if that bomb explodes. (Terrorist Only)
+2 points for a kill.
+1 point for an assist.
+5 points for defusing a bomb. (Counter-Terrorist Only)
+2 points for rescuing a hostage. (Counter-Terrorist Only)
+-1 point for killing a teammate.
+-1 point for committing suicide.

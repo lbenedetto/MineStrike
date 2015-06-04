@@ -43,3 +43,6 @@ Temporary Items
 .apdisk
 .idea/workspace.xml
 .idea/workspace.xml
+target/classes/plugin.yml
+*.class
+.idea/workspace.xml

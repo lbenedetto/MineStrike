@@ -25,6 +25,9 @@ public class CmdStart implements CommandExecutor
 				{
 					MineStrike.gamemode = "competitive";
 				}
+				if(MineStrike.gamemode.equalsIgnoreCase("")){
+					return false;
+				}
 				//Teleport players to their spawns
 				if (MineStrike.gamemode.equalsIgnoreCase("competitive"))
 				{

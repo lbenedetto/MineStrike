@@ -12,7 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class MineStrike extends JavaPlugin
 {
 
-	public static String gamemode;
+	public static String gamemode = "";
 	public static Team team = new Team();
 	public static int ts = 0, cts = 0;
 	public static Spawnpoint spawnpoint;

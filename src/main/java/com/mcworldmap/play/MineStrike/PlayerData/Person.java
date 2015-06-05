@@ -24,9 +24,9 @@ public class Person
 	public String toString()
 	{
 		if (this.alive)
-			return "Alive | " + this.player.getDisplayName() + " | " + this.money + " | " + this.kills + " | " + this.deaths + " | " + this.score;
+			return "Alive | " + this.player.getDisplayName() + " | $" + this.money + " | " + this.kills + " | " + this.deaths + " | " + this.score;
 		else
-			return "Dead | " + this.player.getDisplayName() + " | " + this.money + " | " + this.kills + " | " + this.deaths + " | " + this.score;
+			return "Dead | " + this.player.getDisplayName() + " | $" + this.money + " | " + this.kills + " | " + this.deaths + " | " + this.score;
 
 	}
 

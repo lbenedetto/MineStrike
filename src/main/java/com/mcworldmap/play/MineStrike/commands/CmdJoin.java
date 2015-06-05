@@ -14,31 +14,28 @@ public class CmdJoin implements CommandExecutor
 	{
 		if (!(sender instanceof Player))
 			sender.sendMessage("This command can only be run by a player.");
-		if (!sender.hasPermission("MineStrike.join"))
+		if (args.length > 1)
+			sender.sendMessage("Too many arguments!");
+		else if (args.length < 1)
+			sender.sendMessage("Not enough arguments!");
+		else
 		{
-			if (args.length > 1)
-				sender.sendMessage("Too many arguments!");
-			else if (args.length < 1)
-				sender.sendMessage("Not enough arguments!");
-			else
+			if (args[0].equalsIgnoreCase("t") && MineStrike.ts < 5)
 			{
-				if (args[0].equalsIgnoreCase("t") && MineStrike.ts < 5)
-				{
-					Player player = (Player) sender;
-					MineStrike.team.getT()[MineStrike.ts] = new Person(player);
-					MineStrike.ts += 1;
-				} else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < 5)
-				{
-					Player player = (Player) sender;
-					MineStrike.team.getCT()[MineStrike.cts] = new Person(player);
-					MineStrike.cts += 1;
-				} else
-				{
-					sender.sendMessage("Must enter either T or CT");
-					return false;
-				}
-				return true;
+				Player player = (Player) sender;
+				MineStrike.team.getT()[MineStrike.ts] = new Person(player);
+				MineStrike.ts += 1;
+			} else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < 5)
+			{
+				Player player = (Player) sender;
+				MineStrike.team.getCT()[MineStrike.cts] = new Person(player);
+				MineStrike.cts += 1;
+			} else
+			{
+				sender.sendMessage("Must enter either T or CT");
+				return false;
 			}
+			return true;
 		}
 		return false;
 	}

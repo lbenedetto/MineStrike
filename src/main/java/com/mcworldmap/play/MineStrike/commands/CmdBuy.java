@@ -16,21 +16,18 @@ public class CmdBuy implements CommandExecutor
 		Price item = new Price();
 		if (!(sender instanceof Player))
 			sender.sendMessage("This command can only be run by a player.");
-		if (sender.hasPermission("MineStrike.buy"))
+		if (args.length > 1)
+			sender.sendMessage("Too many arguments!");
+		else if (args.length < 1)
+			sender.sendMessage("Not enough arguments!");
+		else
 		{
-			if (args.length > 1)
-				sender.sendMessage("Too many arguments!");
-			else if (args.length < 1)
-				sender.sendMessage("Not enough arguments!");
-			else
-			{
-				Person p = MineStrike.team.findPerson((Player) sender);
-				sender.sendMessage("You have $" + p.getMoney());
-				if (p.getMoney() >= item.price.get(args[0])){
-					p.setMoney(p.getMoney() - item.price.get(args[0]));
-				}
-
+			Person p = MineStrike.team.findPerson((Player) sender);
+			sender.sendMessage("You have $" + p.getMoney());
+			if (p.getMoney() >= item.price.get(args[0])){
+				p.setMoney(p.getMoney() - item.price.get(args[0]));
 			}
+
 		}
 		return false;
 	}

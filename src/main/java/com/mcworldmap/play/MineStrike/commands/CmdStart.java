@@ -2,6 +2,7 @@ package com.mcworldmap.play.MineStrike.commands;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,9 +33,18 @@ public class CmdStart implements CommandExecutor
 				if (MineStrike.gamemode.equalsIgnoreCase("competitive"))
 				{
 					for (Person p : MineStrike.team.getCT())
+					{
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "/scoreboard teams add nametag");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "/scoreboard teams join nametag @a");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "/summon ArmorStand ~ ~ ~ {CustomName:"Counter-Terrorist",CustomNameVisible:1,Invisible:1,NoGravity:1}");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "/tp @e[name="Counter-Terrorist"] @e[name=[PLAYER_NAME]]");
 						p.respawnCT();
+					}
 					for (Person p : MineStrike.team.getT())
+					{
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "sdfs");
 						p.respawnT();
+					}
 				}
 				return true;
 			} else

@@ -42,7 +42,10 @@ public class CmdStart implements CommandExecutor
 					}
 					for (Person p : MineStrike.team.getT())
 					{
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "sdfs");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "scoreboard teams add nametag");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "scoreboard teams join nametag @a");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "summon ArmorStand ~ ~ ~ {CustomName:\"Terrorist\",CustomNameVisible:1,Invisible:1,NoGravity:1}");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tp @e[name=\"Terrorist\"] @e[name=@]");
 						p.respawnT();
 					}
 				}

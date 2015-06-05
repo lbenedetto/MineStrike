@@ -25,11 +25,13 @@ public class CmdJoin implements CommandExecutor
 				Player player = (Player) sender;
 				MineStrike.team.getT()[MineStrike.ts] = new Person(player);
 				MineStrike.ts += 1;
+				sender.sendMessage("Joined Terrorist Team");
 			} else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < 5)
 			{
 				Player player = (Player) sender;
 				MineStrike.team.getCT()[MineStrike.cts] = new Person(player);
 				MineStrike.cts += 1;
+				sender.sendMessage("Joined Counter-Terrorist Team");
 			} else
 			{
 				sender.sendMessage("Must enter either T or CT");

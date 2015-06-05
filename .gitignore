@@ -46,3 +46,4 @@ Temporary Items
 target/classes/plugin.yml
 *.class
 .idea/workspace.xml
+out/artifacts/MineStrike/MineStrike.jar

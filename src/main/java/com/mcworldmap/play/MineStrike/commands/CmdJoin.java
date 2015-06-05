@@ -20,6 +20,8 @@ public class CmdJoin implements CommandExecutor
 			sender.sendMessage("Not enough arguments!");
 		else
 		{
+			//TODO: Add check to make sure you are joining the team twice
+			//Don't do this yet, we need to be able to start the game with less players for testing
 			if (args[0].equalsIgnoreCase("t") && MineStrike.ts < 5)
 			{
 				Player player = (Player) sender;
@@ -34,7 +36,7 @@ public class CmdJoin implements CommandExecutor
 				sender.sendMessage("Joined Counter-Terrorist Team");
 			} else
 			{
-				sender.sendMessage("Must enter either T or CT");
+				sender.sendMessage("Must enter either T or CT (or team is full)");
 				return false;
 			}
 			return true;

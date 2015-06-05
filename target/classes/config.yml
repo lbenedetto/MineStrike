@@ -4,43 +4,43 @@ competitive:
     spawnpoints:
       T:
         one:
-          x: 0
-          y: 64
-          z: 0
+          x: -36
+          y: 9
+          z: -2
         two:
-          x: 0
-          y: 64
-          z: 0
+          x: -32
+          y: 9
+          z: -2
         three:
-          x: 0
-          y: 64
-          z: 0
+          x: -28
+          y: 9
+          z: -2
         four:
-          x: 0
-          y: 64
-          z: 0
+          x: -30
+          y: 9
+          z: -5
         five:
-          x: 0
-          y: 64
-          z: 0
+          x: -34
+          y: 9
+          z: -5
       CT:
         one:
-          x: 0
-          y: 64
-          z: 0
+          x: -49
+          y: 3
+          z: 80
         two:
-          x: 0
-          y: 64
-          z: 0
+          x: -53
+          y: 3
+          z: 80
         three:
-          x: 0
-          y: 64
-          z: 0
+          x: -57
+          y: 3
+          z: 80
         four:
-          x: 0
-          y: 64
-          z: 0
+          x: -55
+          y: 3
+          z: 78
         five:
-          x: 0
-          y: 64
-          z: 0
+          x: -51
+          y: 3
+          z: 78

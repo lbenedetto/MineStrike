@@ -15,8 +15,7 @@ public class CmdStart implements CommandExecutor
 		Player player = (Player) sender;
 		if (player.hasPermission("MineStrike.start"))
 		{
-			if (true)
-			//if (MineStrike.ts == 5 && MineStrike.cts == 5)
+			if (MineStrike.ts == 5 && MineStrike.cts == 5)
 			{
 				//TODO: Add stuff that starts the match
 				if (args[0].equalsIgnoreCase("armsrace"))
@@ -34,12 +33,14 @@ public class CmdStart implements CommandExecutor
 					for (Person p : MineStrike.team.getT())
 						p.respawnT();
 				}
+				return true;
 			} else
 			{
 				sender.sendMessage("Not enough players");
 			}
 		} else
 		{
+			sender.sendMessage("No permission");
 			return false;
 		}
 		return false;

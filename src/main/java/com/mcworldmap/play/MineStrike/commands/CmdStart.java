@@ -15,19 +15,25 @@ public class CmdStart implements CommandExecutor
 		Player player = (Player) sender;
 		if (player.hasPermission("MineStrike.start"))
 		{
-			if (MineStrike.ts == 5 && MineStrike.cts == 5)
+			if (true)
+			//if (MineStrike.ts == 5 && MineStrike.cts == 5)
 			{
-				if (args[0].equalsIgnoreCase("armsrace")) {
+				//TODO: Add stuff that starts the match
+				if (args[0].equalsIgnoreCase("armsrace"))
+				{
 					MineStrike.gamemode = "armsrace";
-				} else if (args[0].equalsIgnoreCase("competitive")) {
+				} else if (args[0].equalsIgnoreCase("competitive"))
+				{
 					MineStrike.gamemode = "competitive";
 				}
-				//TODO: Add stuff that starts the match
 				//Teleport players to their spawns
-				for (Person p : MineStrike.team.getCT())
-					p.respawnCT();
-				for (Person p : MineStrike.team.getT())
-					p.respawnT();
+				if (MineStrike.gamemode.equalsIgnoreCase("competitive"))
+				{
+					for (Person p : MineStrike.team.getCT())
+						p.respawnCT();
+					for (Person p : MineStrike.team.getT())
+						p.respawnT();
+				}
 			} else
 			{
 				sender.sendMessage("Not enough players");

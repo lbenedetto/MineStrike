@@ -25,9 +25,17 @@
         <processorPath useClasspath="true" />
         <module name="CounterCraft" />
       </profile>
+      <profile default="false" name="Annotation profile for MineStrike" enabled="true">
+        <sourceOutputDir name="target\generated-sources\annotations" />
+        <sourceTestOutputDir name="target\generated-test-sources\test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="MineStrike" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="CounterCraft" target="1.8" />
+      <module name="MineStrike" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -19,6 +19,7 @@ public class EventListener implements Listener
 	@EventHandler
 	public void onDeath(PlayerDeathEvent event)
 	{
+		Bukkit.getLogger().info("Death detected");
 		Player prey = event.getEntity();
 		EntityDamageEvent e0 = prey.getLastDamageCause();
 		Player predator = null;
@@ -48,6 +49,7 @@ public class EventListener implements Listener
 	//TODO:Finish adding grenades
 	@EventHandler
 	public void onDecoyImpact(ThrownExpBottle event){
+		Bukkit.getLogger().info("Deocoy Nade detected");
 		Location l = event.getLocation();
 		World w = event.getWorld();
 		w.playEffect(l, Effect.FOOTSTEP, 1);
@@ -63,6 +65,7 @@ public class EventListener implements Listener
 	}
 	@EventHandler
 	public void onNadeImpact(PotionSplashEvent event){
+		Bukkit.getLogger().info("Nade detected");
 		ThrownPotion nade = event.getPotion();
 		Location l = nade.getLocation();
 

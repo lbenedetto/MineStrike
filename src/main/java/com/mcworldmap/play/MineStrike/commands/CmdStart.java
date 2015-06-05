@@ -50,7 +50,7 @@ public class CmdStart implements CommandExecutor
 					}
 					for (Person p : MineStrike.team.getT())
 					{
-						board.getTeam("Terrorists").addPlayer(p.getPlayer());
+						board.getTeam("Counter-Terrorists").addPlayer(p.getPlayer());
 						p.respawnT();
 					}
 				}

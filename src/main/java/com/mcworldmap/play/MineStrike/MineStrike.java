@@ -4,6 +4,7 @@ import com.mcworldmap.play.MineStrike.PlayerData.Spawnpoint;
 import com.mcworldmap.play.MineStrike.PlayerData.Team;
 import com.mcworldmap.play.MineStrike.commands.CmdBuy;
 import com.mcworldmap.play.MineStrike.commands.CmdJoin;
+import com.mcworldmap.play.MineStrike.commands.CmdScoreboard;
 import com.mcworldmap.play.MineStrike.commands.CmdStart;
 import com.mcworldmap.play.MineStrike.listeners.EventListener;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -24,6 +25,7 @@ public class MineStrike extends JavaPlugin
 		getCommand("buy").setExecutor(new CmdBuy());
 		getCommand("start").setExecutor(new CmdStart());
 		getCommand("join").setExecutor(new CmdJoin());
+		getCommand("scoreboard").setExecutor(new CmdScoreboard());
 		saveDefaultConfig();
 		FileConfiguration config = getConfig();
 		spawnpoint = new Spawnpoint(config);

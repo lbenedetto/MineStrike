@@ -17,3 +17,8 @@ commands:
       usage: /start [gameType]
       permission: MineStrike.start
       permission-message: You can't start the game
+   scoreboard:
+      description: Display scoreboard
+      usage: /scoreboard
+      permission: MineStrike.scoreboard
+      permission-message: wololo

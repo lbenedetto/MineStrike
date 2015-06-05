@@ -41,14 +41,22 @@ public class EventListener implements Listener
 		}
 		Person preyPerson = MineStrike.team.findPerson(prey);
 		Person predatorPerson = MineStrike.team.findPerson(predator);
-		preyPerson.setDeaths(preyPerson.getDeaths() + 1);
-		preyPerson.setAlive(false);
-		predatorPerson.setKills(predatorPerson.getKills() + 1);
-		predatorPerson.setScore(predatorPerson.getScore() + 2);
+		if (!(predator == prey))
+		{
+			preyPerson.setDeaths(preyPerson.getDeaths() + 1);
+			preyPerson.setAlive(false);
+			predatorPerson.setKills(predatorPerson.getKills() + 1);
+			predatorPerson.setScore(predatorPerson.getScore() + 2);
+		} else
+		{
+			predatorPerson.setScore(predatorPerson.getScore() - 1);
+		}
 	}
+
 	//TODO:Finish adding grenades
 	@EventHandler
-	public void onDecoyImpact(ThrownExpBottle event){
+	public void onDecoyImpact(ThrownExpBottle event)
+	{
 		Bukkit.getLogger().info("Deocoy Nade detected");
 		Location l = event.getLocation();
 		World w = event.getWorld();
@@ -63,8 +71,10 @@ public class EventListener implements Listener
 		w.playSound(l, Sound.FALL_BIG, 10, 1);
 
 	}
+
 	@EventHandler
-	public void onNadeImpact(PotionSplashEvent event){
+	public void onNadeImpact(PotionSplashEvent event)
+	{
 		Bukkit.getLogger().info("Nade detected");
 		ThrownPotion nade = event.getPotion();
 		Location l = nade.getLocation();

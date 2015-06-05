@@ -36,8 +36,8 @@ public class CmdStart implements CommandExecutor
 					{
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "/scoreboard teams add nametag");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "/scoreboard teams join nametag @a");
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "/summon ArmorStand ~ ~ ~ {CustomName:"Counter-Terrorist",CustomNameVisible:1,Invisible:1,NoGravity:1}");
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "/tp @e[name="Counter-Terrorist"] @e[name=[PLAYER_NAME]]");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "/summon ArmorStand ~ ~ ~ {CustomName:\"Counter-Terrorist\",CustomNameVisible:1,Invisible:1,NoGravity:1}");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "/tp @e[name=\"Counter-Terrorist\"] @e[name=[PLAYER_NAME]]");
 						p.respawnCT();
 					}
 					for (Person p : MineStrike.team.getT())

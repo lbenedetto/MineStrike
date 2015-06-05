@@ -26,7 +26,8 @@ public class CmdStart implements CommandExecutor
 				{
 					MineStrike.gamemode = "competitive";
 				}
-				if(MineStrike.gamemode.equalsIgnoreCase("")){
+				if (MineStrike.gamemode.equalsIgnoreCase(""))
+				{
 					return false;
 				}
 				//Teleport players to their spawns
@@ -37,7 +38,7 @@ public class CmdStart implements CommandExecutor
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "scoreboard teams add nametag");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "scoreboard teams join nametag @a");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "summon ArmorStand ~ ~ ~ {CustomName:\"Counter-Terrorist\",CustomNameVisible:1,Invisible:1,NoGravity:1}");
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tp @e[name=\"Counter-Terrorist\"] @e[name=@]");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tp @e[name=\"Counter-Terrorist\"] @e[name=" + p.getPlayer().getDisplayName() + "@]");
 						p.respawnCT();
 					}
 					for (Person p : MineStrike.team.getT())
@@ -45,7 +46,7 @@ public class CmdStart implements CommandExecutor
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "scoreboard teams add nametag");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "scoreboard teams join nametag @a");
 						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "summon ArmorStand ~ ~ ~ {CustomName:\"Terrorist\",CustomNameVisible:1,Invisible:1,NoGravity:1}");
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tp @e[name=\"Terrorist\"] @e[name=@]");
+						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tp @e[name=\"Terrorist\"] @e[name=" + p.getPlayer().getDisplayName() + "@]");
 						p.respawnT();
 					}
 				}

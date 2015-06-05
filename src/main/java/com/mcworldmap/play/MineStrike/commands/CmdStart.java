@@ -7,6 +7,10 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.NameTagVisibility;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.scoreboard.Team;
 
 public class CmdStart implements CommandExecutor
 {
@@ -33,20 +37,20 @@ public class CmdStart implements CommandExecutor
 				//Teleport players to their spawns
 				if (MineStrike.gamemode.equalsIgnoreCase("competitive"))
 				{
+					ScoreboardManager manager = Bukkit.getScoreboardManager();
+					Scoreboard board = manager.getNewScoreboard();
+					Team T = board.registerNewTeam("Terrorists");
+					Team CT = board.registerNewTeam("Counter-Terrorists");
+					board.getTeam("Terrorists").setNameTagVisibility(NameTagVisibility.NEVER);
+					board.getTeam("Counter-Terrorists").setNameTagVisibility(NameTagVisibility.NEVER);
 					for (Person p : MineStrike.team.getCT())
 					{
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "scoreboard teams add nametag");
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "scoreboard teams join nametag @a");
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "summon ArmorStand ~ ~ ~ {CustomName:\"Counter-Terrorist\",CustomNameVisible:1,Invisible:1,NoGravity:1}");
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tp @e[name=\"Counter-Terrorist\"] @e[name=" + p.getPlayer().getDisplayName() + "@]");
+						board.getTeam("Terrorists").addPlayer(p.getPlayer());
 						p.respawnCT();
 					}
 					for (Person p : MineStrike.team.getT())
 					{
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "scoreboard teams add nametag");
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "scoreboard teams join nametag @a");
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "summon ArmorStand ~ ~ ~ {CustomName:\"Terrorist\",CustomNameVisible:1,Invisible:1,NoGravity:1}");
-						Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "tp @e[name=\"Terrorist\"] @e[name=" + p.getPlayer().getDisplayName() + "@]");
+						board.getTeam("Terrorists").addPlayer(p.getPlayer());
 						p.respawnT();
 					}
 				}

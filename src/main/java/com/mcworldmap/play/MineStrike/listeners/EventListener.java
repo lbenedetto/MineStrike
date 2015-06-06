@@ -23,6 +23,9 @@ public class EventListener implements Listener
 		Player prey = event.getEntity();
 		EntityDamageEvent e0 = prey.getLastDamageCause();
 		Player predator = null;
+        /**This is here to make sure the thing that killed the player is in fact an Arrow or a player
+         *We do this here to save processing time, and to prevent(hopefully) an exception that occurs at runtime.
+         */
         if(!(e0 instanceof Arrow) || !(e0 instanceof Player))
             return;
 		if (e0 instanceof EntityDamageByEntityEvent)

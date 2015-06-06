@@ -9,10 +9,7 @@ import org.bukkit.entity.ThrownExpBottle;
 import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.entity.PotionSplashEvent;
+import org.bukkit.event.entity.*;
 
 public class EventListener implements Listener
 {
@@ -60,11 +57,11 @@ public class EventListener implements Listener
 
 	//TODO:Finish adding grenades
 	@EventHandler
-	public void onDecoyImpact(ThrownExpBottle event)
+	public void onDecoyImpact(ExpBottleEvent event)
 	{
 		Bukkit.getLogger().info("Deocoy Nade detected");
-		Location l = event.getLocation();
-		World w = event.getWorld();
+		Location l = event.getEntity().getLocation();
+		World w = l.getWorld();
 		w.playEffect(l, Effect.FOOTSTEP, 1);
 		w.playSound(l, Sound.ARROW_HIT, 10, 1);
 		w.playSound(l, Sound.FALL_BIG, 10, 1);

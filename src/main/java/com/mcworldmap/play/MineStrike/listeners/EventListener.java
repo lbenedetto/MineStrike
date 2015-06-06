@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
+import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -79,7 +80,6 @@ public class EventListener implements Listener
 		w.playSound(loc, Sound.FALL_BIG, 1, 1);
 
 	}
-
 	@EventHandler
 	public void potionThrowEvent(ProjectileLaunchEvent event)
 	{
@@ -87,6 +87,8 @@ public class EventListener implements Listener
 		{
 			Entity e = event.getEntity();
 			e.setVelocity(e.getVelocity().multiply(2));
+			Potion potion = (Potion) e;
+			potion.setSplash(false);
 		}
 	}
 
@@ -123,7 +125,7 @@ public class EventListener implements Listener
 				{
 					for(int z = -2; z <= 2; z++)
 					{
-						if (loc.getWorld().getBlockAt((int)loc.getX() + x, (int)loc.getY(), (int)loc.getZ() + z).getType().equals(Material.AIR))
+						if (loc.getWorld().getBlockAt((int) loc.getX() + x, (int) loc.getY(), (int) loc.getZ() + z).getType().equals(Material.AIR))
 							loc.getWorld().getBlockAt((int) loc.getX() + x, (int)loc.getY(), (int)loc.getZ() + z).setType(Material.FIRE);
 					}
 				}

@@ -7,6 +7,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -128,6 +129,12 @@ public class EventListener implements Listener
 			}
 			break;
 		}
+	}
+
+	@EventHandler
+	public void onFireSpread(BlockIgniteEvent event)
+	{
+		event.setCancelled(true);
 	}
 
 	//I hope this works.

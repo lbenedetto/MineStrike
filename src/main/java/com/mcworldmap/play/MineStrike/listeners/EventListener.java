@@ -3,6 +3,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.*;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
@@ -97,6 +98,7 @@ public class EventListener implements Listener
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE, 2, 1));
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE_IGNITE, 2, 1));
+				loc.getBlock().getRelative(BlockFace.UP).setType(Material.FIRE);
 			}
 			//'Nade
 			if(effect.getType().equals(PotionEffectType.HARM))

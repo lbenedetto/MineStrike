@@ -7,6 +7,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.*;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
 
@@ -84,5 +85,19 @@ public class EventListener implements Listener
 		World w = nade.getWorld();
 		List<Entity> nearbyEntities = nade.getNearbyEntities(25, 25, 25);
 		nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
+	}
+
+	//I hope this works.
+	@EventHandler
+	public void onMoltovImpact(PotionSplashEvent event)
+	{
+		ThrownPotion pot = event.getPotion();
+		if(pot.getEffects().contains(PotionEffectType.FIRE_RESISTANCE))
+		{
+			Location loc = pot.getLocation();
+			Bukkit.getLogger().info("Moltov Detected");
+			pot.getLocation().getWorld().playEffect(loc, Effect.SMOKE, 10);
+			pot.getEffects().clear();
+		}
 	}
 }

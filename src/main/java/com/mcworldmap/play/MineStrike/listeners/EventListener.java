@@ -86,9 +86,9 @@ public class EventListener implements Listener
 		if(event.getEntity() instanceof ThrownPotion)
 		{
 			Entity e = event.getEntity();
+			ThrownPotion thrownPotion = (ThrownPotion)e;
+			thrownPotion.setBounce(true);
 			e.setVelocity(e.getVelocity().multiply(2));
-			Potion potion = (Potion) e;
-			potion.setSplash(false);
 		}
 	}
 

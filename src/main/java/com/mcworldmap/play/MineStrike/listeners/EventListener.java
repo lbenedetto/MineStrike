@@ -82,7 +82,7 @@ public class EventListener implements Listener
 	{
 
 		//Changed some stuff. let's see if it works.
-		Bukkit.getLogger().info("Nade detected");
+
 		ThrownPotion pot = event.getPotion();
 		Location loc = pot.getLocation();
 		World w = pot.getWorld();
@@ -94,14 +94,13 @@ public class EventListener implements Listener
 				Bukkit.getLogger().info("Moltov Detected");
 				pot.getLocation().getWorld().playEffect(loc, Effect.SMOKE, 10);
 				pot.getEffects().clear();
-				break;
 			}
 			//'Nade
 			if(effect.getType().equals(PotionEffectType.HARM))
 			{
-				List<Entity> nearbyEntities = pot.getNearbyEntities(25, 25, 25);
+				Bukkit.getLogger().info("Nade detected");
+				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
-				break;
 			}
 		}
 	}

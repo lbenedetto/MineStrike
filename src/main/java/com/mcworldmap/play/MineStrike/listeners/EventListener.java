@@ -131,7 +131,7 @@ public class EventListener implements Listener
 						if (loc.getWorld().getBlockAt((int) loc.getX() + x, (int) loc.getY(), (int) loc.getZ() + z).getType().equals(Material.AIR))
 						{
 							spread = new Random().nextInt(100);
-							if (spread < 80)
+							if (spread < (100 - (Math.abs(z) + Math.abs(x) * 20)))
 							{
 								Block block = loc.getWorld().getBlockAt((int) loc.getX() + x, (int) loc.getY(), (int) loc.getZ() + z);
 								block.setType(Material.FIRE);

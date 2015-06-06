@@ -117,13 +117,13 @@ public class EventListener implements Listener
 //							loc.add(x, 0, z).getBlock().setType(Material.FIRE);
 //					}
 //				}
-				for (int x = 0; x < 5; x++)
+				for (int x = -2; x <= 2; x++)
 				{
-					for(int z = 0; z < 5; z++)
+					for(int z = -2; z <= 2; z++)
 					{
-						if (loc.getBlock().getType().equals(Material.AIR))
+						if (loc.getWorld().getBlockAt((int)loc.getX() + x, (int)loc.getY(), (int)loc.getZ() + z).getType().equals(Material.AIR))
 //							loc.add(x, 0, z).getBlock().setType(Material.FIRE);
-							loc.getWorld().getBlockAt(x, (int)loc.getY(), z).setType(Material.FIRE);
+						loc.getWorld().getBlockAt((int) loc.getX() + x, (int)loc.getY(), (int)loc.getZ() + z).setType(Material.FIRE);
 					}
 				}
 			}

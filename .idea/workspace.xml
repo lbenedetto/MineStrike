@@ -6,7 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ced0fd70-94ff-46bc-8179-7537c5ed4695" name="Default" comment="fix">
+    <list default="true" id="ced0fd70-94ff-46bc-8179-7537c5ed4695" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java" afterPath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -46,11 +46,11 @@
       <file leaf-file-name="EventListener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54594016">
-              <caret line="122" column="17" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.41880342">
+              <caret line="116" column="79" selection-start-line="116" selection-start-column="79" selection-end-line="116" selection-end-column="79" />
               <folding>
-                <element signature="e#4457#4458#0" expanded="true" />
-                <element signature="e#4488#4489#0" expanded="true" />
+                <element signature="e#4513#4514#0" expanded="true" />
+                <element signature="e#4544#4545#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -948,7 +948,13 @@
       <option name="project" value="LOCAL" />
       <updated>1433627874667</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="throwing fire">
+      <created>1433629295119</created>
+      <option name="number" value="00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1433629295119</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1003,7 +1009,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="Added kill counter" />
     <MESSAGE value="Separated commands into classes." />
     <MESSAGE value="Added buy system and respawn system framework" />
     <MESSAGE value="Fixed .yml" />
@@ -1023,12 +1028,13 @@
     <MESSAGE value="Changed start cmd for testing purposes" />
     <MESSAGE value="Properly implemented nameplate hiding" />
     <MESSAGE value="Fixed crash if /start is passed non existant gamemode" />
-    <MESSAGE value="fix" />
     <MESSAGE value="fix nameplates again" />
     <MESSAGE value="Added proper sounds to grenades" />
     <MESSAGE value="w" />
     <MESSAGE value="moltovs now contain fire" />
-    <option name="LAST_COMMIT_MESSAGE" value="moltovs now contain fire" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="throwing fire" />
+    <option name="LAST_COMMIT_MESSAGE" value="throwing fire" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1171,8 +1177,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="41" column="5" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
           <folding>
-            <element signature="e#4457#4458#0" expanded="true" />
-            <element signature="e#4488#4489#0" expanded="true" />
+            <element signature="e#4513#4514#0" expanded="true" />
+            <element signature="e#4544#4545#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1222,8 +1228,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding>
-            <element signature="e#4457#4458#0" expanded="true" />
-            <element signature="e#4488#4489#0" expanded="true" />
+            <element signature="e#4513#4514#0" expanded="true" />
+            <element signature="e#4544#4545#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1250,8 +1256,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#4457#4458#0" expanded="true" />
-            <element signature="e#4488#4489#0" expanded="true" />
+            <element signature="e#4513#4514#0" expanded="true" />
+            <element signature="e#4544#4545#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1471,11 +1477,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54594016">
-          <caret line="122" column="17" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.41880342">
+          <caret line="116" column="79" selection-start-line="116" selection-start-column="79" selection-end-line="116" selection-end-column="79" />
           <folding>
-            <element signature="e#4457#4458#0" expanded="true" />
-            <element signature="e#4488#4489#0" expanded="true" />
+            <element signature="e#4513#4514#0" expanded="true" />
+            <element signature="e#4544#4545#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -111,8 +111,11 @@ public class EventListener implements Listener
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE_IGNITE, 2, 1));
 				for (int x = 0; x < 5; x++)
 				{
-					if(loc.getBlock().getType() == Material.AIR)
-						loc.add(x,0,0).getBlock().setType(Material.FIRE);
+					for(int z = 0; z < 5; z++)
+					{
+						if (loc.getBlock().getType().equals(Material.AIR))
+							loc.add(x, 0, z).getBlock().setType(Material.FIRE);
+					}
 				}
 			}
 			//'Nade

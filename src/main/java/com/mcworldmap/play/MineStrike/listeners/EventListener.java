@@ -81,6 +81,16 @@ public class EventListener implements Listener
 	}
 
 	@EventHandler
+	public void potionThrowEvent(ProjectileLaunchEvent event)
+	{
+		if(event.getEntity() instanceof ThrownPotion)
+		{
+			Entity e = event.getEntity();
+			e.setVelocity(e.getVelocity().multiply(2));
+		}
+	}
+
+	@EventHandler
 	public void onNadeImpact(PotionSplashEvent event)
 	{
 

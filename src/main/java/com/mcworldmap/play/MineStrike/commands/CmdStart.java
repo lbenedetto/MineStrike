@@ -41,8 +41,10 @@ public class CmdStart implements CommandExecutor
 					Scoreboard board = manager.getNewScoreboard();
 					Team T = board.registerNewTeam("T");
 					Team CT = board.registerNewTeam("CT");
-					T.setNameTagVisibility(NameTagVisibility.NEVER);
-					CT.setNameTagVisibility(NameTagVisibility.NEVER);
+					for(Team team : board.getTeams())
+					{
+						team.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+					}
 					for (Person p : MineStrike.team.getCT())
 					{
 						board.getTeam("T").addPlayer(p.getPlayer());

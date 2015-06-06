@@ -88,12 +88,12 @@ public class EventListener implements Listener
 		ThrownPotion pot = event.getPotion();
 		Location loc = pot.getLocation();
 		World w = pot.getWorld();
+		Collection<LivingEntity> affected = event.getAffectedEntities();
 		for (PotionEffect effect : pot.getEffects())
 		{
 			//Moltov
 			if (effect.getType().equals(PotionEffectType.FIRE_RESISTANCE))
 			{
-				Collection<LivingEntity> affected = event.getAffectedEntities();
 
 				for (LivingEntity ent : affected)
 				{
@@ -113,7 +113,6 @@ public class EventListener implements Listener
 			//'Nade
 			if (effect.getType().equals(PotionEffectType.HARM))
 			{
-				Collection<LivingEntity> affected = event.getAffectedEntities();
 
 				for (LivingEntity ent : affected)
 				{

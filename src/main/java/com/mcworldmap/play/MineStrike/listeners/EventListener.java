@@ -58,17 +58,20 @@ public class EventListener implements Listener
 	public void onDecoyImpact(ExpBottleEvent event)
 	{
 		Bukkit.getLogger().info("Deocoy Nade detected");
-		Location l = event.getEntity().getLocation();
-		World w = l.getWorld();
-		w.playEffect(l, Effect.FOOTSTEP, 1);
-		w.playSound(l, Sound.ARROW_HIT, 10, 1);
-		w.playSound(l, Sound.FALL_BIG, 10, 1);
-		w.playEffect(l, Effect.FOOTSTEP, 1);
-		w.playSound(l, Sound.ARROW_HIT, 10, 1);
-		w.playSound(l, Sound.FALL_BIG, 10, 1);
-		w.playEffect(l, Effect.FOOTSTEP, 1);
-		w.playSound(l, Sound.ARROW_HIT, 10, 1);
-		w.playSound(l, Sound.FALL_BIG, 10, 1);
+		Location loc = event.getEntity().getLocation();
+		World w = loc.getWorld();
+		ThrownExpBottle nade = event.getEntity();
+		List<Entity> nearbyEntities = nade.getNearbyEntities(20, 20, 20);
+		nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
+		w.playEffect(loc, Effect.FOOTSTEP, 1);
+		w.playSound(loc, Sound.ARROW_HIT, 1, 1);
+		w.playSound(loc, Sound.FALL_BIG, 1, 1);
+		w.playEffect(loc, Effect.FOOTSTEP, 1);
+		w.playSound(loc, Sound.ARROW_HIT, 1, 1);
+		w.playSound(loc, Sound.FALL_BIG, 1, 1);
+		w.playEffect(loc, Effect.FOOTSTEP, 1);
+		w.playSound(loc, Sound.ARROW_HIT, 1, 1);
+		w.playSound(loc, Sound.FALL_BIG, 1, 1);
 
 	}
 
@@ -80,6 +83,6 @@ public class EventListener implements Listener
 		Location loc = nade.getLocation();
 		World w = nade.getWorld();
 		List<Entity> nearbyEntities = nade.getNearbyEntities(25, 25, 25);
-		nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_BREAK, 10, 1));
+		nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
 	}
 }

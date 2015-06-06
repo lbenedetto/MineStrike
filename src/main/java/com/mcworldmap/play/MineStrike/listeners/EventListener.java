@@ -109,21 +109,12 @@ public class EventListener implements Listener
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE, 2, 1));
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE_IGNITE, 2, 1));
-//				for (int x = 0; x < 5; x++)
-//				{
-//					for(int z = 0; z < 5; z++)
-//					{
-//						if (loc.getBlock().getType().equals(Material.AIR))
-//							loc.add(x, 0, z).getBlock().setType(Material.FIRE);
-//					}
-//				}
 				for (int x = -2; x <= 2; x++)
 				{
 					for(int z = -2; z <= 2; z++)
 					{
 						if (loc.getWorld().getBlockAt((int)loc.getX() + x, (int)loc.getY(), (int)loc.getZ() + z).getType().equals(Material.AIR))
-//							loc.add(x, 0, z).getBlock().setType(Material.FIRE);
-						loc.getWorld().getBlockAt((int) loc.getX() + x, (int)loc.getY(), (int)loc.getZ() + z).setType(Material.FIRE);
+							loc.getWorld().getBlockAt((int) loc.getX() + x, (int)loc.getY(), (int)loc.getZ() + z).setType(Material.FIRE);
 					}
 				}
 			}

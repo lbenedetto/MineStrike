@@ -3,15 +3,13 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.*;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.ThrownExpBottle;
+import org.bukkit.entity.ThrownPotion;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.entity.PotionSplashEvent;
-
-import java.util.List;
+import org.bukkit.event.entity.*;
 
 public class EventListener implements Listener
 {
@@ -22,6 +20,10 @@ public class EventListener implements Listener
 		Player prey = event.getEntity();
 		EntityDamageEvent e0 = prey.getLastDamageCause();
 		Player predator = null;
+        /** This is here to make sure the thing that killed the player is in fact an Arrow or a player
+            We do this here to save processing time, and to prevent(hopefully) an exception that occurs at runtime. **/
+        if(!(e0 instanceof Arrow) || !(e0 instanceof Player))
+            return;
 		if (e0 instanceof EntityDamageByEntityEvent)
 		{
 			EntityDamageByEntityEvent e1 = (EntityDamageByEntityEvent) e0;
@@ -54,11 +56,11 @@ public class EventListener implements Listener
 
 	//TODO:Finish adding grenades
 	@EventHandler
-	public void onDecoyImpact(ThrownExpBottle event)
+	public void onDecoyImpact(ExpBottleEvent event)
 	{
 		Bukkit.getLogger().info("Deocoy Nade detected");
-		Location l = event.getLocation();
-		World w = event.getWorld();
+		Location l = event.getEntity().getLocation();
+		World w = l.getWorld();
 		w.playEffect(l, Effect.FOOTSTEP, 1);
 		w.playSound(l, Sound.ARROW_HIT, 10, 1);
 		w.playSound(l, Sound.FALL_BIG, 10, 1);
@@ -76,8 +78,8 @@ public class EventListener implements Listener
 	{
 		Bukkit.getLogger().info("Nade detected");
 		ThrownPotion nade = event.getPotion();
-		Location l = nade.getLocation();
-		List<Entity> nearbyEntities = nade.getNearbyEntities(25, 25, 25);
-		nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(l, Sound.ANVIL_BREAK, 10, 1));
+		Location loc = nade.getLocation();
+		World w = nade.getWorld();
+		w.playSound(loc, Sound.ANVIL_BREAK, 10, 1);
 	}
 }

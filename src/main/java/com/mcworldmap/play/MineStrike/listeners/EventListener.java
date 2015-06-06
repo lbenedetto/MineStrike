@@ -2,7 +2,9 @@ package com.mcworldmap.play.MineStrike.listeners;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import com.mcworldmap.play.MineStrike.Tasks.FireExtenguish;
 import org.bukkit.*;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
 import org.bukkit.event.Listener;
@@ -15,6 +17,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 public class EventListener implements Listener
 {
@@ -126,7 +129,12 @@ public class EventListener implements Listener
 					for(int z = -2; z <= 2; z++)
 					{
 						if (loc.getWorld().getBlockAt((int) loc.getX() + x, (int) loc.getY(), (int) loc.getZ() + z).getType().equals(Material.AIR))
-							loc.getWorld().getBlockAt((int) loc.getX() + x, (int)loc.getY(), (int)loc.getZ() + z).setType(Material.FIRE);
+						{
+							Block block = loc.getWorld().getBlockAt((int) loc.getX() + x, (int) loc.getY(), (int) loc.getZ() + z);
+							block.setType(Material.FIRE);
+
+							Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireExtenguish(block), new Random().nextInt(10) + 1);
+						}
 					}
 				}
 			}

@@ -2,16 +2,14 @@ package com.mcworldmap.play.MineStrike.listeners;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
-import com.mcworldmap.play.MineStrike.Tasks.FireExtenguish;
+import com.mcworldmap.play.MineStrike.Tasks.FireExtinguish;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
-import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -83,13 +81,14 @@ public class EventListener implements Listener
 		w.playSound(loc, Sound.FALL_BIG, 1, 1);
 
 	}
+
 	@EventHandler
 	public void potionThrowEvent(ProjectileLaunchEvent event)
 	{
-		if(event.getEntity() instanceof ThrownPotion)
+		if (event.getEntity() instanceof ThrownPotion)
 		{
 			Entity e = event.getEntity();
-			ThrownPotion thrownPotion = (ThrownPotion)e;
+			ThrownPotion thrownPotion = (ThrownPotion) e;
 			thrownPotion.setBounce(true);
 			e.setVelocity(e.getVelocity().multiply(2));
 		}
@@ -124,16 +123,20 @@ public class EventListener implements Listener
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE, 2, 1));
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE_IGNITE, 2, 1));
+				int spread;
 				for (int x = -2; x <= 2; x++)
 				{
-					for(int z = -2; z <= 2; z++)
+					for (int z = -2; z <= 2; z++)
 					{
 						if (loc.getWorld().getBlockAt((int) loc.getX() + x, (int) loc.getY(), (int) loc.getZ() + z).getType().equals(Material.AIR))
 						{
-							Block block = loc.getWorld().getBlockAt((int) loc.getX() + x, (int) loc.getY(), (int) loc.getZ() + z);
-							block.setType(Material.FIRE);
-
-							Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireExtenguish(block), (new Random().nextInt(10) + 1) * 20);
+							spread = new Random().nextInt(100);
+							if (spread < 80)
+							{
+								Block block = loc.getWorld().getBlockAt((int) loc.getX() + x, (int) loc.getY(), (int) loc.getZ() + z);
+								block.setType(Material.FIRE);
+								Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireExtinguish(block), (new Random().nextInt(10) + 10) * 20);
+							}
 						}
 					}
 				}
@@ -152,6 +155,8 @@ public class EventListener implements Listener
 				Bukkit.getLogger().info("Nade detected");
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.EXPLODE, 1, 1));
+				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playEffect(loc, Effect.CLOUD, null));
+				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playEffect(loc, Effect.SMOKE, null));
 				pot.setBounce(true);
 			}
 			break;

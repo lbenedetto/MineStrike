@@ -19,6 +19,6 @@ public class FireExtinguish implements Runnable
 	@Override
 	public void run()
 	{
-		block.breakNaturally();
+		block.setType(Material.AIR);
 	}
 }

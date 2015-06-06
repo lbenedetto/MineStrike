@@ -41,6 +41,15 @@ public class Price
 		price.put("MP7", 1700);
 		price.put("UMP", 1200);
 		price.put("Pro90", 2350);
-		price.put("PeePee", 1400);
+		price.put("Bison", 1400);
+		price.put("MP9", 1250);
+		//Rifles
+		price.put("Famas", 2250);
+		price.put("M4A1-S", 3200);
+		price.put("SSG08", 1700);
+		price.put("AUG", 3300);
+		price.put("AWP", 4750);
+		price.put("SCAR20", 5000);
+		price.put("AWP", 4750);
 	}
 }

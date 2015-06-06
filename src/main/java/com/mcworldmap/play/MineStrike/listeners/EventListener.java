@@ -109,7 +109,11 @@ public class EventListener implements Listener
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE, 2, 1));
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE_IGNITE, 2, 1));
-				loc.getBlock().getRelative(BlockFace.UP).setType(Material.FIRE);
+				for (int x = 0; x < 5; x++)
+				{
+					if(loc.getBlock().getType() == Material.AIR)
+						loc.add(x,0,0).getBlock().setType(Material.FIRE);
+				}
 			}
 			//'Nade
 			if (effect.getType().equals(PotionEffectType.HARM))

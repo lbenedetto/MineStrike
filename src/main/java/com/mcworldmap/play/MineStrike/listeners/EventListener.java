@@ -82,8 +82,8 @@ public class EventListener implements Listener
 	{
 		Bukkit.getLogger().info("Nade detected");
 		ThrownPotion nade = event.getPotion();
-		Location l = nade.getLocation();
+		Location loc = nade.getLocation();
 		World w = nade.getWorld();
-		w.playSound(l, Sound.ANVIL_BREAK, 10, 1);
+		w.playSound(loc, Sound.ANVIL_BREAK, 10, 1);
 	}
 }

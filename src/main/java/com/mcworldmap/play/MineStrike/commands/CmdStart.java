@@ -23,14 +23,14 @@ public class CmdStart implements CommandExecutor
 			if (MineStrike.ts == 5 && MineStrike.cts == 5)
 			{
 				//TODO: Add stuff that starts the match
-				if (args[0].equalsIgnoreCase("armsrace"))
+				if (args[0].equalsIgnoreCase("deathmatch"))
 				{
-					MineStrike.gamemode = "armsrace";
+					MineStrike.gamemode = "deathmatch";
 				} else if (args[0].equalsIgnoreCase("competitive"))
 				{
 					MineStrike.gamemode = "competitive";
 				}
-				if (MineStrike.gamemode.equalsIgnoreCase(""))
+				if (!(MineStrike.gamemode.equalsIgnoreCase("competitive") || MineStrike.gamemode.equalsIgnoreCase("deathmatch")))
 				{
 					return false;
 				}

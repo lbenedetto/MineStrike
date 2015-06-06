@@ -11,6 +11,7 @@ import org.bukkit.event.entity.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import java.util.Collection;
 import java.util.List;
 
 public class EventListener implements Listener
@@ -22,10 +23,10 @@ public class EventListener implements Listener
 		Player prey = event.getEntity();
 		EntityDamageEvent e0 = prey.getLastDamageCause();
 		Player predator = null;
-        /** This is here to make sure the thing that killed the player is in fact an Arrow or a player
-            We do this here to save processing time, and to prevent(hopefully) an exception that occurs at runtime. **/
-        if(!(e0 instanceof Arrow) || !(e0 instanceof Player))
-            return;
+		/** This is here to make sure the thing that killed the player is in fact an Arrow or a player
+		 We do this here to save processing time, and to prevent(hopefully) an exception that occurs at runtime. **/
+		if (!(e0 instanceof Arrow) || !(e0 instanceof Player))
+			return;
 		if (e0 instanceof EntityDamageByEntityEvent)
 		{
 			EntityDamageByEntityEvent e1 = (EntityDamageByEntityEvent) e0;
@@ -87,11 +88,20 @@ public class EventListener implements Listener
 		ThrownPotion pot = event.getPotion();
 		Location loc = pot.getLocation();
 		World w = pot.getWorld();
-		for(PotionEffect effect : pot.getEffects())
+		for (PotionEffect effect : pot.getEffects())
 		{
 			//Moltov
-			if(effect.getType().equals(PotionEffectType.FIRE_RESISTANCE))
+			if (effect.getType().equals(PotionEffectType.FIRE_RESISTANCE))
 			{
+				Collection<LivingEntity> affected = event.getAffectedEntities();
+
+				for (LivingEntity ent : affected)
+				{
+					if (ent instanceof Player)
+					{
+						event.setIntensity(ent, 0);
+					}
+				}
 				Bukkit.getLogger().info("Moltov Detected");
 				w.playEffect(loc, Effect.SMOKE, 10);
 				pot.setBounce(true);
@@ -101,8 +111,17 @@ public class EventListener implements Listener
 				loc.getBlock().getRelative(BlockFace.UP).setType(Material.FIRE);
 			}
 			//'Nade
-			if(effect.getType().equals(PotionEffectType.HARM))
+			if (effect.getType().equals(PotionEffectType.HARM))
 			{
+				Collection<LivingEntity> affected = event.getAffectedEntities();
+
+				for (LivingEntity ent : affected)
+				{
+					if (ent instanceof Player)
+					{
+						event.setIntensity(ent, 0);
+					}
+				}
 				Bukkit.getLogger().info("Nade detected");
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.EXPLODE, 1, 1));

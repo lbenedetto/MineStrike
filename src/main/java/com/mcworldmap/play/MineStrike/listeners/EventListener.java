@@ -92,7 +92,7 @@ public class EventListener implements Listener
 			if(effect.getType().equals(PotionEffectType.FIRE_RESISTANCE))
 			{
 				Bukkit.getLogger().info("Moltov Detected");
-				pot.getLocation().getWorld().playEffect(loc, Effect.SMOKE, 10);
+				w.playEffect(loc, Effect.SMOKE, 10);
 				pot.setBounce(true);
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE, 2, 1));

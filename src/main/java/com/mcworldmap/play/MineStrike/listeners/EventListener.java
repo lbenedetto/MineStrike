@@ -7,6 +7,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.*;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
@@ -79,25 +80,37 @@ public class EventListener implements Listener
 	@EventHandler
 	public void onNadeImpact(PotionSplashEvent event)
 	{
+
+		//Changed some stuff. let's see if it works.
 		Bukkit.getLogger().info("Nade detected");
-		ThrownPotion nade = event.getPotion();
-		Location loc = nade.getLocation();
-		World w = nade.getWorld();
-		List<Entity> nearbyEntities = nade.getNearbyEntities(25, 25, 25);
-		nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
+		ThrownPotion pot = event.getPotion();
+		Location loc = pot.getLocation();
+		World w = pot.getWorld();
+		for(PotionEffect effect : pot.getEffects())
+		{
+			//Moltov
+			if(effect.getType().equals(PotionEffectType.FIRE_RESISTANCE))
+			{
+				Bukkit.getLogger().info("Moltov Detected");
+				pot.getLocation().getWorld().playEffect(loc, Effect.SMOKE, 10);
+				pot.getEffects().clear();
+				break;
+			}
+			//'Nade
+			if(effect.getType().equals(PotionEffectType.HARM))
+			{
+				List<Entity> nearbyEntities = pot.getNearbyEntities(25, 25, 25);
+				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
+				break;
+			}
+		}
 	}
 
 	//I hope this works.
-	@EventHandler
-	public void onMoltovImpact(PotionSplashEvent event)
-	{
-		ThrownPotion pot = event.getPotion();
-		if(pot.getEffects().contains(PotionEffectType.FIRE_RESISTANCE))
-		{
-			Location loc = pot.getLocation();
-			Bukkit.getLogger().info("Moltov Detected");
-			pot.getLocation().getWorld().playEffect(loc, Effect.SMOKE, 10);
-			pot.getEffects().clear();
-		}
-	}
+//	@EventHandler
+//	public void onMoltovImpact(PotionSplashEvent event)
+//	{
+//		ThrownPotion pot = event.getPotion();
+//
+//	}
 }

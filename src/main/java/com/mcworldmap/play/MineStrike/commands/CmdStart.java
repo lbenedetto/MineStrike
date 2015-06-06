@@ -39,18 +39,18 @@ public class CmdStart implements CommandExecutor
 				{
 					ScoreboardManager manager = Bukkit.getScoreboardManager();
 					Scoreboard board = manager.getNewScoreboard();
-					Team T = board.registerNewTeam("Terrorists");
-					Team CT = board.registerNewTeam("Counter-Terrorists");
-					board.getTeam("Terrorists").setNameTagVisibility(NameTagVisibility.NEVER);
-					board.getTeam("Counter-Terrorists").setNameTagVisibility(NameTagVisibility.NEVER);
+					Team T = board.registerNewTeam("T");
+					Team CT = board.registerNewTeam("CT");
+					board.getTeam("T").setNameTagVisibility(NameTagVisibility.NEVER);
+					board.getTeam("CT").setNameTagVisibility(NameTagVisibility.NEVER);
 					for (Person p : MineStrike.team.getCT())
 					{
-						board.getTeam("Terrorists").addPlayer(p.getPlayer());
+						board.getTeam("T").addPlayer(p.getPlayer());
 						p.respawnCT();
 					}
 					for (Person p : MineStrike.team.getT())
 					{
-						board.getTeam("Counter-Terrorists").addPlayer(p.getPlayer());
+						board.getTeam("CT").addPlayer(p.getPlayer());
 						p.respawnT();
 					}
 				}

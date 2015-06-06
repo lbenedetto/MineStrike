@@ -14,7 +14,7 @@ public class CmdScoreboard implements CommandExecutor
 		for (Person p : MineStrike.team.getT())
 			sender.sendMessage(p.toString());
 		sender.sendMessage("Counter-Terrorists:");
-		for (Person p : MineStrike.team.getT())
+		for (Person p : MineStrike.team.getCT())
 			sender.sendMessage(p.toString());
 		return true;
 	}

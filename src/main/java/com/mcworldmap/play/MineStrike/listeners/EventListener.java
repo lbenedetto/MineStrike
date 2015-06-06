@@ -3,13 +3,12 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.*;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.ThrownExpBottle;
-import org.bukkit.entity.ThrownPotion;
+import org.bukkit.entity.*;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.*;
+
+import java.util.List;
 
 public class EventListener implements Listener
 {
@@ -80,6 +79,7 @@ public class EventListener implements Listener
 		ThrownPotion nade = event.getPotion();
 		Location loc = nade.getLocation();
 		World w = nade.getWorld();
-		w.playSound(loc, Sound.ANVIL_BREAK, 10, 1);
+		List<Entity> nearbyEntities = nade.getNearbyEntities(25, 25, 25);
+		nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_BREAK, 10, 1));
 	}
 }

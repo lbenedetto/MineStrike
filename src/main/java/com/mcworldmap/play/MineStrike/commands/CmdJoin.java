@@ -12,6 +12,7 @@ public class CmdJoin implements CommandExecutor
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
 	{
+
 		if (!(sender instanceof Player))
 			sender.sendMessage("This command can only be run by a player.");
 		if (args.length > 1)

@@ -138,7 +138,7 @@ public class Person
 					getTargetBlock(lookAt(this.player.getLocation(), targetBB), MineStrike.transparent, distance) == null)
 			{
 				// All air - we can probably see this player
-				Bukkit.getServer().getLogger().info("this.player.getDisplayName() + \" can see \" + b");
+				Bukkit.getServer().getLogger().info(this.player.getDisplayName() + " can see " + b);
 				return true;
 			}
 		}

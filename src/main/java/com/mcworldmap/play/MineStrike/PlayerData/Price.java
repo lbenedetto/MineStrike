@@ -34,6 +34,24 @@ public enum Price
 	{
 		return value;
 	}
+
+
+	public static Price getPrice(final String name){
+		for(Price price : Price.values())
+			if(price.name().equalsIgnoreCase(name))
+				return price;
+		return null;
+	}
+	public static <T extends Enum<T>> T findEnumValue(Class<T> type, String name) {
+		if (name == null)
+			return null;
+		try {
+			return Enum.valueOf(type, name.toUpperCase());
+		} catch (IllegalArgumentException iae) {
+			return null;
+		}
+	}
+
 	//public HashMap<String, Integer> price = new HashMap<>();
 
 //	public Price()

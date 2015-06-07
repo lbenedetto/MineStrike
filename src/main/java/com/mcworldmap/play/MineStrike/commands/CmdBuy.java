@@ -29,13 +29,21 @@ public class CmdBuy implements CommandExecutor
 //					if (p.getMoney() >= price.getValue())
 //						p.setMoney(p.getMoney() - price.getValue());
 
-			//if this doesn't work, comment this out and use the above commented method.
-			if(Price.valueOf(args[0].toUpperCase()) != null)
+			//OH GOD MORE METHODOLOGY.
+			if(Price.getPrice(args[0]) != null)
 			{
-				int price = Price.valueOf(args[0].toUpperCase()).getValue();
-				if(p.getMoney() >= price)
+				int price = Price.getPrice(args[0]).getValue();
+				if (p.getMoney() >= price)
 					p.setMoney(p.getMoney() - price);
 			}
+
+//			//if this doesn't work, comment this out and use the above commented method.
+//			if(Price.findEnumValue(Price, args[0].toUpperCase()))
+//			{
+//				int price = Price.valueOf(args[0].toUpperCase()).getValue();
+//				if(p.getMoney() >= price)
+//					p.setMoney(p.getMoney() - price);
+//			}
 		}
 		return false;
 	}

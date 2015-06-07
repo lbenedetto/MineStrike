@@ -191,29 +191,33 @@ public class EventListener implements Listener
 				{
 					if (e instanceof Player)
 					{
-						eLoc = e.getLocation();
-						flashLoc = pot.getLocation();
-						eDir = getCardinalDirection((Player) e);
-						if(eLoc.getZ() > flashLoc.getZ()) {
-							if(eDir.equals("North") || eDir.equals("Northwest") || eDir.equals("Northeast")){
-								//Flash Player
-							}
+						if(MineStrike.team.findPerson((Player) e).canSee(pot)){
+							//Flash Player
 						}
-						else if(eLoc.getX() > flashLoc.getX()) {
-							if(eDir.equals("West") || eDir.equals("Northwest") || eDir.equals("Southwest")){
-								//Flash Player
-							}
-						}
-						else if(eLoc.getZ() < flashLoc.getZ()) {
-							if(eDir.equals("South") || eDir.equals("Southeast") || eDir.equals("Southwest")){
-								//Flash Player
-							}
-						}
-						else if(eLoc.getZ() < flashLoc.getZ()) {
-							if(eDir.equals("East") || eDir.equals("Southeast") || eDir.equals("Northeast")){
-								//Flash Player
-							}
-						}
+						//My Code, might still need this
+//						eLoc = e.getLocation();
+//						flashLoc = pot.getLocation();
+//						eDir = getCardinalDirection((Player) e);
+//						if(eLoc.getZ() > flashLoc.getZ()) {
+//							if(eDir.equals("North") || eDir.equals("Northwest") || eDir.equals("Northeast")){
+//								//Flash Player
+//							}
+//						}
+//						else if(eLoc.getX() > flashLoc.getX()) {
+//							if(eDir.equals("West") || eDir.equals("Northwest") || eDir.equals("Southwest")){
+//								//Flash Player
+//							}
+//						}
+//						else if(eLoc.getZ() < flashLoc.getZ()) {
+//							if(eDir.equals("South") || eDir.equals("Southeast") || eDir.equals("Southwest")){
+//								//Flash Player
+//							}
+//						}
+//						else if(eLoc.getZ() < flashLoc.getZ()) {
+//							if(eDir.equals("East") || eDir.equals("Southeast") || eDir.equals("Northeast")){
+//								//Flash Player
+//							}
+//						}
 					}
 				}
 			}

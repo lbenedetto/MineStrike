@@ -3,7 +3,13 @@ package com.mcworldmap.play.MineStrike.PlayerData;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.util.BlockIterator;
+
+import java.util.Iterator;
+import java.util.Set;
 
 public class Person
 {
@@ -111,5 +117,76 @@ public class Person
 	public Player getPlayer()
 	{
 		return player;
+	}
+
+	public boolean canSee(Entity b)
+	{
+		// Checking A - B is the same as B - A, so skip those
+		if (this.player.getWorld().equals(b.getWorld()))
+		{
+			// Bounding box of the target
+			Location targetAA = b.getLocation().add(-0.5, 0, -0.5);
+			Location targetBB = b.getLocation().add(0.5, .5, 0.5);
+			int distance = (int) this.player.getLocation().distance(targetAA);
+
+			// No need to check this
+			if (distance > 120)
+				return false;
+
+			if (getTargetBlock(lookAt(this.player.getLocation(), targetAA), MineStrike.transparent, distance) == null ||
+					getTargetBlock(lookAt(this.player.getLocation(), targetBB), MineStrike.transparent, distance) == null)
+			{
+				// All air - we can probably see this player
+				System.out.println(this.player.getDisplayName() + " can see " + b + ", and vice versa.");
+				return true;
+			}
+		}
+		return true;
+	}
+	private Location lookAt(Location loc, Location lookat)
+	{
+		double dx = lookat.getX() - loc.getX();
+		double dy = lookat.getY() - loc.getY();
+		double dz = lookat.getZ() - loc.getZ();
+
+		double dxz = Math.sqrt(dx * dx + dz * dz);
+		double pitch = Math.atan(dy / dxz);
+		double yaw = 0;
+
+		if (dx != 0)
+		{
+			if (dx < 0)
+			{
+				yaw = 1.5 * Math.PI;
+			} else
+			{
+				yaw = 0.5 * Math.PI;
+			}
+			yaw -= Math.atan(dz / dx);
+		} else if (dz < 0)
+		{
+			yaw = Math.PI;
+		}
+
+		loc.setYaw((float) Math.toDegrees(-yaw));
+		loc.setPitch((float) Math.toDegrees(-pitch));
+		return loc;
+	}
+
+	private Block getTargetBlock(Location direction, Set<Integer> transparent, int maxDistance)
+	{
+		for (Iterator<Block> it = new BlockIterator(direction, 0, maxDistance); it.hasNext(); )
+		{
+			Block block = it.next();
+			int id = block.getTypeId();
+
+			// Determine if this is a non-air block
+			if (transparent == null ? id != 0 : !transparent.contains(id))
+			{
+				return block;
+			}
+		}
+		// No target block found
+		return null;
 	}
 }

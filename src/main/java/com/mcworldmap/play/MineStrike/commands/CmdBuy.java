@@ -13,7 +13,6 @@ public class CmdBuy implements CommandExecutor
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
 	{
-		Price item = new Price();
 		if (!(sender instanceof Player))
 			sender.sendMessage("This command can only be run by a player.");
 		if (args.length > 1)
@@ -24,10 +23,11 @@ public class CmdBuy implements CommandExecutor
 		{
 			Person p = MineStrike.team.findPerson((Player) sender);
 			sender.sendMessage("You have $" + p.getMoney());
-			if (p.getMoney() >= item.price.get(args[0])){
-				p.setMoney(p.getMoney() - item.price.get(args[0]));
-			}
-
+			//CONVERTED TO ENUMS YAY
+			for(Price price : Price.values())
+				if(price.toString().equalsIgnoreCase(args[0]))
+					if (p.getMoney() >= price.getValue())
+						p.setMoney(p.getMoney() - price.getValue());
 		}
 		return false;
 	}

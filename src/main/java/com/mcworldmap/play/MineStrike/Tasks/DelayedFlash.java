@@ -33,7 +33,7 @@ public class DelayedFlash implements Runnable
 				if (MineStrike.team.findPerson((Player) e).canSee(pot))
 				{
 					//Flash Player
-					((Player) e).addPotionEffect(new PotionEffectType.BLINDNESS);
+					((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 3, 10));
 				}
 			}
 		}

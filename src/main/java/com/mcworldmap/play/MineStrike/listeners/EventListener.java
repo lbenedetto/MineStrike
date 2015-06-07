@@ -65,7 +65,7 @@ public class EventListener implements Listener
 			Bukkit.getServer().broadcastMessage("Counter-Terrorists Win");
 			for (Person p : MineStrike.team.getT())
 				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Counter-Terrorists Win", "? MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + "for most eliminations");
-			for(Person p : MineStrike.team.getCT())
+			for (Person p : MineStrike.team.getCT())
 				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Counter-Terrorists Win", "? MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + "for most eliminations");
 			MineStrike.team.respawnCT();
 			MineStrike.team.respawnT();
@@ -77,7 +77,7 @@ public class EventListener implements Listener
 		{
 			for (Person p : MineStrike.team.getT())
 				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Terrorists Win", "? MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + "for most eliminations");
-			for(Person p : MineStrike.team.getCT())
+			for (Person p : MineStrike.team.getCT())
 				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Terrorists Win", "? MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + "for most eliminations");
 			MineStrike.team.respawnCT();
 			MineStrike.team.respawnT();
@@ -179,11 +179,8 @@ public class EventListener implements Listener
 						event.setIntensity(ent, 0);
 					}
 				}
-				Bukkit.getLogger().info("Nade detected");
-				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
-				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.EXPLODE, 1, 1));
-				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playEffect(loc, Effect.CLOUD, null));
-				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playEffect(loc, Effect.SMOKE, null));
+				Bukkit.getLogger().info("HE Grenade detected");
+				event.getEntity().getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), 5, false, false);
 				pot.setBounce(true);
 			}
 			break;

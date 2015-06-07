@@ -21,6 +21,7 @@ import java.util.Random;
 @SuppressWarnings("unused")
 public class EventListener implements Listener
 {
+
 	@EventHandler
 	public void onDeath(PlayerDeathEvent event)
 	{
@@ -185,7 +186,6 @@ public class EventListener implements Listener
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedFlash(nearbyEntities, pot), (new Random().nextInt(10) + 10) * 20);
 			}
-			break;
 		}
 	}
 

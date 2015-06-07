@@ -7,11 +7,15 @@ public class Team
 {
 	private Person[] T;
 	private Person[] CT;
+	public int CTscore;
+	public int Tscore;
 
 	public Team()
 	{
 		T = new Person[5];
 		CT = new Person[5];
+		CTscore = 0;
+		Tscore = 0;
 	}
 
 	public Person[] getT()
@@ -48,5 +52,39 @@ public class Team
 		Person[] temp = T;
 		T = CT;
 		CT = temp;
+	}
+
+	public boolean isTTeamDead()
+	{
+		return (T[0].isDead() && T[1].isDead() && T[2].isDead() && T[3].isDead() && T[4].isDead());
+	}
+
+	public boolean isCTTeamDead()
+	{
+		return (T[0].isDead() && T[1].isDead() && T[2].isDead() && T[3].isDead() && T[4].isDead());
+	}
+
+	public void respawnT()
+	{
+		for (Person p : T)
+			p.respawnCT();
+	}
+
+	public void respawnCT()
+	{
+		for (Person p : CT)
+			p.respawnCT();
+	}
+
+	public void rewardT(int reward)
+	{
+		for (Person p : T)
+			p.addMoney(reward);
+	}
+
+	public void rewardCT(int reward)
+	{
+		for (Person p : T)
+			p.addMoney(reward);
 	}
 }

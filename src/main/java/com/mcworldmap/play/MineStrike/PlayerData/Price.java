@@ -8,7 +8,7 @@ public class Price
 
 	public Price()
 	{
-		//TODO:Finish adding prices
+		//TODO:Maybe load prices from config instead?
 		//Gear
 		price.put("kevlar", 650);
 		price.put("helmet", 350);
@@ -45,11 +45,14 @@ public class Price
 		price.put("MP9", 1250);
 		//Rifles
 		price.put("Famas", 2250);
-		price.put("M4A1-S", 3200);
-		price.put("SSG08", 1700);
+		price.put("Galil", 2000);
+		price.put("AK", 2700);
+		price.put("M4A1S", 3200);
+		price.put("SSG", 1700);
 		price.put("AUG", 3300);
+		price.put("SG", 3000);
 		price.put("AWP", 4750);
-		price.put("SCAR20", 5000);
+		price.put("autosniper", 5000);
 		price.put("AWP", 4750);
 	}
 }

@@ -1,6 +1,7 @@
 package com.mcworldmap.play.MineStrike.PlayerData;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -137,7 +138,7 @@ public class Person
 					getTargetBlock(lookAt(this.player.getLocation(), targetBB), MineStrike.transparent, distance) == null)
 			{
 				// All air - we can probably see this player
-				System.out.println(this.player.getDisplayName() + " can see " + b + ", and vice versa.");
+				Bukkit.getServer().getLogger().info("this.player.getDisplayName() + \" can see \" + b");
 				return true;
 			}
 		}

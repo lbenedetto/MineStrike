@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import java.util.List;
 import java.util.logging.Level;
@@ -43,6 +44,7 @@ public class DelayedFlash implements Runnable
 				data.addEffects(FireworkEffect.builder().withColor(Color.WHITE).with(FireworkEffect.Type.BALL_LARGE).build());
 				data.setPower(2);
 				firework.setFireworkMeta(data);
+				firework.setVelocity(new Vector(0,0,0));
 				if (MineStrike.team.findPerson((Player) e).canSee(pot))
 				{
 					eLoc = e.getLocation();

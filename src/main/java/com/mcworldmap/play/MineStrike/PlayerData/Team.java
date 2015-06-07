@@ -60,14 +60,14 @@ public class Team
 	{
 		for (Person p : MineStrike.team.getCT())
 		{
-			if (p.getPlayer() == player)
+			if (p.getPlayer().equals(player))
 			{
 				return p;
 			}
 		}
 		for (Person p : MineStrike.team.getT())
 		{
-			if (p.getPlayer() == player)
+			if (p.getPlayer().equals(player))
 			{
 				return p;
 			}

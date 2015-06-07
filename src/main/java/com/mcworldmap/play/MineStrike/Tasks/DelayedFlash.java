@@ -1,6 +1,7 @@
 package com.mcworldmap.play.MineStrike.Tasks;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
+import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -28,46 +29,41 @@ public class DelayedFlash implements Runnable
 	public void run()
 	{
 		//Flash Player
+		Location eLoc = null;
+		Location flashLoc = null;
+		String eDir = "";
+		String flashDir = "";
 		for (Entity e : nearbyEntities)
 		{
 			if (e instanceof Player)
 			{
 				if (MineStrike.team.findPerson((Player) e).canSee(pot))
 				{
-					//Flash Player
-					Bukkit.getLogger().log(Level.INFO, "I FOUND SOMEONE WHO SHOULD BE BLINDED, APPLYING.");
-					((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));
+					eLoc = e.getLocation();
+					flashLoc = pot.getLocation();
+					eDir = Util.getCardinalDirection((Player) e);
+					if(eLoc.getZ() > flashLoc.getZ()) {
+						if(eDir.equals("North") || eDir.equals("Northwest") || eDir.equals("Northeast")){
+							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));
+						}
+					}
+					else if(eLoc.getX() > flashLoc.getX()) {
+						if(eDir.equals("West") || eDir.equals("Northwest") || eDir.equals("Southwest")){
+							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));
+						}
+					}
+					else if(eLoc.getZ() < flashLoc.getZ()) {
+						if(eDir.equals("South") || eDir.equals("Southeast") || eDir.equals("Southwest")){
+							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));
+						}
+					}
+					else if(eLoc.getZ() < flashLoc.getZ()) {
+						if(eDir.equals("East") || eDir.equals("Southeast") || eDir.equals("Northeast")){
+							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));
+						}
+					}
 				}
 			}
 		}
-		//My Code, might still need this
-//		Location eLoc = null;
-//		Location flashLoc = null;
-//		String eDir = "";
-//		String flashDir = "";
-		/**For Loop begins */
-//		eLoc = e.getLocation();
-//		flashLoc = pot.getLocation();
-//		eDir = Util.getCardinalDirection((Player) e);
-//		if(eLoc.getZ() > flashLoc.getZ()) {
-//			if(eDir.equals("North") || eDir.equals("Northwest") || eDir.equals("Northeast")){
-//				//Flash Player
-//			}
-//		}
-//		else if(eLoc.getX() > flashLoc.getX()) {
-//			if(eDir.equals("West") || eDir.equals("Northwest") || eDir.equals("Southwest")){
-//				//Flash Player
-//			}
-//		}
-//		else if(eLoc.getZ() < flashLoc.getZ()) {
-//			if(eDir.equals("South") || eDir.equals("Southeast") || eDir.equals("Southwest")){
-//				//Flash Player
-//			}
-//		}
-//		else if(eLoc.getZ() < flashLoc.getZ()) {
-//			if(eDir.equals("East") || eDir.equals("Southeast") || eDir.equals("Northeast")){
-//				//Flash Player
-//			}
-//		}
 	}
 }

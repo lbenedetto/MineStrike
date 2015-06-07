@@ -15,13 +15,10 @@ import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
-
+@SuppressWarnings("unused")
 public class EventListener implements Listener
 {
 	@EventHandler

@@ -184,7 +184,7 @@ public class EventListener implements Listener
 			{
 				Bukkit.getLogger().info("Flashbang Detected");
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedFlash(nearbyEntities, pot), (new Random().nextInt(10) + 10) * 20);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedFlash(nearbyEntities, pot), 20);
 			}
 		}
 	}

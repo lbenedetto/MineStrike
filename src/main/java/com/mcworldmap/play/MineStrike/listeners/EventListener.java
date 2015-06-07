@@ -5,6 +5,7 @@ import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.DelayedFlash;
 import com.mcworldmap.play.MineStrike.Tasks.FireExtinguish;
 import com.mcworldmap.play.MineStrike.Util.Util;
+import net.minecraft.server.v1_8_R3.Explosion;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
@@ -19,6 +20,7 @@ import org.bukkit.util.Vector;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 public class EventListener implements Listener
 {
@@ -42,7 +44,6 @@ public class EventListener implements Listener
 		{
 			predator = (Player) e1;
 		}
-
 		Person preyPerson = MineStrike.team.findPerson(prey);
 		Person predatorPerson = MineStrike.team.findPerson(predator);
 		assert predator != null;
@@ -146,6 +147,7 @@ public class EventListener implements Listener
 				Bukkit.getLogger().info("Moltov Detected");
 				w.playEffect(loc, Effect.SMOKE, 10);
 				pot.setBounce(true);
+
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE, 2, 1));
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE_IGNITE, 2, 1));
@@ -190,6 +192,19 @@ public class EventListener implements Listener
 		}
 	}
 
+
+	public void entityDamage(EntityDamageByEntityEvent event)
+	{
+		if(event.getEntity() instanceof Player && event.getDamager() instanceof Explosion)
+		{
+
+		}
+	}
+
+	public void projectileHitEvent(ProjectileHitEvent event)
+	{
+
+	}
 	@EventHandler
 	public void onFireSpread(BlockIgniteEvent event)
 	{

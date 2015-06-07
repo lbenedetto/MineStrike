@@ -13,6 +13,7 @@ import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
 
 import java.util.Collection;
 import java.util.List;
@@ -175,9 +176,46 @@ public class EventListener implements Listener
 				event.getEntity().getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), 5, false, false);
 				pot.setBounce(true);
 			}
-			if(effect.getType().equals(PotionEffectType.NIGHT_VISION)){
+			//Flashbang
+			//A rudimentary way to see if the player is facing away from the flashbang
+			//We may later implement a way to see if the grenade is obscure, but it would be difficult
+			if (effect.getType().equals(PotionEffectType.NIGHT_VISION))
+			{
 				Bukkit.getLogger().info("Flashbang Detected");
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
+				Location eLoc = null;
+				Location flashLoc = null;
+				String eDir = "";
+				String flashDir = "";
+				for (Entity e : nearbyEntities)
+				{
+					if (e instanceof Player)
+					{
+						eLoc = e.getLocation();
+						flashLoc = pot.getLocation();
+						eDir = getCardinalDirection((Player) e);
+						if(eLoc.getZ() > flashLoc.getZ()) {
+							if(eDir.equals("North") || eDir.equals("Northwest") || eDir.equals("Northeast")){
+								//Flash Player
+							}
+						}
+						else if(eLoc.getX() > flashLoc.getX()) {
+							if(eDir.equals("West") || eDir.equals("Northwest") || eDir.equals("Southwest")){
+								//Flash Player
+							}
+						}
+						else if(eLoc.getZ() < flashLoc.getZ()) {
+							if(eDir.equals("South") || eDir.equals("Southeast") || eDir.equals("Southwest")){
+								//Flash Player
+							}
+						}
+						else if(eLoc.getZ() < flashLoc.getZ()) {
+							if(eDir.equals("East") || eDir.equals("Southeast") || eDir.equals("Northeast")){
+								//Flash Player
+							}
+						}
+					}
+				}
 			}
 			break;
 		}
@@ -196,4 +234,35 @@ public class EventListener implements Listener
 //		ThrownPotion pot = event.getPotion();
 //
 //	}
+	public static String getCardinalDirection(Player player) {
+		double rot = (player.getLocation().getYaw() - 90) % 360;
+		if (rot < 0) {
+			rot += 360.0;
+		}
+		return getDirection(rot);
+	}
+
+	private static String getDirection(double rot) {
+		if (0 <= rot && rot < 22.5) {
+			return "North";
+		} else if (22.5 <= rot && rot < 67.5) {
+			return "Northeast";
+		} else if (67.5 <= rot && rot < 112.5) {
+			return "East";
+		} else if (112.5 <= rot && rot < 157.5) {
+			return "Southeast";
+		} else if (157.5 <= rot && rot < 202.5) {
+			return "South";
+		} else if (202.5 <= rot && rot < 247.5) {
+			return "Southwest";
+		} else if (247.5 <= rot && rot < 292.5) {
+			return "West";
+		} else if (292.5 <= rot && rot < 337.5) {
+			return "Northwest";
+		} else if (337.5 <= rot && rot < 360.0) {
+			return "North";
+		} else {
+			return null;
+		}
+	}
 }

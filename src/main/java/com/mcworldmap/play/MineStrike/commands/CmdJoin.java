@@ -37,7 +37,7 @@ public class CmdJoin implements CommandExecutor
 				sender.sendMessage("Joined Counter-Terrorist Team");
 			} else
 			{
-				sender.sendMessage("Must enter either T or CT (or team is full)");
+				sender.sendMessage("The team you tried to join is either full, or does not exist");
 				return false;
 			}
 			return true;

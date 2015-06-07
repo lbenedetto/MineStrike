@@ -34,17 +34,17 @@ public class DelayedFlash implements Runnable
 		Location flashLoc = null;
 		String eDir = "";
 		String flashDir = "";
+		Location loc = pot.getLocation();
+		Firework firework = pot.getWorld().spawn(loc.add(1,0,0), Firework.class);
+		FireworkMeta data = (FireworkMeta) firework.getFireworkMeta();
+		data.addEffects(FireworkEffect.builder().withColor(Color.WHITE).with(FireworkEffect.Type.BALL_LARGE).build());
+		data.setPower(0);
+		firework.setFireworkMeta(data);
+		firework.detonate();
 		for (Entity e : nearbyEntities)
 		{
 			if (e instanceof Player)
 			{
-				Location loc = pot.getLocation();
-				Firework firework = pot.getWorld().spawn(loc, Firework.class);
-				FireworkMeta data = (FireworkMeta) firework.getFireworkMeta();
-				data.addEffects(FireworkEffect.builder().withColor(Color.WHITE).with(FireworkEffect.Type.BALL_LARGE).build());
-				data.setPower(2);
-				firework.setFireworkMeta(data);
-				firework.setVelocity(new Vector(0,0,0));
 				if (MineStrike.team.findPerson((Player) e).canSee(pot))
 				{
 					eLoc = e.getLocation();

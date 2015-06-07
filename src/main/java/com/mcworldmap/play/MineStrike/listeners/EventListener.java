@@ -27,32 +27,34 @@ public class EventListener implements Listener
 		Player prey = event.getEntity();
 		Player predator = null;
 
-			Entity e1 = event.getEntity().getKiller();
-			if (e1 instanceof Arrow)
+		Entity e1 = event.getEntity().getLastDamageCause().getEntity();
+		if (e1 instanceof Arrow)
+		{
+			Arrow a = (Arrow) e1;
+			if (a.getShooter() instanceof Player)
 			{
-				Arrow a = (Arrow) e1;
-				if (a.getShooter() instanceof Player)
-				{
-					predator = (Player) a.getShooter();
-				}
+				predator = (Player) a.getShooter();
 			}
-			if (e1 instanceof Player)
-			{
-				predator = (Player) e1;
-			}
+		}
+		if (e1 instanceof Player)
+		{
+			predator = (Player) e1;
+		}
 
 		Person preyPerson = MineStrike.team.findPerson(prey);
 		Person predatorPerson = MineStrike.team.findPerson(predator);
-		if (predator != prey)
+		Bukkit.getServer().broadcastMessage(prey.getDisplayName() + " was killed  by " + predator.getDisplayName());
+		if (predator.getDisplayName().equals(prey.getDisplayName()))
+		{
+			predatorPerson.setScore(predatorPerson.getScore() - 1);
+		} else
 		{
 			preyPerson.setDeaths(preyPerson.getDeaths() + 1);
 			preyPerson.setAlive(false);
 			predatorPerson.setKills(predatorPerson.getKills() + 1);
 			predatorPerson.setScore(predatorPerson.getScore() + 2);
 			predatorPerson.addMoney(700);
-		} else
-		{
-			predatorPerson.setScore(predatorPerson.getScore() - 1);
+
 		}
 
 		if (MineStrike.team.isTTeamDead())
@@ -103,6 +105,7 @@ public class EventListener implements Listener
 		w.playSound(loc, Sound.FALL_BIG, 1, 1);
 
 	}
+
 	@EventHandler
 	public void potionThrowEvent(ProjectileLaunchEvent event)
 	{
@@ -166,13 +169,9 @@ public class EventListener implements Listener
 			if (effect.getType().equals(PotionEffectType.HARM))
 			{
 
-				for (LivingEntity ent : affected)
-				{
-					if (ent instanceof Player)
-					{
-						event.setIntensity(ent, 0);
-					}
-				}
+				affected.stream().filter(ent -> ent instanceof Player).forEach(ent -> {
+					event.setIntensity(ent, 0);
+				});
 				Bukkit.getLogger().info("HE Grenade detected");
 				event.getEntity().getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), 5, false, false);
 				pot.setBounce(true);

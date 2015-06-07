@@ -51,6 +51,11 @@ public class Person
 		return this.alive;
 	}
 
+	public boolean isDead()
+	{
+		return !this.alive;
+	}
+
 	public void setAlive(boolean b)
 	{
 		this.alive = b;
@@ -94,6 +99,11 @@ public class Person
 	public void setMoney(int money)
 	{
 		this.money = money;
+		if(this.money > 16000)
+			this.money = 16000;
+	}
+	public void addMoney(int money){
+		this.money = this.money + money;
 		if(this.money > 16000)
 			this.money = 16000;
 	}

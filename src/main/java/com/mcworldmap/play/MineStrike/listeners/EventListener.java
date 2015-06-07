@@ -54,9 +54,28 @@ public class EventListener implements Listener
 			preyPerson.setAlive(false);
 			predatorPerson.setKills(predatorPerson.getKills() + 1);
 			predatorPerson.setScore(predatorPerson.getScore() + 2);
+			predatorPerson.addMoney(700);
 		} else
 		{
 			predatorPerson.setScore(predatorPerson.getScore() - 1);
+		}
+		if (MineStrike.team.isTTeamDead())
+		{
+			Bukkit.getServer().broadcastMessage("Counter-Terrorists Win");
+			MineStrike.team.respawnCT();
+			MineStrike.team.respawnT();
+			MineStrike.team.rewardCT(3250);
+			MineStrike.team.rewardT(1400);
+			MineStrike.team.CTscore += 1;
+		}
+		if (MineStrike.team.isCTTeamDead())
+		{
+			Bukkit.getServer().broadcastMessage("Terrorists Win");
+			MineStrike.team.respawnCT();
+			MineStrike.team.respawnT();
+			MineStrike.team.rewardCT(1400);
+			MineStrike.team.rewardT(3250);
+			MineStrike.team.Tscore += 1;
 		}
 	}
 

@@ -8,7 +8,7 @@ public class Price
 
 	public Price()
 	{
-		//TODO:Finish adding prices
+		//TODO:Maybe load prices from config instead?
 		//Gear
 		price.put("kevlar", 650);
 		price.put("helmet", 350);

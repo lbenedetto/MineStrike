@@ -44,22 +44,22 @@ public class DelayedFlash implements Runnable
 					eDir = Util.getCardinalDirection((Player) e);
 					if(eLoc.getZ() > flashLoc.getZ()) {
 						if(eDir.equals("North") || eDir.equals("Northwest") || eDir.equals("Northeast")){
-							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));
+							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
 						}
 					}
 					else if(eLoc.getX() > flashLoc.getX()) {
 						if(eDir.equals("West") || eDir.equals("Northwest") || eDir.equals("Southwest")){
-							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));
+							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
 						}
 					}
 					else if(eLoc.getZ() < flashLoc.getZ()) {
 						if(eDir.equals("South") || eDir.equals("Southeast") || eDir.equals("Southwest")){
-							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));
+							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
 						}
 					}
 					else if(eLoc.getZ() < flashLoc.getZ()) {
 						if(eDir.equals("East") || eDir.equals("Southeast") || eDir.equals("Northeast")){
-							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));
+							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
 						}
 					}
 				}

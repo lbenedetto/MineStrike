@@ -1,6 +1,7 @@
 package com.mcworldmap.play.MineStrike.Tasks;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -10,6 +11,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.List;
+import java.util.logging.Level;
 
 public class DelayedFlash implements Runnable
 {
@@ -33,6 +35,7 @@ public class DelayedFlash implements Runnable
 				if (MineStrike.team.findPerson((Player) e).canSee(pot))
 				{
 					//Flash Player
+					Bukkit.getLogger().log(Level.INFO, "I FOUND SOMEONE WHO SHOULD BE BLINDED, APPLYING.");
 					((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 2, 10));
 				}
 			}

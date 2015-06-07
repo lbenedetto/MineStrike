@@ -36,7 +36,7 @@ public class DelayedFlash implements Runnable
 				{
 					//Flash Player
 					Bukkit.getLogger().log(Level.INFO, "I FOUND SOMEONE WHO SHOULD BE BLINDED, APPLYING.");
-					((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 2, 10));
+					((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 40, 10));
 				}
 			}
 		}

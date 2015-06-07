@@ -43,7 +43,8 @@ public class EventListener implements Listener
 
 		Person preyPerson = MineStrike.team.findPerson(prey);
 		Person predatorPerson = MineStrike.team.findPerson(predator);
-		Bukkit.getServer().broadcastMessage(prey.getDisplayName() + " was killed  by " + predator.getDisplayName());
+		assert predator != null;
+		Bukkit.getServer().broadcastMessage(prey.getDisplayName() + " was killed by " + predator.getDisplayName());
 		if (predator.getDisplayName().equals(prey.getDisplayName()))
 		{
 			predatorPerson.setScore(predatorPerson.getScore() - 1);
@@ -59,7 +60,6 @@ public class EventListener implements Listener
 
 		if (MineStrike.team.isTTeamDead())
 		{
-			Bukkit.getServer().broadcastMessage("Counter-Terrorists Win");
 			for (Person p : MineStrike.team.getT())
 				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Counter-Terrorists Win", "? MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + "for most eliminations");
 			for (Person p : MineStrike.team.getCT())
@@ -168,13 +168,16 @@ public class EventListener implements Listener
 			//'Nade
 			if (effect.getType().equals(PotionEffectType.HARM))
 			{
-
 				affected.stream().filter(ent -> ent instanceof Player).forEach(ent -> {
 					event.setIntensity(ent, 0);
 				});
 				Bukkit.getLogger().info("HE Grenade detected");
 				event.getEntity().getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), 5, false, false);
 				pot.setBounce(true);
+			}
+			if(effect.getType().equals(PotionEffectType.NIGHT_VISION)){
+				Bukkit.getLogger().info("Flashbang Detected");
+				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 			}
 			break;
 		}

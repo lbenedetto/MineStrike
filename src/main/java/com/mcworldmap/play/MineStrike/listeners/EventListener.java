@@ -43,7 +43,7 @@ public class EventListener implements Listener
 
 		Person preyPerson = MineStrike.team.findPerson(prey);
 		Person predatorPerson = MineStrike.team.findPerson(predator);
-		if (!(predator == prey))
+		if (predator != prey)
 		{
 			preyPerson.setDeaths(preyPerson.getDeaths() + 1);
 			preyPerson.setAlive(false);

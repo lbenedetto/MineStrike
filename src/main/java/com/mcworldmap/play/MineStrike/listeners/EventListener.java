@@ -169,13 +169,9 @@ public class EventListener implements Listener
 			if (effect.getType().equals(PotionEffectType.HARM))
 			{
 
-				for (LivingEntity ent : affected)
-				{
-					if (ent instanceof Player)
-					{
-						event.setIntensity(ent, 0);
-					}
-				}
+				affected.stream().filter(ent -> ent instanceof Player).forEach(ent -> {
+					event.setIntensity(ent, 0);
+				});
 				Bukkit.getLogger().info("HE Grenade detected");
 				event.getEntity().getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), 5, false, false);
 				pot.setBounce(true);

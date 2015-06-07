@@ -15,6 +15,8 @@ import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.util.Vector;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
@@ -110,6 +112,10 @@ public class EventListener implements Listener
 	@EventHandler
 	public void potionThrowEvent(ProjectileLaunchEvent event)
 	{
+		if(event.getEntity() instanceof Firework)
+		{
+			event.getEntity().setVelocity(new Vector(0,0,0));
+		}
 		if (event.getEntity() instanceof ThrownPotion)
 		{
 			Entity e = event.getEntity();

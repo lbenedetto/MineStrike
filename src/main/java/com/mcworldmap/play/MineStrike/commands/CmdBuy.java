@@ -24,10 +24,18 @@ public class CmdBuy implements CommandExecutor
 			Person p = MineStrike.team.findPerson((Player) sender);
 			sender.sendMessage("You have $" + p.getMoney());
 			//CONVERTED TO ENUMS YAY
-			for(Price price : Price.values())
-				if(price.toString().equalsIgnoreCase(args[0]))
-					if (p.getMoney() >= price.getValue())
-						p.setMoney(p.getMoney() - price.getValue());
+//			for(Price price : Price.values())
+//				if(price.toString().equalsIgnoreCase(args[0]))
+//					if (p.getMoney() >= price.getValue())
+//						p.setMoney(p.getMoney() - price.getValue());
+
+			//if this doesn't work, comment this out and use the above commented method.
+			if(Price.valueOf(args[0].toUpperCase()) != null)
+			{
+				int price = Price.valueOf(args[0].toUpperCase()).getValue();
+				if(p.getMoney() >= price)
+					p.setMoney(p.getMoney() - price);
+			}
 		}
 		return false;
 	}

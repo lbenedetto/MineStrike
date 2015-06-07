@@ -28,27 +28,34 @@ public class Team
 		return CT;
 	}
 
-	public Person findTMVP(){
+	public Person findTMVP()
+	{
 		int mostKills = 0;
 		Person MVP = null;
-		for (Person p : T){
-			if (p.getKills() > mostKills){
+		for (Person p : T)
+		{
+			if (p.getKills() > mostKills)
+			{
 				MVP = p;
 			}
 		}
 		return MVP;
 	}
 
-	public Person findCTMVP(){
+	public Person findCTMVP()
+	{
 		int mostKills = 0;
 		Person MVP = null;
-		for (Person p : CT){
-			if (p.getKills() > mostKills){
+		for (Person p : CT)
+		{
+			if (p.getKills() > mostKills)
+			{
 				MVP = p;
 			}
 		}
 		return MVP;
 	}
+
 	public Person findPerson(Player player)
 	{
 		for (Person p : MineStrike.team.getCT())

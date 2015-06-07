@@ -2,12 +2,12 @@ package com.mcworldmap.play.MineStrike.Tasks;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.Util;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -37,6 +37,12 @@ public class DelayedFlash implements Runnable
 		{
 			if (e instanceof Player)
 			{
+				Location loc = pot.getLocation();
+				Firework firework = pot.getWorld().spawn(loc, Firework.class);
+				FireworkMeta data = (FireworkMeta) firework.getFireworkMeta();
+				data.addEffects(FireworkEffect.builder().withColor(Color.WHITE).with(FireworkEffect.Type.BALL_LARGE).build());
+				data.setPower(2);
+				firework.setFireworkMeta(data);
 				if (MineStrike.team.findPerson((Player) e).canSee(pot))
 				{
 					eLoc = e.getLocation();

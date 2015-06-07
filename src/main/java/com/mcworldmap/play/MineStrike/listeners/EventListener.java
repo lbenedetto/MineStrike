@@ -3,6 +3,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.FireExtinguish;
+import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
@@ -62,6 +63,10 @@ public class EventListener implements Listener
 		if (MineStrike.team.isTTeamDead())
 		{
 			Bukkit.getServer().broadcastMessage("Counter-Terrorists Win");
+			for (Person p : MineStrike.team.getT())
+				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Counter-Terrorists Win", "? MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + "for most eliminations");
+			for(Person p : MineStrike.team.getCT())
+				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Counter-Terrorists Win", "? MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + "for most eliminations");
 			MineStrike.team.respawnCT();
 			MineStrike.team.respawnT();
 			MineStrike.team.rewardCT(3250);
@@ -70,7 +75,10 @@ public class EventListener implements Listener
 		}
 		if (MineStrike.team.isCTTeamDead())
 		{
-			Bukkit.getServer().broadcastMessage("Terrorists Win");
+			for (Person p : MineStrike.team.getT())
+				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Terrorists Win", "? MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + "for most eliminations");
+			for(Person p : MineStrike.team.getCT())
+				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Terrorists Win", "? MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + "for most eliminations");
 			MineStrike.team.respawnCT();
 			MineStrike.team.respawnT();
 			MineStrike.team.rewardCT(1400);

@@ -25,28 +25,22 @@ public class EventListener implements Listener
 	{
 		Bukkit.getLogger().info("Death detected");
 		Player prey = event.getEntity();
-		EntityDamageEvent e0 = prey.getLastDamageCause();
 		Player predator = null;
-		/** This is here to make sure the thing that killed the player is in fact an Arrow or a player
-		 We do this here to save processing time, and to prevent(hopefully) an exception that occurs at runtime. **/
-		if (!(e0 instanceof Arrow) || !(e0 instanceof Player))
-			return;
-		if (e0 instanceof EntityDamageByEntityEvent)
-		{
-			EntityDamageByEntityEvent e1 = (EntityDamageByEntityEvent) e0;
-			if (e1.getDamager() instanceof Arrow)
+
+			Entity e1 = event.getEntity().getLastDamageCause().getEntity();
+			if (e1 instanceof Arrow)
 			{
-				Arrow a = (Arrow) e1.getDamager();
+				Arrow a = (Arrow) e1;
 				if (a.getShooter() instanceof Player)
 				{
 					predator = (Player) a.getShooter();
 				}
 			}
-			if (e1.getDamager() instanceof Player)
+			if (e1 instanceof Player)
 			{
-				predator = (Player) e1.getDamager();
+				predator = (Player) e1;
 			}
-		}
+
 		Person preyPerson = MineStrike.team.findPerson(prey);
 		Person predatorPerson = MineStrike.team.findPerson(predator);
 		if (!(predator == prey))
@@ -109,7 +103,6 @@ public class EventListener implements Listener
 		w.playSound(loc, Sound.FALL_BIG, 1, 1);
 
 	}
-
 	@EventHandler
 	public void potionThrowEvent(ProjectileLaunchEvent event)
 	{

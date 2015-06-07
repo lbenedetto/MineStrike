@@ -12,6 +12,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import java.lang.reflect.Field;
 import java.util.List;
 import java.util.logging.Level;
 
@@ -35,7 +36,8 @@ public class DelayedFlash implements Runnable
 		String eDir = "";
 		String flashDir = "";
 		Location loc = pot.getLocation();
-		Firework firework = pot.getWorld().spawn(loc.add(1,0,0), Firework.class);
+		Location floc = new Location(loc.getWorld(), loc.getX(), loc.getY() + 1, loc.getZ());
+		Firework firework = pot.getWorld().spawn(floc, Firework.class);
 		FireworkMeta data = (FireworkMeta) firework.getFireworkMeta();
 		data.addEffects(FireworkEffect.builder().withColor(Color.WHITE).with(FireworkEffect.Type.BALL_LARGE).build());
 		data.setPower(0);
@@ -45,31 +47,42 @@ public class DelayedFlash implements Runnable
 		{
 			if (e instanceof Player)
 			{
-				if (MineStrike.team.findPerson((Player) e).canSee(pot))
+				try
 				{
-					eLoc = e.getLocation();
-					flashLoc = pot.getLocation();
-					eDir = Util.getCardinalDirection((Player) e);
-					if(eLoc.getZ() > flashLoc.getZ()) {
-						if(eDir.equals("North") || eDir.equals("Northwest") || eDir.equals("Northeast")){
-							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
+					if (MineStrike.team.findPerson((Player) e).canSee(pot))
+					{
+						eLoc = e.getLocation();
+						flashLoc = pot.getLocation();
+						eDir = Util.getCardinalDirection((Player) e);
+						if (eLoc.getZ() > flashLoc.getZ())
+						{
+							if (eDir.equals("North") || eDir.equals("Northwest") || eDir.equals("Northeast"))
+							{
+								((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
+							}
+						} else if (eLoc.getX() > flashLoc.getX())
+						{
+							if (eDir.equals("West") || eDir.equals("Northwest") || eDir.equals("Southwest"))
+							{
+								((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
+							}
+						} else if (eLoc.getZ() < flashLoc.getZ())
+						{
+							if (eDir.equals("South") || eDir.equals("Southeast") || eDir.equals("Southwest"))
+							{
+								((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
+							}
+						} else if (eLoc.getZ() < flashLoc.getZ())
+						{
+							if (eDir.equals("East") || eDir.equals("Southeast") || eDir.equals("Northeast"))
+							{
+								((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
+							}
 						}
 					}
-					else if(eLoc.getX() > flashLoc.getX()) {
-						if(eDir.equals("West") || eDir.equals("Northwest") || eDir.equals("Southwest")){
-							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
-						}
-					}
-					else if(eLoc.getZ() < flashLoc.getZ()) {
-						if(eDir.equals("South") || eDir.equals("Southeast") || eDir.equals("Southwest")){
-							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
-						}
-					}
-					else if(eLoc.getZ() < flashLoc.getZ()) {
-						if(eDir.equals("East") || eDir.equals("Southeast") || eDir.equals("Northeast")){
-							((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
-						}
-					}
+				} catch (NullPointerException ex)
+				{
+					Bukkit.getServer().getLogger().warning("Null Pointer: Player not on Team");
 				}
 			}
 		}

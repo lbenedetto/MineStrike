@@ -60,6 +60,7 @@ public class EventListener implements Listener
 		{
 			predatorPerson.setScore(predatorPerson.getScore() - 1);
 		}
+
 		if (MineStrike.team.isTTeamDead())
 		{
 			Bukkit.getServer().broadcastMessage("Counter-Terrorists Win");

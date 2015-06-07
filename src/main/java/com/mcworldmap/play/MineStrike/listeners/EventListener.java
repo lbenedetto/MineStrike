@@ -27,7 +27,7 @@ public class EventListener implements Listener
 		Player prey = event.getEntity();
 		Player predator = null;
 
-		Entity e1 = event.getEntity().getLastDamageCause().getEntity();
+		Entity e1 = event.getEntity().getKiller();
 		if (e1 instanceof Arrow)
 		{
 			Arrow a = (Arrow) e1;

@@ -1,8 +1,6 @@
 package com.mcworldmap.play.MineStrike.PlayerData;
 
-import java.util.HashMap;
-
-public enum Price
+public enum Item
 {
 	KEVLAR(65), HELMET(350),
 	KIT(400), ZEUS(400),
@@ -25,7 +23,7 @@ public enum Price
 
 	private int value;
 
-	private Price(int value)
+	private Item(int value)
 	{
 		this.value = value;
 	}
@@ -36,16 +34,16 @@ public enum Price
 	}
 
 
-	public static Price getPrice(final String name){
-		for(Price price : Price.values())
-			if(price.name().equalsIgnoreCase(name))
-				return price;
+	public static Item getPrice(final String name){
+		for(Item item : Item.values())
+			if(item.name().equalsIgnoreCase(name))
+				return item;
 		return null;
 	}
 
 	//public HashMap<String, Integer> price = new HashMap<>();
 
-//	public Price()
+//	public Item()
 //	{
 //		//TODO:Maybe load prices from config instead?
 //		//Gear

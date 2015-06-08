@@ -103,6 +103,12 @@ public class Person
 		return money;
 	}
 
+	public void creditItem(Item item)
+	{
+		//TODO: Give the player the specified item.
+	}
+
+
 	public void setMoney(int money)
 	{
 		this.money = money;

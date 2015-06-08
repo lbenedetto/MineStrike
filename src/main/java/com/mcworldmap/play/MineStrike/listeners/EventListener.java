@@ -44,6 +44,21 @@ public class EventListener implements Listener
 		event.getAffectedEntities().stream().filter(ent -> ent instanceof Player).forEach(ent -> event.setIntensity(ent, 0));
 
 	}
+	@EventHandler
+	public void onHunger(FoodLevelChangeEvent event)
+	{
+		event.setCancelled(true);
+	}
+
+	@EventHandler
+	public void onHealthRegen(EntityRegainHealthEvent event)
+	{
+		if(event.getEntity() instanceof Player && event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.REGEN))
+		{
+			event.setCancelled(true);
+		}
+	}
+
 
 	@EventHandler
 	public void onFireSpread(BlockIgniteEvent event)

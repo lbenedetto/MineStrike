@@ -34,7 +34,7 @@ public enum Item
 	}
 
 
-	public static Item getPrice(final String name){
+	public static Item getItem(final String name){
 		for(Item item : Item.values())
 			if(item.name().equalsIgnoreCase(name))
 				return item;

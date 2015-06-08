@@ -23,14 +23,14 @@ public class CmdBuy implements CommandExecutor
 		{
 			Person p = MineStrike.team.findPerson((Player) sender);
 			sender.sendMessage("You have $" + p.getMoney());
-			if(Item.getPrice(args[0].toUpperCase()) != null)
+			if(Item.getItem(args[0].toUpperCase()) != null)
 			{
-				int price = Item.getPrice(args[0].toUpperCase()).getValue();
+				int price = Item.getItem(args[0].toUpperCase()).getValue();
 				if (p.getMoney() >= price)
 				{
 					p.setMoney(p.getMoney() - price);
 					sender.sendMessage("You bought a " + args[0] + ", you now have " + p.getMoney());
-					p.creditItem(Item.getPrice(args[0]));
+					p.creditItem(Item.getItem(args[0]));
 				}
 			}
 		}

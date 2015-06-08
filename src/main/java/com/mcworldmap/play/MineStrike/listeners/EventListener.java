@@ -1,6 +1,4 @@
 package com.mcworldmap.play.MineStrike.listeners;
-
-import net.minecraft.server.v1_8_R3.Explosion;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -37,7 +35,7 @@ public class EventListener implements Listener
 //	{
 //
 //	}
-	//Don't make potions do stuff.
+	//Make potions not do stuff
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void potionSplashEvent(PotionSplashEvent event)
 	{
@@ -61,9 +59,6 @@ public class EventListener implements Listener
 
 
 	@EventHandler
-	public void onFireSpread(BlockIgniteEvent event)
-	{
-		event.setCancelled(true);
-	}
+	public void onFireSpread(BlockIgniteEvent event) {event.setCancelled(true);	}
 
 }

@@ -19,6 +19,6 @@ public class ItemFactory
 		loreList.add(ChatColor.DARK_AQUA + name);
 		im.setLore(loreList);
 		item.setItemMeta(im);
-		return null;
+		return item;
 	}
 }

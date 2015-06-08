@@ -8,10 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scoreboard.NameTagVisibility;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
-import org.bukkit.scoreboard.Team;
+import org.bukkit.scoreboard.*;
 
 public class CmdStart implements CommandExecutor
 {
@@ -42,18 +39,23 @@ public class CmdStart implements CommandExecutor
 					Scoreboard board = manager.getNewScoreboard();
 					Team T = board.registerNewTeam("T");
 					Team CT = board.registerNewTeam("CT");
-					for(Team team : board.getTeams())
-					{
-						team.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+					T.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+					CT.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
+					Objective objective = board.registerNewObjective("showhealth", "health");
+					objective.setDisplaySlot(DisplaySlot.BELOW_NAME);
+					objective.setDisplayName("/ 20");
+					for(Player online : Bukkit.getOnlinePlayers()){
+						online.setScoreboard(board);
+						online.setHealth(online.getHealth());
 					}
 					for (Person p : MineStrike.team.getCT())
 					{
-						board.getTeam("T").addPlayer(p.getPlayer());
+						T.addPlayer(p.getPlayer());
 						p.respawnCT();
 					}
 					for (Person p : MineStrike.team.getT())
 					{
-						board.getTeam("CT").addPlayer(p.getPlayer());
+						CT.addPlayer(p.getPlayer());
 						p.respawnT();
 					}
 				}

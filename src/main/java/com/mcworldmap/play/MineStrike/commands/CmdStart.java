@@ -2,6 +2,7 @@ package com.mcworldmap.play.MineStrike.commands;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,10 +15,6 @@ public class CmdStart implements CommandExecutor
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String s, String[] args)
 	{
-		if (!(MineStrike.gamemode.equalsIgnoreCase("competitive") || MineStrike.gamemode.equalsIgnoreCase("deathmatch")))
-		{
-			return false;
-		}
 		if (args[0].equalsIgnoreCase("deathmatch"))
 		{
 			MineStrike.gamemode = "deathmatch";
@@ -42,15 +39,17 @@ public class CmdStart implements CommandExecutor
 			for (Person p : MineStrike.team.getCT())
 			{
 				T.addPlayer(p.getPlayer());
+				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Match Started", "Round 1");
 				p.respawnCT();
 			}
 			for (Person p : MineStrike.team.getT())
 			{
 				CT.addPlayer(p.getPlayer());
+				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Match Started", "Round 1");
 				p.respawnT();
 			}
+			return true;
 		}
-
-		return true;
+		return false;
 	}
 }

@@ -11,7 +11,10 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockIterator;
+import org.bukkit.util.Vector;
 
+import javax.xml.stream.events.EndElement;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -116,12 +119,14 @@ public class Person
 	public void setMoney(int money)
 	{
 		this.money = money;
-		if(this.money > 16000)
+		if (this.money > 16000)
 			this.money = 16000;
 	}
-	public void addMoney(int money){
+
+	public void addMoney(int money)
+	{
 		this.money = this.money + money;
-		if(this.money > 16000)
+		if (this.money > 16000)
 			this.money = 16000;
 	}
 

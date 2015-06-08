@@ -71,7 +71,7 @@ public class onNadeImpact implements Listener
 			if (effect.getType().equals(PotionEffectType.NIGHT_VISION))
 			{
 				Bukkit.getLogger().info("Flashbang Detected");
-				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
+				List<Entity> nearbyEntities = pot.getNearbyEntities(50, 50, 50);
 				Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedFlash(nearbyEntities, pot), 20);
 			}
 		}

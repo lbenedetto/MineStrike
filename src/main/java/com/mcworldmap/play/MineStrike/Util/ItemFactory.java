@@ -13,7 +13,7 @@ public class ItemFactory
 	public static ItemStack createItem(String name, ItemStack item)
 	{
 		ItemMeta im = item.getItemMeta();
-		im.setDisplayName(ChatColor.RED + "displayName");
+		im.setDisplayName(ChatColor.RED + name);
 		List<String> loreList = new ArrayList<String>();
 		loreList.add(ChatColor.AQUA + "Gun");
 		loreList.add(ChatColor.DARK_AQUA + name);

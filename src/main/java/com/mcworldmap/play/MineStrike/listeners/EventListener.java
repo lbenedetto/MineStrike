@@ -2,6 +2,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 
 import net.minecraft.server.v1_8_R3.Explosion;
 import org.bukkit.entity.*;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockIgniteEvent;
@@ -36,6 +37,29 @@ public class EventListener implements Listener
 //	{
 //
 //	}
+	//Don't make potions do stuff.
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void potionSplashEvent(PotionSplashEvent event)
+	{
+		event.getAffectedEntities().stream().filter(ent -> ent instanceof Player).forEach(ent -> event.setIntensity(ent, 0));
+
+	}
+	@EventHandler
+	public void onHunger(FoodLevelChangeEvent event)
+	{
+		event.setCancelled(true);
+	}
+
+	@EventHandler
+	public void onHealthRegen(EntityRegainHealthEvent event)
+	{
+		if(event.getEntity() instanceof Player && event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.REGEN))
+		{
+			event.setCancelled(true);
+		}
+	}
+
+
 	@EventHandler
 	public void onFireSpread(BlockIgniteEvent event)
 	{

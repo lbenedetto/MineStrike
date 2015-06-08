@@ -13,8 +13,10 @@ import com.mcworldmap.play.MineStrike.listeners.onDecoyImpact;
 import com.mcworldmap.play.MineStrike.listeners.onNadeImpact;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
 import java.util.Set;
 
 public class MineStrike extends JavaPlugin
@@ -25,6 +27,7 @@ public class MineStrike extends JavaPlugin
 	public static int ts = 0, cts = 0;
 	public static Spawnpoint spawnpoint;
 	public static Set<Integer> transparent = Sets.newHashSet();
+	public static ArrayList<Player> frozenPlayers = new ArrayList<>();
 
 	@Override
 	public void onEnable()

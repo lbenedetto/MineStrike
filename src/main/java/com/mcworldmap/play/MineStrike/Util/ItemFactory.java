@@ -12,7 +12,8 @@ public class ItemFactory
 
 	public static ItemStack createItem(String name, ItemStack item)
 	{
-		ItemMeta im = item.getItemMeta();
+		ItemStack i = item;
+		ItemMeta im = i.getItemMeta();
 		im.setDisplayName(ChatColor.RED + name);
 		List<String> loreList = new ArrayList<String>();
 		loreList.add(ChatColor.AQUA + "Gun");

@@ -109,9 +109,12 @@ public class Person
 		return money;
 	}
 
-	public void creditItem( String itemName)
+	public void creditItem(String itemName)
 	{
-		player.getInventory().addItem(ItemFactory.createItem(itemName,  new ItemStack(Material.BOW)));
+		//Creating item.
+		ItemStack item = ItemFactory.createItem(itemName,  new ItemStack(Material.BOW, 1));
+		//Giving the item.
+		player.getInventory().addItem(item);
 		//TODO: Give the player the specified item.
 	}
 

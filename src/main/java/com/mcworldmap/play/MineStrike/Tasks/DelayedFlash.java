@@ -31,13 +31,6 @@ public class DelayedFlash implements Runnable
 		String eDir = "";
 		String flashDir = "";
 		Location loc = pot.getLocation();
-		Location floc = new Location(loc.getWorld(), loc.getX(), loc.getY() + 1, loc.getZ());
-		Firework firework = pot.getWorld().spawn(floc, Firework.class);
-		FireworkMeta data = (FireworkMeta) firework.getFireworkMeta();
-		data.addEffects(FireworkEffect.builder().withColor(Color.WHITE).with(FireworkEffect.Type.BALL_LARGE).build());
-		data.setPower(0);
-		firework.setFireworkMeta(data);
-		firework.detonate();
 		for (Entity e : nearbyEntities)
 		{
 			if (e instanceof Player)

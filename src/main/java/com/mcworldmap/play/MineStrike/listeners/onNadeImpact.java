@@ -33,7 +33,6 @@ public class onNadeImpact implements Listener
 			if (effect.getType().equals(PotionEffectType.FIRE_RESISTANCE))
 			{
 
-				affected.stream().filter(ent -> ent instanceof Player).forEach(ent -> event.setIntensity(ent, 0));
 				Bukkit.getLogger().info("Moltov Detected");
 				w.playEffect(loc, Effect.SMOKE, 10);
 				pot.setBounce(true);
@@ -62,7 +61,6 @@ public class onNadeImpact implements Listener
 			//'Nade
 			if (effect.getType().equals(PotionEffectType.HARM))
 			{
-				affected.stream().filter(ent -> ent instanceof Player).forEach(ent -> event.setIntensity(ent, 0));
 				Bukkit.getLogger().info("HE Grenade detected");
 				event.getEntity().getWorld().createExplosion(loc.getX(), loc.getY(), loc.getZ(), 5, false, false);
 				pot.setBounce(true);

@@ -1,7 +1,6 @@
 package com.mcworldmap.play.MineStrike;
 
 import com.google.common.collect.Sets;
-import com.mcworldmap.play.MineStrike.PlayerData.Price;
 import com.mcworldmap.play.MineStrike.PlayerData.Spawnpoint;
 import com.mcworldmap.play.MineStrike.PlayerData.Team;
 import com.mcworldmap.play.MineStrike.commands.CmdBuy;
@@ -9,6 +8,9 @@ import com.mcworldmap.play.MineStrike.commands.CmdJoin;
 import com.mcworldmap.play.MineStrike.commands.CmdScoreboard;
 import com.mcworldmap.play.MineStrike.commands.CmdStart;
 import com.mcworldmap.play.MineStrike.listeners.EventListener;
+import com.mcworldmap.play.MineStrike.listeners.onDeath;
+import com.mcworldmap.play.MineStrike.listeners.onDecoyImpact;
+import com.mcworldmap.play.MineStrike.listeners.onNadeImpact;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,6 +30,9 @@ public class MineStrike extends JavaPlugin
 	public void onEnable()
 	{
 		getServer().getPluginManager().registerEvents(new EventListener(), this);
+		getServer().getPluginManager().registerEvents(new onDeath(), this);
+		getServer().getPluginManager().registerEvents(new onDecoyImpact(), this);
+		getServer().getPluginManager().registerEvents(new onNadeImpact(), this);
 		getCommand("buy").setExecutor(new CmdBuy());
 		getCommand("start").setExecutor(new CmdStart());
 		getCommand("join").setExecutor(new CmdJoin());

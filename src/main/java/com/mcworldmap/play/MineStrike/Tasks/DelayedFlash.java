@@ -3,18 +3,13 @@ package com.mcworldmap.play.MineStrike.Tasks;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.Vector;
-
-import java.lang.reflect.Field;
 import java.util.List;
-import java.util.logging.Level;
 
 public class DelayedFlash implements Runnable
 {

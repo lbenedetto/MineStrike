@@ -30,7 +30,7 @@ public class CmdBuy implements CommandExecutor
 				{
 					p.setMoney(p.getMoney() - price);
 					sender.sendMessage("You bought a " + args[0] + ", you now have " + p.getMoney());
-					p.creditItem(Item.getItem(args[0]));
+					p.creditItem(args[0]);
 				}
 			}
 		}

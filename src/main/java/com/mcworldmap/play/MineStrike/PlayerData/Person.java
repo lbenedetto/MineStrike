@@ -1,12 +1,15 @@
 package com.mcworldmap.play.MineStrike.PlayerData;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
+import com.mcworldmap.play.MineStrike.Util.ItemFactory;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockIterator;
 
 import java.util.Iterator;
@@ -103,8 +106,9 @@ public class Person
 		return money;
 	}
 
-	public void creditItem(Item item)
+	public void creditItem( String itemName)
 	{
+		player.getInventory().addItem(ItemFactory.createItem(itemName,  new ItemStack(Material.BOW)));
 		//TODO: Give the player the specified item.
 	}
 

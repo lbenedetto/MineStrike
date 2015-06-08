@@ -30,9 +30,9 @@ public class CmdBuy implements CommandExecutor
 //						p.setMoney(p.getMoney() - price.getValue());
 
 			//OH GOD MORE METHODOLOGY.
-			if(Price.getPrice(args[0]) != null)
+			if(Price.getPrice(args[0].toUpperCase()) != null)
 			{
-				int price = Price.getPrice(args[0]).getValue();
+				int price = Price.getPrice(args[0].toUpperCase()).getValue();
 				if (p.getMoney() >= price)
 					p.setMoney(p.getMoney() - price);
 			}

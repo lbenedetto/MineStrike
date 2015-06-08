@@ -39,13 +39,13 @@ public class CmdStart implements CommandExecutor
 			for (Person p : MineStrike.team.getCT())
 			{
 				T.addPlayer(p.getPlayer());
-				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Match Started", "Round 1");
+				Util.sendTitle(p.getPlayer(), 20, 50, 20, "Match Started", "Round 1");
 				p.respawnCT();
 			}
 			for (Person p : MineStrike.team.getT())
 			{
 				CT.addPlayer(p.getPlayer());
-				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Match Started", "Round 1");
+				Util.sendTitle(p.getPlayer(), 20, 50, 20, "Match Started", "Round 1");
 				p.respawnT();
 			}
 			return true;

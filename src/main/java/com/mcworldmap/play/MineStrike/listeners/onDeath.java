@@ -2,6 +2,9 @@ package com.mcworldmap.play.MineStrike.listeners;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import com.mcworldmap.play.MineStrike.Tasks.DelayedFlash;
+import com.mcworldmap.play.MineStrike.Tasks.NextRound;
+import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Arrow;
@@ -10,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+
 @SuppressWarnings("unused")
 public class onDeath implements Listener
 {
@@ -53,27 +57,11 @@ public class onDeath implements Listener
 
 		if (MineStrike.team.isTTeamDead())
 		{
-			for (Person p : MineStrike.team.getT())
-				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Counter-Terrorists Win", "? MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + "for most eliminations");
-			for (Person p : MineStrike.team.getCT())
-				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Counter-Terrorists Win", "? MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + "for most eliminations");
-			MineStrike.team.respawnCT();
-			MineStrike.team.respawnT();
-			MineStrike.team.rewardCT(3250);
-			MineStrike.team.rewardT(1400);
-			MineStrike.team.CTscore += 1;
+			RoundManager.newRound("CT");
 		}
 		if (MineStrike.team.isCTTeamDead())
 		{
-			for (Person p : MineStrike.team.getT())
-				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Terrorists Win", "? MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + "for most eliminations");
-			for (Person p : MineStrike.team.getCT())
-				Util.sendTitle(p.getPlayer(), 1, 5, 1, "Terrorists Win", "? MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + "for most eliminations");
-			MineStrike.team.respawnCT();
-			MineStrike.team.respawnT();
-			MineStrike.team.rewardCT(1400);
-			MineStrike.team.rewardT(3250);
-			MineStrike.team.Tscore += 1;
+			RoundManager.newRound("T");
 		}
 	}
 }

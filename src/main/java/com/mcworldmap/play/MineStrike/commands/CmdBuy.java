@@ -32,7 +32,11 @@ public class CmdBuy implements CommandExecutor
 					sender.sendMessage("You bought a " + args[0] + ", you now have " + p.getMoney());
 					p.creditItem(args[0]);
 				}
+				else{
+					sender.sendMessage("You do not have enough money");
+				}
 			}
+			return true;
 		}
 		return false;
 	}

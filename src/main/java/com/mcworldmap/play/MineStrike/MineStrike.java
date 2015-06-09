@@ -22,6 +22,7 @@ public class MineStrike extends JavaPlugin
 	public static String gamemode = "";
 	public static Team team = new Team();
 	public static int ts = 0, cts = 0;
+	public static int teamsize = 5;
 	public static Spawnpoint spawnpoint;
 	public static Set<Integer> transparent = Sets.newHashSet();
 	public static ArrayList<Player> frozenPlayers = new ArrayList<>();

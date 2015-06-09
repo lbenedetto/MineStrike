@@ -12,8 +12,8 @@ public class Team
 
 	public Team()
 	{
-		T = new Person[5];
-		CT = new Person[5];
+		T = new Person[MineStrike.teamsize];
+		CT = new Person[MineStrike.teamsize];
 		CTscore = 0;
 		Tscore = 0;
 	}
@@ -100,12 +100,24 @@ public class Team
 
 	public boolean isTTeamDead()
 	{
-		return (T[0].isDead() && T[1].isDead() && T[2].isDead() && T[3].isDead() && T[4].isDead());
+		boolean out = true;
+		for (Person p : T){
+			if(p.isAlive()){
+				out = false;
+			}
+		}
+		return out;
 	}
 
 	public boolean isCTTeamDead()
 	{
-		return (T[0].isDead() && T[1].isDead() && T[2].isDead() && T[3].isDead() && T[4].isDead());
+		boolean out = true;
+		for (Person p : CT){
+			if(p.isAlive()){
+				out = false;
+			}
+		}
+		return out;
 	}
 
 	public void respawnT()

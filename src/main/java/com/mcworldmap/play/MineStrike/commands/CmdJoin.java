@@ -24,14 +24,14 @@ public class CmdJoin implements CommandExecutor
 		{
 			//TODO: Add check to make sure you are joining the team twice
 			//Don't do this yet, we need to be able to start the game with less players for testing
-			if (args[0].equalsIgnoreCase("t") && MineStrike.ts < 5)
+			if (args[0].equalsIgnoreCase("t") && MineStrike.ts < MineStrike.teamsize)
 			{
 				Player player = (Player) sender;
 				MineStrike.team.getT()[MineStrike.ts] = new Person(player);
 				MineStrike.team.getT()[MineStrike.ts].respawnT();
 				MineStrike.ts += 1;
 				sender.sendMessage("Joined Terrorist Team");
-			} else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < 5)
+			} else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < MineStrike.teamsize)
 			{
 				Player player = (Player) sender;
 				MineStrike.team.getCT()[MineStrike.cts] = new Person(player);
@@ -43,7 +43,7 @@ public class CmdJoin implements CommandExecutor
 				sender.sendMessage("The team you tried to join is either full, or does not exist");
 				return false;
 			}
-			if (MineStrike.cts == 5 && MineStrike.ts == 5){
+			if (MineStrike.cts == MineStrike.teamsize && MineStrike.ts == MineStrike.teamsize){
 				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "start competitive");
 			}
 			return true;

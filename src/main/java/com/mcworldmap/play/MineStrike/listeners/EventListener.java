@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 @SuppressWarnings("unused")
 public class EventListener implements Listener
@@ -92,7 +93,9 @@ public class EventListener implements Listener
 		{
 			if(event.getPlayer().getItemInHand().getType().equals(Material.BOW))
 			{
+				ItemStack item = event.getPlayer().getItemInHand();
 				event.getPlayer().launchProjectile(Arrow.class);
+				item.setDurability((short)(item.getDurability() + 1));
 				event.setCancelled(true);
 			}
 		}

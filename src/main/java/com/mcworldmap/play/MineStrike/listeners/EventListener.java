@@ -1,12 +1,15 @@
 package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 @SuppressWarnings("unused")
@@ -59,6 +62,22 @@ public class EventListener implements Listener
 			event.getPlayer().teleport(before);
 		}
 	}
+
+
+	@EventHandler
+	public void onArrowFire(PlayerInteractEvent event)
+	{
+		Action a = event.getAction();
+		if(a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK))
+		{
+			if(event.getPlayer().getItemInHand().getType().equals(Material.BOW))
+			{
+				event.getPlayer().launchProjectile(Arrow.class);
+				event.setCancelled(true);
+			}
+		}
+	}
+
 	@EventHandler
 	public void onHunger(FoodLevelChangeEvent event)
 	{

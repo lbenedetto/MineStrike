@@ -9,8 +9,10 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.util.Vector;
 @SuppressWarnings("unused")
 public class EventListener implements Listener
@@ -61,6 +63,24 @@ public class EventListener implements Listener
 				return;
 			event.getPlayer().teleport(before);
 		}
+	}
+
+	@EventHandler
+	public void onDeath(PlayerDeathEvent event)
+	{
+		event.getDrops().clear();
+	}
+
+	@EventHandler
+	public void onDrop(PlayerDropItemEvent event)
+	{
+		event.setCancelled(true);
+	}
+
+	@EventHandler
+	public void onPickup(PlayerPickupItemEvent event)
+	{
+		event.setCancelled(true);
 	}
 
 

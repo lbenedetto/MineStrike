@@ -19,9 +19,10 @@ public class MineStrike extends JavaPlugin
 {
 
 	public static String gamemode = "";
+	public FileConfiguration config = getConfig();
+	public static int teamsize = config.getInt("teamsize");
 	public static Team team = new Team();
 	public static int ts = 0, cts = 0;
-	public static int teamsize;
 	public static Spawnpoint spawnpoint;
 	public static Set<Integer> transparent = Sets.newHashSet();
 	public static ArrayList<Player> frozenPlayers = new ArrayList<>();
@@ -39,8 +40,6 @@ public class MineStrike extends JavaPlugin
 		getCommand("scoreboard").setExecutor(new CmdScoreboard());
 		getCommand("givemoney").setExecutor(new CmdGiveMoney());
 		saveDefaultConfig();
-		FileConfiguration config = getConfig();
-		teamsize = config.getInt("teamsize");
 		spawnpoint = new Spawnpoint(config);
 		// Determine transparency
 		for (Material material : Material.values())
@@ -51,6 +50,7 @@ public class MineStrike extends JavaPlugin
 			}
 		}
 		getLogger().info("MineStrike Enabled");
+		getLogger().warning("Teamsize" + teamsize);
 	}
 
 	@Override

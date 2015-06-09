@@ -96,7 +96,7 @@ public class ItemFactory
 		im.setLore(loreList);
 		i.setItemMeta(im);
 		i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		i.setDurability((short)64);
+		i.setDurability((short)320);
 
 
 		return i;

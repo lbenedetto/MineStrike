@@ -60,7 +60,7 @@ public class onNadeImpact implements Listener
 			//HE Grenade
 			if (effect.getType().equals(PotionEffectType.HARM))
 			{
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedBoom(w, loc), 40);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedBoom(w, loc), 20);
 			}
 			//Flashbang
 			if (effect.getType().equals(PotionEffectType.NIGHT_VISION))

@@ -4,10 +4,6 @@ package com.mcworldmap.play.MineStrike.Tasks;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Util.Util;
-import org.bukkit.entity.Entity;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class NextRound implements Runnable
 {
@@ -27,7 +23,6 @@ public class NextRound implements Runnable
 			Util.sendTitle(p.getPlayer(), 20, 50, 20, "Round " + rounds, "");
 		for(Person p : MineStrike.team.getT())
 			Util.sendTitle(p.getPlayer(), 20 , 50, 20, "Round " + rounds, "");
-		//Unfreeze player
 		MineStrike.frozenPlayers.clear();
 		//Open buy menu
 	}

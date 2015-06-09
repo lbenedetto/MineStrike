@@ -1,6 +1,15 @@
 world: de_dust2
 competitive:
   de_dust2:
+    spawnbox:
+      T:
+        x: -46
+        y: 42
+        z: -481
+      CT:
+        x: -56
+        y: 42
+        z: -481
     spawnpoints:
       T:
         one:

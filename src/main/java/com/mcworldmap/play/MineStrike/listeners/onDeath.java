@@ -52,9 +52,11 @@ public class onDeath implements Listener
 			predatorPerson.setKills(predatorPerson.getKills() + 1);
 			predatorPerson.setScore(predatorPerson.getScore() + 2);
 			predatorPerson.addMoney(700);
-
 		}
-
+		if (MineStrike.team.getTeam(prey.getPlayer()).equals("T"))
+			prey.getPlayer().teleport(MineStrike.spawnpoint.getTBox());
+		else
+			prey.getPlayer().teleport(MineStrike.spawnpoint.getCTBox());
 		if (MineStrike.team.isTTeamDead())
 		{
 			RoundManager.newRound("CT");

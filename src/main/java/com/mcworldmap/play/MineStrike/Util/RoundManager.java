@@ -29,7 +29,6 @@ public class RoundManager
 			MineStrike.team.rewardCT(3250);
 			MineStrike.team.rewardT(1400);
 			MineStrike.team.CTscore += 1;
-			//Freeze player, then
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(round), 200);
 		}
 		else{
@@ -48,8 +47,6 @@ public class RoundManager
 			MineStrike.team.rewardCT(1400);
 			MineStrike.team.rewardT(3250);
 			MineStrike.team.Tscore += 1;
-			//Freeze player, then
-
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(round), 200);
 		}
 	}

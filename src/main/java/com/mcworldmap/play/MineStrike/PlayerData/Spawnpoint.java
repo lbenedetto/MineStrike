@@ -27,8 +27,16 @@ public class Spawnpoint
 		spawnpoint.put("CT3", new Location(w, config.getInt("competitive.de_dust2.spawnpoints.CT.three.x"), config.getInt("competitive.de_dust2.spawnpoints.CT.three.y"), config.getInt("competitive.de_dust2.spawnpoints.CT.three.z")));
 		spawnpoint.put("CT4", new Location(w, config.getInt("competitive.de_dust2.spawnpoints.CT.four.x"), config.getInt("competitive.de_dust2.spawnpoints.CT.four.y"), config.getInt("competitive.de_dust2.spawnpoints.CT.four.z")));
 		spawnpoint.put("CT5", new Location(w, config.getInt("competitive.de_dust2.spawnpoints.CT.five.x"), config.getInt("competitive.de_dust2.spawnpoints.CT.five.y"), config.getInt("competitive.de_dust2.spawnpoints.CT.five.z")));
+		//Spawnbox
+		spawnpoint.put("TBox", new Location(w, config.getInt("competitive.de_dust2.spawnbox.T.x"), config.getInt("competitive.de_dust2.spawnbox.T.y"), config.getInt("competitive.de_dust2.spawnbox.T.z")));
+		spawnpoint.put("CTBox", new Location(w, config.getInt("competitive.de_dust2.spawnbox.CT.x"), config.getInt("competitive.de_dust2.spawnbox.CT.y"), config.getInt("competitive.de_dust2.spawnbox.CT.z")));
 	}
-
+	public Location getTBox(){
+		return spawnpoint.get("TBox");
+	}
+	public Location getCTBox(){
+		return spawnpoint.get("CTBox");
+	}
 	public Location getRandTSpawn()
 	{
 		Random rg = new Random();

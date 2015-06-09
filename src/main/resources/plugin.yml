@@ -22,3 +22,8 @@ commands:
       usage: /scoreboard
       permission: MineStrike.scoreboard
       permission-message: wololo
+   givemoney:
+      description: Give moneh
+      usage: /givemoney
+      permission: MineStrike.givemoney
+      permission-message: You can't give money.

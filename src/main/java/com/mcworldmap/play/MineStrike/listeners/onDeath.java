@@ -69,6 +69,6 @@ public class onDeath implements Listener
 		{
 			RoundManager.newRound("T");
 		}
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedRespawn(event.getEntity()), 1);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedRespawn(event.getEntity()));
 	}
 }

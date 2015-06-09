@@ -52,9 +52,10 @@ public class Team
 		Person MVP = null;
 		for (Person p : CT)
 		{
-			if (p.getRoundkills() > mostKills)
+			if (p.getRoundkills() >= mostKills)
 			{
 				MVP = p;
+				mostKills = p.getRoundkills();
 			}
 		}
 		return MVP;

@@ -54,6 +54,7 @@ public class onDeath implements Listener
 			preyPerson.setDeaths(preyPerson.getDeaths() + 1);
 			preyPerson.setAlive(false);
 			predatorPerson.setKills(predatorPerson.getKills() + 1);
+			predatorPerson.setRoundkills(predatorPerson.getRoundkills() + 1);
 			predatorPerson.setScore(predatorPerson.getScore() + 2);
 			predatorPerson.addMoney(700);
 		}

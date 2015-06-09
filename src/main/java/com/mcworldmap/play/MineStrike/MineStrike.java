@@ -35,7 +35,7 @@ public class MineStrike extends JavaPlugin
 		getServer().getPluginManager().registerEvents(new onNadeImpact(), this);
 		getCommand("buy").setExecutor(new CmdBuy());
 		getCommand("start").setExecutor(new CmdStart());
-		getCommand("join").setExecutor(new CmdJoin());
+		getCommand("join").setExecutor(new CmdJoin(this));
 		getCommand("scoreboard").setExecutor(new CmdScoreboard());
 		getCommand("givemoney").setExecutor(new CmdGiveMoney());
 		saveDefaultConfig();

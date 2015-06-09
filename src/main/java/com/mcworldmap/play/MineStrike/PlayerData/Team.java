@@ -37,9 +37,10 @@ public class Team
 		Person MVP = null;
 		for (Person p : T)
 		{
-			if (p.getKills() > mostKills)
+			if (p.getRoundkills() >= mostKills)
 			{
 				MVP = p;
+				mostKills = p.getRoundkills();
 			}
 		}
 		return MVP;
@@ -51,7 +52,7 @@ public class Team
 		Person MVP = null;
 		for (Person p : CT)
 		{
-			if (p.getKills() > mostKills)
+			if (p.getRoundkills() > mostKills)
 			{
 				MVP = p;
 			}
@@ -126,13 +127,19 @@ public class Team
 	public void respawnT()
 	{
 		for (Person p : T)
+		{
+			p.setRoundkills(0);
+			p.setAlive(true);
 			p.respawnCT();
+		}
 	}
 
 	public void respawnCT()
 	{
-		for (Person p : CT)
-			p.respawnCT();
+		for (Person p : CT){
+			p.setRoundkills(0);
+			p.setAlive(true);
+			p.respawnCT();}
 	}
 
 	public void rewardT(int reward)

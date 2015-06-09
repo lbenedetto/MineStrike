@@ -4,6 +4,7 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.NextRound;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 public class RoundManager
 {
@@ -34,13 +35,15 @@ public class RoundManager
 		else{
 			for (Person p : MineStrike.team.getT())
 			{
-				Util.sendTitle(p.getPlayer(), 20, 100, 20, "Terrorists Win", "? MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + "for most eliminations");
+				Player player = p.getPlayer();
+				String MVP = MineStrike.team.findTMVP().getPlayer().getName();
+				Util.sendTitle(player, 20, 100, 20, "Terrorists Win", "? MVP: " + MVP + "for most eliminations");
 				p.getPlayer().performCommand("scoreboard");
 				MineStrike.frozenPlayers.add(p.getPlayer());
 			}
 			for (Person p : MineStrike.team.getCT())
 			{
-				Util.sendTitle(p.getPlayer(), 02, 100, 20, "Terrorists Win", "? MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + "for most eliminations");
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, "Terrorists Win", "? MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + "for most eliminations");
 				p.getPlayer().performCommand("scoreboard");
 				MineStrike.frozenPlayers.add(p.getPlayer());
 			}

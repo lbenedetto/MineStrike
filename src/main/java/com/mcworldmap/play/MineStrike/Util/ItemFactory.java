@@ -3,6 +3,7 @@ package com.mcworldmap.play.MineStrike.Util;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.Potion;
@@ -48,6 +49,7 @@ public class ItemFactory
 			i = p.toItemStack(1);
 
 			ItemMeta im = i.getItemMeta();
+			im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
 			im.setDisplayName(ChatColor.RED + name);
 			List<String> loreList = new ArrayList<String>();
 			loreList.add(ChatColor.AQUA + "Grenade");
@@ -64,6 +66,7 @@ public class ItemFactory
 			i = p.toItemStack(1);
 
 			ItemMeta im = i.getItemMeta();
+			im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
 			im.setDisplayName(ChatColor.RED + name);
 			List<String> loreList = new ArrayList<String>();
 			loreList.add(ChatColor.AQUA + "Grenade");
@@ -78,6 +81,7 @@ public class ItemFactory
 			i = new ItemStack(Material.EXP_BOTTLE, 1);
 
 			ItemMeta im = i.getItemMeta();
+			im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
 			im.setDisplayName(ChatColor.RED + name);
 			List<String> loreList = new ArrayList<String>();
 			loreList.add(ChatColor.AQUA + "Grenade");

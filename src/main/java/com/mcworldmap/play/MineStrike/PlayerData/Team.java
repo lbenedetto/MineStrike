@@ -1,6 +1,7 @@
 package com.mcworldmap.play.MineStrike.PlayerData;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
@@ -37,12 +38,14 @@ public class Team
 		Person MVP = null;
 		for (Person p : T)
 		{
-			if (p.getRoundkills() >= mostKills)
+			if (p.getRoundKills() >= mostKills)
 			{
 				MVP = p;
-				mostKills = p.getRoundkills();
+				mostKills = p.getRoundKills();
+				Bukkit.getServer().getLogger().info("Player has" + p.getRoundKills());
 			}
 		}
+		Bukkit.getServer().getLogger().info("mostKills =" + mostKills);
 		return MVP;
 	}
 
@@ -52,10 +55,10 @@ public class Team
 		Person MVP = null;
 		for (Person p : CT)
 		{
-			if (p.getRoundkills() >= mostKills)
+			if (p.getRoundKills() >= mostKills)
 			{
 				MVP = p;
-				mostKills = p.getRoundkills();
+				mostKills = p.getRoundKills();
 			}
 		}
 		return MVP;
@@ -129,7 +132,7 @@ public class Team
 	{
 		for (Person p : T)
 		{
-			p.setRoundkills(0);
+			p.setRoundKills(0);
 			p.setAlive(true);
 			p.respawnCT();
 		}
@@ -138,7 +141,7 @@ public class Team
 	public void respawnCT()
 	{
 		for (Person p : CT){
-			p.setRoundkills(0);
+			p.setRoundKills(0);
 			p.setAlive(true);
 			p.respawnCT();}
 	}

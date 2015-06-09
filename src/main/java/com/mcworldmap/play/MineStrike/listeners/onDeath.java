@@ -2,11 +2,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
-import com.mcworldmap.play.MineStrike.Tasks.DelayedFlash;
-import com.mcworldmap.play.MineStrike.Tasks.DelayedRespawn;
-import com.mcworldmap.play.MineStrike.Tasks.NextRound;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
-import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -14,8 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-
-import java.lang.reflect.Field;
 
 @SuppressWarnings("unused")
 public class onDeath implements Listener
@@ -54,14 +48,17 @@ public class onDeath implements Listener
 			preyPerson.setDeaths(preyPerson.getDeaths() + 1);
 			preyPerson.setAlive(false);
 			predatorPerson.setKills(predatorPerson.getKills() + 1);
-			predatorPerson.setRoundkills(predatorPerson.getRoundkills() + 1);
+			predatorPerson.setRoundKills(predatorPerson.getRoundKills() + 1);
 			predatorPerson.setScore(predatorPerson.getScore() + 2);
 			predatorPerson.addMoney(700);
 		}
+		prey.setHealth(20.0D);
 		if (MineStrike.team.getTeam(prey.getPlayer()).equals("T"))
 			prey.getPlayer().teleport(MineStrike.spawnpoint.getTBox());
 		else
 			prey.getPlayer().teleport(MineStrike.spawnpoint.getCTBox());
+		event.getDrops().clear();
+		event.setDroppedExp(0);
 		if (MineStrike.team.isTTeamDead())
 		{
 			RoundManager.newRound("CT");
@@ -70,7 +67,7 @@ public class onDeath implements Listener
 		{
 			RoundManager.newRound("T");
 		}
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedRespawn(event.getEntity()));
+		//Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedRespawn(event.getEntity()));
 
 	}
 }

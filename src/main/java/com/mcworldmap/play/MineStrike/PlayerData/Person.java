@@ -20,7 +20,7 @@ import java.util.Set;
 
 public class Person
 {
-	private int score, roundkills, kills, deaths, money;
+	private int score, roundKills, kills, deaths, money;
 	private Player player;
 	private boolean alive;
 
@@ -29,7 +29,7 @@ public class Person
 		this.player = player;
 		this.score = 0;
 		this.kills = 0;
-		this.roundkills = 0;
+		this.roundKills = 0;
 		this.deaths = 0;
 		this.money = 800;
 		this.alive = true;
@@ -210,13 +210,13 @@ public class Person
 		return null;
 	}
 
-	public int getRoundkills()
+	public int getRoundKills()
 	{
-		return roundkills;
+		return roundKills;
 	}
 
-	public void setRoundkills(int roundkills)
+	public void setRoundKills(int roundKills)
 	{
-		this.roundkills = roundkills;
+		this.roundKills = roundKills;
 	}
 }

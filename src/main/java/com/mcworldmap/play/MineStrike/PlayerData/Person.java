@@ -112,7 +112,7 @@ public class Person
 	public void creditItem(String itemName)
 	{
 		//Creating item.
-		ItemStack item = ItemFactory.createItem(itemName,  new ItemStack(Material.BOW, 1));
+		ItemStack item = ItemFactory.createItem(itemName);
 		//Giving the item.
 		player.getInventory().addItem(item);
 		//TODO: Give the player the specified item.

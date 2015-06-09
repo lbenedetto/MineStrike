@@ -3,6 +3,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.DelayedFlash;
+import com.mcworldmap.play.MineStrike.Tasks.DelayedRespawn;
 import com.mcworldmap.play.MineStrike.Tasks.NextRound;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import com.mcworldmap.play.MineStrike.Util.Util;
@@ -22,12 +23,7 @@ public class onDeath implements Listener
 	@EventHandler
 	public void death(PlayerDeathEvent event)
 	{
-		try
-		{
-			Util.autoRespawnPlayer(event.getEntity());
-		} catch (ReflectiveOperationException e)
-		{
-		}
+
 		Bukkit.getLogger().info("Death detected");
 		Player prey = event.getEntity();
 		Player predator = null;
@@ -73,5 +69,6 @@ public class onDeath implements Listener
 		{
 			RoundManager.newRound("T");
 		}
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedRespawn(event.getEntity()), 1);
 	}
 }

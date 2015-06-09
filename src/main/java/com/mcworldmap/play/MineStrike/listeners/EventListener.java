@@ -96,6 +96,10 @@ public class EventListener implements Listener
 				ItemStack item = event.getPlayer().getItemInHand();
 				event.getPlayer().launchProjectile(Arrow.class);
 				item.setDurability((short)(item.getDurability() + 1));
+				if(item.getDurability() >= item.getType().getMaxDurability())
+				{
+					event.getPlayer().getInventory().remove(item);
+				}
 				event.setCancelled(true);
 			}
 		}

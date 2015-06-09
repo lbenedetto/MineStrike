@@ -11,6 +11,7 @@ public class Team
 	public int CTscore;
 	public int Tscore;
 	Plugin p;
+
 	public Team(Plugin p)
 	{
 		this.p = p;

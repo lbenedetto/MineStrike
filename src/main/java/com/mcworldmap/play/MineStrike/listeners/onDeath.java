@@ -14,12 +14,37 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
+import java.lang.reflect.Field;
+
 @SuppressWarnings("unused")
 public class onDeath implements Listener
 {
 	@EventHandler
 	public void death(PlayerDeathEvent event)
 	{
+		String tv = Bukkit.getVersion();
+		int index = tv.indexOf("(MC: ")+5;
+		int end = tv.indexOf(")", index);
+		String version = tv.substring(index, end);
+		try
+		{
+			Class packet = Class.forName("net.minecraft.server.v"+version.replace(".", "_") +".Packet205ClientCommand");
+			Object name = packet.getConstructor(new Class[0]).newInstance(new Object[0]);
+			Field a = packet.getDeclaredField("a");
+			a.setAccessible(true);
+			a.set(name, 1);
+			Object nmsPlayer = Class.forName("org.bukkit.craftbukkit.v"+version.replace(".", "_")+".entity.CraftPlayer").getMethod("getHandle", new Class[0])
+					.invoke(event.getEntity(), new Object[0]);
+			Field con = Class.forName("net.minecraft.server.v"+version.replace(".", "_") +".EntityPlayer").getDeclaredField("playerConnection");
+			con.setAccessible(true);
+			Object handle = con.get(nmsPlayer);
+			packet.getDeclaredMethod("handle", Class.forName("net.minecraft.server.v"+version.replace(".", "_") +".Connection"))
+					.invoke(name, handle);
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
 		Bukkit.getLogger().info("Death detected");
 		Player prey = event.getEntity();
 		Player predator = null;

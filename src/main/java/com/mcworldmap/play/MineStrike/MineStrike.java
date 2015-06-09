@@ -20,8 +20,7 @@ public class MineStrike extends JavaPlugin
 
 	public static String gamemode = "";
 	public FileConfiguration config = getConfig();
-	public static int teamsize = config.getInt("teamsize");
-	public static Team team = new Team();
+	public static Team team;
 	public static int ts = 0, cts = 0;
 	public static Spawnpoint spawnpoint;
 	public static Set<Integer> transparent = Sets.newHashSet();
@@ -41,6 +40,7 @@ public class MineStrike extends JavaPlugin
 		getCommand("givemoney").setExecutor(new CmdGiveMoney());
 		saveDefaultConfig();
 		spawnpoint = new Spawnpoint(config);
+		team = new Team(this);
 		// Determine transparency
 		for (Material material : Material.values())
 		{
@@ -50,7 +50,7 @@ public class MineStrike extends JavaPlugin
 			}
 		}
 		getLogger().info("MineStrike Enabled");
-		getLogger().warning("Teamsize" + teamsize);
+		getLogger().warning("Teamsize" + getConfig().getInt("teamsize"));
 	}
 
 	@Override

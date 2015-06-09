@@ -22,6 +22,7 @@ public class DelayedRespawn implements Runnable
 		}
 		catch (ReflectiveOperationException e)
 		{
+			e.printStackTrace();
 		}
 	}
 }

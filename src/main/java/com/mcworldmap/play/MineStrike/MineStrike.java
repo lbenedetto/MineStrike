@@ -12,7 +12,6 @@ import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -22,7 +21,7 @@ public class MineStrike extends JavaPlugin
 	public static String gamemode = "";
 	public static Team team = new Team();
 	public static int ts = 0, cts = 0;
-	public static int teamsize = 5;
+	public static int teamsize;
 	public static Spawnpoint spawnpoint;
 	public static Set<Integer> transparent = Sets.newHashSet();
 	public static ArrayList<Player> frozenPlayers = new ArrayList<>();
@@ -41,6 +40,7 @@ public class MineStrike extends JavaPlugin
 		getCommand("givemoney").setExecutor(new CmdGiveMoney());
 		saveDefaultConfig();
 		FileConfiguration config = getConfig();
+		teamsize = config.getInt("teamsize");
 		spawnpoint = new Spawnpoint(config);
 		// Determine transparency
 		for (Material material : Material.values())

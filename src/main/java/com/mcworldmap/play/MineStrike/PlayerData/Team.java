@@ -65,10 +65,10 @@ public class Team
 	public String getTeam(Player player)
 	{
 		for (Person p : MineStrike.team.getCT())
-			if (p.getPlayer().equals(player))
+			if (p != null && p.getPlayer().equals(player))
 				return "CT";
 		for (Person p : MineStrike.team.getT())
-			if (p.getPlayer().equals(player))
+			if (p != null && p.getPlayer().equals(player))
 				return "T";
 		return "";
 	}
@@ -76,10 +76,10 @@ public class Team
 	public Person findPerson(Player player)
 	{
 		for (Person p : MineStrike.team.getCT())
-			if (p.getPlayer().equals(player))
+			if (p != null && p.getPlayer().equals(player))
 				return p;
 		for (Person p : MineStrike.team.getT())
-			if (p.getPlayer().equals(player))
+			if (p != null && p.getPlayer().equals(player))
 				return p;
 		return null;
 	}

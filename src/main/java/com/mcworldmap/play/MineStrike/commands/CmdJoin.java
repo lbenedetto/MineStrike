@@ -31,31 +31,36 @@ public class CmdJoin implements CommandExecutor
 			sender.sendMessage("Not enough arguments!");
 		else
 		{
-			//TODO: Add check to make sure you are joining the team twice
-			//Don't do this yet, we need to be able to start the game with less players for testing
-			if (args[0].equalsIgnoreCase("t") && MineStrike.ts < p.getConfig().getInt("teamsize"))
+			Player player = (Player) sender;
+			if (MineStrike.team.findPerson(player) == null)
 			{
-				Player player = (Player) sender;
-				MineStrike.team.getT()[MineStrike.ts] = new Person(player);
-				MineStrike.team.getT()[MineStrike.ts].respawnT();
-				MineStrike.ts += 1;
-				sender.sendMessage("Joined Terrorist Team");
-			} else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < p.getConfig().getInt("teamsize"))
-			{
-				Player player = (Player) sender;
-				MineStrike.team.getCT()[MineStrike.cts] = new Person(player);
-				MineStrike.team.getCT()[MineStrike.cts].respawnCT();
-				MineStrike.cts += 1;
-				sender.sendMessage("Joined Counter-Terrorist Team");
+				if (args[0].equalsIgnoreCase("t") && MineStrike.ts < p.getConfig().getInt("teamsize"))
+				{
+
+					MineStrike.team.getT()[MineStrike.ts] = new Person(player);
+					MineStrike.team.getT()[MineStrike.ts].respawnT();
+					MineStrike.ts += 1;
+					sender.sendMessage("Joined Terrorist Team");
+				} else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < p.getConfig().getInt("teamsize"))
+				{
+					MineStrike.team.getCT()[MineStrike.cts] = new Person(player);
+					MineStrike.team.getCT()[MineStrike.cts].respawnCT();
+					MineStrike.cts += 1;
+					sender.sendMessage("Joined Counter-Terrorist Team");
+				} else
+				{
+					sender.sendMessage("The team you tried to join is either full, or does not exist");
+					return false;
+				}
+				if (MineStrike.cts == p.getConfig().getInt("teamsize") && MineStrike.ts == p.getConfig().getInt("teamsize"))
+				{
+					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "start competitive");
+				}
+				return true;
 			} else
 			{
-				sender.sendMessage("The team you tried to join is either full, or does not exist");
-				return false;
+				sender.sendMessage("You are already on a team");
 			}
-			if (MineStrike.cts == p.getConfig().getInt("teamsize") && MineStrike.ts == p.getConfig().getInt("teamsize")){
-				Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "start competitive");
-			}
-			return true;
 		}
 		return false;
 	}

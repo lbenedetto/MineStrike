@@ -64,10 +64,12 @@ public class RoundManager
 		for (String s : rounds)
 		{
 			if (s != null)
-				if(s.equalsIgnoreCase("T"))
+			{
+				if (s.equalsIgnoreCase("T"))
 					out += ChatColor.GOLD + s;
-				if(s.equalsIgnoreCase("CT"))
+				if (s.equalsIgnoreCase("CT"))
 					out += ChatColor.DARK_BLUE + s;
+			}
 			out += " | ";
 		}
 		return out;

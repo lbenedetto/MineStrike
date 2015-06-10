@@ -47,9 +47,11 @@ public class ItemFactory
 					//endregion
 					//region Pistols
 					case GLOCK:
-						return createCustomItem(Material.BOW, name, "Pistol", 320, 6.6);
+						return createCustomItem(Material.BOW, name, "Pistol", 320, .15);
 					case USP:
-						return createCustomItem(Material.BOW, name, "Pistol", 320, 5.8);
+						return createCustomItem(Material.BOW, name, "Pistol", 320, .17);
+					//endregion
+					//region Heavy
 					//endregion
 					default:
 						return createCustomItem(Material.BOW, name, "Unknown", 320, 1);

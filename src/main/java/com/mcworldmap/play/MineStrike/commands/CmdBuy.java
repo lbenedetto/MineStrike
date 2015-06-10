@@ -3,6 +3,7 @@ package com.mcworldmap.play.MineStrike.commands;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -29,8 +30,8 @@ public class CmdBuy implements CommandExecutor
 				if (p.getMoney() >= price)
 				{
 					p.setMoney(p.getMoney() - price);
-					sender.sendMessage("-$" + price);
-					sender.sendMessage("+" + args[0]);
+					sender.sendMessage(ChatColor.RED + "-$" + price);
+					sender.sendMessage(ChatColor.GREEN + "+" + args[0]);
 					sender.sendMessage("$" + p.getMoney() + " remaining");
 					p.creditItem(args[0]);
 				} else

@@ -1,6 +1,5 @@
 package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
-import com.mcworldmap.play.MineStrike.PlayerData.*;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.Tasks.DelayArrowRemove;
 import org.bukkit.Bukkit;
@@ -12,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 @SuppressWarnings("unused")
@@ -108,11 +108,12 @@ public class EventListener implements Listener
 //		event.setCancelled(true);
 //	}
 //
-//	@EventHandler
-////	//public void onPickup(PlayerPickupItemEvent event)
-////	{
-////		event.setCancelled(true);
-////	}
+	@EventHandler
+    public void onPickup(PlayerPickupItemEvent event)
+    {
+        if(event.getItem().getType().equals(org.bukkit.Material.ARROW))
+    	    event.setCancelled(true);
+    }
 
 	@EventHandler
 	public void onHunger(FoodLevelChangeEvent event)

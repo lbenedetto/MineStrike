@@ -47,9 +47,8 @@ public class ArrowFire implements Listener {
                             double spray = 3.5D;
 
                             e.setVelocity(new Vector(direction.getX() + (Math.random() - 0.5) / spray, direction.getY() + (Math.random() - 0.5) / spray, direction.getZ() + (Math.random() - 0.5) / spray).normalize().multiply(speed));
-
-
                         }
+                        event.setCancelled(true);
                     }else
                     {
                         Arrow e = (Arrow) event.getPlayer().launchProjectile(Arrow.class);

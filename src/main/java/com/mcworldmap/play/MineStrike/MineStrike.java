@@ -22,6 +22,7 @@ public class MineStrike extends JavaPlugin
 	public static Config config;
 	public static Set<Integer> transparent = Sets.newHashSet();
 	public static ArrayList<Player> frozenPlayers = new ArrayList<>();
+    public static ArrayList<Player> coolDown = new ArrayList<>();
 
 	@Override
 	public void onEnable()

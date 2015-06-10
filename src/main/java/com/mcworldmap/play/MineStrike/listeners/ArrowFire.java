@@ -1,7 +1,10 @@
 package com.mcworldmap.play.MineStrike.listeners;
 
+import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
+import com.mcworldmap.play.MineStrike.Tasks.FireRate;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
 import org.bukkit.event.EventHandler;
@@ -23,25 +26,29 @@ public class ArrowFire implements Listener {
                     event.setCancelled(true);
                     return;
                 }
-                Arrow e = (Arrow) event.getPlayer().launchProjectile(Arrow.class);
-                Vector currentVel = e.getVelocity();
+                if(!MineStrike.coolDown.contains(event.getPlayer())) {
+                    Arrow e = (Arrow) event.getPlayer().launchProjectile(Arrow.class);
+                    Vector currentVel = e.getVelocity();
 
 
-                for (Item i : Item.values()) {
-                    if (i.name().equalsIgnoreCase(ChatColor.stripColor(item.getItemMeta().getDisplayName()))) {
-                        switch (i) {
-                            case ZEUS:
-                                e.setVelocity(currentVel.multiply(.5));
-                                break;
-                            default:
-                                break;
+                    for (Item i : Item.values()) {
+                        if (i.name().equalsIgnoreCase(ChatColor.stripColor(item.getItemMeta().getDisplayName()))) {
+                            switch (i) {
+                                case ZEUS:
+                                    e.setVelocity(currentVel.multiply(.5));
+                                    break;
+                                default:
+                                    break;
+                            }
                         }
                     }
+
+                    item.setDurability((short) (item.getDurability() + 1));
+
+                    event.setCancelled(true);
+                    MineStrike.coolDown.add(event.getPlayer());
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireRate(event.getPlayer()), 20);
                 }
-
-                item.setDurability((short) (item.getDurability() + 1));
-
-                event.setCancelled(true);
             }
         }
     }

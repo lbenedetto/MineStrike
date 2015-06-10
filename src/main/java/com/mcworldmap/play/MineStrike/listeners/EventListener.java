@@ -1,5 +1,7 @@
 package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
+import com.mcworldmap.play.MineStrike.Tasks.DelayArrowRemove;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.*;
@@ -40,10 +42,16 @@ public class EventListener implements Listener
 //
 //		}
 //	}
-//	public void projectileHitEvent(ProjectileHitEvent event)
-//	{
-//
-//	}
+    //Despawn arrows faster.
+    @EventHandler
+	public void projectileHitEvent(ProjectileHitEvent event)
+	{
+        if(event.getEntity() instanceof  Arrow)
+        {
+            Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayArrowRemove((Arrow)event.getEntity()), 200);
+        }
+	}
+
 	//Make potions not do stuff
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void potionSplashEvent(PotionSplashEvent event)

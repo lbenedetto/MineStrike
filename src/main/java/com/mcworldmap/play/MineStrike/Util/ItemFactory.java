@@ -115,7 +115,7 @@ public class ItemFactory {
                         i.setItemMeta(im);
                         i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
                         i.setDurability((short) 320);
-                        break;
+                        return i;
                 }
             }
         }

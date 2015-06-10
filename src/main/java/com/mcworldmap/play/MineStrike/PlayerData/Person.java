@@ -47,6 +47,7 @@ public class Person
 		Location location = MineStrike.config.getRandTSpawn();
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
+		player.setFoodLevel(4);
 	}
 
 	public void respawnCT()
@@ -55,6 +56,7 @@ public class Person
 		Location location = MineStrike.config.getRandCTSpawn();
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
+		player.setFoodLevel(4);
 	}
 
 	public boolean isAlive()

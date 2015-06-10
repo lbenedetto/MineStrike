@@ -69,8 +69,9 @@ public class RoundManager
 					out += ChatColor.GOLD + s;
 				if (s.equalsIgnoreCase("CT"))
 					out += ChatColor.DARK_BLUE + s;
+				out += " | ";
 			}
-			out += " | ";
+
 		}
 		return out;
 	}

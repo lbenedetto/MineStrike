@@ -65,10 +65,10 @@ public class EventListener implements Listener
 	{
 		Location before = event.getFrom();
 		Location after = event.getTo();
-
+		//Players can move on Y, but its a feature, not a bug
 		if(MineStrike.frozenPlayers.contains(event.getPlayer()))
 		{
-			if((int)before.getX() == (int)after.getX())
+			if((int)before.getX() == (int)after.getX() && (int)before.getZ() == (int)after.getZ())
 				return;
 			event.getPlayer().teleport(before);
 		}
@@ -98,12 +98,6 @@ public class EventListener implements Listener
 		event.setCancelled(true);
 	}
 
-    @EventHandler
-    public void regenHealth(EntityRegainHealthEvent event)
-    {
-        if(event.getEntity() instanceof  Player && event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.REGEN))
-            event.setCancelled(true);
-    }
 
 //    @EventHandler
 //    public void onDamage(EntityDamageByBlockEvent event)

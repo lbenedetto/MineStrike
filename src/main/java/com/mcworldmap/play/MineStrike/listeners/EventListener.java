@@ -5,6 +5,8 @@ import com.mcworldmap.play.MineStrike.Tasks.DelayArrowRemove;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -12,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
@@ -73,6 +76,19 @@ public class EventListener implements Listener
             Item item = Item.getItem(itemInHand.getItemMeta().getDisplayName());
             event.setCancelled(true);
             ((Player) event.getEntity()).damage(item.getDamage(), shooter);
+        }
+    }
+
+    @EventHandler
+    public void onExtinguish(PlayerInteractEvent event) {
+        final Player player = event.getPlayer();
+
+        final Block block = event.getClickedBlock();
+        final BlockFace blockFace = event.getBlockFace();
+        final Block relativeBlock = block.getRelative(blockFace);
+        final Material fireMaterial = Material.FIRE;
+        if (relativeBlock.getType() == fireMaterial) {
+            event.setCancelled(true);
         }
     }
 

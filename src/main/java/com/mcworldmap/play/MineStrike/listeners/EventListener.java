@@ -89,17 +89,17 @@ public class EventListener implements Listener
 		event.getDrops().clear();
 	}
 
-	@EventHandler
-	public void onDrop(PlayerDropItemEvent event)
-	{
-		event.setCancelled(true);
-	}
-
-	@EventHandler
-	public void onPickup(PlayerPickupItemEvent event)
-	{
-		event.setCancelled(true);
-	}
+//	@EventHandler
+//	//public void onDrop(PlayerDropItemEvent event)
+//	{
+//		event.setCancelled(true);
+//	}
+//
+//	@EventHandler
+////	//public void onPickup(PlayerPickupItemEvent event)
+////	{
+////		event.setCancelled(true);
+////	}
 
 	@EventHandler
 	public void onHunger(FoodLevelChangeEvent event)

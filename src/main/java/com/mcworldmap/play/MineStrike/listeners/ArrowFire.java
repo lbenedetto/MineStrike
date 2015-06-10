@@ -11,6 +11,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
+
 
 public class ArrowFire implements Listener {
 
@@ -31,16 +33,27 @@ public class ArrowFire implements Listener {
                     return;
                 }
                 if(!MineStrike.coolDown.contains(event.getPlayer())) {
-                    Arrow e = (Arrow) event.getPlayer().launchProjectile(Arrow.class);
-                    e.setVelocity(e.getVelocity().multiply(velChange));
-
-
-                    if(gun.name().equalsIgnoreCase(""))
-                    for(int i = 0; i < 5; i++)
+                    //Shotgun spread.
+                    if(gun.getType().equalsIgnoreCase("shotgun"))
                     {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            Arrow e = (Arrow) event.getPlayer().launchProjectile(Arrow.class);
 
+                            Vector velocity = e.getVelocity();
+                            double speed = velocity.length();
+                            Vector direction = new Vector(velocity.getX() / speed, velocity.getY() / speed, velocity.getZ() / speed);
+                            double spray = 3.5D;
+
+                            e.setVelocity(new Vector(direction.getX() + (Math.random() - 0.5) / spray, direction.getY() + (Math.random() - 0.5) / spray, direction.getZ() + (Math.random() - 0.5) / spray).normalize().multiply(speed));
+
+
+                        }
+                    }else
+                    {
+                        Arrow e = (Arrow) event.getPlayer().launchProjectile(Arrow.class);
+                        e.setVelocity(e.getVelocity().multiply(velChange));
                     }
-
 
                     item.setDurability((short) (item.getDurability() + 1));
 

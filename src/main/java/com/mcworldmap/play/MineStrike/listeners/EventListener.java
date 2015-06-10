@@ -97,6 +97,7 @@ public class EventListener implements Listener
 		}
 	}
 
+
 	@EventHandler
 	public void onDeath(PlayerDeathEvent event)
 	{
@@ -142,6 +143,13 @@ public class EventListener implements Listener
         {
             ((Player) event.getEntity()).damage(2);
             event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onEntityDamage(EntityDamageEvent event) {
+        if (event.getEntity() instanceof Player) {
+            event.setCancelled(event.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK || event.getCause() == EntityDamageEvent.DamageCause.FIRE);
         }
     }
 

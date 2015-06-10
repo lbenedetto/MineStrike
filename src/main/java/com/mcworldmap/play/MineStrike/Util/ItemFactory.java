@@ -31,7 +31,7 @@ public class ItemFactory
 					case KIT:
 						return createCustomItem(Material.SHEARS, name, "Gear");
 					case ZEUS:
-						return createCustomItem(Material.BOW, name, "Gear", Material.BOW.getMaxStackSize() - 1);
+						return createCustomItem(Material.BOW, name, "Gear", Material.BOW.getMaxDurability() - 1);
 					//endregion
 					//region Grenades
 					case FRAG:
@@ -47,16 +47,35 @@ public class ItemFactory
 					//endregion
 					//region Pistols
 					case GLOCK:
-						return createCustomItem(Material.BOW, name, "Pistol", 320);
+						return createCustomItem(Material.BOW, name, "Pistol", 320, 6.6);
 					case USP:
-						return createCustomItem(Material.BOW, name, "Pistol", 320);
+						return createCustomItem(Material.BOW, name, "Pistol", 320, 5.8);
 					//endregion
 					default:
-						return createCustomItem(Material.BOW, name, "Unknown");
+						return createCustomItem(Material.BOW, name, "Unknown", 320, 1);
 				}
 			}
 		}
 		return null;
+	}
+
+	public static ItemStack createCustomItem(Material m, String name, String type, int durability, double firerate)
+	{
+		ItemStack i;
+		ItemMeta im;
+		ArrayList<String> loreList;
+		i = new ItemStack(m, 1);
+		im = i.getItemMeta();
+		im.setDisplayName(ChatColor.RED + name);
+		loreList = new ArrayList<>();
+		loreList.add(ChatColor.AQUA + type);
+		loreList.add(ChatColor.DARK_AQUA + name);
+		loreList.add("" + firerate);
+		im.setLore(loreList);
+		i.setItemMeta(im);
+		i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		i.setDurability((short) durability);
+		return i;
 	}
 
 	public static ItemStack createCustomItem(Material m, String name, String type, int durability)

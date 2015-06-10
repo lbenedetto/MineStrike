@@ -2,6 +2,7 @@ package com.mcworldmap.play.MineStrike.PlayerData;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.ItemFactory;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -131,6 +132,8 @@ public class Person
 		this.money = this.money + money;
 		if (this.money > 16000)
 			this.money = 16000;
+		player.sendMessage(ChatColor.GREEN + "+$" + money);
+		player.sendMessage(ChatColor.WHITE + "You now have $" + money);
 	}
 
 	public Player getPlayer()

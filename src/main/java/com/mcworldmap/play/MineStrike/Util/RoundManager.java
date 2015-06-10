@@ -9,14 +9,15 @@ import org.bukkit.entity.Player;
 
 public class RoundManager
 {
-	public static String[] rounds = new String[30];
 	public static int round = 1;
 
 	public static void newRound(String winner)
 	{
-		rounds[round - 1] = winner;
 		round += 1;
-		if (winner.equals("CT"))
+		if (round > 30 | MineStrike.team.CTscore >= 15 || MineStrike.team.Tscore >= 15)
+		{
+			//end the game
+		} else if (winner.equals("CT"))
 		{
 			for (Person p : MineStrike.team.getT())
 			{
@@ -56,7 +57,7 @@ public class RoundManager
 		String out;
 		out = ChatColor.GOLD + "" + MineStrike.team.Tscore;
 		out += ChatColor.WHITE + " | ";
-		out += ChatColor.DARK_BLUE + ""  + MineStrike.team.CTscore;
+		out += ChatColor.DARK_BLUE + "" + MineStrike.team.CTscore;
 		return out;
 	}
 }

@@ -25,44 +25,48 @@ public class ItemFactory
 				{
 					//region Gear
 					case KEVLAR:
-						return createCustomItem(Material.DIAMOND_CHESTPLATE, name, "Gear", 320);
+						return createCustomArmor(Material.DIAMOND_CHESTPLATE, name, "Gear", 320);
 					case HELMET:
-						return createCustomItem(Material.DIAMOND_HELMET, name, "Gear", 320);
+						return createCustomArmor(Material.DIAMOND_HELMET, name, "Gear", 320);
 					case KIT:
-						return createCustomItem(Material.SHEARS, name, "Gear");
+						return createCustomArmor(Material.SHEARS, name, "Gear", Material.SHEARS.getMaxDurability());
 					case ZEUS:
-						return createCustomItem(Material.BOW, name, "Gear", Material.BOW.getMaxDurability() - 1);
+						return createCustomGun(Material.BOW, name, "Gear", Material.BOW.getMaxDurability() - 1, 1, .5);
 					//endregion
 					//region Grenades
 					case FRAG:
-						return createCustomPotion(PotionType.INSTANT_DAMAGE, name);
+						return createCustomNade(PotionType.INSTANT_DAMAGE, name);
 					case MOLOTOV:
-						return createCustomPotion(PotionType.FIRE_RESISTANCE, name);
+						return createCustomNade(PotionType.FIRE_RESISTANCE, name);
 					case INCENDIARY:
-						return createCustomPotion(PotionType.FIRE_RESISTANCE, name);
+						return createCustomNade(PotionType.FIRE_RESISTANCE, name);
 					case FLASH:
-						return createCustomPotion(PotionType.NIGHT_VISION, name);
+						return createCustomNade(PotionType.NIGHT_VISION, name);
 					case DECOY:
-						return createCustomItem(Material.EXP_BOTTLE, name, "Grenade");
+						//Don't think about it, just accept it, and move on
+						return createCustomArmor(Material.EXP_BOTTLE, name, "Grenade", Material.EXP_BOTTLE.getMaxDurability());
 					//endregion
 					//region Pistols
 					case GLOCK:
-						return createCustomItem(Material.BOW, name, "Pistol", 320, .15);
+						return createCustomGun(Material.BOW, name, "Pistol", 320, .15, 1);
 					case USP:
-						return createCustomItem(Material.BOW, name, "Pistol", 320, .17);
+						return createCustomGun(Material.BOW, name, "Pistol", 320, .17, 1);
 					//endregion
 					//region Heavy
+					case NEGEV:
+						return createCustomGun(Material.BOW, name, "Heavy", Material.BOW.getMaxDurability(), .1, .8);
 					//endregion
 					default:
-						return createCustomItem(Material.BOW, name, "Unknown", 320, 1);
+						return createCustomGun(Material.BOW, name, "Unknown", 320, 1, 1);
 				}
 			}
 		}
 		return null;
 	}
 
-	public static ItemStack createCustomItem(Material m, String name, String type, int durability, double firerate)
+	public static ItemStack createCustomGun(Material m, String name, String type, int durability, double firerate, double rangeMultiplier)
 	{
+		//This is for guns
 		ItemStack i;
 		ItemMeta im;
 		ArrayList<String> loreList;
@@ -72,7 +76,8 @@ public class ItemFactory
 		loreList = new ArrayList<>();
 		loreList.add(ChatColor.AQUA + type);
 		loreList.add(ChatColor.DARK_AQUA + name);
-		loreList.add("" + firerate);
+		loreList.add(ChatColor.BLACK + "" + firerate);
+		loreList.add(ChatColor.BLACK + "" + rangeMultiplier);
 		im.setLore(loreList);
 		i.setItemMeta(im);
 		i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
@@ -80,8 +85,9 @@ public class ItemFactory
 		return i;
 	}
 
-	public static ItemStack createCustomItem(Material m, String name, String type, int durability)
+	public static ItemStack createCustomArmor(Material m, String name, String type, int durability)
 	{
+		//This is for armor
 		ItemStack i;
 		ItemMeta im;
 		ArrayList<String> loreList;
@@ -98,8 +104,9 @@ public class ItemFactory
 		return i;
 	}
 
-	public static ItemStack createCustomPotion(PotionType m, String name)
+	public static ItemStack createCustomNade(PotionType m, String name)
 	{
+		//This is for nades
 		ItemStack i;
 		ItemMeta im;
 		ArrayList<String> loreList;
@@ -112,22 +119,6 @@ public class ItemFactory
 		im.setDisplayName(ChatColor.RED + name);
 		loreList = new ArrayList<>();
 		loreList.add(ChatColor.AQUA + "Grenade");
-		loreList.add(ChatColor.DARK_AQUA + name);
-		im.setLore(loreList);
-		i.setItemMeta(im);
-		return i;
-	}
-
-	public static ItemStack createCustomItem(Material m, String name, String type)
-	{
-		ItemStack i;
-		ItemMeta im;
-		ArrayList<String> loreList;
-		i = new ItemStack(m, 1);
-		im = i.getItemMeta();
-		im.setDisplayName(ChatColor.RED + name);
-		loreList = new ArrayList<>();
-		loreList.add(ChatColor.AQUA + type);
 		loreList.add(ChatColor.DARK_AQUA + name);
 		im.setLore(loreList);
 		i.setItemMeta(im);

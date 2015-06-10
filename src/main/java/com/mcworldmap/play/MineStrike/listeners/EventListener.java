@@ -9,6 +9,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -144,6 +145,12 @@ public class EventListener implements Listener
             ((Player) event.getEntity()).damage(2);
             event.getEntity().setFireTicks(0);
         }
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event)
+    {
+        event.setCancelled(true);
     }
 
 	@EventHandler

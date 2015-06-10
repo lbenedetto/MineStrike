@@ -3,6 +3,7 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.Tasks.DelayArrowRemove;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -172,6 +173,8 @@ public class EventListener implements Listener
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event)
     {
+        if(event.getPlayer().getGameMode().equals(GameMode.CREATIVE))
+            return;
         event.setCancelled(true);
     }
 

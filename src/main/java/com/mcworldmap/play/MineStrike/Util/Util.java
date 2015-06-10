@@ -1,5 +1,6 @@
 package com.mcworldmap.play.MineStrike.Util;
 
+import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
@@ -138,4 +139,9 @@ public class Util
 			return null;
 		}
 	}
+
+    public static int getWeaponDamage(Item weapon)
+    {
+        return weapon.getDamage();
+    }
 }

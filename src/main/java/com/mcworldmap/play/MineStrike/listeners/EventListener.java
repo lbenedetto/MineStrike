@@ -59,6 +59,20 @@ public class EventListener implements Listener
         {
             event.setCancelled(true);
         }
+
+
+    }
+
+    @EventHandler
+    public void customDamage(EntityDamageByEntityEvent event)
+    {
+        if(event.getEntity() instanceof Player && event.getDamager() instanceof  Arrow)
+        {
+            Arrow a = (Arrow)event.getDamager();
+            Player shooter = (Player)a.getShooter();
+
+
+        }
     }
 
 	//Make potions not do stuff

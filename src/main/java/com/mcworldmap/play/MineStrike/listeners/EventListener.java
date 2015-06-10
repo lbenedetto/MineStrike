@@ -112,7 +112,7 @@ public class EventListener implements Listener
 	@EventHandler
     public void onPickup(PlayerPickupItemEvent event)
     {
-        if(event.getItem().getType().equals(Material.ARROW))
+        if(event.getItem().getItemStack().getType().equals(Material.ARROW))
     	    event.setCancelled(true);
     }
 

@@ -23,7 +23,7 @@ public class ArrowFire implements Listener {
         if (a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) {
             ItemStack item = event.getPlayer().getItemInHand();
             ItemMeta im = item.getItemMeta();
-            int fireRate = Integer.parseInt(im.getLore().get(2)) * 20;
+            int fireRate = Integer.parseInt(ChatColor.stripColor(im.getLore().get(2))) * 20;
             if (event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
                 if (item.getDurability() >= item.getType().getMaxDurability()) {
                     event.setCancelled(true);

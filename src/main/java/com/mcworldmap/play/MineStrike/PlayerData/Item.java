@@ -3,7 +3,7 @@ package com.mcworldmap.play.MineStrike.PlayerData;
 public enum Item
 {
 	//Gear
-	KEVLAR(65), HELMET(350),
+	KEVLAR(650), HELMET(350),
 	KIT(400), ZEUS(400),
 	//Grenades
 	FRAG(300), DECOY(50), MOLOTOV(400),

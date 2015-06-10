@@ -21,7 +21,7 @@ public class ArrowFire implements Listener {
     public void onArrowFire(PlayerInteractEvent event) {
         Action a = event.getAction();
 
-        if (a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
+        if ((a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
             ItemStack item = event.getPlayer().getItemInHand();
             Item gun = Item.getItem(ChatColor.stripColor(item.getItemMeta().getDisplayName()));
 
@@ -48,7 +48,6 @@ public class ArrowFire implements Listener {
 
                             e.setVelocity(new Vector(direction.getX() + (Math.random() - 0.5) / spray, direction.getY() + (Math.random() - 0.5) / spray, direction.getZ() + (Math.random() - 0.5) / spray).normalize().multiply(speed));
                         }
-                        event.setCancelled(true);
                     }else
                     {
                         Arrow e = (Arrow) event.getPlayer().launchProjectile(Arrow.class);
@@ -57,7 +56,6 @@ public class ArrowFire implements Listener {
 
                     item.setDurability((short) (item.getDurability() + 1));
 
-                    event.setCancelled(true);
                     MineStrike.coolDown.add(event.getPlayer());
                     Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireRate(event.getPlayer()), Math.round(fireRate) * 20);
                 }

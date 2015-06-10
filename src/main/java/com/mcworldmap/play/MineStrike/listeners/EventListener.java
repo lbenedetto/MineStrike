@@ -136,15 +136,6 @@ public class EventListener implements Listener
 //        }
 //    }
 
-    @EventHandler
-    public void onCombustBlock(EntityCombustByBlockEvent event)
-    {
-        if(event.getEntity() instanceof Player)
-        {
-            ((Player) event.getEntity()).damage(2);
-            event.setCancelled(true);
-        }
-    }
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
@@ -159,6 +150,7 @@ public class EventListener implements Listener
         if(event.getEntity() instanceof Player)
         {
             ((Player) event.getEntity()).damage(2);
+            event.getEntity().setFireTicks(0);
             event.setCancelled(true);
         }
     }

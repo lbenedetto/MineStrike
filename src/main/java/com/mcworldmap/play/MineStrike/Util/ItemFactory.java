@@ -27,13 +27,13 @@ public class ItemFactory
 					//TODO:Balance values
 					//region Gear
 					case CTKEVLAR:
-						return createCustomArmor(Material.DIAMOND_CHESTPLATE, name, "Gear", 320, false);
+						return createCustomArmor(Material.LEATHER_CHESTPLATE, name, "Gear", 320, false);
 					case CTHELMET:
-						return createCustomArmor(Material.DIAMOND_HELMET, name, "Gear", 320, false);
+						return createCustomArmor(Material.LEATHER_HELMET, name, "Gear", 320, false);
 					case TKEVLAR:
-						return createCustomArmor(Material.DIAMOND_CHESTPLATE, name, "Gear", 320, true);
+						return createCustomArmor(Material.LEATHER_CHESTPLATE, name, "Gear", 320, true);
 					case THELMET:
-						return createCustomArmor(Material.DIAMOND_HELMET, name, "Gear", 320, true);
+						return createCustomArmor(Material.LEATHER_HELMET, name, "Gear", 320, true);
 					case KIT:
 						return createCustomArmor(Material.SHEARS, name, "Gear", Material.SHEARS.getMaxDurability());
 					case ZEUS:

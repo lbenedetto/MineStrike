@@ -23,7 +23,7 @@ public class ArrowFire implements Listener {
         if (a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) {
             ItemStack item = event.getPlayer().getItemInHand();
             ItemMeta im = item.getItemMeta();
-            int fireRate = Integer.parseInt(ChatColor.stripColor(im.getLore().get(2))) * 20;
+            double fireRate = Double.parseDouble(ChatColor.stripColor(im.getLore().get(2)));
             if (event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
                 if (item.getDurability() >= item.getType().getMaxDurability()) {
                     event.setCancelled(true);
@@ -50,7 +50,7 @@ public class ArrowFire implements Listener {
 
                     event.setCancelled(true);
                     MineStrike.coolDown.add(event.getPlayer());
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireRate(event.getPlayer()), fireRate);
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireRate(event.getPlayer()), Math.round(fireRate));
                 }
             }
         }

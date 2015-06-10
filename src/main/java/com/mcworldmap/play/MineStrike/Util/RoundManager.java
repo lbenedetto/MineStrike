@@ -43,13 +43,11 @@ public class RoundManager
 				String MVP = MineStrike.team.findTMVP().getPlayer().getName();
 				Util.sendTitle(player, 20, 100, 20, ChatColor.GOLD + "Terrorists Win", "MVP: " + MVP + " for most eliminations");
 				p.getPlayer().performCommand("scoreboard");
-				MineStrike.frozenPlayers.add(p.getPlayer());
 			}
 			for (Person p : MineStrike.team.getCT())
 			{
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.GOLD + "Terrorists Win", "MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + " for most eliminations");
 				p.getPlayer().performCommand("scoreboard");
-				MineStrike.frozenPlayers.add(p.getPlayer());
 			}
 			MineStrike.team.rewardCT(1400);
 			MineStrike.team.rewardT(3250);

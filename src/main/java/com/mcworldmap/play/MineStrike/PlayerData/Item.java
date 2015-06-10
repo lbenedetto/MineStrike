@@ -16,15 +16,15 @@ public enum Item
 	BERETTAS(500, 150, .12, 1d, 7, "Pistol"), P250(300, 39, .15, 1d, 6, "Pistol"), TEC9(500, 144, .12, 1d, 5, "Pistol"),
 	DEAGLE(700, 42, .5, 1d, 15, "Pistol"),
 	//Heavy
-	NOVA(1200, 40, .8, .7, 5, "Shotgun"), XM1014(2000, 39, .35, .7, 6, "Shotgun"), SAWNOFF(1200, 39, .84, .7, 6, "Shotgun"),
+	NOVA(1200, 40, .8, .7, 5, "Shotgun"), XM1014(2000, 39, .6, .7, 7, "Shotgun"), SAWNOFF(1200, 39, .84, .7, 6, "Shotgun"),
 	M249(5200, 300, .08, .8, 6, "Heavy"), NEGEV(5700, 350, .05, .8, 7, "Heavy"), MAG7(1800, 37, .84, .7, 6, "Shotgun"),
 	//SMG's
 	MAC10(1050, 130, .1, .9, 2, "SMG"), MP7(1700, 150, .1, .9, 2, "SMG"), UMP(1200, 125, .1, .9, 2, "SMG"),
 	P90(2350, 150, .1, .9, 2, "SMG"), BISON(1400, 184, .1, .9, 2, "SMG"), MP9(1250, 184, .1, .9, 2, "SMG"),
 	//Rifles
-	FAMAS(2250, 0, .1, 1.5, 2, "Rifle"), GALIL(2000, 0, .1, 1.5, 2, "Rifle"), AK47(2700, 0, .1, 1.5, 2, "Rifle"),
-	M4A1S(2700, 0, .1, 1.5, 2, "Rifle"), SSG(1700), AUG(3300, 0, .1, 1.5, 2, "Rifle"),
-	SG(3000, 0, .1, 1.5, 2, "Sniper-Rifle"), AWP(2750, 40, 2, 10, 20, "Sniper-Rifle"),
+	FAMAS(2250, 115, .1, 1.5, 2, "Rifle"), GALIL(2000, 125, .1, 1.5, 2, "Rifle"), AK47(2700, 120, .1, 1.5, 2, "Rifle"),
+	M4A1S(2700, 60, .1, 1.5, 2, "Rifle"), SSG(1700, 100, 2, 2, 17, "Sniper-Rifle"), AUG(3300, 120, .1, 1.5, 2, "Rifle"),
+	SG(3000, 120, .1, 1.5, 2, "Sniper-Rifle"), AWP(4750, 40, 2, 10, 20, "Sniper-Rifle"),
 	G3SG1(5000, 110, .25, 10, 2, "Sniper-Rifle"), SCAR20(5000, 110, .25, 10, 2, "Sniper-Rifle");
 
 	private int price;

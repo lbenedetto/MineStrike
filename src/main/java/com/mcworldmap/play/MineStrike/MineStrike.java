@@ -24,6 +24,7 @@ public class MineStrike extends JavaPlugin
 	public static ArrayList<Player> frozenPlayers = new ArrayList<>();
     public static ArrayList<Player> coolDown = new ArrayList<>();
     public static boolean isGameActive = false;
+	public static boolean canBuy = false;
 
 	@Override
 	public void onEnable()

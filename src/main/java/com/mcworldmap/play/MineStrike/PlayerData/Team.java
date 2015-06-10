@@ -143,7 +143,7 @@ public class Team
 
 	public void rewardCT(int reward)
 	{
-		for (Person p : T)
+		for (Person p : CT)
 			p.addMoney(reward);
 	}
 }

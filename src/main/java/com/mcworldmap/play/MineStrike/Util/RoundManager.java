@@ -22,14 +22,11 @@ public class RoundManager
 			{
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.DARK_BLUE + "Counter-Terrorists Win", "MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + " for most eliminations");
 				p.getPlayer().performCommand("scoreboard");
-				p.getPlayer().performCommand("scoreboard");
-				MineStrike.frozenPlayers.add(p.getPlayer());
-
 			}
 			for (Person p : MineStrike.team.getCT())
 			{
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.DARK_BLUE + "Counter-Terrorists Win", "MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + " for most eliminations");
-				MineStrike.frozenPlayers.add(p.getPlayer());
+				p.getPlayer().performCommand("scoreboard");
 			}
 			MineStrike.team.rewardCT(3250);
 			MineStrike.team.rewardT(1400);
@@ -39,9 +36,7 @@ public class RoundManager
 		{
 			for (Person p : MineStrike.team.getT())
 			{
-				Player player = p.getPlayer();
-				String MVP = MineStrike.team.findTMVP().getPlayer().getName();
-				Util.sendTitle(player, 20, 100, 20, ChatColor.GOLD + "Terrorists Win", "MVP: " + MVP + " for most eliminations");
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.GOLD + "Terrorists Win", "MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + " for most eliminations");
 				p.getPlayer().performCommand("scoreboard");
 			}
 			for (Person p : MineStrike.team.getCT())
@@ -60,7 +55,7 @@ public class RoundManager
 	{
 		String out;
 		out = ChatColor.GOLD + "" + MineStrike.team.Tscore;
-		out += ChatColor.RESET + " | ";
+		out += ChatColor.WHITE + " | ";
 		out += ChatColor.DARK_BLUE + ""  + MineStrike.team.CTscore;
 		return out;
 	}

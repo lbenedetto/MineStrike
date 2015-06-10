@@ -84,29 +84,6 @@ public class EventListener implements Listener
 		event.setCancelled(true);
 	}
 
-
-	@EventHandler
-	public void onArrowFire(PlayerInteractEvent event)
-	{
-		Action a = event.getAction();
-		if(a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK))
-		{
-			if(event.getPlayer().getItemInHand().getType().equals(Material.BOW))
-			{
-				ItemStack item = event.getPlayer().getItemInHand();
-				if(item.getDurability() >= item.getType().getMaxDurability())
-				{
-					event.setCancelled(true);
-					return;
-				}
-				event.getPlayer().launchProjectile(Arrow.class);
-				item.setDurability((short)(item.getDurability() + 1));
-
-				event.setCancelled(true);
-			}
-		}
-	}
-
 	@EventHandler
 	public void onHunger(FoodLevelChangeEvent event)
 	{

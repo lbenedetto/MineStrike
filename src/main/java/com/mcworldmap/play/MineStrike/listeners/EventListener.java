@@ -97,15 +97,12 @@ public class EventListener implements Listener
 	{
 		event.setCancelled(true);
 	}
-
-	@EventHandler
-	public void onHealthRegen(EntityRegainHealthEvent event)
-	{
-		if(event.getEntity() instanceof Player && event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.REGEN))
-		{
-			event.setCancelled(true);
-		}
-	}
+    @EventHandler
+    public void regenHealth(EntityRegainHealthEvent event)
+    {
+        if(event.getEntity() instanceof  Player)
+            event.setCancelled(true);
+    }
 
 
 	@EventHandler

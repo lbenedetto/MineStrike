@@ -19,13 +19,14 @@ public class ItemFactory
 	public static ItemStack createItem(String name)
 	{
 		ItemStack i = null;
+		/** Gear **/
 		if (name.equalsIgnoreCase("kevlar"))
 		{
 			i = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 			ItemMeta im = i.getItemMeta();
 			im.setDisplayName(ChatColor.RED + name);
 			List<String> loreList = new ArrayList<String>();
-			loreList.add(ChatColor.AQUA + "Armor");
+			loreList.add(ChatColor.AQUA + "Gear");
 			loreList.add(ChatColor.DARK_AQUA + name);
 			im.setLore(loreList);
 			i.setItemMeta(im);
@@ -37,12 +38,38 @@ public class ItemFactory
 			ItemMeta im = i.getItemMeta();
 			im.setDisplayName(ChatColor.RED + name);
 			List<String> loreList = new ArrayList<String>();
-			loreList.add(ChatColor.AQUA + "Armor");
+			loreList.add(ChatColor.AQUA + "Gear");
 			loreList.add(ChatColor.DARK_AQUA + name);
 			im.setLore(loreList);
 			i.setItemMeta(im);
 			return i;
 		}
+		if (name.equalsIgnoreCase("kit"))
+		{
+			i = new ItemStack(Material.SHEARS, 1);
+			ItemMeta im = i.getItemMeta();
+			im.setDisplayName(ChatColor.RED + name);
+			List<String> loreList = new ArrayList<String>();
+			loreList.add(ChatColor.AQUA + "Gear");
+			loreList.add(ChatColor.DARK_AQUA + "Defuse Kit");
+			im.setLore(loreList);
+			i.setItemMeta(im);
+			return i;
+		}
+		if (name.equalsIgnoreCase("zeus"))
+		{
+			i = new ItemStack(Material.BOW, 1);
+			ItemMeta im = i.getItemMeta();
+			im.setDisplayName(ChatColor.RED + name);
+			List<String> loreList = new ArrayList<String>();
+			loreList.add(ChatColor.AQUA + "Gear");
+			loreList.add(ChatColor.DARK_AQUA + name);
+			im.setLore(loreList);
+			i.setItemMeta(im);
+			i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+			i.setDurability((short) (i.getType().getMaxStackSize() - 1));
+		}
+		/** Grenades **/
 		if (name.equalsIgnoreCase("frag"))
 		{
 			Potion p = new Potion(PotionType.INSTANT_DAMAGE);
@@ -89,17 +116,8 @@ public class ItemFactory
 			i.setItemMeta(im);
 			return i;
 		}
-		if(name.equalsIgnoreCase("kit")){
-			i = new ItemStack(Material.SHEARS, 1);
-			ItemMeta im = i.getItemMeta();
-			im.setDisplayName(ChatColor.RED + name);
-			List<String> loreList = new ArrayList<String>();
-			loreList.add(ChatColor.AQUA + "Gear");
-			loreList.add(ChatColor.DARK_AQUA + "Defuse Kit");
-			im.setLore(loreList);
-			i.setItemMeta(im);
-			return i;
-		}
+		/** Grenades **/
+
 
 		i = new ItemStack(Material.BOW, 1);
 		ItemMeta im = i.getItemMeta();

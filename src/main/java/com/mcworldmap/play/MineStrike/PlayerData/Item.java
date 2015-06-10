@@ -14,7 +14,7 @@ public enum Item
 	DEAGLE(700, 42, .5, 1d, 15, "Pistol"),
 	//Heavy
 	NOVA(1200, 40, .8, .7, 5, "Shotgun"), XM1014(2000, 39, .35, .7, 6, "Shotgun"), SAWNOFF(1200, 39, .84, .7, 6, "Shotgun"),
-	M249(5200, 300, .06, .8, 2, "Heavy"), NEGEV(5700, 350, .05, .8, 7, "Heavy"), MAG7(1800, 37, .84, .7, 6, "Shotgun"),
+	M249(5200, 300, .08, .8, 6, "Heavy"), NEGEV(5700, 350, .05, .8, 7, "Heavy"), MAG7(1800, 37, .84, .7, 6, "Shotgun"),
 	//SMG's
 	MAC10(1050, 130, .1, .9, 2, "SMG"), MP7(1700, 150, .1, .9, 2, "SMG"), UMP(1200, 125, .1, .9, 2, "SMG"),
 	P90(2350, 150, .1, .9, 2, "SMG"), BISON(1400, 184, .1, .9, 2, "SMG"), MP9(1250, 184, .1, .9, 2, "SMG"),
@@ -26,8 +26,6 @@ public enum Item
 
 	private int price;
     private int damage;
-
-
     private double range;
     private int ammo;
     private double fireRate;

@@ -67,6 +67,7 @@ public class ItemFactory
 			i.setItemMeta(im);
 			i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 			i.setDurability((short) (i.getType().getMaxStackSize() - 1));
+			return i;
 		}
 		/** Grenades **/
 		if (name.equalsIgnoreCase("frag"))

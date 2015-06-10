@@ -134,7 +134,7 @@ public class Team
 		{
 			p.setRoundKills(0);
 			p.setAlive(true);
-			p.respawnCT();
+			p.respawnT();
 		}
 	}
 

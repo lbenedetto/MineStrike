@@ -10,12 +10,15 @@ public class RoundManager
 {
 	public static String[] rounds = new String[30];
 	public static int round = 1;
-	public static void newRound(String winner){
-		rounds[round-1] = winner;
+
+	public static void newRound(String winner)
+	{
+		rounds[round - 1] = winner;
 		round += 1;
-		if(winner.equals("CT"))
+		if (winner.equals("CT"))
 		{
-			for (Person p : MineStrike.team.getT()){
+			for (Person p : MineStrike.team.getT())
+			{
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, "Counter-Terrorists Win", "MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + " for most eliminations");
 				p.getPlayer().performCommand("scoreboard");
 				p.getPlayer().performCommand("scoreboard");
@@ -31,8 +34,8 @@ public class RoundManager
 			MineStrike.team.rewardT(1400);
 			MineStrike.team.CTscore += 1;
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(round), 200);
-		}
-		else{
+		} else
+		{
 			for (Person p : MineStrike.team.getT())
 			{
 				Player player = p.getPlayer();
@@ -53,10 +56,14 @@ public class RoundManager
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(round), 200);
 		}
 	}
-	public static String stringify(){
+
+	public static String stringify()
+	{
 		String out = "";
-		for (String s : rounds){
-			out += s + " - ";
+		for (String s : rounds)
+		{
+			if (s != null)
+				out += s + " - ";
 		}
 		return out;
 	}

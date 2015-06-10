@@ -36,7 +36,7 @@ public class onDeath implements Listener
 		Bukkit.getServer().broadcastMessage(prey.getDisplayName() + " was killed by " + predator.getDisplayName());
 		if (predator.getDisplayName().equals(prey.getDisplayName()))
 			predatorPerson.setScore(predatorPerson.getScore() - 1);
-		else if(MineStrike.team.getTeam(predator).equals(MineStrike.team.getTeam(predator)))
+		else if(MineStrike.team.getTeam(predator).equals(MineStrike.team.getTeam(prey)))
 		{
 			predatorPerson.setScore(predatorPerson.getScore() - 1);
 			predatorPerson.incrementTeamKills();

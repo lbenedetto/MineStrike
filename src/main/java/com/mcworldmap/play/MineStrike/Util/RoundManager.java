@@ -4,6 +4,7 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.NextRound;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class RoundManager
@@ -19,7 +20,7 @@ public class RoundManager
 		{
 			for (Person p : MineStrike.team.getT())
 			{
-				Util.sendTitle(p.getPlayer(), 20, 100, 20, "Counter-Terrorists Win", "MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + " for most eliminations");
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.DARK_BLUE + "Counter-Terrorists Win", "MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + " for most eliminations");
 				p.getPlayer().performCommand("scoreboard");
 				p.getPlayer().performCommand("scoreboard");
 				MineStrike.frozenPlayers.add(p.getPlayer());
@@ -27,7 +28,7 @@ public class RoundManager
 			}
 			for (Person p : MineStrike.team.getCT())
 			{
-				Util.sendTitle(p.getPlayer(), 20, 100, 20, "Counter-Terrorists Win", "MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + " for most eliminations");
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.DARK_BLUE +  "Counter-Terrorists Win", "MVP: " + MineStrike.team.findCTMVP().getPlayer().getName() + " for most eliminations");
 				MineStrike.frozenPlayers.add(p.getPlayer());
 			}
 			MineStrike.team.rewardCT(3250);
@@ -40,13 +41,13 @@ public class RoundManager
 			{
 				Player player = p.getPlayer();
 				String MVP = MineStrike.team.findTMVP().getPlayer().getName();
-				Util.sendTitle(player, 20, 100, 20, "Terrorists Win", "MVP: " + MVP + " for most eliminations");
+				Util.sendTitle(player, 20, 100, 20,  ChatColor.GOLD + "Terrorists Win", "MVP: " + MVP + " for most eliminations");
 				p.getPlayer().performCommand("scoreboard");
 				MineStrike.frozenPlayers.add(p.getPlayer());
 			}
 			for (Person p : MineStrike.team.getCT())
 			{
-				Util.sendTitle(p.getPlayer(), 20, 100, 20, "Terrorists Win", "MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + " for most eliminations");
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.GOLD + "Terrorists Win", "MVP: " + MineStrike.team.findTMVP().getPlayer().getName() + " for most eliminations");
 				p.getPlayer().performCommand("scoreboard");
 				MineStrike.frozenPlayers.add(p.getPlayer());
 			}
@@ -63,7 +64,11 @@ public class RoundManager
 		for (String s : rounds)
 		{
 			if (s != null)
-				out += s + " - ";
+				if(s.equalsIgnoreCase("T"))
+					out += ChatColor.GOLD + s;
+				if(s.equalsIgnoreCase("CT"))
+					out += ChatColor.DARK_BLUE + s;
+			out += " | ";
 		}
 		return out;
 	}

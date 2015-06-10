@@ -12,6 +12,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.util.Vector;
 
 public class ArrowFire implements Listener {
@@ -21,6 +22,8 @@ public class ArrowFire implements Listener {
         Action a = event.getAction();
         if (a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) {
             ItemStack item = event.getPlayer().getItemInHand();
+            ItemMeta im = item.getItemMeta();
+            int fireRate = Integer.parseInt(im.getLore().get(2)) * 20;
             if (event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
                 if (item.getDurability() >= item.getType().getMaxDurability()) {
                     event.setCancelled(true);
@@ -47,7 +50,7 @@ public class ArrowFire implements Listener {
 
                     event.setCancelled(true);
                     MineStrike.coolDown.add(event.getPlayer());
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireRate(event.getPlayer()), 20);
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireRate(event.getPlayer()), fireRate);
                 }
             }
         }

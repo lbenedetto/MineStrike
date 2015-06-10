@@ -20,7 +20,6 @@ public class ArrowFire implements Listener {
     @EventHandler
     public void onArrowFire(PlayerInteractEvent event) {
         Action a = event.getAction();
-
         if ((a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
             ItemStack item = event.getPlayer().getItemInHand();
             Item gun = Item.getItem(ChatColor.stripColor(item.getItemMeta().getDisplayName()));

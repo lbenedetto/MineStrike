@@ -54,48 +54,33 @@ public class Team
 		int mostKills = 0;
 		Person MVP = null;
 		for (Person p : CT)
-		{
 			if (p.getRoundKills() >= mostKills)
 			{
 				MVP = p;
 				mostKills = p.getRoundKills();
 			}
-		}
 		return MVP;
 	}
-	public String getTeam(Player player){
+
+	public String getTeam(Player player)
+	{
 		for (Person p : MineStrike.team.getCT())
-		{
 			if (p.getPlayer().equals(player))
-			{
 				return "CT";
-			}
-		}
 		for (Person p : MineStrike.team.getT())
-		{
 			if (p.getPlayer().equals(player))
-			{
 				return "T";
-			}
-		}
 		return "";
 	}
+
 	public Person findPerson(Player player)
 	{
 		for (Person p : MineStrike.team.getCT())
-		{
 			if (p.getPlayer().equals(player))
-			{
 				return p;
-			}
-		}
 		for (Person p : MineStrike.team.getT())
-		{
 			if (p.getPlayer().equals(player))
-			{
 				return p;
-			}
-		}
 		return null;
 	}
 
@@ -109,22 +94,18 @@ public class Team
 	public boolean isTTeamDead()
 	{
 		boolean out = true;
-		for (Person p : T){
-			if(p.isAlive()){
+		for (Person p : T)
+			if (p.isAlive())
 				out = false;
-			}
-		}
 		return out;
 	}
 
 	public boolean isCTTeamDead()
 	{
 		boolean out = true;
-		for (Person p : CT){
-			if(p.isAlive()){
+		for (Person p : CT)
+			if (p.isAlive())
 				out = false;
-			}
-		}
 		return out;
 	}
 
@@ -140,10 +121,12 @@ public class Team
 
 	public void respawnCTTeam()
 	{
-		for (Person p : CT){
+		for (Person p : CT)
+		{
 			p.setRoundKills(0);
 			p.setAlive(true);
-			p.respawnCT();}
+			p.respawnCT();
+		}
 	}
 
 	public void rewardT(int reward)

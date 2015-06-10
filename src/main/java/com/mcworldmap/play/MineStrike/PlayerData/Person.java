@@ -4,23 +4,19 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.ItemFactory;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockIterator;
-import org.bukkit.util.Vector;
 
-import javax.xml.stream.events.EndElement;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Set;
 
 public class Person
 {
-	private int score, roundKills, kills, deaths, money;
+	private int score, roundKills, kills, deaths, money, teamKills;
 	private Player player;
 	private boolean alive;
 
@@ -32,6 +28,7 @@ public class Person
 		this.roundKills = 0;
 		this.deaths = 0;
 		this.money = 800;
+		this.teamKills = 0;
 		this.alive = true;
 	}
 
@@ -47,7 +44,7 @@ public class Person
 	public void respawnT()
 	{
 		World world = player.getWorld();
-		Location location = MineStrike.spawnpoint.getRandTSpawn();
+		Location location = MineStrike.config.getRandTSpawn();
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
 	}
@@ -55,7 +52,7 @@ public class Person
 	public void respawnCT()
 	{
 		World world = player.getWorld();
-		Location location = MineStrike.spawnpoint.getRandCTSpawn();
+		Location location = MineStrike.config.getRandCTSpawn();
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
 	}
@@ -218,5 +215,20 @@ public class Person
 	public void setRoundKills(int roundKills)
 	{
 		this.roundKills = roundKills;
+	}
+
+	public void incrementTeamKills()
+	{
+		this.teamKills += 1;
+	}
+
+	public int getTeamKills()
+	{
+		return teamKills;
+	}
+
+	public void setTeamKills(int teamKills)
+	{
+		this.teamKills = teamKills;
 	}
 }

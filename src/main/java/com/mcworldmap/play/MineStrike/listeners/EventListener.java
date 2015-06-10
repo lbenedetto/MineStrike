@@ -4,16 +4,18 @@ import com.mcworldmap.play.MineStrike.Tasks.DelayArrowRemove;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 @SuppressWarnings("unused")
 public class EventListener implements Listener
@@ -95,48 +97,18 @@ public class EventListener implements Listener
 	{
 		event.setCancelled(true);
 	}
-    @EventHandler
-    public void regenHealth(EntityRegainHealthEvent event)
-    {
-        if(event.getEntity() instanceof  Player)
-            event.setCancelled(true);
-    }
 
-//    @EventHandler
-//    public void onDamage(EntityDamageByBlockEvent event)
-//    {
-//        Block b = event.getDamager();
-//        if(b.getType().equals(Material.FIRE) && event.getEntity() instanceof Player)
-//        {
-//            ((Player) event.getEntity()).damage(2);
-//            ((Player) event.getEntity()).getActivePotionEffects().clear();
-//            event.setCancelled(true);
-//        }
-//    }
-
-    @EventHandler
-    public void onCombustBlock(EntityCombustByBlockEvent event)
-    {
-        if(event.getEntity() instanceof Player)
-        {
-            ((Player) event.getEntity()).damage(2);
-            event.setCancelled(true);
-        }
-    }
-
-    @EventHandler
-    public void onCombust(EntityCombustEvent event)
-    {
-        if(event.getEntity() instanceof Player)
-        {
-            ((Player) event.getEntity()).damage(2);
-            event.setCancelled(true);
-        }
-    }
+	@EventHandler
+	public void onHealthRegen(EntityRegainHealthEvent event)
+	{
+		if(event.getEntity() instanceof Player && event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.REGEN))
+		{
+			event.setCancelled(true);
+		}
+	}
 
 
-
-    @EventHandler
+	@EventHandler
 	public void onFireSpread(BlockIgniteEvent event) {event.setCancelled(true);	}
 
 }

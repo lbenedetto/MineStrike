@@ -1,4 +1,5 @@
 teamsize: 1
+maxTeamKills: 3
 world: de_dust2
 competitive:
   de_dust2:

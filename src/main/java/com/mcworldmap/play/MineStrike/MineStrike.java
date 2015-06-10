@@ -1,7 +1,7 @@
 package com.mcworldmap.play.MineStrike;
 
 import com.google.common.collect.Sets;
-import com.mcworldmap.play.MineStrike.PlayerData.Spawnpoint;
+import com.mcworldmap.play.MineStrike.PlayerData.Config;
 import com.mcworldmap.play.MineStrike.PlayerData.Team;
 import com.mcworldmap.play.MineStrike.commands.*;
 import com.mcworldmap.play.MineStrike.listeners.*;
@@ -16,10 +16,10 @@ public class MineStrike extends JavaPlugin
 {
 
 	public static String gamemode = "";
-	public FileConfiguration config = getConfig();
+	public FileConfiguration cfg = getConfig();
 	public static Team team;
 	public static int ts = 0, cts = 0;
-	public static Spawnpoint spawnpoint;
+	public static Config config;
 	public static Set<Integer> transparent = Sets.newHashSet();
 	public static ArrayList<Player> frozenPlayers = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class MineStrike extends JavaPlugin
 		getCommand("scoreboard").setExecutor(new CmdScoreboard());
 		getCommand("givemoney").setExecutor(new CmdGiveMoney());
 		saveDefaultConfig();
-		spawnpoint = new Spawnpoint(config);
+		config = new Config(cfg);
 		team = new Team(this);
 		// Determine transparency
 		for (Material material : Material.values())

@@ -1,20 +1,17 @@
 package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
+import com.mcworldmap.play.MineStrike.PlayerData.*;
+import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.Tasks.DelayArrowRemove;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 @SuppressWarnings("unused")
@@ -46,7 +43,7 @@ public class EventListener implements Listener
     @EventHandler
 	public void projectileHitEvent(ProjectileHitEvent event)
 	{
-        if(event.getEntity() instanceof  Arrow)
+        if(event.getEntity() instanceof Arrow)
         {
             Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayArrowRemove((Arrow)event.getEntity()), 200);
         }
@@ -60,7 +57,6 @@ public class EventListener implements Listener
             event.setCancelled(true);
         }
 
-
     }
 
     @EventHandler
@@ -71,7 +67,10 @@ public class EventListener implements Listener
             Arrow a = (Arrow)event.getDamager();
             Player shooter = (Player)a.getShooter();
 
-
+            ItemStack itemInHand = shooter.getItemInHand();
+            Item item = Item.getItem(itemInHand.getItemMeta().getDisplayName());
+            event.setCancelled(true);
+            ((Player) event.getEntity()).damage(item.getDamage(), shooter);
         }
     }
 

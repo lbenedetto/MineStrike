@@ -26,7 +26,7 @@ public class CmdBuy implements CommandExecutor
 			sender.sendMessage("You have $" + p.getMoney());
 			if (Item.getItem(args[0].toUpperCase()) != null)
 			{
-				int price = Item.getItem(args[0].toUpperCase()).getValue();
+				int price = Item.getItem(args[0].toUpperCase()).getPrice();
 				if (p.getMoney() >= price)
 				{
 					p.setMoney(p.getMoney() - price);

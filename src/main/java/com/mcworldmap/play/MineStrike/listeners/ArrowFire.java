@@ -12,8 +12,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.util.Vector;
 
 public class ArrowFire implements Listener {
 
@@ -22,9 +20,11 @@ public class ArrowFire implements Listener {
         Action a = event.getAction();
         if (a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
             ItemStack item = event.getPlayer().getItemInHand();
-            ItemMeta im = item.getItemMeta();
-            double fireRate = Double.parseDouble(ChatColor.stripColor(im.getLore().get(2)));
-            double velChange = Double.parseDouble(ChatColor.stripColor(im.getLore().get(3)));
+            Item gun = Item.getItem(item.getItemMeta().getDisplayName());
+
+            double fireRate = gun.getFireRate();
+            double velChange = gun.getRange();
+
             if (event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
                 if (item.getDurability() >= item.getType().getMaxDurability()) {
                     event.setCancelled(true);

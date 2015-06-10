@@ -1,5 +1,7 @@
 package com.mcworldmap.play.MineStrike.PlayerData;
 
+import net.md_5.bungee.api.ChatColor;
+
 public enum Item
 {
 	//Gear
@@ -59,7 +61,7 @@ public enum Item
 
 	public static Item getItem(final String name){
 		for(Item item : Item.values())
-			if(item.name().equalsIgnoreCase(name))
+			if(item.name().equalsIgnoreCase(ChatColor.stripColor(name)))
 				return item;
 		return null;
 	}

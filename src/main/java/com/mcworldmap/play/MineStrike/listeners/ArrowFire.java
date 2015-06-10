@@ -24,6 +24,7 @@ public class ArrowFire implements Listener {
             ItemStack item = event.getPlayer().getItemInHand();
             ItemMeta im = item.getItemMeta();
             double fireRate = Double.parseDouble(ChatColor.stripColor(im.getLore().get(2)));
+            double velChange = Double.parseDouble(ChatColor.stripColor(im.getLore().get(3)));
             if (event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
                 if (item.getDurability() >= item.getType().getMaxDurability()) {
                     event.setCancelled(true);
@@ -31,20 +32,8 @@ public class ArrowFire implements Listener {
                 }
                 if(!MineStrike.coolDown.contains(event.getPlayer())) {
                     Arrow e = (Arrow) event.getPlayer().launchProjectile(Arrow.class);
-                    Vector currentVel = e.getVelocity();
+                    e.setVelocity(e.getVelocity().multiply(velChange));
 
-
-                    for (Item i : Item.values()) {
-                        if (i.name().equalsIgnoreCase(ChatColor.stripColor(item.getItemMeta().getDisplayName()))) {
-                            switch (i) {
-                                case ZEUS:
-                                    e.setVelocity(currentVel.multiply(.5));
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }
-                    }
 
                     item.setDurability((short) (item.getDurability() + 1));
 

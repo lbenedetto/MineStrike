@@ -3,6 +3,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.Tasks.FireRate;
+import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
@@ -22,7 +23,7 @@ public class ArrowFire implements Listener {
 
         if (a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
             ItemStack item = event.getPlayer().getItemInHand();
-            Item gun = Item.getItem(item.getItemMeta().getDisplayName());
+            Item gun = Item.getItem(ChatColor.stripColor(item.getItemMeta().getDisplayName()));
 
             double fireRate = gun.getFireRate();
             double velChange = gun.getRange();

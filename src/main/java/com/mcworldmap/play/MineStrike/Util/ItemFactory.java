@@ -65,7 +65,6 @@ public class ItemFactory
 			Potion p = new Potion(PotionType.FIRE_RESISTANCE);
 			p.setSplash(true);
 			i = p.toItemStack(1);
-
 			ItemMeta im = i.getItemMeta();
 			im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
 			im.setDisplayName(ChatColor.RED + name);
@@ -80,7 +79,6 @@ public class ItemFactory
 		if (name.equalsIgnoreCase("decoy"))
 		{
 			i = new ItemStack(Material.EXP_BOTTLE, 1);
-
 			ItemMeta im = i.getItemMeta();
 			im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
 			im.setDisplayName(ChatColor.RED + name);
@@ -91,12 +89,23 @@ public class ItemFactory
 			i.setItemMeta(im);
 			return i;
 		}
+		if(name.equalsIgnoreCase("kit")){
+			i = new ItemStack(Material.SHEARS, 1);
+			ItemMeta im = i.getItemMeta();
+			im.setDisplayName(ChatColor.RED + name);
+			List<String> loreList = new ArrayList<String>();
+			loreList.add(ChatColor.AQUA + "Gear");
+			loreList.add(ChatColor.DARK_AQUA + "Defuse Kit");
+			im.setLore(loreList);
+			i.setItemMeta(im);
+			return i;
+		}
 
 		i = new ItemStack(Material.BOW, 1);
 		ItemMeta im = i.getItemMeta();
 		im.setDisplayName(ChatColor.RED + name);
 		List<String> loreList = new ArrayList<String>();
-		loreList.add(ChatColor.AQUA + "Armor");
+		loreList.add(ChatColor.AQUA + "Gun");
 		loreList.add(ChatColor.DARK_AQUA + name);
 		im.setLore(loreList);
 		i.setItemMeta(im);

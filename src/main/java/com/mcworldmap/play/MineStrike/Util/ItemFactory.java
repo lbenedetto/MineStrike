@@ -3,7 +3,6 @@ package com.mcworldmap.play.MineStrike.Util;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -18,14 +17,14 @@ public class ItemFactory
 
 	public static ItemStack createItem(String name)
 	{
-		ItemStack i = null;
+		ItemStack i;
 		/** Gear **/
 		if (name.equalsIgnoreCase("kevlar"))
 		{
 			i = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
 			ItemMeta im = i.getItemMeta();
 			im.setDisplayName(ChatColor.RED + name);
-			List<String> loreList = new ArrayList<String>();
+			List<String> loreList = new ArrayList<>();
 			loreList.add(ChatColor.AQUA + "Gear");
 			loreList.add(ChatColor.DARK_AQUA + name);
 			im.setLore(loreList);
@@ -37,7 +36,7 @@ public class ItemFactory
 			i = new ItemStack(Material.DIAMOND_HELMET, 1);
 			ItemMeta im = i.getItemMeta();
 			im.setDisplayName(ChatColor.RED + name);
-			List<String> loreList = new ArrayList<String>();
+			List<String> loreList = new ArrayList<>();
 			loreList.add(ChatColor.AQUA + "Gear");
 			loreList.add(ChatColor.DARK_AQUA + name);
 			im.setLore(loreList);
@@ -49,7 +48,7 @@ public class ItemFactory
 			i = new ItemStack(Material.SHEARS, 1);
 			ItemMeta im = i.getItemMeta();
 			im.setDisplayName(ChatColor.RED + name);
-			List<String> loreList = new ArrayList<String>();
+			List<String> loreList = new ArrayList<>();
 			loreList.add(ChatColor.AQUA + "Gear");
 			loreList.add(ChatColor.DARK_AQUA + "Defuse Kit");
 			im.setLore(loreList);
@@ -61,7 +60,7 @@ public class ItemFactory
 			i = new ItemStack(Material.BOW, 1);
 			ItemMeta im = i.getItemMeta();
 			im.setDisplayName(ChatColor.RED + name);
-			List<String> loreList = new ArrayList<String>();
+			List<String> loreList = new ArrayList<>();
 			loreList.add(ChatColor.AQUA + "Gear");
 			loreList.add(ChatColor.DARK_AQUA + name);
 			im.setLore(loreList);
@@ -79,7 +78,7 @@ public class ItemFactory
 			ItemMeta im = i.getItemMeta();
 			im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
 			im.setDisplayName(ChatColor.RED + name);
-			List<String> loreList = new ArrayList<String>();
+			List<String> loreList = new ArrayList<>();
 			loreList.add(ChatColor.AQUA + "Grenade");
 			loreList.add(ChatColor.DARK_AQUA + name);
 			im.setLore(loreList);
@@ -95,7 +94,7 @@ public class ItemFactory
 			ItemMeta im = i.getItemMeta();
 			im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
 			im.setDisplayName(ChatColor.RED + name);
-			List<String> loreList = new ArrayList<String>();
+			List<String> loreList = new ArrayList<>();
 			loreList.add(ChatColor.AQUA + "Grenade");
 			loreList.add(ChatColor.DARK_AQUA + name);
 			im.setLore(loreList);
@@ -109,7 +108,7 @@ public class ItemFactory
 			ItemMeta im = i.getItemMeta();
 			im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
 			im.setDisplayName(ChatColor.RED + name);
-			List<String> loreList = new ArrayList<String>();
+			List<String> loreList = new ArrayList<>();
 			loreList.add(ChatColor.AQUA + "Grenade");
 			loreList.add(ChatColor.DARK_AQUA + name);
 			im.setLore(loreList);
@@ -122,7 +121,7 @@ public class ItemFactory
 		i = new ItemStack(Material.BOW, 1);
 		ItemMeta im = i.getItemMeta();
 		im.setDisplayName(ChatColor.RED + name);
-		List<String> loreList = new ArrayList<String>();
+		List<String> loreList = new ArrayList<>();
 		loreList.add(ChatColor.AQUA + "Gun");
 		loreList.add(ChatColor.DARK_AQUA + name);
 		im.setLore(loreList);

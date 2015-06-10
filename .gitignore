@@ -35,6 +35,9 @@ $RECYCLE.BIN/
 .Spotlight-V100
 .Trashes
 
+# Ignore the IDEA directory.
+
+
 # Directories potentially created on remote AFP share
 .AppleDB
 .AppleDesktop
@@ -42,11 +45,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 .idea/workspace.xml
-.idea/workspace.xml
 target/classes/plugin.yml
 *.class
-.idea/workspace.xml
 out/artifacts/MineStrike/MineStrike.jar
-.idea/workspace.xml
 *.xml
-.idea/workspace.xml
+MineStrike.iml

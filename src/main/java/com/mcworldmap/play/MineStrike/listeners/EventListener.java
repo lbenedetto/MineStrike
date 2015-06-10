@@ -52,6 +52,15 @@ public class EventListener implements Listener
         }
 	}
 
+    @EventHandler
+    public void onDamageByPlayer(EntityDamageByEntityEvent event)
+    {
+        if(event.getEntity() instanceof Player && event.getDamager() instanceof Player && !MineStrike.isGameActive)
+        {
+            event.setCancelled(true);
+        }
+    }
+
 	//Make potions not do stuff
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void potionSplashEvent(PotionSplashEvent event)

@@ -18,8 +18,8 @@ public class NextRound implements Runnable
 	@Override
 	public void run()
 	{
-		MineStrike.team.respawnCT();
-		MineStrike.team.respawnT();
+		MineStrike.team.respawnCTTeam();
+		MineStrike.team.respawnTTeam();
 		for(Person p : MineStrike.team.getCT())
 			Util.sendTitle(p.getPlayer(), 20, 50, 20, "Round " + rounds, RoundManager.stringify());
 		for(Person p : MineStrike.team.getT())

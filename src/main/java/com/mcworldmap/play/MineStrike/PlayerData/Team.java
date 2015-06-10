@@ -128,7 +128,7 @@ public class Team
 		return out;
 	}
 
-	public void respawnT()
+	public void respawnTTeam()
 	{
 		for (Person p : T)
 		{
@@ -138,7 +138,7 @@ public class Team
 		}
 	}
 
-	public void respawnCT()
+	public void respawnCTTeam()
 	{
 		for (Person p : CT){
 			p.setRoundKills(0);

@@ -5,8 +5,9 @@ import net.md_5.bungee.api.ChatColor;
 public enum Item
 {
 	//Gear
-	KEVLAR(650), HELMET(350),
-	KIT(400), ZEUS(400, 1, 1, .5, 20, "Kit"),
+	CTKEVLAR(650), CTHELMET(350),
+	TKEVLAR(650), THELMET(350),
+	KIT(400), ZEUS(400, 1, 1, .5, 100, "Kit"),
 	//Grenades
 	FRAG(300), DECOY(50), MOLOTOV(400),
 	FLASHBANG(200), SMOKE(300), INCENDIARY(600),

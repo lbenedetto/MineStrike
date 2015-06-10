@@ -24,9 +24,13 @@ public class ItemFactory
 				{
 					//TODO:Balance values
 					//region Gear
-					case KEVLAR:
+					case CTKEVLAR:
 						return createCustomArmor(Material.DIAMOND_CHESTPLATE, name, "Gear", 320);
-					case HELMET:
+					case CTHELMET:
+						return createCustomArmor(Material.DIAMOND_HELMET, name, "Gear", 320);
+					case TKEVLAR:
+						return createCustomArmor(Material.DIAMOND_CHESTPLATE, name, "Gear", 320);
+					case THELMET:
 						return createCustomArmor(Material.DIAMOND_HELMET, name, "Gear", 320);
 					case KIT:
 						return createCustomArmor(Material.SHEARS, name, "Gear", Material.SHEARS.getMaxDurability());

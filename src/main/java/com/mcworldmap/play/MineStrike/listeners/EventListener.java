@@ -87,9 +87,10 @@ public class EventListener implements Listener
         final BlockFace blockFace = event.getBlockFace();
         final Block relativeBlock = block.getRelative(blockFace);
         final Material fireMaterial = Material.FIRE;
-        if (relativeBlock.getType() == fireMaterial) {
-            event.setCancelled(true);
-        }
+        if(relativeBlock != null)
+            if (relativeBlock.getType() == fireMaterial) {
+                event.setCancelled(true);
+            }
     }
 
 	//Make potions not do stuff

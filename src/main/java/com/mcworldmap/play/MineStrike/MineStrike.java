@@ -4,10 +4,7 @@ import com.google.common.collect.Sets;
 import com.mcworldmap.play.MineStrike.PlayerData.Spawnpoint;
 import com.mcworldmap.play.MineStrike.PlayerData.Team;
 import com.mcworldmap.play.MineStrike.commands.*;
-import com.mcworldmap.play.MineStrike.listeners.EventListener;
-import com.mcworldmap.play.MineStrike.listeners.onDeath;
-import com.mcworldmap.play.MineStrike.listeners.onDecoyImpact;
-import com.mcworldmap.play.MineStrike.listeners.onNadeImpact;
+import com.mcworldmap.play.MineStrike.listeners.*;
 import org.bukkit.Material;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -33,6 +30,8 @@ public class MineStrike extends JavaPlugin
 		getServer().getPluginManager().registerEvents(new onDeath(), this);
 		getServer().getPluginManager().registerEvents(new onDecoyImpact(), this);
 		getServer().getPluginManager().registerEvents(new onNadeImpact(), this);
+        getServer().getPluginManager().registerEvents(new ArrowFire(), this);
+
 		getCommand("buy").setExecutor(new CmdBuy());
 		getCommand("start").setExecutor(new CmdStart());
 		getCommand("join").setExecutor(new CmdJoin(this));

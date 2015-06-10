@@ -30,7 +30,7 @@ public class ArrowFire implements Listener {
                 for (Item i : Item.values()) {
                     if (i.name().equalsIgnoreCase(ChatColor.stripColor(item.getItemMeta().getDisplayName()))) {
                         switch (i) {
-                            case Item.ZEUS:
+                            case ZEUS:
                                 e.setVelocity(currentVel.multiply(.5));
                                 break;
                             default:

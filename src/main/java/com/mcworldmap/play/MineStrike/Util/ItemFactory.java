@@ -11,114 +11,105 @@ import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionType;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class ItemFactory {
+public class ItemFactory
+{
 
-    public static ItemStack createItem(String name) {
-        ItemStack i;
-        ItemMeta im = null;
-        ArrayList<String> loreList = new ArrayList<>();
-        Potion p;
-        for (Item item : Item.values()) {
-            if (item.name().equalsIgnoreCase(name)) {
-                switch (item) {
-                    case KEVLAR:
-                        i = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
-                        im = i.getItemMeta();
-                        im.setDisplayName(ChatColor.RED + name);
-                        loreList = new ArrayList<>();
-                        loreList.add(ChatColor.AQUA + "Gear");
-                        loreList.add(ChatColor.DARK_AQUA + name);
-                        im.setLore(loreList);
-                        i.setItemMeta(im);
-                        return i;
-                    case HELMET:
-                        i = new ItemStack(Material.DIAMOND_HELMET, 1);
-                        im = i.getItemMeta();
-                        im.setDisplayName(ChatColor.RED + name);
-                        loreList = new ArrayList<>();
-                        loreList.add(ChatColor.AQUA + "Gear");
-                        loreList.add(ChatColor.DARK_AQUA + name);
-                        im.setLore(loreList);
-                        i.setItemMeta(im);
-                        return i;
-                    case KIT:
-                        i = new ItemStack(Material.SHEARS, 1);
-                        im = i.getItemMeta();
-                        im.setDisplayName(ChatColor.RED + name);
-                        loreList = new ArrayList<>();
-                        loreList.add(ChatColor.AQUA + "Gear");
-                        loreList.add(ChatColor.DARK_AQUA + "Defuse Kit");
-                        im.setLore(loreList);
-                        i.setItemMeta(im);
-                        return i;
-                    case ZEUS:
-                        i = new ItemStack(Material.BOW, 1);
-                        im = i.getItemMeta();
-                        im.setDisplayName(ChatColor.RED + name);
-                        loreList = new ArrayList<>();
-                        loreList.add(ChatColor.AQUA + "Gear");
-                        loreList.add(ChatColor.DARK_AQUA + name);
-                        im.setLore(loreList);
-                        i.setItemMeta(im);
-                        i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-                        i.setDurability((short) (i.getType().getMaxStackSize() - 1));
-                        return i;
-                    case FRAG:
-                        p = new Potion(PotionType.INSTANT_DAMAGE);
-                        p.setSplash(true);
-                        i = p.toItemStack(1);
+	public static ItemStack createItem(String name)
+	{
+		for (Item item : Item.values())
+		{
+			if (item.name().equalsIgnoreCase(name))
+			{
+				switch (item)
+				{
+					//region Gear
+					case KEVLAR:
+						return createCustomItem(Material.DIAMOND_CHESTPLATE, name, "Gear", 320);
+					case HELMET:
+						return createCustomItem(Material.DIAMOND_HELMET, name, "Gear", 320);
+					case KIT:
+						return createCustomItem(Material.SHEARS, name, "Gear");
+					case ZEUS:
+						return createCustomItem(Material.BOW, name, "Gear", Material.BOW.getMaxStackSize() - 1);
+					//endregion
+					//region Grenades
+					case FRAG:
+						return createCustomPotion(PotionType.INSTANT_DAMAGE, name);
+					case MOLOTOV:
+						return createCustomPotion(PotionType.FIRE_RESISTANCE, name);
+					case INCENDIARY:
+						return createCustomPotion(PotionType.FIRE_RESISTANCE, name);
+					case FLASH:
+						return createCustomPotion(PotionType.NIGHT_VISION, name);
+					case DECOY:
+						return createCustomItem(Material.EXP_BOTTLE, name, "Grenade");
+					//endregion
+					//region Pistols
+					case GLOCK:
+						return createCustomItem(Material.BOW, name, "Pistol", 320);
+					case USP:
+						return createCustomItem(Material.BOW, name, "Pistol", 320);
+					//endregion
+					default:
+						return createCustomItem(Material.BOW, name, "Unknown");
+				}
+			}
+		}
+		return null;
+	}
 
-                        im = i.getItemMeta();
-                        im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
-                        im.setDisplayName(ChatColor.RED + name);
-                        loreList = new ArrayList<>();
-                        loreList.add(ChatColor.AQUA + "Grenade");
-                        loreList.add(ChatColor.DARK_AQUA + name);
-                        im.setLore(loreList);
-                        i.setItemMeta(im);
+	public static ItemStack createCustomItem(Material m, String name, String type, int durability)
+	{
+		ItemStack i;
+		ItemMeta im;
+		ArrayList<String> loreList;
+		i = new ItemStack(m, 1);
+		im = i.getItemMeta();
+		im.setDisplayName(ChatColor.RED + name);
+		loreList = new ArrayList<>();
+		loreList.add(ChatColor.AQUA + type);
+		loreList.add(ChatColor.DARK_AQUA + name);
+		im.setLore(loreList);
+		i.setItemMeta(im);
+		i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+		i.setDurability((short) durability);
+		return i;
+	}
 
-                        return i;
-                    case MOLOTOV:
-                        p = new Potion(PotionType.FIRE_RESISTANCE);
-                        p.setSplash(true);
-                        i = p.toItemStack(1);
-                        im = i.getItemMeta();
-                        im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
-                        im.setDisplayName(ChatColor.RED + name);
-                        loreList = new ArrayList<>();
-                        loreList.add(ChatColor.AQUA + "Grenade");
-                        loreList.add(ChatColor.DARK_AQUA + name);
-                        im.setLore(loreList);
-                        i.setItemMeta(im);
-                        return i;
-                    case DECOY:
-                        i = new ItemStack(Material.EXP_BOTTLE, 1);
-                        im = i.getItemMeta();
-                        im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
-                        im.setDisplayName(ChatColor.RED + name);
-                        loreList = new ArrayList<>();
-                        loreList.add(ChatColor.AQUA + "Grenade");
-                        loreList.add(ChatColor.DARK_AQUA + name);
-                        im.setLore(loreList);
-                        i.setItemMeta(im);
-                        return i;
-                    default:
-                        i = new ItemStack(Material.BOW, 1);
-                        im = i.getItemMeta();
-                        im.setDisplayName(ChatColor.RED + name);
-                        loreList = new ArrayList<>();
-                        loreList.add(ChatColor.AQUA + "Gun");
-                        loreList.add(ChatColor.DARK_AQUA + name);
-                        im.setLore(loreList);
-                        i.setItemMeta(im);
-                        i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-                        i.setDurability((short) 320);
-                        return i;
-                }
-            }
-        }
-        return null;
-    }
+	public static ItemStack createCustomPotion(PotionType m, String name)
+	{
+		ItemStack i;
+		ItemMeta im;
+		ArrayList<String> loreList;
+		Potion p;
+		p = new Potion(m);
+		p.setSplash(true);
+		i = p.toItemStack(1);
+		im = i.getItemMeta();
+		im.getItemFlags().add(ItemFlag.HIDE_ATTRIBUTES);
+		im.setDisplayName(ChatColor.RED + name);
+		loreList = new ArrayList<>();
+		loreList.add(ChatColor.AQUA + "Grenade");
+		loreList.add(ChatColor.DARK_AQUA + name);
+		im.setLore(loreList);
+		i.setItemMeta(im);
+		return i;
+	}
+
+	public static ItemStack createCustomItem(Material m, String name, String type)
+	{
+		ItemStack i;
+		ItemMeta im;
+		ArrayList<String> loreList;
+		i = new ItemStack(m, 1);
+		im = i.getItemMeta();
+		im.setDisplayName(ChatColor.RED + name);
+		loreList = new ArrayList<>();
+		loreList.add(ChatColor.AQUA + type);
+		loreList.add(ChatColor.DARK_AQUA + name);
+		im.setLore(loreList);
+		i.setItemMeta(im);
+		return i;
+	}
 }

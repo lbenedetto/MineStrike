@@ -6,37 +6,47 @@ import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import net.minecraft.server.v1_8_R3.PlayerConnection;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 public class Util
 {
 	@Deprecated
-	public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message) {
+	public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message)
+	{
 		sendTitle(player, fadeIn, stay, fadeOut, message, null);
 	}
 
 	@Deprecated
-	public static void sendSubtitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message) {
+	public static void sendSubtitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message)
+	{
 		sendTitle(player, fadeIn, stay, fadeOut, null, message);
 	}
 
 	@Deprecated
-	public static void sendFullTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
+	public static void sendFullTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle)
+	{
 		sendTitle(player, fadeIn, stay, fadeOut, title, subtitle);
 	}
 
-	public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
+	public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle)
+	{
 		PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
 
 		PacketPlayOutTitle packetPlayOutTimes = new PacketPlayOutTitle(PacketPlayOutTitle.EnumTitleAction.TIMES, null, fadeIn, stay, fadeOut);
 		connection.sendPacket(packetPlayOutTimes);
 
-		if (subtitle != null) {
+		if (subtitle != null)
+		{
 			subtitle = subtitle.replaceAll("%player%", player.getDisplayName());
 			subtitle = ChatColor.translateAlternateColorCodes('&', subtitle);
 			IChatBaseComponent titleSub = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + subtitle + "\"}");
@@ -44,7 +54,8 @@ public class Util
 			connection.sendPacket(packetPlayOutSubTitle);
 		}
 
-		if (title != null) {
+		if (title != null)
+		{
 			title = title.replaceAll("%player%", player.getDisplayName());
 			title = ChatColor.translateAlternateColorCodes('&', title);
 			IChatBaseComponent titleMain = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + title + "\"}");
@@ -53,7 +64,8 @@ public class Util
 		}
 	}
 
-	public static void sendTabTitle(Player player, String header, String footer) {
+	public static void sendTabTitle(Player player, String header, String footer)
+	{
 		if (header == null) header = "";
 		header = ChatColor.translateAlternateColorCodes('&', header);
 
@@ -68,44 +80,61 @@ public class Util
 		IChatBaseComponent tabFoot = IChatBaseComponent.ChatSerializer.a("{\"text\": \"" + footer + "\"}");
 		PacketPlayOutPlayerListHeaderFooter headerPacket = new PacketPlayOutPlayerListHeaderFooter(tabTitle);
 
-		try {
+		try
+		{
 			Field field = headerPacket.getClass().getDeclaredField("b");
 			field.setAccessible(true);
 			field.set(headerPacket, tabFoot);
-		} catch (Exception e) {
+		} catch (Exception e)
+		{
 			e.printStackTrace();
-		} finally {
+		} finally
+		{
 			connection.sendPacket(headerPacket);
 		}
 	}
-	public static String getCardinalDirection(Player player) {
+
+	public static String getCardinalDirection(Player player)
+	{
 		double rot = (player.getLocation().getYaw() - 90) % 360;
-		if (rot < 0) {
+		if (rot < 0)
+		{
 			rot += 360.0;
 		}
 		return getDirection(rot);
 	}
 
-	private static String getDirection(double rot) {
-		if (0 <= rot && rot < 22.5) {
+	private static String getDirection(double rot)
+	{
+		if (0 <= rot && rot < 22.5)
+		{
 			return "North";
-		} else if (22.5 <= rot && rot < 67.5) {
+		} else if (22.5 <= rot && rot < 67.5)
+		{
 			return "Northeast";
-		} else if (67.5 <= rot && rot < 112.5) {
+		} else if (67.5 <= rot && rot < 112.5)
+		{
 			return "East";
-		} else if (112.5 <= rot && rot < 157.5) {
+		} else if (112.5 <= rot && rot < 157.5)
+		{
 			return "Southeast";
-		} else if (157.5 <= rot && rot < 202.5) {
+		} else if (157.5 <= rot && rot < 202.5)
+		{
 			return "South";
-		} else if (202.5 <= rot && rot < 247.5) {
+		} else if (202.5 <= rot && rot < 247.5)
+		{
 			return "Southwest";
-		} else if (247.5 <= rot && rot < 292.5) {
+		} else if (247.5 <= rot && rot < 292.5)
+		{
 			return "West";
-		} else if (292.5 <= rot && rot < 337.5) {
+		} else if (292.5 <= rot && rot < 337.5)
+		{
 			return "Northwest";
-		} else if (337.5 <= rot && rot < 360.0) {
+		} else if (337.5 <= rot && rot < 360.0)
+		{
 			return "North";
-		} else {
+		} else
+		{
 			return null;
 		}
 	}

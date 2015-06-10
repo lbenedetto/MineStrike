@@ -20,7 +20,7 @@ public class ArrowFire implements Listener {
     @EventHandler
     public void onArrowFire(PlayerInteractEvent event) {
         Action a = event.getAction();
-        if (a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) {
+        if (a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
             ItemStack item = event.getPlayer().getItemInHand();
             ItemMeta im = item.getItemMeta();
             double fireRate = Double.parseDouble(ChatColor.stripColor(im.getLore().get(2)));

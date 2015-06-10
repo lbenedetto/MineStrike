@@ -24,11 +24,10 @@ public class ArrowFire implements Listener {
         if ((a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
             ItemStack item = event.getPlayer().getItemInHand();
             Item gun = Item.getItem(ChatColor.stripColor(item.getItemMeta().getDisplayName()));
-
+            event.setCancelled(true);
             double fireRate = gun.getFireRate();
             double velChange = gun.getRange();
 
-            if (event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
                 if (item.getDurability() >= item.getType().getMaxDurability()) {
                     event.setCancelled(true);
                     return;
@@ -59,7 +58,6 @@ public class ArrowFire implements Listener {
                     MineStrike.coolDown.add(event.getPlayer());
                     Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireRate(event.getPlayer()), Math.round(fireRate) * 20);
                 }
-            }
         }
     }
 }

@@ -11,6 +11,7 @@ import org.bukkit.entity.*;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
@@ -81,6 +82,10 @@ public class EventListener implements Listener
 
     @EventHandler
     public void onExtinguish(PlayerInteractEvent event) {
+
+        if(event.getAction() != Action.LEFT_CLICK_BLOCK)
+            return;
+
         final Player player = event.getPlayer();
 
         final Block block = event.getClickedBlock();

@@ -5,10 +5,7 @@ import com.mcworldmap.play.MineStrike.Tasks.DelayedFlash;
 import com.mcworldmap.play.MineStrike.Tasks.FireExtinguish;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.ThrownPotion;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PotionSplashEvent;
@@ -68,6 +65,20 @@ public class onNadeImpact implements Listener
 				Bukkit.getLogger().info("Flashbang Detected");
 				List<Entity> nearbyEntities = pot.getNearbyEntities(50, 50, 50);
 				Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedFlash(nearbyEntities, pot), 20);
+			}
+			if(effect.getType().equals(PotionEffectType.JUMP)){
+				Bukkit.getLogger().info("Decoy Detected");
+				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
+				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
+				w.playEffect(loc, Effect.FOOTSTEP, 1);
+				w.playSound(loc, Sound.ARROW_HIT, 1, 1);
+				w.playSound(loc, Sound.FALL_BIG, 1, 1);
+				w.playEffect(loc, Effect.FOOTSTEP, 1);
+				w.playSound(loc, Sound.ARROW_HIT, 1, 1);
+				w.playSound(loc, Sound.FALL_BIG, 1, 1);
+				w.playEffect(loc, Effect.FOOTSTEP, 1);
+				w.playSound(loc, Sound.ARROW_HIT, 1, 1);
+				w.playSound(loc, Sound.FALL_BIG, 1, 1);
 			}
 			if(effect.getType().equals(PotionEffectType.SLOW)){
 

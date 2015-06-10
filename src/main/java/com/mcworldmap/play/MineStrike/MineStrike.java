@@ -30,7 +30,6 @@ public class MineStrike extends JavaPlugin
 	{
 		getServer().getPluginManager().registerEvents(new EventListener(), this);
 		getServer().getPluginManager().registerEvents(new onDeath(), this);
-		getServer().getPluginManager().registerEvents(new onDecoyImpact(), this);
 		getServer().getPluginManager().registerEvents(new onNadeImpact(), this);
         getServer().getPluginManager().registerEvents(new ArrowFire(), this);
 

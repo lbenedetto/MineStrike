@@ -49,8 +49,7 @@ public class ItemFactory
 					case FLASHBANG:
 						return createCustomNade(PotionType.NIGHT_VISION, name);
 					case DECOY:
-						//Don't think about it, just accept it, and move on
-						return createCustomArmor(Material.EXP_BOTTLE, name, "Grenade", Material.EXP_BOTTLE.getMaxDurability());
+						return createCustomNade(PotionType.JUMP, name);
 					//endregion
 					//region Pistols
 					case GLOCK:
@@ -147,12 +146,10 @@ public class ItemFactory
 		loreList.add(ChatColor.AQUA + type);
 		loreList.add(ChatColor.DARK_AQUA + name);
 		im.setLore(loreList);
-
         if(isT)
             im.setColor(Color.ORANGE);
         else
             im.setColor(Color.BLUE);
-
         i.setItemMeta(im);
 		i.setDurability((short) durability);
 		return i;

@@ -86,9 +86,15 @@ public class Team
 
 	public void switchTeams()
 	{
+		//Swap teams
 		Person[] temp = T;
 		T = CT;
 		CT = temp;
+		//Swap scores
+		int tem = Tscore;
+		Tscore = CTscore;
+		CTscore = Tscore;
+
 	}
 
 	public boolean isTTeamDead()

@@ -18,6 +18,9 @@ public class NextRound implements Runnable
 	@Override
 	public void run()
 	{
+		if (rounds  == 16){
+			MineStrike.team.switchTeams();
+		}
 		MineStrike.team.respawnCTTeam();
 		MineStrike.team.respawnTTeam();
 		for(Person p : MineStrike.team.getCT())

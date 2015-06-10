@@ -2,10 +2,12 @@ package com.mcworldmap.play.MineStrike.Util;
 
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.potion.Potion;
 import org.bukkit.potion.PotionType;
 
@@ -25,13 +27,13 @@ public class ItemFactory
 					//TODO:Balance values
 					//region Gear
 					case CTKEVLAR:
-						return createCustomArmor(Material.DIAMOND_CHESTPLATE, name, "Gear", 320);
+						return createCustomArmor(Material.DIAMOND_CHESTPLATE, name, "Gear", 320, false);
 					case CTHELMET:
-						return createCustomArmor(Material.DIAMOND_HELMET, name, "Gear", 320);
+						return createCustomArmor(Material.DIAMOND_HELMET, name, "Gear", 320, false);
 					case TKEVLAR:
-						return createCustomArmor(Material.DIAMOND_CHESTPLATE, name, "Gear", 320);
+						return createCustomArmor(Material.DIAMOND_CHESTPLATE, name, "Gear", 320, true);
 					case THELMET:
-						return createCustomArmor(Material.DIAMOND_HELMET, name, "Gear", 320);
+						return createCustomArmor(Material.DIAMOND_HELMET, name, "Gear", 320, true);
 					case KIT:
 						return createCustomArmor(Material.SHEARS, name, "Gear", Material.SHEARS.getMaxDurability());
 					case ZEUS:
@@ -132,23 +134,47 @@ public class ItemFactory
 		return i;
 	}
 
-	public static ItemStack createCustomArmor(Material m, String name, String type, int durability)
+	public static ItemStack createCustomArmor(Material m, String name, String type, int durability, boolean isT)
 	{
 		//This is for armor
 		ItemStack i;
-		ItemMeta im;
+		LeatherArmorMeta im;
 		ArrayList<String> loreList;
 		i = new ItemStack(m, 1);
-		im = i.getItemMeta();
+		im = (LeatherArmorMeta)i.getItemMeta();
 		im.setDisplayName(ChatColor.RED + name);
 		loreList = new ArrayList<>();
 		loreList.add(ChatColor.AQUA + type);
 		loreList.add(ChatColor.DARK_AQUA + name);
 		im.setLore(loreList);
-		i.setItemMeta(im);
+
+        if(isT)
+            im.setColor(Color.ORANGE);
+        else
+            im.setColor(Color.BLUE);
+
+        i.setItemMeta(im);
 		i.setDurability((short) durability);
 		return i;
 	}
+
+    public static ItemStack createCustomArmor(Material m, String name, String type, int durability)
+    {
+        //This is for armor
+        ItemStack i;
+        ItemMeta im;
+        ArrayList<String> loreList;
+        i = new ItemStack(m, 1);
+        im = i.getItemMeta();
+        im.setDisplayName(ChatColor.RED + name);
+        loreList = new ArrayList<>();
+        loreList.add(ChatColor.AQUA + type);
+        loreList.add(ChatColor.DARK_AQUA + name);
+        im.setLore(loreList);
+        i.setItemMeta(im);
+        i.setDurability((short) durability);
+        return i;
+    }
 
 	public static ItemStack createCustomNade(PotionType m, String name)
 	{

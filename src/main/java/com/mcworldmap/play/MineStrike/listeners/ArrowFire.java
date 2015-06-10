@@ -50,7 +50,7 @@ public class ArrowFire implements Listener {
 
                     event.setCancelled(true);
                     MineStrike.coolDown.add(event.getPlayer());
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireRate(event.getPlayer()), Math.round(fireRate));
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireRate(event.getPlayer()), Math.round(fireRate) * 20);
                 }
             }
         }

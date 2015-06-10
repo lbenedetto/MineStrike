@@ -141,20 +141,10 @@ public class EventListener implements Listener
     public void onEntityDamage(EntityDamageEvent event) {
         if (event.getEntity() instanceof Player) {
             event.setCancelled(event.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK || event.getCause() == EntityDamageEvent.DamageCause.FIRE);
-        }
-    }
-
-    @EventHandler
-    public void onCombust(EntityCombustEvent event)
-    {
-        if(event.getEntity() instanceof Player)
-        {
             ((Player) event.getEntity()).damage(2);
             event.getEntity().setFireTicks(0);
-            event.setCancelled(true);
         }
     }
-
 
 	@EventHandler
 	public void onFireSpread(BlockIgniteEvent event) {event.setCancelled(true);	}

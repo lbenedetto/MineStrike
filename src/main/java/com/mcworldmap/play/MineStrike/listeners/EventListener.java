@@ -98,14 +98,44 @@ public class EventListener implements Listener
 		event.setCancelled(true);
 	}
 
-	@EventHandler
-	public void onHealthRegen(EntityRegainHealthEvent event)
-	{
-		if(event.getEntity() instanceof Player && event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.REGEN))
-		{
-			event.setCancelled(true);
-		}
-	}
+    @EventHandler
+    public void regenHealth(EntityRegainHealthEvent event)
+    {
+        if(event.getEntity() instanceof  Player)
+            event.setCancelled(true);
+    }
+
+//    @EventHandler
+//    public void onDamage(EntityDamageByBlockEvent event)
+//    {
+//        Block b = event.getDamager();
+//        if(b.getType().equals(Material.FIRE) && event.getEntity() instanceof Player)
+//        {
+//            ((Player) event.getEntity()).damage(2);
+//            ((Player) event.getEntity()).getActivePotionEffects().clear();
+//            event.setCancelled(true);
+//        }
+//    }
+
+    @EventHandler
+    public void onCombustBlock(EntityCombustByBlockEvent event)
+    {
+        if(event.getEntity() instanceof Player)
+        {
+            ((Player) event.getEntity()).damage(2);
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onCombust(EntityCombustEvent event)
+    {
+        if(event.getEntity() instanceof Player)
+        {
+            ((Player) event.getEntity()).damage(2);
+            event.setCancelled(true);
+        }
+    }
 
 
 	@EventHandler

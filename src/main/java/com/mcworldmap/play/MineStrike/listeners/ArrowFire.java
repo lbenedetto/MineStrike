@@ -3,7 +3,6 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.Tasks.FireRate;
-import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Arrow;
@@ -18,6 +17,7 @@ public class ArrowFire implements Listener {
     @EventHandler
     public void onArrowFire(PlayerInteractEvent event) {
         Action a = event.getAction();
+
         if (a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
             ItemStack item = event.getPlayer().getItemInHand();
             Item gun = Item.getItem(item.getItemMeta().getDisplayName());
@@ -33,6 +33,13 @@ public class ArrowFire implements Listener {
                 if(!MineStrike.coolDown.contains(event.getPlayer())) {
                     Arrow e = (Arrow) event.getPlayer().launchProjectile(Arrow.class);
                     e.setVelocity(e.getVelocity().multiply(velChange));
+
+
+                    if(gun.name().equalsIgnoreCase(""))
+                    for(int i = 0; i < 5; i++)
+                    {
+
+                    }
 
 
                     item.setDurability((short) (item.getDurability() + 1));

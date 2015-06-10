@@ -30,8 +30,9 @@ public enum Item
     private double range;
     private int ammo;
     private double fireRate;
+    private String type;
 
-	Item(int price, int ammo, double fireRate, double range, int damage)
+	Item(int price, int ammo, double fireRate, double range, int damage, String type)
 	{
 
         this.price = price;
@@ -39,6 +40,7 @@ public enum Item
         this.range = range;
         this.ammo = ammo;
         this.fireRate = fireRate;
+        this.type = type;
 	}
 
     Item(int price)
@@ -54,6 +56,7 @@ public enum Item
     public double getRange() { return range; }
     public int getAmmo() { return ammo; }
     public double getFireRate() { return fireRate; }
+    public String getType() { return type; }
 
 	public static Item getItem(final String name){
 		for(Item item : Item.values())

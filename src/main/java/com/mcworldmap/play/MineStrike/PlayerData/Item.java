@@ -4,16 +4,16 @@ public enum Item
 {
 	//Gear
 	KEVLAR(650), HELMET(350),
-	KIT(400), ZEUS(400),
+	KIT(400), ZEUS(400, 1, 1, .5, 20),
 	//Grenades
 	FRAG(300), DECOY(50), MOLOTOV(400),
 	FLASHBANG(200), SMOKE(300), INCENDIARY(600),
 	//Pistols
-	GLOCK(200, 140, .15, 1d, 2), USP(500, 36, .17, 1, 2), P2000(200),
-	BERETTAS(500), P250(300), TEK9(500),
-	DEAGLE(700),
+	GLOCK(200, 140, .15, 1d, 5), USP(500, 36, .17, 1d, 6), P2000(200, 65, .17, 1d, 6),
+	BERETTAS(500, 150, .12, 1d, 7), P250(300, 39, .15, 1d, 6), TEC9(500, 144, .12, 1d, 5),
+	DEAGLE(700, 42, .5, 1d, 15),
 	//Heavy
-	NOVA(1200, 40, 2, .7, 2), XM1014(2000, 39, 1, .7, 2), SAWNOFF(1200, 39, 1, .7, 2),
+	NOVA(1200, 40, .8, .7, 2), XM1014(2000, 39, 1, .7, 2), SAWNOFF(1200, 39, 1, .7, 2),
 	M249(5200, 300, .1, .8, 2), NEGEV(5700, 350, .1, .8, 2), MAG7(1800, 37, 1, .7, 2),
 	//SMG's
 	MAC10(1050, 130, .1, .9, 2), MP7(1700, 150, .1, .9, 2), UMP(1200, 125, .1, .9, 2),
@@ -31,7 +31,7 @@ public enum Item
     private int ammo;
     private double fireRate;
 
-	private Item(int price, int ammo, double fireRate, double range, int damage)
+	Item(int price, int ammo, double fireRate, double range, int damage)
 	{
 
         this.price = price;
@@ -41,7 +41,7 @@ public enum Item
         this.fireRate = fireRate;
 	}
 
-    private Item(int price)
+    Item(int price)
     {
         this.price = price;
     }

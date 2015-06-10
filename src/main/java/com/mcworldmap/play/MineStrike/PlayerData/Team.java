@@ -93,7 +93,7 @@ public class Team
 		//Swap scores
 		int tem = Tscore;
 		Tscore = CTscore;
-		CTscore = Tscore;
+		CTscore = tem;
 
 	}
 

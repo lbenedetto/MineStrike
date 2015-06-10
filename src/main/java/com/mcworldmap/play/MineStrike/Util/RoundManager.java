@@ -62,7 +62,7 @@ public class RoundManager
 	{
 		String out;
 		out = ChatColor.GOLD + "" + MineStrike.team.Tscore;
-		out += " | ";
+		out += ChatColor.RESET + " | ";
 		out += ChatColor.DARK_BLUE + ""  + MineStrike.team.CTscore;
 		return out;
 	}

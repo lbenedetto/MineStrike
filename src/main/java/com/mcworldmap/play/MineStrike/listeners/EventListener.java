@@ -4,6 +4,7 @@ import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.Tasks.DelayArrowRemove;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -111,7 +112,7 @@ public class EventListener implements Listener
 	@EventHandler
     public void onPickup(PlayerPickupItemEvent event)
     {
-        if(event.getItem().getType().equals(org.bukkit.Material.ARROW))
+        if(event.getItem().getType().equals(Material.ARROW))
     	    event.setCancelled(true);
     }
 

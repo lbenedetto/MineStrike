@@ -71,7 +71,6 @@ public class RoundManager
 					out += ChatColor.DARK_BLUE + s;
 				out += " | ";
 			}
-
 		}
 		return out;
 	}

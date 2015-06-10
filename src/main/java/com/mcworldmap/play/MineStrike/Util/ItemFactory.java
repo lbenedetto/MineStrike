@@ -3,7 +3,6 @@ package com.mcworldmap.play.MineStrike.Util;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -23,6 +22,7 @@ public class ItemFactory
 			{
 				switch (item)
 				{
+					//TODO:Balance values
 					//region Gear
 					case KEVLAR:
 						return createCustomArmor(Material.DIAMOND_CHESTPLATE, name, "Gear", 320);
@@ -31,7 +31,7 @@ public class ItemFactory
 					case KIT:
 						return createCustomArmor(Material.SHEARS, name, "Gear", Material.SHEARS.getMaxDurability());
 					case ZEUS:
-						return createCustomGun(Material.BOW, name, "Gear", Material.BOW.getMaxDurability() - 1, 1, .5);
+						return createCustomGun(Material.BOW, name, "Gear", 1, 1, .5);
 					//endregion
 					//region Grenades
 					case FRAG:
@@ -40,7 +40,7 @@ public class ItemFactory
 						return createCustomNade(PotionType.FIRE_RESISTANCE, name);
 					case INCENDIARY:
 						return createCustomNade(PotionType.FIRE_RESISTANCE, name);
-					case FLASH:
+					case FLASHBANG:
 						return createCustomNade(PotionType.NIGHT_VISION, name);
 					case DECOY:
 						//Don't think about it, just accept it, and move on
@@ -48,23 +48,69 @@ public class ItemFactory
 					//endregion
 					//region Pistols
 					case GLOCK:
-						return createCustomGun(Material.BOW, name, "Pistol", 320, .15, 1);
+						return createCustomGun(Material.BOW, name, "Pistol", 140, .15, 1);
 					case USP:
-						return createCustomGun(Material.BOW, name, "Pistol", 320, .17, 1);
+						return createCustomGun(Material.BOW, name, "Pistol", 36, .17, 1);
 					//endregion
 					//region Heavy
 					case NEGEV:
-						return createCustomGun(Material.BOW, name, "Heavy", Material.BOW.getMaxDurability(), .1, .8);
+						return createCustomGun(Material.BOW, name, "Heavy", 350, .1, .8);
+					case M249:
+						return createCustomGun(Material.BOW, name, "Heavy", 300, .1, .8);
+					case NOVA:
+						return createCustomGun(Material.BOW, name, "Heavy", 40, 2, .7);
+					case XM1014:
+						return createCustomGun(Material.BOW, name, "Heavy", 39, 1, .7);
+					case SAWNOFF:
+						return createCustomGun(Material.BOW, name, "Heavy", 39, 1, .7);
+					case MAG7:
+						return createCustomGun(Material.BOW, name, "Heavy", 37, 1, .7);
+					//endregion
+					//region SMG
+					case MAC10:
+						return createCustomGun(Material.BOW, name, "SMG", 130, .1, .9);
+					case MP7:
+						return createCustomGun(Material.BOW, name, "SMG", 150, .1, .9);
+					case UMP:
+						return createCustomGun(Material.BOW, name, "SMG", 125, .1, .9);
+					case P90:
+						return createCustomGun(Material.BOW, name, "SMG", 150, .1, .9);
+					case BISON:
+						return createCustomGun(Material.BOW, name, "SMG", 184, .1, .9);
+					case MP9:
+						return createCustomGun(Material.BOW, name, "SMG", 150, .1, .9);
+					//endregion
+					//region Rifles
+					case FAMAS:
+						return createCustomGun(Material.BOW, name, "Rifle", 0, .1, 1.5);
+					case GALIL:
+						return createCustomGun(Material.BOW, name, "Rifle", 0, .1, 1.5);
+					case AK47:
+						return createCustomGun(Material.BOW, name, "Rifle", 0, .1, 1.5);
+					case M4A1S:
+						return createCustomGun(Material.BOW, name, "Rifle", 0, .1, 1.5);
+					case AUG:
+						return createCustomGun(Material.BOW, name, "Rifle", 0, .1, 1.5);
+					case SG:
+						return createCustomGun(Material.BOW, name, "", 0, .1, 1.5);
+					case SSG:
+						return createCustomGun(Material.BOW, name, "Rifle", 100, 2, 10);
+					case AWP:
+						return createCustomGun(Material.BOW, name, "Rifle", 40, 2, 10);
+					case G3SG1:
+						return createCustomGun(Material.BOW, name, "Rifle", 110, .25, 10);
+					case SCAR20:
+						return createCustomGun(Material.BOW, name, "Rifle", 110, .25, 10);
 					//endregion
 					default:
-						return createCustomGun(Material.BOW, name, "Unknown", 320, 1, 1);
+						return createCustomGun(Material.BOW, name, "Unknown", 0, 1, 1);
 				}
 			}
 		}
 		return null;
 	}
 
-	public static ItemStack createCustomGun(Material m, String name, String type, int durability, double firerate, double rangeMultiplier)
+	public static ItemStack createCustomGun(Material m, String name, String type, int ammo, double firerate, double rangeMultiplier)
 	{
 		//This is for guns
 		ItemStack i;
@@ -80,8 +126,7 @@ public class ItemFactory
 		loreList.add(ChatColor.BLACK + "" + rangeMultiplier);
 		im.setLore(loreList);
 		i.setItemMeta(im);
-		i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-		i.setDurability((short) durability);
+		i.setDurability((short) (i.getType().getMaxDurability() - ammo));
 		return i;
 	}
 
@@ -99,7 +144,6 @@ public class ItemFactory
 		loreList.add(ChatColor.DARK_AQUA + name);
 		im.setLore(loreList);
 		i.setItemMeta(im);
-		i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 		i.setDurability((short) durability);
 		return i;
 	}

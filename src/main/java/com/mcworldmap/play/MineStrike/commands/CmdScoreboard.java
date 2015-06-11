@@ -12,10 +12,10 @@ public class CmdScoreboard implements CommandExecutor
 		sender.sendMessage("State | Name | Money | Kills | Deaths | Score");
 		sender.sendMessage("Terrorists:");
 		for (Person p : MineStrike.team.getT())
-			sender.sendMessage(p.toString());
+			if(p != null) sender.sendMessage(p.toString());
 		sender.sendMessage("Counter-Terrorists:");
 		for (Person p : MineStrike.team.getCT())
-			sender.sendMessage(p.toString());
+			if(p != null) sender.sendMessage(p.toString());
 		return true;
 	}
 }

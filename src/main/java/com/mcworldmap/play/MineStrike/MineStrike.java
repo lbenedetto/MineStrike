@@ -8,6 +8,7 @@ import com.mcworldmap.play.MineStrike.listeners.*;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -20,8 +21,8 @@ public class MineStrike extends JavaPlugin
 	public static Config config;
 	public static Set<Integer> transparent = Sets.newHashSet();
 	public static ArrayList<Player> frozenPlayers = new ArrayList<>();
-    public static ArrayList<Player> coolDown = new ArrayList<>();
-    public static boolean isGameActive = false;
+	public static ArrayList<Player> coolDown = new ArrayList<>();
+	public static boolean isGameActive = false;
 	public static boolean canBuy = false;
 
 	@Override
@@ -30,15 +31,13 @@ public class MineStrike extends JavaPlugin
 		getServer().getPluginManager().registerEvents(new EventListener(), this);
 		getServer().getPluginManager().registerEvents(new onDeath(), this);
 		getServer().getPluginManager().registerEvents(new onNadeImpact(), this);
-        getServer().getPluginManager().registerEvents(new ArrowFire(), this);
-
+		getServer().getPluginManager().registerEvents(new ArrowFire(), this);
 		getCommand("buy").setExecutor(new CmdBuy());
 		getCommand("start").setExecutor(new CmdStart());
 		getCommand("join").setExecutor(new CmdJoin(this));
 		getCommand("scoreboard").setExecutor(new CmdScoreboard());
 		getCommand("givemoney").setExecutor(new CmdGiveMoney());
 		populateConfig();
-		saveDefaultConfig();
 		saveConfig();
 		config = new Config(getConfig());
 		team = new Team();
@@ -54,7 +53,10 @@ public class MineStrike extends JavaPlugin
 		getLogger().warning("Teamsize" + getConfig().getInt("teamsize"));
 	}
 
-	public void populateConfig(){
+	public void populateConfig()
+	{
+		getConfig().options().copyDefaults(true);
+		getConfig().addDefault("teamsize", 2);
 		getConfig().addDefault("maxTeamKills", 3);
 		getConfig().addDefault("world", "de_dust2");
 		getConfig().addDefault("pregameSpawn.x", -33);
@@ -97,6 +99,7 @@ public class MineStrike extends JavaPlugin
 		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.five.y", 40);
 		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.five.z", -471);
 	}
+
 	@Override
 	public void onDisable()
 	{

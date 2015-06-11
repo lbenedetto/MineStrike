@@ -5,6 +5,7 @@ import com.mcworldmap.play.MineStrike.Util.ItemFactory;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -51,12 +52,13 @@ public class Person
 		for (ItemStack item : player.getInventory())
 		{
 			if (item == null) continue;
+			if (item.getType().equals(Material.BOW)) continue;
+			Item gun = Item.getItem(item.getItemMeta().getDisplayName());
+			if (gun != null)
+				item.setDurability((short) (item.getType().getMaxDurability() - gun.getAmmo()));
 
-            Item gun = Item.getItem(item.getItemMeta().getDisplayName());
-            if(gun != null)
-                item.setDurability((short) (item.getType().getMaxDurability() - gun.getAmmo()));
-
-			if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol")) givePistol = false;
+			if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol"))
+				givePistol = false;
 		}
 		if (givePistol)
 			creditItem("Glock");
@@ -72,12 +74,13 @@ public class Person
 		for (ItemStack item : player.getInventory())
 		{
 			if (item == null) continue;
+			if (item.getType().equals(Material.BOW)) continue;
+			Item gun = Item.getItem(item.getItemMeta().getDisplayName());
+			if (gun != null)
+				item.setDurability((short) (item.getType().getMaxDurability() - gun.getAmmo()));
 
-            Item gun = Item.getItem(item.getItemMeta().getDisplayName());
-            if(gun != null)
-                item.setDurability((short) (item.getType().getMaxDurability() - gun.getAmmo()));
-
-            if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol")) givePistol = false;
+			if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol"))
+				givePistol = false;
 		}
 		if (givePistol)
 			creditItem("USP");

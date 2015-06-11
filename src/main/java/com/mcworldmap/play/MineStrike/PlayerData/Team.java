@@ -19,6 +19,14 @@ public class Team
 		Tscore = 0;
 	}
 
+    public void reset()
+    {
+        T = new Person[MineStrike.config.getInt("teamsize")];
+        CT = new Person[MineStrike.config.getInt("teamsize")];
+        CTscore = 0;
+        Tscore = 0;
+    }
+
 	public Person[] getT()
 	{
 		return T;

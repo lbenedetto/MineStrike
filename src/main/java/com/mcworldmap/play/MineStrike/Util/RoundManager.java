@@ -33,7 +33,7 @@ public class RoundManager
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, "MVP: " + MineStrike.team.getCTMVP().getPlayer().getDisplayName() + "for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}
-			MineStrike.team = new Team();
+			MineStrike.team.reset();
 		} else if (winner.equals("CT"))
 		{
 			for (Person p : MineStrike.team.getT())

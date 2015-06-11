@@ -54,6 +54,7 @@ public class MineStrike extends JavaPlugin
 		getLogger().warning("Teamsize" + getConfig().getInt("teamsize"));
 	}
 
+
 	@Override
 	public void onDisable()
 	{

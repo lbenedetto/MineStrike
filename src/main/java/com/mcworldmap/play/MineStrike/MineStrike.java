@@ -41,7 +41,7 @@ public class MineStrike extends JavaPlugin
 		getCommand("givemoney").setExecutor(new CmdGiveMoney());
 		saveDefaultConfig();
 		config = new Config(cfg);
-		team = new Team(this);
+		team = new Team();
 		// Determine transparency
 		for (Material material : Material.values())
 		{

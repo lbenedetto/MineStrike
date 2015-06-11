@@ -5,7 +5,7 @@ import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.NextRound;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
+import org.bukkit.scoreboard.Team;
 
 public class RoundManager
 {
@@ -14,7 +14,7 @@ public class RoundManager
 	public static void newRound(String winner)
 	{
 		round += 1;
-		if (round > 30 | MineStrike.team.CTscore >= 15 || MineStrike.team.Tscore >= 15)
+		if (round > 30 || (MineStrike.team.CTscore >= 15 && MineStrike.team.Tscore >= 15))
 		{
 			String winMessage = "";
 			if(MineStrike.team.CTscore == MineStrike.team.Tscore)
@@ -25,14 +25,15 @@ public class RoundManager
 				winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
 			for (Person p : MineStrike.team.getT())
 			{
-				Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, "MVP: " + MineStrike.team.getTMVP() + "for highest score");
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, "MVP: " + MineStrike.team.getTMVP().getPlayer().getDisplayName() + "for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}
 			for (Person p : MineStrike.team.getCT())
 			{
-				Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, "MVP: " + MineStrike.team.getCTMVP() + "for highest score");
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, "MVP: " + MineStrike.team.getCTMVP().getPlayer().getDisplayName() + "for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}
+			MineStrike.team = new Team();
 		} else if (winner.equals("CT"))
 		{
 			for (Person p : MineStrike.team.getT())

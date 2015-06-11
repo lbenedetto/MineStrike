@@ -3,7 +3,6 @@ package com.mcworldmap.play.MineStrike.PlayerData;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 
 public class Team
 {
@@ -11,13 +10,11 @@ public class Team
 	private Person[] CT;
 	public int CTscore;
 	public int Tscore;
-	Plugin p;
 
-	public Team(Plugin p)
+	public Team()
 	{
-		this.p = p;
-		T = new Person[p.getConfig().getInt("teamsize")];
-		CT = new Person[p.getConfig().getInt("teamsize")];
+		T = new Person[MineStrike.config.getInt("teamsize")];
+		CT = new Person[MineStrike.config.getInt("teamsize")];
 		CTscore = 0;
 		Tscore = 0;
 	}

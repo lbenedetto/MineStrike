@@ -71,12 +71,13 @@ public class EventListener implements Listener
     {
         if(event.getEntity() instanceof Player && event.getDamager() instanceof  Arrow)
         {
+            event.setCancelled(true);
             Arrow a = (Arrow)event.getDamager();
             Player shooter = (Player)a.getShooter();
 
             ItemStack itemInHand = shooter.getItemInHand();
             Item item = Item.getItem(itemInHand.getItemMeta().getDisplayName());
-            event.setCancelled(true);
+
             ((Player) event.getEntity()).damage(item.getDamage(), shooter);
         }
     }

@@ -5,6 +5,7 @@ import com.mcworldmap.play.MineStrike.PlayerData.Config;
 import com.mcworldmap.play.MineStrike.PlayerData.Team;
 import com.mcworldmap.play.MineStrike.commands.*;
 import com.mcworldmap.play.MineStrike.listeners.*;
+import com.mcworldmap.play.MineStrike.network.Network;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,6 +25,7 @@ public class MineStrike extends JavaPlugin
 	public static ArrayList<Player> coolDown = new ArrayList<>();
 	public static boolean isGameActive = false;
 	public static boolean canBuy = false;
+    private static Network network;
 
 	@Override
 	public void onEnable()
@@ -41,6 +43,14 @@ public class MineStrike extends JavaPlugin
 		saveConfig();
 		config = new Config(getConfig());
 		team = new Team();
+
+        //create network.
+        network = new Network(getConfig().getString("network.ip"), getConfig().getString("network.database"), getConfig().getString("network.username"), getConfig().getString("network.password") );
+        //Connect to database
+        network.connect();
+        //Initialize tables
+        network.init();
+
 		// Determine transparency
 		for (Material material : Material.values())
 		{
@@ -53,10 +63,24 @@ public class MineStrike extends JavaPlugin
 		getLogger().warning("Teamsize" + getConfig().getInt("teamsize"));
 	}
 
+    public static Network getNetwork()
+    {
+        return network;
+    }
+
+
 	public void populateConfig()
 	{
 		getConfig().options().copyDefaults(true);
-		getConfig().addDefault("teamsize", 2);
+
+        //Storage
+        getConfig().addDefault("network.username", "root");
+        getConfig().addDefault("network.password", "root");
+        getConfig().addDefault("network.ip", "root");
+        getConfig().addDefault("network.database", "root");
+
+
+        getConfig().addDefault("teamsize", 2);
 		getConfig().addDefault("maxTeamKills", 3);
 		getConfig().addDefault("world", "de_dust2");
 		getConfig().addDefault("pregameSpawn.x", -33);

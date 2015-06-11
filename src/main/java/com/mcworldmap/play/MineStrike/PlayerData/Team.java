@@ -21,6 +21,11 @@ public class Team
 
     public void reset()
     {
+		for(Person p : T){
+			p.getPlayer().teleport(MineStrike.config.getLocation("pregameSpawn"));
+		}
+		for(Person p : CT)
+			p.getPlayer().teleport(MineStrike.config.getLocation("pregameSpawn"));
         T = new Person[MineStrike.config.getInt("teamsize")];
         CT = new Person[MineStrike.config.getInt("teamsize")];
         CTscore = 0;

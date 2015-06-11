@@ -29,6 +29,8 @@ public class Config
 		//Spawnbox
 		this.config.put("TBox", new Location(w, config.getInt("competitive.de_dust2.spawnbox.T.x"), config.getInt("competitive.de_dust2.spawnbox.T.y"), config.getInt("competitive.de_dust2.spawnbox.T.z")));
 		this.config.put("CTBox", new Location(w, config.getInt("competitive.de_dust2.spawnbox.CT.x"), config.getInt("competitive.de_dust2.spawnbox.CT.y"), config.getInt("competitive.de_dust2.spawnbox.CT.z")));
+		//Pregame Spawn
+		this.config.put("pregameSpawn", new Location(w, config.getInt("pregameSpawn.x"), config.getInt("pregameSpawn.y"), config.getInt("pregameSpawn.z")));
 		//Teamsize
 		this.config.put("teamsize", config.getInt("teamsize"));
 		//Max Team Kills

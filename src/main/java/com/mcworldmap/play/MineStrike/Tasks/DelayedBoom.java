@@ -23,7 +23,7 @@ public class DelayedBoom implements Runnable
 
 	public void run()
 	{
-		//.createExplosion(loc.getX(), loc.getY(), loc.getZ(), 5, false, false);
+		world.createExplosion(loc, 0.0f);
         Collection<Entity> nearExplosion = world.getNearbyEntities(loc, 3, 3, 3);
 
         for(Entity e : nearExplosion)

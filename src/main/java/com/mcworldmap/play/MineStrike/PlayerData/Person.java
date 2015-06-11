@@ -45,7 +45,6 @@ public class Person
 
 	public void respawnT()
 	{
-		World world = player.getWorld();
 		Location location = MineStrike.config.getRandTSpawn();
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
@@ -54,7 +53,7 @@ public class Person
 		for (ItemStack item : player.getInventory())
 		{
 			if (item == null) continue;
-			if (item.getItemMeta().getLore().get(0).equals("Pistol")) givePistol = false;
+			if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol")) givePistol = false;
 		}
 		if (givePistol)
 			creditItem("Glock");
@@ -62,7 +61,6 @@ public class Person
 
 	public void respawnCT()
 	{
-		World world = player.getWorld();
 		Location location = MineStrike.config.getRandCTSpawn();
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
@@ -71,7 +69,7 @@ public class Person
 		for (ItemStack item : player.getInventory())
 		{
 			if (item == null) continue;
-			if (item.getItemMeta().getLore().get(0).equals("Pistol")) givePistol = false;
+			if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol")) givePistol = false;
 		}
 		if (givePistol)
 			creditItem("USP");

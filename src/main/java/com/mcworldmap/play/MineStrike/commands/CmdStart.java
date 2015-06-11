@@ -3,6 +3,7 @@ package com.mcworldmap.play.MineStrike.commands;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.NextRound;
+import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -36,7 +37,9 @@ public class CmdStart implements CommandExecutor
 			{
 				online.setScoreboard(board);
 				online.setHealth(online.getHealth());
+				Util.sendTitle(online, 20, 50, 20, "Match Started", "Warmup Round");
 			}
+			//TODO: Change this to 60*20 later so we get a warmup round
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(1), 200);
 			return true;
 		}

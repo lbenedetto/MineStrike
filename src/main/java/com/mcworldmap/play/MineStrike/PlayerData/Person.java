@@ -52,11 +52,12 @@ public class Person
 		boolean givePistol = true;
 		for (ItemStack item : player.getInventory())
 		{
+			if (item == null) continue;
+
             Item gun = Item.getItem(item.getItemMeta().getDisplayName());
             if(gun != null)
                 item.setDurability((short) (item.getType().getMaxDurability() - gun.getAmmo()));
 
-			if (item == null) continue;
 			if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol")) givePistol = false;
 		}
 		if (givePistol)
@@ -72,13 +73,13 @@ public class Person
 		boolean givePistol = true;
 		for (ItemStack item : player.getInventory())
 		{
+			if (item == null) continue;
 
             Item gun = Item.getItem(item.getItemMeta().getDisplayName());
             if(gun != null)
                 item.setDurability((short) (item.getType().getMaxDurability() - gun.getAmmo()));
 
-			if (item == null) continue;
-			if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol")) givePistol = false;
+            if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol")) givePistol = false;
 		}
 		if (givePistol)
 			creditItem("USP");

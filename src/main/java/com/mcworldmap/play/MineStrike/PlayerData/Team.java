@@ -62,6 +62,31 @@ public class Team
 		return MVP;
 	}
 
+	public Person getCTMVP()
+	{
+		int highScore = 0;
+		Person MVP = null;
+		for (Person p : CT)
+			if (p.getScore() >= highScore)
+			{
+				MVP = p;
+				highScore = p.getScore();
+			}
+		return MVP;
+	}
+	public Person getTMVP()
+	{
+		int highScore = 0;
+		Person MVP = null;
+		for (Person p : T)
+			if (p.getScore() >= highScore)
+			{
+				MVP = p;
+				highScore = p.getScore();
+			}
+		return MVP;
+	}
+
 	public String getTeam(Player player)
 	{
 		for (Person p : MineStrike.team.getCT())

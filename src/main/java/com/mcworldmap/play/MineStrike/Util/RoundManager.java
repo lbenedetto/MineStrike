@@ -16,7 +16,23 @@ public class RoundManager
 		round += 1;
 		if (round > 30 | MineStrike.team.CTscore >= 15 || MineStrike.team.Tscore >= 15)
 		{
-			//end the game
+			String winMessage = "";
+			if(MineStrike.team.CTscore == MineStrike.team.Tscore)
+				winMessage = "Tie";
+			if(MineStrike.team.Tscore == 16)
+				winMessage = ChatColor.GOLD + "Terrorists Win";
+			if (MineStrike.team.CTscore == 16)
+				winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+			for (Person p : MineStrike.team.getT())
+			{
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, "MVP: " + MineStrike.team.getTMVP() + "for highest score");
+				p.getPlayer().performCommand("scoreboard");
+			}
+			for (Person p : MineStrike.team.getCT())
+			{
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, "MVP: " + MineStrike.team.getCTMVP() + "for highest score");
+				p.getPlayer().performCommand("scoreboard");
+			}
 		} else if (winner.equals("CT"))
 		{
 			for (Person p : MineStrike.team.getT())

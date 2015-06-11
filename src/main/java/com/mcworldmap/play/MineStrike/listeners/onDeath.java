@@ -35,6 +35,7 @@ public class onDeath implements Listener
 			predator = (Player) e1;
 		Person preyPerson = MineStrike.team.findPerson(prey);
 		Person predatorPerson = MineStrike.team.findPerson(predator);
+        event.getDrops().clear();
 		Bukkit.getServer().broadcastMessage(prey.getDisplayName() + " was killed by " + predator.getDisplayName());
 		if (predator.getDisplayName().equals(prey.getDisplayName()))
 			predatorPerson.setScore(predatorPerson.getScore() - 1);

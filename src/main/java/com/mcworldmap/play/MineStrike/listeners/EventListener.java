@@ -57,18 +57,19 @@ public class EventListener implements Listener
         }
 	}
 
+
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event)
     {
         if(!MineStrike.isGameActive)
             return;
-        if(event.getMessage().equalsIgnoreCase("shopct") && MineStrike.team.getTeam(event.getPlayer()).equalsIgnoreCase("t"))
+        if(event.getMessage().equalsIgnoreCase("/shopct") && MineStrike.team.getTeam(event.getPlayer()).equalsIgnoreCase("t"))
         {
             event.setCancelled(true);
             event.getPlayer().sendMessage("You can't open CT's shop as T!");
             return;
         }
-        if(event.getMessage().equalsIgnoreCase("shopt") && MineStrike.team.getTeam(event.getPlayer()).equalsIgnoreCase("ct"))
+        if(event.getMessage().equalsIgnoreCase("/shopt") && MineStrike.team.getTeam(event.getPlayer()).equalsIgnoreCase("ct"))
         {
             event.setCancelled(true);
             event.getPlayer().sendMessage("You can't open T's shop as CT!");

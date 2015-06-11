@@ -1,8 +1,8 @@
 package com.mcworldmap.play.MineStrike.listeners;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
-import com.mcworldmap.play.MineStrike.PlayerData.Item;
-import com.mcworldmap.play.MineStrike.Tasks.FireRate;
+import com.mcworldmap.play.MineStrike.playerdata.Item;
+import com.mcworldmap.play.MineStrike.tasks.FireRate;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

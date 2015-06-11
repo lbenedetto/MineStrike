@@ -1,7 +1,7 @@
 package com.mcworldmap.play.MineStrike.commands;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
-import com.mcworldmap.play.MineStrike.Tasks.NextRound;
+import com.mcworldmap.play.MineStrike.tasks.NextRound;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

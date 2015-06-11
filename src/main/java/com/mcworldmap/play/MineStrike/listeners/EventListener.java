@@ -1,7 +1,7 @@
 package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
-import com.mcworldmap.play.MineStrike.PlayerData.Item;
-import com.mcworldmap.play.MineStrike.Tasks.DelayArrowRemove;
+import com.mcworldmap.play.MineStrike.playerdata.Item;
+import com.mcworldmap.play.MineStrike.tasks.DelayArrowRemove;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;

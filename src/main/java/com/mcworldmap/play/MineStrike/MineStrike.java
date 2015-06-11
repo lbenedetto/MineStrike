@@ -1,8 +1,8 @@
 package com.mcworldmap.play.MineStrike;
 
 import com.google.common.collect.Sets;
-import com.mcworldmap.play.MineStrike.PlayerData.Config;
-import com.mcworldmap.play.MineStrike.PlayerData.Team;
+import com.mcworldmap.play.MineStrike.playerdata.Config;
+import com.mcworldmap.play.MineStrike.playerdata.Team;
 import com.mcworldmap.play.MineStrike.commands.*;
 import com.mcworldmap.play.MineStrike.listeners.*;
 import org.bukkit.Material;

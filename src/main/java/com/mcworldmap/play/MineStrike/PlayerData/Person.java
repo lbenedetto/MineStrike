@@ -189,6 +189,11 @@ public class Person
 		return true;
 	}
 
+	public void updateExpBar()
+	{
+		player.setLevel(getMoney());
+	}
+
 	private Location lookAt(Location loc, Location lookat)
 	{
 		double dx = lookat.getX() - loc.getX();

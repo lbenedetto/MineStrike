@@ -43,7 +43,7 @@ public class Person
 
 	}
 
-	public void respawnT() throws IndexOutOfBoundsException
+	public void respawnT()
 	{
 		World world = player.getWorld();
 		Location location = MineStrike.config.getRandTSpawn();
@@ -51,17 +51,16 @@ public class Person
 		player.setHealth(player.getMaxHealth());
 		player.setFoodLevel(4);
 		boolean givePistol = true;
-		for (int i = 0; i <= 8; i++)
+		for (ItemStack item : player.getInventory())
 		{
-			ItemStack item = player.getInventory().getItem(i);
 			if (item == null) continue;
-			if (item.getItemMeta().getLore().get(6).equals("Pistol")) givePistol = false;
+			if (item.getItemMeta().getLore().get(0).equals("Pistol")) givePistol = false;
 		}
-		if (givePistol);
+		if (givePistol)
 			creditItem("Glock");
 	}
 
-	public void respawnCT() throws IndexOutOfBoundsException
+	public void respawnCT()
 	{
 		World world = player.getWorld();
 		Location location = MineStrike.config.getRandCTSpawn();
@@ -69,11 +68,10 @@ public class Person
 		player.setHealth(player.getMaxHealth());
 		player.setFoodLevel(4);
 		boolean givePistol = true;
-		for (int i = 0; i <= 8; i++)
+		for (ItemStack item : player.getInventory())
 		{
-			ItemStack item = player.getInventory().getItem(i);
 			if (item == null) continue;
-			if (item.getItemMeta().getLore().get(6).equals("Pistol")) givePistol = false;
+			if (item.getItemMeta().getLore().get(0).equals("Pistol")) givePistol = false;
 		}
 		if (givePistol)
 			creditItem("USP");
@@ -131,11 +129,8 @@ public class Person
 
 	public void creditItem(String itemName)
 	{
-		//Creating item.
 		ItemStack item = ItemFactory.createItem(itemName);
-		//Giving the item.
 		player.getInventory().addItem(item);
-		//TODO: Give the player the specified item.
 	}
 
 

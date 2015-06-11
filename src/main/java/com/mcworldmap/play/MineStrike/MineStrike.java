@@ -6,7 +6,6 @@ import com.mcworldmap.play.MineStrike.PlayerData.Team;
 import com.mcworldmap.play.MineStrike.commands.*;
 import com.mcworldmap.play.MineStrike.listeners.*;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import java.util.ArrayList;
@@ -16,7 +15,6 @@ public class MineStrike extends JavaPlugin
 {
 
 	public static String gamemode = "";
-	public FileConfiguration cfg = getConfig();
 	public static Team team;
 	public static int ts = 0, cts = 0;
 	public static Config config;
@@ -41,7 +39,8 @@ public class MineStrike extends JavaPlugin
 		getCommand("givemoney").setExecutor(new CmdGiveMoney());
 		populateConfig();
 		saveDefaultConfig();
-		config = new Config(cfg);
+		saveConfig();
+		config = new Config(getConfig());
 		team = new Team();
 		// Determine transparency
 		for (Material material : Material.values())

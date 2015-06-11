@@ -39,6 +39,7 @@ public class MineStrike extends JavaPlugin
 		getCommand("join").setExecutor(new CmdJoin(this));
 		getCommand("scoreboard").setExecutor(new CmdScoreboard());
 		getCommand("givemoney").setExecutor(new CmdGiveMoney());
+		populateConfig();
 		saveDefaultConfig();
 		config = new Config(cfg);
 		team = new Team();
@@ -54,6 +55,49 @@ public class MineStrike extends JavaPlugin
 		getLogger().warning("Teamsize" + getConfig().getInt("teamsize"));
 	}
 
+	public void populateConfig(){
+		getConfig().addDefault("maxTeamKills", 3);
+		getConfig().addDefault("world", "de_dust2");
+		getConfig().addDefault("pregameSpawn.x", -33);
+		getConfig().addDefault("pregameSpawn.y", 42);
+		getConfig().addDefault("pregameSpawn.z", -506);
+		getConfig().addDefault("competitive.de_dust2.spawnbox.T.x", -46);
+		getConfig().addDefault("competitive.de_dust2.spawnbox.T.y", 42);
+		getConfig().addDefault("competitive.de_dust2.spawnbox.T.z", -481);
+		getConfig().addDefault("competitive.de_dust2.spawnbox.CT.x", -56);
+		getConfig().addDefault("competitive.de_dust2.spawnbox.CT.y", 42);
+		getConfig().addDefault("competitive.de_dust2.spawnbox.CT.z", -481);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.one.x", -3);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.one.y", 46);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.one.z", -551);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.two.x", -9);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.two.y", 46);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.two.z", -551);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.three.x", -9);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.three.y", 46);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.three.z", -554);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.four.x", -13);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.four.y", 46);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.four.z", -554);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.five.x", -1);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.five.y", 46);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.T.five.z", -557);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.one.x", -31);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.one.y", 40);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.one.z", -469);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.two.x", -35);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.two.y", 40);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.two.z", -469);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.three.x", -39);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.three.y", 40);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.three.z", -469);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.four.x", -37);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.four.y", 40);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.four.z", -471);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.five.x", -33);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.five.y", 40);
+		getConfig().addDefault("competitive.de_dust2.spawnpoints.CT.five.z", -471);
+	}
 	@Override
 	public void onDisable()
 	{

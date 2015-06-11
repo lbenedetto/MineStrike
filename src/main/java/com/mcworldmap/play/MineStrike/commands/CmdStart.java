@@ -37,10 +37,9 @@ public class CmdStart implements CommandExecutor
 			{
 				online.setScoreboard(board);
 				online.setHealth(online.getHealth());
-				Util.sendTitle(online, 20, 50, 20, "Match Started", "Warmup Round");
 			}
-			//TODO: Change this to 60*20 later so we get a warmup round
-			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(1), 200);
+			MineStrike.team.resetMoney();
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(1), 1);
 			return true;
 		}
 		return false;

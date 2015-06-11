@@ -94,7 +94,15 @@ public class Team
 		int tem = Tscore;
 		Tscore = CTscore;
 		CTscore = tem;
+		resetMoney();
+	}
 
+	public void resetMoney()
+	{
+		for (Person p : CT)
+			p.setMoney(800);
+		for (Person p : T)
+			p.setMoney(800);
 	}
 
 	public boolean isTTeamDead()

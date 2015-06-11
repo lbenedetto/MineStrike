@@ -2,6 +2,7 @@ package com.mcworldmap.play.MineStrike.commands;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -39,12 +40,16 @@ public class CmdJoin implements CommandExecutor
 
 					MineStrike.team.getT()[MineStrike.ts] = new Person(player);
 					MineStrike.team.getT()[MineStrike.ts].respawnT();
+					MineStrike.team.getT()[MineStrike.ts].setMoney(16000);
+					Util.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
 					MineStrike.ts += 1;
 					sender.sendMessage("Joined Terrorist Team");
 				} else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < p.getConfig().getInt("teamsize"))
 				{
 					MineStrike.team.getCT()[MineStrike.cts] = new Person(player);
 					MineStrike.team.getCT()[MineStrike.cts].respawnCT();
+					MineStrike.team.getCT()[MineStrike.cts].setMoney(16000);
+					Util.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
 					MineStrike.cts += 1;
 					sender.sendMessage("Joined Counter-Terrorist Team");
 				} else

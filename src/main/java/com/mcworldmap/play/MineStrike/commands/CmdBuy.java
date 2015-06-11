@@ -21,7 +21,10 @@ public class CmdBuy implements CommandExecutor
 		else if (args.length < 1)
 			sender.sendMessage("Not enough arguments!");
 		else if (!MineStrike.canBuy)
+		{
 			sender.sendMessage("Buy period has expired");
+			return true;
+		}
 		else
 		{
 			Person p = MineStrike.team.findPerson((Player) sender);

@@ -5,6 +5,7 @@ import com.mcworldmap.play.MineStrike.Util.ItemFactory;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
@@ -42,22 +43,40 @@ public class Person
 
 	}
 
-	public void respawnT()
+	public void respawnT() throws IndexOutOfBoundsException
 	{
 		World world = player.getWorld();
 		Location location = MineStrike.config.getRandTSpawn();
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
 		player.setFoodLevel(4);
+		boolean givePistol = true;
+		for (int i = 0; i <= 8; i++)
+		{
+			ItemStack item = player.getInventory().getItem(i);
+			if (item == null) continue;
+			if (item.getItemMeta().getLore().get(6).equals("Pistol")) givePistol = false;
+		}
+		if (givePistol);
+			creditItem("Glock");
 	}
 
-	public void respawnCT()
+	public void respawnCT() throws IndexOutOfBoundsException
 	{
 		World world = player.getWorld();
 		Location location = MineStrike.config.getRandCTSpawn();
 		player.teleport(location);
 		player.setHealth(player.getMaxHealth());
 		player.setFoodLevel(4);
+		boolean givePistol = true;
+		for (int i = 0; i <= 8; i++)
+		{
+			ItemStack item = player.getInventory().getItem(i);
+			if (item == null) continue;
+			if (item.getItemMeta().getLore().get(6).equals("Pistol")) givePistol = false;
+		}
+		if (givePistol)
+			creditItem("USP");
 	}
 
 	public boolean isAlive()
@@ -165,6 +184,7 @@ public class Person
 		}
 		return true;
 	}
+
 	private Location lookAt(Location loc, Location lookat)
 	{
 		double dx = lookat.getX() - loc.getX();

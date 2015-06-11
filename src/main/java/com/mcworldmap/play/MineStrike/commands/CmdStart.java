@@ -2,6 +2,7 @@ package com.mcworldmap.play.MineStrike.commands;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import com.mcworldmap.play.MineStrike.Tasks.NextRound;
 import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -36,18 +37,7 @@ public class CmdStart implements CommandExecutor
 				online.setScoreboard(board);
 				online.setHealth(online.getHealth());
 			}
-			for (Person p : MineStrike.team.getCT())
-			{
-				T.addPlayer(p.getPlayer());
-				Util.sendTitle(p.getPlayer(), 20, 50, 20, "Match Started", "Round 1");
-				p.respawnCT();
-			}
-			for (Person p : MineStrike.team.getT())
-			{
-				CT.addPlayer(p.getPlayer());
-				Util.sendTitle(p.getPlayer(), 20, 50, 20, "Match Started", "Round 1");
-				p.respawnT();
-			}
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(1), 200);
 			return true;
 		}
 		return false;

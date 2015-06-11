@@ -16,6 +16,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
@@ -55,6 +56,25 @@ public class EventListener implements Listener
             Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayArrowRemove((Arrow)event.getEntity()), 200);
         }
 	}
+
+    @EventHandler
+    public void onCommand(PlayerCommandPreprocessEvent event)
+    {
+        if(!MineStrike.isGameActive)
+            return;
+        if(event.getMessage().equalsIgnoreCase("shopct") && MineStrike.team.getTeam(event.getPlayer()).equalsIgnoreCase("t"))
+        {
+            event.setCancelled(true);
+            event.getPlayer().sendMessage("You can't open CT's shop as T!");
+            return;
+        }
+        if(event.getMessage().equalsIgnoreCase("shopt") && MineStrike.team.getTeam(event.getPlayer()).equalsIgnoreCase("ct"))
+        {
+            event.setCancelled(true);
+            event.getPlayer().sendMessage("You can't open T's shop as CT!");
+            return;
+        }
+    }
 
     @EventHandler
     public void onDamageByPlayer(EntityDamageByEntityEvent event)

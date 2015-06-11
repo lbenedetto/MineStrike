@@ -69,7 +69,7 @@ public class EventListener implements Listener
     @EventHandler
     public void customDamage(EntityDamageByEntityEvent event)
     {
-        if(event.getEntity() instanceof Player && event.getDamager() instanceof  Arrow)
+        if(event.getEntity() instanceof Player && event.getDamager() instanceof  Arrow && MineStrike.isGameActive)
         {
             event.setCancelled(true);
             Arrow a = (Arrow)event.getDamager();
@@ -124,18 +124,6 @@ public class EventListener implements Listener
 
 
 	@EventHandler
-	public void onDeath(PlayerDeathEvent event)
-	{
-		event.getDrops().clear();
-	}
-
-//	@EventHandler
-//	//public void onDrop(PlayerDropItemEvent event)
-//	{
-//		event.setCancelled(true);
-//	}
-//
-	@EventHandler
     public void onPickup(PlayerPickupItemEvent event)
     {
         if(event.getItem().getItemStack().getType().equals(Material.ARROW))
@@ -164,6 +152,8 @@ public class EventListener implements Listener
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
+        if(!MineStrike.isGameActive)
+            return;
         if (event.getEntity() instanceof Player && (event.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK || event.getCause() == EntityDamageEvent.DamageCause.FIRE)) {
             event.setCancelled(true);
             ((Player) event.getEntity()).damage(2);

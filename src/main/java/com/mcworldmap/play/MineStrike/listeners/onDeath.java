@@ -17,6 +17,8 @@ public class onDeath implements Listener
 	@EventHandler
 	public void death(PlayerDeathEvent event)
 	{
+        if(!MineStrike.isGameActive)
+            return;
 		Bukkit.getLogger().info("Death detected");
 		Player prey = event.getEntity();
 		Player predator = null;

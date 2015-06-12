@@ -76,6 +76,7 @@ public class Network
 			ps.setInt(2, deaths);
 			ps.setInt(3, wins);
 			ps.setInt(4, losses);
+            ps.setString(5, p.getPlayer().getName());
             ps.executeUpdate();
 		} catch (SQLException e)
 		{

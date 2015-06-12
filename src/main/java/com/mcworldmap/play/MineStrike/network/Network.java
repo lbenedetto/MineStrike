@@ -1,9 +1,8 @@
 package com.mcworldmap.play.MineStrike.network;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.mcworldmap.play.MineStrike.PlayerData.Person;
+
+import java.sql.*;
 
 public class Network
 {
@@ -53,5 +52,95 @@ public class Network
 	public Connection getConnection()
 	{
 		return c;
+	}
+
+	public boolean updatePlayerScore(Person p, boolean isWin)
+	{
+		String query = "UPDATE playerdata SET kills = ?, deaths = ?, wins = ?, losses = ? WHERE username = ?";
+
+		int kills = p.getKills();
+		int deaths = p.getDeaths();
+		int wins = getWins(p);
+		int losses = getLosses(p);
+
+		if(isWin)
+			wins+=1;
+		else
+			losses+=1;
+
+		PreparedStatement ps = getPreparedStatement(query);
+		try
+		{
+			ps.setInt(0, kills);
+			ps.setInt(1, deaths);
+			ps.setInt(2, wins);
+			ps.setInt(3, losses);
+
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+
+		return false;
+	}
+
+	public int getWins(Person p)
+	{
+		String query = "SELECT * FROM playerdata WHERE username = " + p.getPlayer().getName();
+
+		try
+		{
+			ResultSet res = getStatement().executeQuery(query);
+
+			if(res.next())
+				return res.getInt("wins");
+			return 0;
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	public int getLosses(Person p)
+	{
+		String query = "SELECT * FROM playerdata WHERE username = " + p.getPlayer().getName();
+
+		try
+		{
+			ResultSet res = getStatement().executeQuery(query);
+
+			if(res.next())
+				return res.getInt("losses");
+			return 0;
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	public Statement getStatement()
+	{
+		try
+		{
+			return c.createStatement();
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public PreparedStatement getPreparedStatement(String query)
+	{
+		try
+		{
+			return c.prepareStatement(query);
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
 	}
 }

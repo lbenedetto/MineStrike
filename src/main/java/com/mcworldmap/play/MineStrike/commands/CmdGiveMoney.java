@@ -1,7 +1,7 @@
 package com.mcworldmap.play.MineStrike.commands;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
-import com.mcworldmap.play.MineStrike.playerdata.Person;
+import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

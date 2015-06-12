@@ -1,8 +1,8 @@
 package com.mcworldmap.play.MineStrike.listeners;
 
-import com.mcworldmap.play.MineStrike.tasks.DelayedBoom;
-import com.mcworldmap.play.MineStrike.tasks.DelayedFlash;
-import com.mcworldmap.play.MineStrike.tasks.FireExtinguish;
+import com.mcworldmap.play.MineStrike.Tasks.DelayedBoom;
+import com.mcworldmap.play.MineStrike.Tasks.DelayedFlash;
+import com.mcworldmap.play.MineStrike.Tasks.FireExtinguish;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;

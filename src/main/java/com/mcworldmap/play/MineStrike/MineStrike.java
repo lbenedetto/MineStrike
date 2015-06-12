@@ -25,7 +25,7 @@ public class MineStrike extends JavaPlugin
 	public static ArrayList<Player> coolDown = new ArrayList<>();
 	public static boolean isGameActive = false;
 	public static boolean canBuy = false;
-    private static Network network;
+	private static Network network;
 
 	@Override
 	public void onEnable()
@@ -44,7 +44,7 @@ public class MineStrike extends JavaPlugin
 		config = new Config(getConfig());
 		team = new Team();
 
-		if(getConfig().getBoolean("network.enable"))
+		if (getConfig().getBoolean("network.enable"))
 		{
 			//create network.
 			network = new Network(getConfig().getString("network.ip"), getConfig().getString("network.database"), getConfig().getString("network.username"), getConfig().getString("network.password"));
@@ -66,25 +66,25 @@ public class MineStrike extends JavaPlugin
 		getLogger().warning("Teamsize" + getConfig().getInt("teamsize"));
 	}
 
-    public static Network getNetwork()
-    {
-        return network;
-    }
+	public static Network getNetwork()
+	{
+		return network;
+	}
 
 
 	public void populateConfig()
 	{
 		getConfig().options().copyDefaults(true);
 
-        //Storage
-        getConfig().addDefault("network.username", "root");
-        getConfig().addDefault("network.password", "password");
-        getConfig().addDefault("network.ip", "localhost");
-        getConfig().addDefault("network.database", "minestrike");
+		//Storage
+		getConfig().addDefault("network.username", "root");
+		getConfig().addDefault("network.password", "password");
+		getConfig().addDefault("network.ip", "localhost");
+		getConfig().addDefault("network.database", "minestrike");
 		getConfig().addDefault("network.enable", "true");
 
 
-        getConfig().addDefault("teamsize", 2);
+		getConfig().addDefault("teamsize", 2);
 		getConfig().addDefault("maxTeamKills", 3);
 		getConfig().addDefault("world", "de_dust2");
 		getConfig().addDefault("pregameSpawn.x", -33);

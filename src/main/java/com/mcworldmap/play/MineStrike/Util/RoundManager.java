@@ -16,9 +16,9 @@ public class RoundManager
 		if (round > 30 || (MineStrike.team.CTscore >= 15 && MineStrike.team.Tscore >= 15))
 		{
 			String winMessage = "";
-			if(MineStrike.team.CTscore == MineStrike.team.Tscore)
+			if (MineStrike.team.CTscore == MineStrike.team.Tscore)
 				winMessage = "Tie";
-			if(MineStrike.team.Tscore == 16)
+			if (MineStrike.team.Tscore == 16)
 				winMessage = ChatColor.GOLD + "Terrorists Win";
 			if (MineStrike.team.CTscore == 16)
 				winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";

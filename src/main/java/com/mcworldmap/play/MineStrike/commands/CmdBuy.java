@@ -24,8 +24,7 @@ public class CmdBuy implements CommandExecutor
 		{
 			sender.sendMessage("Buy period has expired");
 			return true;
-		}
-		else
+		} else
 		{
 			Person p = MineStrike.team.findPerson((Player) sender);
 			sender.sendMessage("You have $" + p.getMoney());

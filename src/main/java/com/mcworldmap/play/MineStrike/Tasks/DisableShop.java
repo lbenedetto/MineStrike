@@ -7,7 +7,8 @@ import org.bukkit.Bukkit;
 public class DisableShop implements Runnable
 {
 	@Override
-	public void run(){
+	public void run()
+	{
 		Bukkit.getServer().getLogger().info("Shop disabled");
 		MineStrike.canBuy = false;
 	}

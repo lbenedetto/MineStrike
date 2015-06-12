@@ -3,17 +3,19 @@ package com.mcworldmap.play.MineStrike.Tasks;
 
 import org.bukkit.entity.Arrow;
 
-public class DelayArrowRemove implements Runnable{
+public class DelayArrowRemove implements Runnable
+{
 
-    Arrow arrow;
+	Arrow arrow;
 
-    public DelayArrowRemove(Arrow arrow)
-    {
-        this.arrow = arrow;
-    }
+	public DelayArrowRemove(Arrow arrow)
+	{
+		this.arrow = arrow;
+	}
 
-    @Override
-    public void run() {
-        arrow.remove();
-    }
+	@Override
+	public void run()
+	{
+		arrow.remove();
+	}
 }

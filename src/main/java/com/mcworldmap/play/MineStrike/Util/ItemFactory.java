@@ -125,7 +125,7 @@ public class ItemFactory
 		im = i.getItemMeta();
 		im.setDisplayName(ChatColor.RED + name);
 		loreList = new ArrayList<>();
-        loreList.add(ChatColor.AQUA + type);
+		loreList.add(ChatColor.AQUA + type);
 		loreList.add(ChatColor.DARK_AQUA + name);
 		im.setLore(loreList);
 		i.setItemMeta(im);
@@ -140,38 +140,38 @@ public class ItemFactory
 		LeatherArmorMeta im;
 		ArrayList<String> loreList;
 		i = new ItemStack(m, 1);
-		im = (LeatherArmorMeta)i.getItemMeta();
+		im = (LeatherArmorMeta) i.getItemMeta();
 		im.setDisplayName(ChatColor.RED + name);
 		loreList = new ArrayList<>();
 		loreList.add(ChatColor.AQUA + type);
 		loreList.add(ChatColor.DARK_AQUA + name);
 		im.setLore(loreList);
-        if(isT)
-            im.setColor(Color.ORANGE);
-        else
-            im.setColor(Color.BLUE);
-        i.setItemMeta(im);
+		if (isT)
+			im.setColor(Color.ORANGE);
+		else
+			im.setColor(Color.BLUE);
+		i.setItemMeta(im);
 		i.setDurability((short) durability);
 		return i;
 	}
 
-    public static ItemStack createCustomArmor(Material m, String name, String type, int durability)
-    {
-        //This is for armor
-        ItemStack i;
-        ItemMeta im;
-        ArrayList<String> loreList;
-        i = new ItemStack(m, 1);
-        im = i.getItemMeta();
-        im.setDisplayName(ChatColor.RED + name);
-        loreList = new ArrayList<>();
-        loreList.add(ChatColor.AQUA + type);
-        loreList.add(ChatColor.DARK_AQUA + name);
-        im.setLore(loreList);
-        i.setItemMeta(im);
-        i.setDurability((short) durability);
-        return i;
-    }
+	public static ItemStack createCustomArmor(Material m, String name, String type, int durability)
+	{
+		//This is for armor
+		ItemStack i;
+		ItemMeta im;
+		ArrayList<String> loreList;
+		i = new ItemStack(m, 1);
+		im = i.getItemMeta();
+		im.setDisplayName(ChatColor.RED + name);
+		loreList = new ArrayList<>();
+		loreList.add(ChatColor.AQUA + type);
+		loreList.add(ChatColor.DARK_AQUA + name);
+		im.setLore(loreList);
+		i.setItemMeta(im);
+		i.setDurability((short) durability);
+		return i;
+	}
 
 	public static ItemStack createCustomNade(PotionType m, String name)
 	{

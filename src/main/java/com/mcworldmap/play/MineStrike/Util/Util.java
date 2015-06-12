@@ -132,8 +132,8 @@ public class Util
 		}
 	}
 
-    public static int getWeaponDamage(Item weapon)
-    {
-        return weapon.getDamage();
-    }
+	public static int getWeaponDamage(Item weapon)
+	{
+		return weapon.getDamage();
+	}
 }

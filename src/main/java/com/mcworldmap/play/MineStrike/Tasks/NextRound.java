@@ -36,7 +36,7 @@ public class NextRound implements Runnable
 			Util.sendTitle(p.getPlayer(), 20, 50, 20, "Round " + rounds, RoundManager.stringify());
 			MineStrike.frozenPlayers.add(p.getPlayer());
 		}
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new UnfreezePlayers(), 10*20);
-		Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DisableShop(), 20*20);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new UnfreezePlayers(), 10 * 20);
+		Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DisableShop(), 20 * 20);
 	}
 }

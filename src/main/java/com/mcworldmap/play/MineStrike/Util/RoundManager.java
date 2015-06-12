@@ -29,13 +29,13 @@ public class RoundManager
 				winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
 			for (Person p : MineStrike.team.getT())
 			{
-				MineStrike.getNetwork().updatePlayerScore(p, booleanifyT(winMessage));
+				MineStrike.getNetwork().updatePlayerScore(p, booleanifyT(ChatColor.stripColor(winMessage)));
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.team.getTMVP().getPlayer().getDisplayName() + " for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}
 			for (Person p : MineStrike.team.getCT())
 			{
-				MineStrike.getNetwork().updatePlayerScore(p, booleanifyCT(winMessage));
+				MineStrike.getNetwork().updatePlayerScore(p, booleanifyCT(ChatColor.stripColor(winMessage)));
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.team.getCTMVP().getPlayer().getDisplayName() + " for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}

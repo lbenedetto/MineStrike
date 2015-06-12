@@ -184,7 +184,7 @@ public class Network
     public void createPlayerData(Player player)
     {
         String username = player.getName();
-        String query = "INSERT INTO playerdata VALUES(" + username + ", 0, 0, 0, 0)";
+        String query = "INSERT INTO playerdata VALUES(`" + username + "`, `0`, `0`, `0`, `0`)";
         try {
             getStatement().executeUpdate(query);
         } catch (SQLException e) {

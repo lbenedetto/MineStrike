@@ -184,7 +184,7 @@ public class Network
     public void createPlayerData(Player player)
     {
         String username = player.getName();
-        String query = "INSERT INTO playerdata VALUES(?, ?, ?, ?, ?)";
+        String query = "INSERT IGNORE INTO playerdata values (?,?,?,?,?)";
         try {
             PreparedStatement ps = getPreparedStatement(query);
             ps.setString(1, username);

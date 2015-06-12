@@ -29,13 +29,13 @@ public class RoundManager
 				winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
 			for (Person p : MineStrike.team.getT())
 			{
-				MineStrike.getNetwork().updatePlayerScore(p, booleanifyT(winMessage, p));
+				MineStrike.getNetwork().updatePlayerScore(p, booleanifyT(winMessage));
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.team.getTMVP().getPlayer().getDisplayName() + " for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}
 			for (Person p : MineStrike.team.getCT())
 			{
-				MineStrike.getNetwork().updatePlayerScore(p, booleanifyCT(winMessage, p));
+				MineStrike.getNetwork().updatePlayerScore(p, booleanifyCT(winMessage));
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.team.getCTMVP().getPlayer().getDisplayName() + " for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}
@@ -72,12 +72,12 @@ public class RoundManager
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(round), 200);
 		}
 	}
-	public static Boolean booleanifyT(String s, Person p){
+	public static Boolean booleanifyT(String s){
 		if(s.equalsIgnoreCase("Counter-Terrorists Win")) return false;
 		if(s.equalsIgnoreCase("Terrorists Win")) return true;
 		return null;
 	}
-	public static Boolean booleanifyCT(String s, Person p){
+	public static Boolean booleanifyCT(String s){
 		if(s.equalsIgnoreCase("Counter-Terrorists Win")) return true;
 		if(s.equalsIgnoreCase("Terrorists Win")) return false;
 		return null;

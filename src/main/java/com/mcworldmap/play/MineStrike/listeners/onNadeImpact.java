@@ -57,7 +57,7 @@ public class onNadeImpact implements Listener
 			//HE Grenade
 			if (effect.getType().equals(PotionEffectType.HARM))
 			{
-				Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedBoom(w, loc, (Player)pot.getShooter()), 20);
+				Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedBoom(w, loc, (Player) pot.getShooter()), 20);
 			}
 			//Flashbang
 			if (effect.getType().equals(PotionEffectType.NIGHT_VISION))
@@ -66,7 +66,8 @@ public class onNadeImpact implements Listener
 				List<Entity> nearbyEntities = pot.getNearbyEntities(50, 50, 50);
 				Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedFlash(nearbyEntities, pot), 20);
 			}
-			if(effect.getType().equals(PotionEffectType.JUMP)){
+			if (effect.getType().equals(PotionEffectType.JUMP))
+			{
 				Bukkit.getLogger().info("Decoy Detected");
 				List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
 				nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
@@ -80,7 +81,8 @@ public class onNadeImpact implements Listener
 				w.playSound(loc, Sound.ARROW_HIT, 1, 1);
 				w.playSound(loc, Sound.FALL_BIG, 1, 1);
 			}
-			if(effect.getType().equals(PotionEffectType.SLOW)){
+			if (effect.getType().equals(PotionEffectType.SLOW))
+			{
 
 			}
 		}

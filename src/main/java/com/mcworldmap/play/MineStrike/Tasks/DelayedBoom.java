@@ -12,28 +12,28 @@ public class DelayedBoom implements Runnable
 {
 	World world;
 	Location loc;
-    Entity damager;
+	Entity damager;
 
 	public DelayedBoom(World world, Location loc, Entity damager)
 	{
 		this.world = world;
 		this.loc = loc;
-        this.damager = damager;
+		this.damager = damager;
 	}
 
 	public void run()
 	{
 		world.createExplosion(loc, 0.0f);
-        Collection<Entity> nearExplosion = world.getNearbyEntities(loc, 3, 3, 3);
+		Collection<Entity> nearExplosion = world.getNearbyEntities(loc, 3, 3, 3);
 
-        for(Entity e : nearExplosion)
-        {
-            if(e instanceof  Player)
-            {
-                Player p = (Player)e;
+		for (Entity e : nearExplosion)
+		{
+			if (e instanceof Player)
+			{
+				Player p = (Player) e;
 
-                p.damage(18, damager);
-            }
-        }
+				p.damage(18, damager);
+			}
+		}
 	}
 }

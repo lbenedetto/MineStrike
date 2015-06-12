@@ -60,7 +60,7 @@ public class CmdJoin implements CommandExecutor
 				if (MineStrike.cts == p.getConfig().getInt("teamsize") && MineStrike.ts == p.getConfig().getInt("teamsize"))
 				{
 					Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "start competitive");
-                    MineStrike.isGameActive = true;
+					MineStrike.isGameActive = true;
 				}
 				return true;
 			} else

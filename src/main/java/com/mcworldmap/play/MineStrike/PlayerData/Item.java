@@ -28,41 +28,62 @@ public enum Item
 	G3SG1(5000, 110, .25, 10, 18, "Sniper-Rifle"), SCAR20(5000, 110, .25, 10, 18, "Sniper-Rifle");
 
 	private int price;
-    private int damage;
-    private double range;
-    private int ammo;
-    private double fireRate;
-    private String type;
+	private int damage;
+	private double range;
+	private int ammo;
+	private double fireRate;
+	private String type;
 
 	Item(int price, int ammo, double fireRate, double range, int damage, String type)
 	{
 
-        this.price = price;
-        this.damage = damage;
-        this.range = range;
-        this.ammo = ammo;
-        this.fireRate = fireRate;
-        this.type = type;
+		this.price = price;
+		this.damage = damage;
+		this.range = range;
+		this.ammo = ammo;
+		this.fireRate = fireRate;
+		this.type = type;
 	}
 
-    Item(int price)
-    {
-        this.price = price;
-    }
+	Item(int price)
+	{
+		this.price = price;
+	}
 
 	public int getPrice()
 	{
 		return price;
 	}
-    public int getDamage() {return damage;}
-    public double getRange() { return range; }
-    public int getAmmo() { return ammo; }
-    public double getFireRate() { return fireRate; }
-    public String getType() { return type; }
 
-	public static Item getItem(final String name){
-		for(Item item : Item.values())
-			if(item.name().equalsIgnoreCase(ChatColor.stripColor(name)))
+	public int getDamage()
+	{
+		return damage;
+	}
+
+	public double getRange()
+	{
+		return range;
+	}
+
+	public int getAmmo()
+	{
+		return ammo;
+	}
+
+	public double getFireRate()
+	{
+		return fireRate;
+	}
+
+	public String getType()
+	{
+		return type;
+	}
+
+	public static Item getItem(final String name)
+	{
+		for (Item item : Item.values())
+			if (item.name().equalsIgnoreCase(ChatColor.stripColor(name)))
 				return item;
 		return null;
 	}

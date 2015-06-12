@@ -19,18 +19,23 @@ public class Team
 		Tscore = 0;
 	}
 
-    public void reset()
-    {
-		for(Person p : T){
+	public void reset()
+	{
+		for (Person p : T)
+		{
 			p.getPlayer().teleport(MineStrike.config.getLocation("pregameSpawn"));
+			p.setTeamKills(0);
 		}
-		for(Person p : CT)
+		for (Person p : CT)
+		{
 			p.getPlayer().teleport(MineStrike.config.getLocation("pregameSpawn"));
-        T = new Person[MineStrike.config.getInt("teamsize")];
-        CT = new Person[MineStrike.config.getInt("teamsize")];
-        CTscore = 0;
-        Tscore = 0;
-    }
+			p.setTeamKills(0);
+		}
+		T = new Person[MineStrike.config.getInt("teamsize")];
+		CT = new Person[MineStrike.config.getInt("teamsize")];
+		CTscore = 0;
+		Tscore = 0;
+	}
 
 	public Person[] getT()
 	{
@@ -84,6 +89,7 @@ public class Team
 			}
 		return MVP;
 	}
+
 	public Person getTMVP()
 	{
 		int highScore = 0;

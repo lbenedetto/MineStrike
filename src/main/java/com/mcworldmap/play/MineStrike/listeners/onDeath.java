@@ -17,8 +17,8 @@ public class onDeath implements Listener
 	@EventHandler
 	public void death(PlayerDeathEvent event)
 	{
-        if(!MineStrike.isGameActive)
-            return;
+		if (!MineStrike.isGameActive)
+			return;
 		Bukkit.getLogger().info("Death detected");
 		Player prey = event.getEntity();
 		Player predator = null;
@@ -35,19 +35,19 @@ public class onDeath implements Listener
 			predator = (Player) e1;
 		Person preyPerson = MineStrike.team.findPerson(prey);
 		Person predatorPerson = MineStrike.team.findPerson(predator);
-        event.getDrops().clear();
+		event.getDrops().clear();
 		Bukkit.getServer().broadcastMessage(prey.getDisplayName() + " was killed by " + predator.getDisplayName());
 		if (predator.getDisplayName().equals(prey.getDisplayName()))
 			predatorPerson.setScore(predatorPerson.getScore() - 1);
-		else if(MineStrike.team.getTeam(predator).equals(MineStrike.team.getTeam(prey)))
+		else if (MineStrike.team.getTeam(predator).equals(MineStrike.team.getTeam(prey)))
 		{
 			predatorPerson.setScore(predatorPerson.getScore() - 1);
 			predatorPerson.incrementTeamKills();
-			if (predatorPerson.getTeamKills() >= MineStrike.config.getInt("teamsize")){
+			if (predatorPerson.getTeamKills() >= MineStrike.config.getInt("teamsize"))
+			{
 				//Put player in jail
 			}
-		}
-		else
+		} else
 		{
 			preyPerson.setDeaths(preyPerson.getDeaths() + 1);
 			preyPerson.setAlive(false);

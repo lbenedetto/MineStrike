@@ -1,4 +1,5 @@
 package com.mcworldmap.play.MineStrike.listeners;
+
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.Tasks.DelayArrowRemove;
@@ -22,15 +23,16 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
+
 @SuppressWarnings("unused")
 public class EventListener implements Listener
 {
 	@EventHandler
 	public void potionThrowEvent(ProjectileLaunchEvent event)
 	{
-		if(event.getEntity() instanceof Firework)
+		if (event.getEntity() instanceof Firework)
 		{
-			event.getEntity().setVelocity(new Vector(0,0,0));
+			event.getEntity().setVelocity(new Vector(0, 0, 0));
 		}
 		if (event.getEntity() instanceof ThrownPotion)
 		{
@@ -40,88 +42,90 @@ public class EventListener implements Listener
 			e.setVelocity(e.getVelocity().multiply(2));
 		}
 	}
-//	public void entityDamage(EntityDamageByEntityEvent event)
+
+	//	public void entityDamage(EntityDamageByEntityEvent event)
 //	{
 //		if(event.getEntity() instanceof Player && event.getDamager() instanceof Explosion)
 //		{
 //
 //		}
 //	}
-    //Despawn arrows faster.
-    @EventHandler
+	//Despawn arrows faster.
+	@EventHandler
 	public void projectileHitEvent(ProjectileHitEvent event)
 	{
-        if(event.getEntity() instanceof Arrow)
-        {
-            Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayArrowRemove((Arrow)event.getEntity()), 200);
-        }
+		if (event.getEntity() instanceof Arrow)
+		{
+			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayArrowRemove((Arrow) event.getEntity()), 200);
+		}
 	}
 
 
-    @EventHandler
-    public void onCommand(PlayerCommandPreprocessEvent event)
-    {
-        if(!MineStrike.isGameActive)
-            return;
-        if(event.getMessage().equalsIgnoreCase("/shopct") && MineStrike.team.getTeam(event.getPlayer()).equalsIgnoreCase("t"))
-        {
-            event.setCancelled(true);
-            event.getPlayer().sendMessage("You can't open CT's shop as T!");
-            return;
-        }
-        if(event.getMessage().equalsIgnoreCase("/shopt") && MineStrike.team.getTeam(event.getPlayer()).equalsIgnoreCase("ct"))
-        {
-            event.setCancelled(true);
-            event.getPlayer().sendMessage("You can't open T's shop as CT!");
-            return;
-        }
-    }
+	@EventHandler
+	public void onCommand(PlayerCommandPreprocessEvent event)
+	{
+		if (!MineStrike.isGameActive)
+			return;
+		if (event.getMessage().equalsIgnoreCase("/shopct") && MineStrike.team.getTeam(event.getPlayer()).equalsIgnoreCase("t"))
+		{
+			event.setCancelled(true);
+			event.getPlayer().sendMessage("You can't open CT's shop as T!");
+			return;
+		}
+		if (event.getMessage().equalsIgnoreCase("/shopt") && MineStrike.team.getTeam(event.getPlayer()).equalsIgnoreCase("ct"))
+		{
+			event.setCancelled(true);
+			event.getPlayer().sendMessage("You can't open T's shop as CT!");
+			return;
+		}
+	}
 
-    @EventHandler
-    public void onDamageByPlayer(EntityDamageByEntityEvent event)
-    {
-        if(event.getEntity() instanceof Player && event.getDamager() instanceof Player && !MineStrike.isGameActive)
-        {
-            event.setCancelled(true);
-        }
+	@EventHandler
+	public void onDamageByPlayer(EntityDamageByEntityEvent event)
+	{
+		if (event.getEntity() instanceof Player && event.getDamager() instanceof Player && !MineStrike.isGameActive)
+		{
+			event.setCancelled(true);
+		}
 
-    }
+	}
 
 
+	@EventHandler
+	public void customDamage(EntityDamageByEntityEvent event)
+	{
+		if (event.getEntity() instanceof Player && event.getDamager() instanceof Arrow && MineStrike.isGameActive)
+		{
+			event.setCancelled(true);
+			Arrow a = (Arrow) event.getDamager();
+			Player shooter = (Player) a.getShooter();
 
-    @EventHandler
-    public void customDamage(EntityDamageByEntityEvent event)
-    {
-        if(event.getEntity() instanceof Player && event.getDamager() instanceof  Arrow && MineStrike.isGameActive)
-        {
-            event.setCancelled(true);
-            Arrow a = (Arrow)event.getDamager();
-            Player shooter = (Player)a.getShooter();
+			ItemStack itemInHand = shooter.getItemInHand();
+			Item item = Item.getItem(itemInHand.getItemMeta().getDisplayName());
 
-            ItemStack itemInHand = shooter.getItemInHand();
-            Item item = Item.getItem(itemInHand.getItemMeta().getDisplayName());
+			((Player) event.getEntity()).damage(item.getDamage(), shooter);
+		}
+	}
 
-            ((Player) event.getEntity()).damage(item.getDamage(), shooter);
-        }
-    }
+	@EventHandler
+	public void onExtinguish(PlayerInteractEvent event)
+	{
 
-    @EventHandler
-    public void onExtinguish(PlayerInteractEvent event) {
+		if (event.getAction() != Action.LEFT_CLICK_BLOCK)
+			return;
 
-        if(event.getAction() != Action.LEFT_CLICK_BLOCK)
-            return;
+		final Player player = event.getPlayer();
 
-        final Player player = event.getPlayer();
-
-        final Block block = event.getClickedBlock();
-        final BlockFace blockFace = event.getBlockFace();
-        final Block relativeBlock = block.getRelative(blockFace);
-        final Material fireMaterial = Material.FIRE;
-        if(relativeBlock != null)
-            if (relativeBlock.getType() == fireMaterial) {
-                event.setCancelled(true);
-            }
-    }
+		final Block block = event.getClickedBlock();
+		final BlockFace blockFace = event.getBlockFace();
+		final Block relativeBlock = block.getRelative(blockFace);
+		final Material fireMaterial = Material.FIRE;
+		if (relativeBlock != null)
+			if (relativeBlock.getType() == fireMaterial)
+			{
+				event.setCancelled(true);
+			}
+	}
 
 	//Make potions not do stuff
 	@EventHandler(priority = EventPriority.HIGHEST)
@@ -137,9 +141,9 @@ public class EventListener implements Listener
 		Location before = event.getFrom();
 		Location after = event.getTo();
 		//Players can move on Y, but its a feature, not a bug
-		if(MineStrike.frozenPlayers.contains(event.getPlayer()))
+		if (MineStrike.frozenPlayers.contains(event.getPlayer()))
 		{
-			if((int)before.getX() == (int)after.getX() && (int)before.getZ() == (int)after.getZ())
+			if ((int) before.getX() == (int) after.getX() && (int) before.getZ() == (int) after.getZ())
 				return;
 			event.getPlayer().teleport(before);
 		}
@@ -147,11 +151,11 @@ public class EventListener implements Listener
 
 
 	@EventHandler
-    public void onPickup(PlayerPickupItemEvent event)
-    {
-        if(event.getItem().getItemStack().getType().equals(Material.ARROW))
-    	    event.setCancelled(true);
-    }
+	public void onPickup(PlayerPickupItemEvent event)
+	{
+		if (event.getItem().getItemStack().getType().equals(Material.ARROW))
+			event.setCancelled(true);
+	}
 
 	@EventHandler
 	public void onHunger(FoodLevelChangeEvent event)
@@ -173,26 +177,31 @@ public class EventListener implements Listener
 //    }
 
 
-    @EventHandler
-    public void onEntityDamage(EntityDamageEvent event) {
-        if(!MineStrike.isGameActive)
-            return;
-        if (event.getEntity() instanceof Player && (event.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK || event.getCause() == EntityDamageEvent.DamageCause.FIRE)) {
-            event.setCancelled(true);
-            ((Player) event.getEntity()).damage(2);
-            event.getEntity().setFireTicks(0);
-        }
-    }
-
-    @EventHandler
-    public void onBlockBreak(BlockBreakEvent event)
-    {
-        if(event.getPlayer().getGameMode().equals(GameMode.CREATIVE))
-            return;
-        event.setCancelled(true);
-    }
+	@EventHandler
+	public void onEntityDamage(EntityDamageEvent event)
+	{
+		if (!MineStrike.isGameActive)
+			return;
+		if (event.getEntity() instanceof Player && (event.getCause() == EntityDamageEvent.DamageCause.FIRE_TICK || event.getCause() == EntityDamageEvent.DamageCause.FIRE))
+		{
+			event.setCancelled(true);
+			((Player) event.getEntity()).damage(2);
+			event.getEntity().setFireTicks(0);
+		}
+	}
 
 	@EventHandler
-	public void onFireSpread(BlockIgniteEvent event) {event.setCancelled(true);	}
+	public void onBlockBreak(BlockBreakEvent event)
+	{
+		if (event.getPlayer().getGameMode().equals(GameMode.CREATIVE))
+			return;
+		event.setCancelled(true);
+	}
+
+	@EventHandler
+	public void onFireSpread(BlockIgniteEvent event)
+	{
+		event.setCancelled(true);
+	}
 
 }

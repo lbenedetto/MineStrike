@@ -44,12 +44,15 @@ public class MineStrike extends JavaPlugin
 		config = new Config(getConfig());
 		team = new Team();
 
-        //create network.
-        network = new Network(getConfig().getString("network.ip"), getConfig().getString("network.database"), getConfig().getString("network.username"), getConfig().getString("network.password") );
-        //Connect to database
-        network.connect();
-        //Initialize tables
-        network.init();
+		if(getConfig().getBoolean("network.enable"))
+		{
+			//create network.
+			network = new Network(getConfig().getString("network.ip"), getConfig().getString("network.database"), getConfig().getString("network.username"), getConfig().getString("network.password"));
+			//Connect to database
+			network.connect();
+			//Initialize tables
+			network.init();
+		}
 
 		// Determine transparency
 		for (Material material : Material.values())
@@ -75,9 +78,10 @@ public class MineStrike extends JavaPlugin
 
         //Storage
         getConfig().addDefault("network.username", "root");
-        getConfig().addDefault("network.password", "root");
-        getConfig().addDefault("network.ip", "root");
-        getConfig().addDefault("network.database", "root");
+        getConfig().addDefault("network.password", "password");
+        getConfig().addDefault("network.ip", "localhost");
+        getConfig().addDefault("network.database", "minestrike");
+		getConfig().addDefault("network.enable", "true");
 
 
         getConfig().addDefault("teamsize", 2);

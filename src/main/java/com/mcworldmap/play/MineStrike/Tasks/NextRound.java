@@ -19,7 +19,7 @@ public class NextRound implements Runnable
 	@Override
 	public void run()
 	{
-		if (rounds == 16)
+		if (rounds == 1+(MineStrike.config.getInt("maxrounds")/2))
 		{
 			MineStrike.team.switchTeams();
 		}

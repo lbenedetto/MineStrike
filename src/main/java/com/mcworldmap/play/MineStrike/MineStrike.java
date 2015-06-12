@@ -80,7 +80,7 @@ public class MineStrike extends JavaPlugin
 		getConfig().addDefault("network.database", "minestrike");
 		getConfig().addDefault("network.enable", "true");
 
-
+		getConfig().addDefault("maxrounds", 4);
 		getConfig().addDefault("teamsize", 2);
 		getConfig().addDefault("maxTeamKills", 3);
 		getConfig().addDefault("world", "de_dust2");

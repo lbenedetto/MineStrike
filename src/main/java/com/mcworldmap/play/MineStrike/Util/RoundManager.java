@@ -13,25 +13,26 @@ public class RoundManager
 	public static void newRound(String winner)
 	{
 		round += 1;
-		if (round > 30 || (MineStrike.team.CTscore >= 15 && MineStrike.team.Tscore >= 15))
+		int maxrounds = MineStrike.config.getInt("maxrounds");
+		if (round > maxrounds || (MineStrike.team.CTscore >= maxrounds / 2 && MineStrike.team.Tscore >= maxrounds / 2))
 		{
 			String winMessage = "";
 			if (MineStrike.team.CTscore == MineStrike.team.Tscore)
 				winMessage = "Tie";
-			if (MineStrike.team.Tscore == 16)
+			if (MineStrike.team.Tscore == 1 + (maxrounds / 2))
 				winMessage = ChatColor.GOLD + "Terrorists Win";
-			if (MineStrike.team.CTscore == 16)
+			if (MineStrike.team.CTscore == 1 + (maxrounds / 2))
 				winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
 			for (Person p : MineStrike.team.getT())
 			{
 				MineStrike.getNetwork().updatePlayerScore(p, winner.equalsIgnoreCase("T"));
-				Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, "MVP: " + MineStrike.team.getTMVP().getPlayer().getDisplayName() + "for highest score");
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.team.getTMVP().getPlayer().getDisplayName() + " for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}
 			for (Person p : MineStrike.team.getCT())
 			{
 				MineStrike.getNetwork().updatePlayerScore(p, winner.equalsIgnoreCase("CT"));
-				Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, "MVP: " + MineStrike.team.getCTMVP().getPlayer().getDisplayName() + "for highest score");
+				Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.team.getCTMVP().getPlayer().getDisplayName() + " for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}
 			MineStrike.team.reset();

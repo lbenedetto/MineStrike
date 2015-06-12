@@ -58,8 +58,8 @@ public class Network
 	{
 		String query = "UPDATE playerdata SET kills = ?, deaths = ?, wins = ?, losses = ? WHERE username = ?";
 
-		int kills = p.getKills();
-		int deaths = p.getDeaths();
+		int kills = getTotalKills(p) + p.getKills();
+		int deaths = getTotalDeaths(p) + p.getDeaths();
 		int wins = getWins(p);
 		int losses = getLosses(p);
 
@@ -94,6 +94,42 @@ public class Network
 
 			if(res.next())
 				return res.getInt("wins");
+			return 0;
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	public int getTotalKills(Person p)
+	{
+		String query = "SELECT * FROM playerdata WHERE username = " + p.getPlayer().getName();
+
+		try
+		{
+			ResultSet res = getStatement().executeQuery(query);
+
+			if(res.next())
+				return res.getInt("kills");
+			return 0;
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	public int getTotalDeaths(Person p)
+	{
+		String query = "SELECT * FROM playerdata WHERE username = " + p.getPlayer().getName();
+
+		try
+		{
+			ResultSet res = getStatement().executeQuery(query);
+
+			if(res.next())
+				return res.getInt("deaths");
 			return 0;
 		} catch (SQLException e)
 		{

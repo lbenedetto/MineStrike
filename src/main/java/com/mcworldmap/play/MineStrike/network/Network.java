@@ -65,13 +65,9 @@ public class Network
 		int wins = getWins(p);
 		int losses = getLosses(p);
 
-        if(isWin == null)
-            wins+=1;
-        else
-            if(isWin)
-                wins+=1;
-            else
-                losses+=1;
+		if (isWin == null) wins += 1;
+		else if (isWin) wins += 1;
+		else losses += 1;
 
 		PreparedStatement ps = getPreparedStatement(query);
 		try
@@ -80,8 +76,8 @@ public class Network
 			ps.setInt(2, deaths);
 			ps.setInt(3, wins);
 			ps.setInt(4, losses);
-            ps.setString(5, p.getPlayer().getName());
-            ps.executeUpdate();
+			ps.setString(5, p.getPlayer().getName());
+			ps.executeUpdate();
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
@@ -96,11 +92,11 @@ public class Network
 
 		try
 		{
-            PreparedStatement ps =  getPreparedStatement(query);
-            ps.setString(1, p.getPlayer().getName());
+			PreparedStatement ps = getPreparedStatement(query);
+			ps.setString(1, p.getPlayer().getName());
 			ResultSet res = ps.executeQuery();
 
-			if(res.next())
+			if (res.next())
 				return res.getInt("wins");
 			return 0;
 		} catch (SQLException e)
@@ -116,11 +112,11 @@ public class Network
 
 		try
 		{
-            PreparedStatement ps =  getPreparedStatement(query);
-            ps.setString(1, p.getPlayer().getName());
-            ResultSet res = ps.executeQuery();
+			PreparedStatement ps = getPreparedStatement(query);
+			ps.setString(1, p.getPlayer().getName());
+			ResultSet res = ps.executeQuery();
 
-			if(res.next())
+			if (res.next())
 				return res.getInt("kills");
 			return 0;
 		} catch (SQLException e)
@@ -132,15 +128,15 @@ public class Network
 
 	public int getTotalDeaths(Person p)
 	{
-        String query = "SELECT * FROM playerdata WHERE username = ?";
+		String query = "SELECT * FROM playerdata WHERE username = ?";
 
 		try
 		{
-            PreparedStatement ps =  getPreparedStatement(query);
-            ps.setString(1, p.getPlayer().getName());
-            ResultSet res = ps.executeQuery();
+			PreparedStatement ps = getPreparedStatement(query);
+			ps.setString(1, p.getPlayer().getName());
+			ResultSet res = ps.executeQuery();
 
-			if(res.next())
+			if (res.next())
 				return res.getInt("deaths");
 			return 0;
 		} catch (SQLException e)
@@ -152,15 +148,15 @@ public class Network
 
 	public int getLosses(Person p)
 	{
-        String query = "SELECT * FROM playerdata WHERE username = ?";
+		String query = "SELECT * FROM playerdata WHERE username = ?";
 
 		try
 		{
-            PreparedStatement ps =  getPreparedStatement(query);
-            ps.setString(1, p.getPlayer().getName());
-            ResultSet res = ps.executeQuery();
+			PreparedStatement ps = getPreparedStatement(query);
+			ps.setString(1, p.getPlayer().getName());
+			ResultSet res = ps.executeQuery();
 
-			if(res.next())
+			if (res.next())
 				return res.getInt("losses");
 			return 0;
 		} catch (SQLException e)
@@ -194,41 +190,45 @@ public class Network
 		}
 	}
 
-    public boolean doesExist(String playername) {
-        try {
-            PreparedStatement ps = c
-                    .prepareStatement("SELECT * FROM playerdata WHERE username = ?");
-            ps.setString(1, playername);
-            ResultSet res = ps.executeQuery();
-            if (res.next())
-                return true;
+	public boolean doesExist(String playername)
+	{
+		try
+		{
+			PreparedStatement ps = c
+					.prepareStatement("SELECT * FROM playerdata WHERE username = ?");
+			ps.setString(1, playername);
+			ResultSet res = ps.executeQuery();
+			if (res.next())
+				return true;
 
-            return false;
+			return false;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+			return false;
+		}
+	}
 
-    public void createPlayerData(Player player) {
-        if (!doesExist(player.getName()))
-        {
-            String username = player.getName();
-            String query = "INSERT IGNORE INTO playerdata values (?,?,?,?,?)";
-            try
-            {
-                PreparedStatement ps = getPreparedStatement(query);
-                ps.setString(1, username);
-                ps.setInt(2, 0);
-                ps.setInt(3, 0);
-                ps.setInt(4, 0);
-                ps.setInt(5, 0);
-                ps.execute();
-            } catch (SQLException e)
-            {
-                e.printStackTrace();
-            }
-        }
-    }
+	public void createPlayerData(Player player)
+	{
+		if (!doesExist(player.getName()))
+		{
+			String username = player.getName();
+			String query = "INSERT IGNORE INTO playerdata values (?,?,?,?,?)";
+			try
+			{
+				PreparedStatement ps = getPreparedStatement(query);
+				ps.setString(1, username);
+				ps.setInt(2, 0);
+				ps.setInt(3, 0);
+				ps.setInt(4, 0);
+				ps.setInt(5, 0);
+				ps.execute();
+			} catch (SQLException e)
+			{
+				e.printStackTrace();
+			}
+		}
+	}
 }

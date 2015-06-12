@@ -1,6 +1,7 @@
 package com.mcworldmap.play.MineStrike.PlayerData;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
+import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -35,6 +36,9 @@ public class Team
 		CT = new Person[MineStrike.config.getInt("teamsize")];
 		CTscore = 0;
 		Tscore = 0;
+		RoundManager.round = 1;
+		MineStrike.cts = 0;
+		MineStrike.ts = 0;
 	}
 
 	public Person[] getT()

@@ -140,7 +140,7 @@ public class Person
 		ItemStack item = ItemFactory.createItem(itemName);
 		player.getInventory().addItem(item);
 	}
-	
+
 	public void setMoney(int money)
 	{
 		this.money = money;

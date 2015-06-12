@@ -65,9 +65,12 @@ public class Network
 		int wins = getWins(p);
 		int losses = getLosses(p);
 
-		if (isWin == null) wins += 1;
-		else if (isWin) wins += 1;
-		else losses += 1;
+		if (isWin == null)
+            wins += 1;
+		if (isWin.booleanValue())
+            wins += 1;
+		else
+            losses += 1;
 
 		PreparedStatement ps = getPreparedStatement(query);
 		try

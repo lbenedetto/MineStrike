@@ -44,15 +44,12 @@ public class MineStrike extends JavaPlugin
 		config = new Config(getConfig());
 		team = new Team();
 
-		if (getConfig().getBoolean("network.enable"))
-		{
 			//create network.
 			network = new Network(getConfig().getString("network.ip"), getConfig().getString("network.database"), getConfig().getString("network.username"), getConfig().getString("network.password"));
 			//Connect to database
 			network.connect();
 			//Initialize tables
 			network.init();
-		}
 
 		// Determine transparency
 		for (Material material : Material.values())

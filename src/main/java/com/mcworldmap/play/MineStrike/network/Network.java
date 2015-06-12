@@ -26,7 +26,7 @@ public class Network
 
 	public void init()
 	{
-		String query = "CREATE TABLE IF NOT EXISTS playerdata (username VARCHAR(256), kills VARCHAR(256), deaths VARCHAR(256), wins VARCHAR(256), losses VARCHAR(256)";
+		String query = "CREATE TABLE IF NOT EXISTS playerdata (username VARCHAR(256), kills VARCHAR(256), deaths VARCHAR(256), wins VARCHAR(256), losses VARCHAR(256))";
 
 		try
 		{

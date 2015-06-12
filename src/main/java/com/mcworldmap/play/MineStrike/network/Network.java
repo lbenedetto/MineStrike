@@ -55,7 +55,7 @@ public class Network
 		return c;
 	}
 
-	public boolean updatePlayerScore(Person p, boolean isWin)
+	public boolean updatePlayerScore(Person p, boolean isWin, boolean isTie)
 	{
 		String query = "UPDATE playerdata SET kills = ?, deaths = ?, wins = ?, losses = ? WHERE username = ?";
 
@@ -64,10 +64,18 @@ public class Network
 		int wins = getWins(p);
 		int losses = getLosses(p);
 
-		if(isWin)
-			wins+=1;
-		else
-			losses+=1;
+
+        if(isTie)
+        {
+            win+=1;
+        }else
+        {
+            if(isWin)
+                wins+=1;
+            else
+                losses+=1;
+        }
+
 
 		PreparedStatement ps = getPreparedStatement(query);
 		try

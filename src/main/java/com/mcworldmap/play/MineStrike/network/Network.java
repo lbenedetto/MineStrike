@@ -181,20 +181,41 @@ public class Network
 		}
 	}
 
-    public void createPlayerData(Player player)
-    {
-        String username = player.getName();
-        String query = "INSERT IGNORE INTO playerdata values (?,?,?,?,?)";
+    public boolean doesExist(String playername) {
         try {
-            PreparedStatement ps = getPreparedStatement(query);
-            ps.setString(1, username);
-            ps.setInt(2, 0);
-            ps.setInt(3, 0);
-            ps.setInt(4, 0);
-            ps.setInt(5, 0);
-            ps.execute();
+            PreparedStatement ps = c
+                    .prepareStatement("SELECT * FROM playerdata WHERE username = ?");
+            ps.setString(1, playername);
+            ResultSet res = ps.executeQuery();
+            if (res.next())
+                return true;
+
+            return false;
+
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void createPlayerData(Player player) {
+        if (!doesExist(player.getName()))
+        {
+            String username = player.getName();
+            String query = "INSERT IGNORE INTO playerdata values (?,?,?,?,?)";
+            try
+            {
+                PreparedStatement ps = getPreparedStatement(query);
+                ps.setString(1, username);
+                ps.setInt(2, 0);
+                ps.setInt(3, 0);
+                ps.setInt(4, 0);
+                ps.setInt(5, 0);
+                ps.execute();
+            } catch (SQLException e)
+            {
+                e.printStackTrace();
+            }
         }
     }
 }

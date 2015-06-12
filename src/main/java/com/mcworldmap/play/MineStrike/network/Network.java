@@ -192,7 +192,7 @@ public class Network
             ps.setInt(3, 0);
             ps.setInt(4, 0);
             ps.setInt(5, 0);
-            ps.executeUpdate(query);
+            ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }

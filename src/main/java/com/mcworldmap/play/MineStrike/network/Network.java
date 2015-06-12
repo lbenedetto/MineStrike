@@ -76,7 +76,7 @@ public class Network
 			ps.setInt(2, deaths);
 			ps.setInt(3, wins);
 			ps.setInt(4, losses);
-            ps.executeUpdate(query);
+            ps.executeUpdate();
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
@@ -87,11 +87,13 @@ public class Network
 
 	public int getWins(Person p)
 	{
-		String query = "SELECT * FROM playerdata WHERE username = " + p.getPlayer().getName();
+		String query = "SELECT * FROM playerdata WHERE username = ?";
 
 		try
 		{
-			ResultSet res = getStatement().executeQuery(query);
+            PreparedStatement ps =  getPreparedStatement(query);
+            ps.setString(1, p.getPlayer().getName());
+			ResultSet res = ps.executeQuery();
 
 			if(res.next())
 				return res.getInt("wins");
@@ -105,11 +107,13 @@ public class Network
 
 	public int getTotalKills(Person p)
 	{
-		String query = "SELECT * FROM playerdata WHERE username = " + p.getPlayer().getName();
+		String query = "SELECT * FROM playerdata WHERE username = ?";
 
 		try
 		{
-			ResultSet res = getStatement().executeQuery(query);
+            PreparedStatement ps =  getPreparedStatement(query);
+            ps.setString(1, p.getPlayer().getName());
+            ResultSet res = ps.executeQuery();
 
 			if(res.next())
 				return res.getInt("kills");
@@ -123,11 +127,13 @@ public class Network
 
 	public int getTotalDeaths(Person p)
 	{
-		String query = "SELECT * FROM playerdata WHERE username = " + p.getPlayer().getName();
+        String query = "SELECT * FROM playerdata WHERE username = ?";
 
 		try
 		{
-			ResultSet res = getStatement().executeQuery(query);
+            PreparedStatement ps =  getPreparedStatement(query);
+            ps.setString(1, p.getPlayer().getName());
+            ResultSet res = ps.executeQuery();
 
 			if(res.next())
 				return res.getInt("deaths");
@@ -141,11 +147,13 @@ public class Network
 
 	public int getLosses(Person p)
 	{
-		String query = "SELECT * FROM playerdata WHERE username = " + p.getPlayer().getName();
+        String query = "SELECT * FROM playerdata WHERE username = ?";
 
 		try
 		{
-			ResultSet res = getStatement().executeQuery(query);
+            PreparedStatement ps =  getPreparedStatement(query);
+            ps.setString(1, p.getPlayer().getName());
+            ResultSet res = ps.executeQuery();
 
 			if(res.next())
 				return res.getInt("losses");

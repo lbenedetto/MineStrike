@@ -1,6 +1,7 @@
 package com.mcworldmap.play.MineStrike.network;
 
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import org.bukkit.entity.Player;
 
 import java.sql.*;
 
@@ -75,7 +76,7 @@ public class Network
 			ps.setInt(1, deaths);
 			ps.setInt(2, wins);
 			ps.setInt(3, losses);
-
+            ps.executeUpdate(query);
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
@@ -179,4 +180,15 @@ public class Network
 			return null;
 		}
 	}
+
+    public void createPlayerData(Player player)
+    {
+        String username = player.getName();
+        String query = "INSERT INTO playerdata VALUES(" + username + ", 0, 0, 0, 0)";
+        try {
+            getStatement().executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -148,6 +148,7 @@ public class Person
 		this.money = money;
 		if (this.money > 16000)
 			this.money = 16000;
+		updateExpBar();
 	}
 
 	public void addMoney(int money)
@@ -157,6 +158,7 @@ public class Person
 			this.money = 16000;
 		player.sendMessage(ChatColor.GREEN + "+$" + money);
 		player.sendMessage(ChatColor.WHITE + "You now have $" + money);
+		updateExpBar();
 	}
 
 	public Player getPlayer()

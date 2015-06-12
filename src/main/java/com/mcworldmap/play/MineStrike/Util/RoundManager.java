@@ -14,24 +14,28 @@ public class RoundManager
 	{
 		round += 1;
 		int maxrounds = MineStrike.config.getInt("maxrounds");
+		if (winner.equals("CT"))
+			MineStrike.team.CTscore += 1;
+		if (winner.equals("T"))
+			MineStrike.team.Tscore += 1;
 		if (round > maxrounds || (MineStrike.team.CTscore >= maxrounds / 2 && MineStrike.team.Tscore >= maxrounds / 2))
 		{
 			String winMessage = "";
 			if (MineStrike.team.CTscore == MineStrike.team.Tscore)
-				winMessage = "Tie";
+				winMessage = ChatColor.WHITE + "Tie";
 			if (MineStrike.team.Tscore == 1 + (maxrounds / 2))
 				winMessage = ChatColor.GOLD + "Terrorists Win";
 			if (MineStrike.team.CTscore == 1 + (maxrounds / 2))
 				winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
 			for (Person p : MineStrike.team.getT())
 			{
-				MineStrike.getNetwork().updatePlayerScore(p, winner.equalsIgnoreCase("T"));
+				MineStrike.getNetwork().updatePlayerScore(p, booleanifyT(winMessage, p));
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.team.getTMVP().getPlayer().getDisplayName() + " for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}
 			for (Person p : MineStrike.team.getCT())
 			{
-				MineStrike.getNetwork().updatePlayerScore(p, winner.equalsIgnoreCase("CT"));
+				MineStrike.getNetwork().updatePlayerScore(p, booleanifyCT(winMessage, p));
 				Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.team.getCTMVP().getPlayer().getDisplayName() + " for highest score");
 				p.getPlayer().performCommand("scoreboard");
 			}
@@ -50,7 +54,6 @@ public class RoundManager
 			}
 			MineStrike.team.rewardCT(3250);
 			MineStrike.team.rewardT(1400);
-			MineStrike.team.CTscore += 1;
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(round), 200);
 		} else
 		{
@@ -66,11 +69,19 @@ public class RoundManager
 			}
 			MineStrike.team.rewardCT(1400);
 			MineStrike.team.rewardT(3250);
-			MineStrike.team.Tscore += 1;
 			Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(round), 200);
 		}
 	}
-
+	public static Boolean booleanifyT(String s, Person p){
+		if(s.equalsIgnoreCase("Counter-Terrorists Win")) return false;
+		if(s.equalsIgnoreCase("Terrorists Win")) return true;
+		return null;
+	}
+	public static Boolean booleanifyCT(String s, Person p){
+		if(s.equalsIgnoreCase("Counter-Terrorists Win")) return true;
+		if(s.equalsIgnoreCase("Terrorists Win")) return false;
+		return null;
+	}
 	public static String stringify()
 	{
 		String out;

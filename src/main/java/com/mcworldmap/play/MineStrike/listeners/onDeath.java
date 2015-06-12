@@ -63,8 +63,14 @@ public class onDeath implements Listener
 			prey.getPlayer().teleport(MineStrike.config.getLocation("CTBox"));
 		event.setDroppedExp(0);
 		if (MineStrike.team.isTTeamDead())
+		{
 			RoundManager.newRound("CT");
+			return;
+		}
 		if (MineStrike.team.isCTTeamDead())
+		{
 			RoundManager.newRound("T");
+			return;
+		}
 	}
 }

@@ -57,10 +57,8 @@ public class Team
 			{
 				MVP = p;
 				mostKills = p.getRoundKills();
-				Bukkit.getServer().getLogger().info("Player has" + p.getRoundKills());
 			}
 		}
-		Bukkit.getServer().getLogger().info("mostKills =" + mostKills);
 		return MVP;
 	}
 

@@ -67,7 +67,7 @@ public class Network
 
         if(isTie)
         {
-            win+=1;
+            wins+=1;
         }else
         {
             if(isWin)

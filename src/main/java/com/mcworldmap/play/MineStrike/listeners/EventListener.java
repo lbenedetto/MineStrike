@@ -60,7 +60,6 @@ public class EventListener implements Listener
 		}
 	}
 
-
 	@EventHandler
 	public void onCommand(PlayerCommandPreprocessEvent event)
 	{

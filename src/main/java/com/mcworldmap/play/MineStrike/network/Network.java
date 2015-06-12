@@ -71,10 +71,10 @@ public class Network
 		PreparedStatement ps = getPreparedStatement(query);
 		try
 		{
-			ps.setInt(0, kills);
-			ps.setInt(1, deaths);
-			ps.setInt(2, wins);
-			ps.setInt(3, losses);
+			ps.setInt(1, kills);
+			ps.setInt(2, deaths);
+			ps.setInt(3, wins);
+			ps.setInt(4, losses);
 
 		} catch (SQLException e)
 		{

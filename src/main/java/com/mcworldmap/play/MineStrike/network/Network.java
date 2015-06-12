@@ -1,5 +1,6 @@
 package com.mcworldmap.play.MineStrike.network;
 
+import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.entity.Player;
 
@@ -55,7 +56,7 @@ public class Network
 		return c;
 	}
 
-	public boolean updatePlayerScore(Person p, boolean isWin, boolean isTie)
+	public boolean updatePlayerScore(Person p, Boolean isWin)
 	{
 		String query = "UPDATE playerdata SET kills = ?, deaths = ?, wins = ?, losses = ? WHERE username = ?";
 
@@ -64,18 +65,13 @@ public class Network
 		int wins = getWins(p);
 		int losses = getLosses(p);
 
-
-        if(isTie)
-        {
+        if(isWin == null)
             wins+=1;
-        }else
-        {
+        else
             if(isWin)
                 wins+=1;
             else
                 losses+=1;
-        }
-
 
 		PreparedStatement ps = getPreparedStatement(query);
 		try

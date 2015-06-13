@@ -43,13 +43,15 @@ public class CmdJoin implements CommandExecutor
 					MineStrike.team.getT()[MineStrike.ts].setMoney(16000);
 					Util.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
 					MineStrike.ts += 1;
-					sender.sendMessage("Joined Terrorist Team");
+                    MineStrike.canBuy = true;
+                    sender.sendMessage("Joined Terrorist Team");
 				} else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < p.getConfig().getInt("teamsize"))
 				{
 					MineStrike.team.getCT()[MineStrike.cts] = new Person(player);
 					MineStrike.team.getCT()[MineStrike.cts].respawnCT();
 					MineStrike.team.getCT()[MineStrike.cts].setMoney(16000);
 					Util.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
+                    MineStrike.canBuy = true;
 					MineStrike.cts += 1;
 					sender.sendMessage("Joined Counter-Terrorist Team");
 				} else

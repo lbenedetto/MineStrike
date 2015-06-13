@@ -8,6 +8,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class CmdBuy implements CommandExecutor
 {
@@ -33,10 +34,21 @@ public class CmdBuy implements CommandExecutor
 				int price = Item.getItem(args[0].toUpperCase()).getPrice();
 				if (p.getMoney() >= price)
 				{
+                    for(ItemStack i : p.getPlayer().getInventory())
+                    {
+                        String type = Item.getItem(i.getItemMeta().getDisplayName()).getType();
+                        String invType = ChatColor.stripColor(i.getItemMeta().getLore().get(1));
+                        if((type != null && invType != null) && type.equalsIgnoreCase(invType))
+                        {
+                            sender.sendMessage("You can't buy an item of the same class!");
+                            return true;
+                        }
+                    }
 					p.setMoney(p.getMoney() - price);
 					sender.sendMessage(ChatColor.RED + "-$" + price);
 					sender.sendMessage(ChatColor.GREEN + "+" + args[0]);
 					sender.sendMessage("$" + p.getMoney() + " remaining");
+
 					p.creditItem(args[0]);
 				} else
 				{

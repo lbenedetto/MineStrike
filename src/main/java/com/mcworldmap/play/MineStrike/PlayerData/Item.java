@@ -82,6 +82,9 @@ public enum Item
 
 	public static Item getItem(final String name)
 	{
+        if(name == null)
+            return null;
+
 		for (Item item : Item.values())
 			if (item.name().equalsIgnoreCase(ChatColor.stripColor(name)))
 				return item;

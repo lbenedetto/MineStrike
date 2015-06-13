@@ -34,7 +34,7 @@ public class CmdBuy implements CommandExecutor
 				int price = Item.getItem(args[0].toUpperCase()).getPrice();
 				if (p.getMoney() >= price)
 				{
-                    for(ItemStack i : p.getPlayer().getInventory())
+                    for(ItemStack i : p.getPlayer().getInventory().getContents())
                     {
                         if(i == null)
                             continue;

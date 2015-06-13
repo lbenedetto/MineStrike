@@ -138,6 +138,13 @@ public class Team
 		Tscore = CTscore;
 		CTscore = tem;
 		resetMoney();
+		resetInventory();
+	}
+
+	public void resetInventory()
+	{
+		for (Person p : T) p.getPlayer().getInventory().clear();
+		for (Person p : CT) p.getPlayer().getInventory().clear();
 	}
 
 	public void resetMoney()

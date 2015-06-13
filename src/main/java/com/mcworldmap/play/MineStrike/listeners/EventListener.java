@@ -4,6 +4,7 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.DelayArrowRemove;
+import org.apache.commons.lang.ObjectUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -105,9 +106,14 @@ public class EventListener implements Listener
 			Player shooter = (Player) a.getShooter();
 
 			ItemStack itemInHand = shooter.getItemInHand();
-			Item item = Item.getItem(itemInHand.getItemMeta().getDisplayName());
+			try
+			{
+				Item item = Item.getItem(itemInHand.getItemMeta().getDisplayName());
+				((Player) event.getEntity()).damage(item.getDamage(), shooter);
+			}catch(NullPointerException e){
+				Bukkit.getLogger().info("Null pointer: Player switched weapons before getting kill");
+			}
 
-			((Player) event.getEntity()).damage(item.getDamage(), shooter);
 		}
 	}
 

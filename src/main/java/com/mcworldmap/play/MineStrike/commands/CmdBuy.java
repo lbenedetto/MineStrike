@@ -36,6 +36,8 @@ public class CmdBuy implements CommandExecutor
 				{
                     for(ItemStack i : p.getPlayer().getInventory())
                     {
+                        if(i == null)
+                            continue;
                         String type = Item.getItem(i.getItemMeta().getDisplayName()).getType();
                         String invType = ChatColor.stripColor(i.getItemMeta().getLore().get(1));
                         if((type != null && invType != null) && type.equalsIgnoreCase(invType))

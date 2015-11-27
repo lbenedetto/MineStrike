@@ -17,6 +17,7 @@ public class MineStrike extends JavaPlugin {
 
     public static String gamemode = "";
     public static Teams teams;
+    //How many T's and CT's there are in the game
     public static int ts = 0, cts = 0;
     public static Config config;
     public static Set<Integer> transparent = Sets.newHashSet();

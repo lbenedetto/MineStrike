@@ -15,6 +15,12 @@ import java.util.ArrayList;
 
 public class ItemFactory {
 
+    /**
+     * Create a ItemStack based on the name you provided.
+     *
+     * @param name the name of the item
+     * @return a new ItemStack of the correct item
+     */
     public static ItemStack createItem(String name) {
         for (Item item : Item.values()) {
             if (item.name().equalsIgnoreCase(name)) {
@@ -30,7 +36,7 @@ public class ItemFactory {
                     case THELMET:
                         return createCustomArmor(Material.LEATHER_HELMET, name, "Gear", 320, true);
                     case KIT:
-                        return createCustomArmor(Material.SHEARS, name, "Gear", Material.SHEARS.getMaxDurability());
+                        return createCustomItem(Material.SHEARS, name, "Gear", Material.SHEARS.getMaxDurability());
                     case ZEUS:
                         return createCustomGun(Material.BOW, name, "Gear");
                     //endregion
@@ -110,6 +116,14 @@ public class ItemFactory {
         return null;
     }
 
+    /**
+     * Creates a custom gun based on the Material, Name and Type of gun provided.
+     *
+     * @param m    Material that is to be used for the item
+     * @param name The name of the item
+     * @param type The type of weapon that the item is.
+     * @return a new ItemStack of the correct item
+     */
     public static ItemStack createCustomGun(Material m, String name, String type) {
         //This is for guns
         ItemStack i;
@@ -127,6 +141,15 @@ public class ItemFactory {
         return i;
     }
 
+    /**
+     *
+     * @param m The Material that the armor is to be created from
+     * @param name The name of the item
+     * @param type The type of the item
+     * @param durability The durability of the item
+     * @param isT Is the item for Terrorists or Counter Terrorists.
+     * @return
+     */
     public static ItemStack createCustomArmor(Material m, String name, String type, int durability, boolean isT) {
         //This is for armor
         ItemStack i;
@@ -148,8 +171,15 @@ public class ItemFactory {
         return i;
     }
 
-    public static ItemStack createCustomArmor(Material m, String name, String type, int durability) {
-        //This is for armor
+    /**
+     * @param m          The material of the item
+     * @param name       The name of the item
+     * @param type       The type of the item
+     * @param durability The amount of durability it is used to be
+     * @return the itemstack that was created
+     */
+    public static ItemStack createCustomItem(Material m, String name, String type, int durability) {
+        // this is for items..
         ItemStack i;
         ItemMeta im;
         ArrayList<String> loreList;
@@ -165,6 +195,12 @@ public class ItemFactory {
         return i;
     }
 
+    /**
+     *
+     * @param m The type of potion
+     * @param name The name of the potion(Grenade)
+     * @return a new ItemStack of the correct 'Nade
+     */
     public static ItemStack createCustomNade(PotionType m, String name) {
         //This is for nades
         ItemStack i;

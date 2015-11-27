@@ -10,6 +10,7 @@ public enum Item {
     //Grenades
     FRAG(300), DECOY(50), MOLOTOV(400),
     FLASHBANG(200), SMOKE(300), INCENDIARY(600),
+    //Format(Price, ammo, fireRate, range, damage, type)
     //Pistols
     GLOCK(200, 140, .15, 1d, 5, "Pistol"), USP(500, 36, .17, 1d, 6, "Pistol"), P2000(200, 65, .17, 1d, 6, "Pistol"),
     BERETTAS(500, 150, .12, 1d, 7, "Pistol"), P250(300, 39, .15, 1d, 6, "Pistol"), TEC9(500, 144, .12, 1d, 5, "Pistol"),
@@ -35,7 +36,7 @@ public enum Item {
 
     /**
      * @param price    the price of the gun
-     * @param ammo     the ammount of ammo the gun should have
+     * @param ammo     the amount of ammo the gun should have
      * @param fireRate the firerate of the gun
      * @param range    the range of the gun
      * @param damage   the damage the gun deals

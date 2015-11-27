@@ -10,6 +10,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.*;
 
 public class CmdStart implements CommandExecutor {
+    /**
+     * Starts the game
+     *
+     * @return true if ran successfully
+     */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         if (args[0].equalsIgnoreCase("deathmatch")) {
@@ -17,10 +22,12 @@ public class CmdStart implements CommandExecutor {
             return true;
         } else if (args[0].equalsIgnoreCase("competitive")) {
             MineStrike.gamemode = "competitive";
+            //Sets up the ScoreBoard
             ScoreboardManager manager = Bukkit.getScoreboardManager();
             Scoreboard board = manager.getNewScoreboard();
             Team T = board.registerNewTeam("T");
             Team CT = board.registerNewTeam("CT");
+            //Sets up nametags
             T.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
             CT.setNameTagVisibility(NameTagVisibility.HIDE_FOR_OTHER_TEAMS);
             Objective objective = board.registerNewObjective("showhealth", "health");
@@ -30,6 +37,7 @@ public class CmdStart implements CommandExecutor {
                 online.setScoreboard(board);
                 online.setHealth(online.getHealth());
             }
+            //Resets money and schedules next round
             MineStrike.teams.resetMoney();
             Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(1), 1);
             return true;

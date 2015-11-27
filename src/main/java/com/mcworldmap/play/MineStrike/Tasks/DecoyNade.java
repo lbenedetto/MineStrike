@@ -2,7 +2,10 @@ package com.mcworldmap.play.MineStrike.Tasks;
 
 public class DecoyNade implements Runnable
 {
-	@Override
+    /**
+     * nothing.
+     */
+    @Override
 	public void run()
 	{
 

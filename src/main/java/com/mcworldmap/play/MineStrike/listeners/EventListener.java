@@ -10,9 +10,9 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.*;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
@@ -23,6 +23,13 @@ import org.bukkit.util.Vector;
 
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
+
+
+    /**
+     * Modify the speed of which potions are thrown.
+     *
+     * @param event
+     */
     @EventHandler
     public void potionThrowEvent(ProjectileLaunchEvent event) {
         if (event.getEntity() instanceof Firework) {
@@ -36,13 +43,6 @@ public class EventListener implements Listener {
         }
     }
 
-    //	public void entityDamage(EntityDamageByEntityEvent event)
-//	{
-//		if(event.getEntity() instanceof Player && event.getDamager() instanceof Explosion)
-//		{
-//
-//		}
-//	}
     //Despawn arrows faster.
     @EventHandler
     public void projectileHitEvent(ProjectileHitEvent event) {
@@ -51,12 +51,21 @@ public class EventListener implements Listener {
         }
     }
 
+    /**
+     * Create data in the database for the player on login.
+     *
+     * @param event
+     */
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         MineStrike.getNetwork().createPlayerData(event.getPlayer());
     }
 
-
+    /**
+     * Disallow use of the opposing teams shop.
+     *
+     * @param event
+     */
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event) {
         if (!MineStrike.isGameActive)
@@ -73,6 +82,11 @@ public class EventListener implements Listener {
         }
     }
 
+    /**
+     * Disable PVP if the game isnt running.
+     *
+     * @param event
+     */
     @EventHandler
     public void onDamageByPlayer(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Player && !MineStrike.isGameActive) {
@@ -81,7 +95,11 @@ public class EventListener implements Listener {
 
     }
 
-
+    /**
+     * i dont know what this does help
+     *
+     * @param event
+     */
     @EventHandler
     public void customDamage(EntityDamageByEntityEvent event) {
         if (event.getEntity() instanceof Player && event.getDamager() instanceof Arrow && MineStrike.isGameActive) {
@@ -100,6 +118,11 @@ public class EventListener implements Listener {
         }
     }
 
+    /**
+     * disable the extinguishing of fire.
+     *
+     * @param event
+     */
     @EventHandler
     public void onExtinguish(PlayerInteractEvent event) {
 
@@ -118,13 +141,22 @@ public class EventListener implements Listener {
             }
     }
 
-    //Make potions not do stuff
+    /**
+     * Make potions not do stuff
+     *
+     * @param event
+     */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void potionSplashEvent(PotionSplashEvent event) {
         event.getAffectedEntities().stream().filter(ent -> ent instanceof Player).forEach(ent -> event.setIntensity(ent, 0));
 
     }
 
+    /**
+     * disable players being able to move.
+     *
+     * @param event
+     */
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         Location before = event.getFrom();
@@ -137,32 +169,32 @@ public class EventListener implements Listener {
         }
     }
 
-
+    /**
+     * Disable the picking up of items if its an arrow.
+     *
+     * @param event
+     */
     @EventHandler
     public void onPickup(PlayerPickupItemEvent event) {
         if (event.getItem().getItemStack().getType().equals(Material.ARROW))
             event.setCancelled(true);
     }
 
+    /**
+     * Players don't lose hunger.
+     *
+     * @param event
+     */
     @EventHandler
     public void onHunger(FoodLevelChangeEvent event) {
         event.setCancelled(true);
     }
 
-
-//    @EventHandler
-//    public void onDamage(EntityDamageByBlockEvent event)
-//    {
-//        Block b = event.getDamager();
-//        if(b.getType().equals(Material.FIRE) && event.getEntity() instanceof Player)
-//        {
-//            ((Player) event.getEntity()).damage(2);
-//            ((Player) event.getEntity()).getActivePotionEffects().clear();
-//            event.setCancelled(true);
-//        }
-//    }
-
-
+    /**
+     * disable lasting fire damage
+     *
+     * @param event
+     */
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
         if (!MineStrike.isGameActive)
@@ -174,6 +206,11 @@ public class EventListener implements Listener {
         }
     }
 
+    /**
+     * Allow the player to break blocks if they are in creative, otherwise disallow it
+     *
+     * @param event
+     */
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
         if (event.getPlayer().getGameMode().equals(GameMode.CREATIVE))
@@ -181,6 +218,11 @@ public class EventListener implements Listener {
         event.setCancelled(true);
     }
 
+    /**
+     * Disable the ignition of blocks. AKA fire spread
+     *
+     * @param event
+     */
     @EventHandler
     public void onFireSpread(BlockIgniteEvent event) {
         event.setCancelled(true);

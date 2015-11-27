@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 public class CmdGiveMoney implements CommandExecutor
 {
 
-
+	//this is an admin command, it gives the person x amount of dollars.
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args)
 	{

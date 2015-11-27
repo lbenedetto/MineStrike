@@ -75,7 +75,6 @@ public class RoundManager {
         return true;
     }
 
-
     /**
      * Creates a colored string of the current scores
      *

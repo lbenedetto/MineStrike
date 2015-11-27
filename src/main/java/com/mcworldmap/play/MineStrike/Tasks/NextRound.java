@@ -26,11 +26,7 @@ public class NextRound implements Runnable {
         MineStrike.teams.respawnTeams();
         MineStrike.canBuy = true;
         //Display the round information to every player
-        for (Person p : MineStrike.teams.getCT()) {
-            Util.sendTitle(p.getPlayer(), 20, 50, 20, "Round " + rounds, RoundManager.stringify());
-            MineStrike.frozenPlayers.add(p.getPlayer());
-        }
-        for (Person p : MineStrike.teams.getT()) {
+        for(Person p : MineStrike.teams.allPlayers){
             Util.sendTitle(p.getPlayer(), 20, 50, 20, "Round " + rounds, RoundManager.stringify());
             MineStrike.frozenPlayers.add(p.getPlayer());
         }

@@ -27,31 +27,40 @@ public class CmdBuy implements CommandExecutor
 			return true;
 		} else
 		{
-			Person p = MineStrike.teams.findPerson((Player) sender);
+            //Get the Person class and store it in p, and send them the amount of money they have.
+            Person p = MineStrike.teams.findPerson((Player) sender);
 			sender.sendMessage("You have $" + p.getMoney());
-			if (Item.getItem(args[0].toUpperCase()) != null)
+            //only run this if the item exists that they want to buy
+            if (Item.getItem(args[0].toUpperCase()) != null)
 			{
-				int price = Item.getItem(args[0].toUpperCase()).getPrice();
-				if (p.getMoney() >= price)
+                //get the price of the item
+                int price = Item.getItem(args[0].toUpperCase()).getPrice();
+                //if the have enough money to buy it...
+                if (p.getMoney() >= price)
 				{
+                    //loop through their items in their inventory
                     for(ItemStack i : p.getPlayer().getInventory().getContents())
                     {
                         if(i == null)
                             continue;
+                        //get the class of weapon the item is.
                         String type = Item.getItem(i.getItemMeta().getDisplayName()).getType();
                         String invType = ChatColor.stripColor(i.getItemMeta().getLore().get(1));
+                        //if they have a weapon already in that class, dont let them buy it
                         if((type != null && invType != null) && type.equalsIgnoreCase(invType))
                         {
                             sender.sendMessage("You can't buy an item of the same class!");
                             return true;
                         }
                     }
-					p.setMoney(p.getMoney() - price);
+                    //deduct the price of the weapon from their money
+                    p.setMoney(p.getMoney() - price);
 					sender.sendMessage(ChatColor.RED + "-$" + price);
 					sender.sendMessage(ChatColor.GREEN + "+" + args[0]);
 					sender.sendMessage("$" + p.getMoney() + " remaining");
 
-					p.creditItem(args[0]);
+                    //give them the item
+                    p.creditItem(args[0]);
 				} else
 				{
 					sender.sendMessage("You do not have enough money");

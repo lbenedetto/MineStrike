@@ -64,6 +64,9 @@ public class EventListener implements Listener {
         }
     }
 
+    /**
+     * @param event
+     */
     @EventHandler
     public void projectileLaunchEvent(ProjectileLaunchEvent event) {
         Projectile proj = event.getEntity();

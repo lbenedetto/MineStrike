@@ -44,6 +44,7 @@ public class MineStrike extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DespawnArrowsListener(), this);
         getServer().getPluginManager().registerEvents(new OnJoinListener(), this);
         getServer().getPluginManager().registerEvents(new PotionThrowListener(), this);
+        getServer().getPluginManager().registerEvents(new ArrowFire(), this);
         //Register Command Executors
         getCommand("buy").setExecutor(new CmdBuy());
         getCommand("start").setExecutor(new CmdStart());

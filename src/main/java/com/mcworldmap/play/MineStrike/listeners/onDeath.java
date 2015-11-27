@@ -42,42 +42,37 @@ public class onDeath implements Listener {
         Person predatorPerson = MineStrike.teams.findPerson(predator);
         event.getDrops().clear();
         Bukkit.getServer().broadcastMessage(prey.getDisplayName() + " was killed by " + predator.getDisplayName());
-        //If the kill was a suicide, dock their score
         if (predator.getDisplayName().equals(prey.getDisplayName()))
+            //If the kill was a suicide, dock their score
             predatorPerson.setScore(predatorPerson.getScore() - 1);
+        else if (MineStrike.teams.getTeam(predator).equals(MineStrike.teams.getTeam(prey))) {
             //If the kill was a team kill, dock their score, increment their teamkill counter
             //If it exceeds the size of their team, put them in ?jail?
-        else if (MineStrike.teams.getTeam(predator).equals(MineStrike.teams.getTeam(prey))) {
             predatorPerson.setScore(predatorPerson.getScore() - 1);
             predatorPerson.incrementTeamKills();
-
             if (predatorPerson.getTeamKills() >= MineStrike.config.getInt("teamsize")) {
                 //Put player in jail
-
-                //if the player dies by fire, and it was by a players molotov.
-            } else
-                //Else it was a normal PvP kill
-                //Update the appropriate variables
-                updatePlayerVariables(preyPerson, predatorPerson);
-
-        }
-        else if (prey.getLastDamageCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) {
+            }
+        } else if (prey.getLastDamageCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) {
+            //if the player dies by fire, and it was by a players molotov.
             //Get the location of the prey
             Location playerLocation = prey.getLocation();
             //Get the block that the prey is standing on
             Block playerBlock = playerLocation.getBlock();
-
             //Loop through all NadeKillCreditor classes in the killers arraylist
             for (NadeKillCreditor kills : MineStrike.killers) {
                 //Loop through all locations in the getLocations() array list in the kills variable.
                 for (Location location : kills.getLocations()) {
                     if (location.getBlock().equals(playerBlock)) {
-                        //If they are standing on a block of fire created by another player, then update the kills
+                        //If they were standing on a block of fire created by another player, then update the kills
                         updatePlayerVariables(preyPerson, MineStrike.teams.findPerson(kills.getPlayer()));
                     }
                 }
             }
-        }
+        } else
+            //Else it was a normal PvP kill
+            //Update the appropriate variables
+            updatePlayerVariables(preyPerson, predatorPerson);
         //Teleport the killed player to their teams spawnbox
         prey.setHealth(20.0D);
         if (MineStrike.teams.getTeam(prey.getPlayer()).equals("T"))

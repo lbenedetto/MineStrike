@@ -2,9 +2,7 @@ package com.mcworldmap.play.MineStrike.Tasks;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.block.Block;
 
 public class DelayedSmoke implements Runnable {
     World world;

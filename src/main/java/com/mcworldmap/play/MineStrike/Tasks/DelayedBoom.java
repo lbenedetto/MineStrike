@@ -30,12 +30,9 @@ public class DelayedBoom implements Runnable {
         world.createExplosion(loc, 0.0f);
         Collection<Entity> nearExplosion = world.getNearbyEntities(loc, 3, 3, 3);
 
-        for (Entity e : nearExplosion) {
-            if (e instanceof Player) {
-                Player p = (Player) e;
-
-                p.damage(18, damager);
-            }
-        }
+        nearExplosion.stream().filter(e -> e instanceof Player).forEach(e -> {
+            Player p = (Player) e;
+            p.damage(18, damager);
+        });
     }
 }

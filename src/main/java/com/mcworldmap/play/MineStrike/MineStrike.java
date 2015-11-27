@@ -4,6 +4,7 @@ import com.google.common.collect.Sets;
 import com.mcworldmap.play.MineStrike.PlayerData.Config;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.PlayerData.Teams;
+import com.mcworldmap.play.MineStrike.Util.NadeKillCreditor;
 import com.mcworldmap.play.MineStrike.commands.*;
 import com.mcworldmap.play.MineStrike.listeners.*;
 import com.mcworldmap.play.MineStrike.network.Network;
@@ -17,7 +18,6 @@ import java.util.HashMap;
 import java.util.Set;
 
 public class MineStrike extends JavaPlugin {
-
     public static String gamemode = "";
     public static Teams teams;
     //How many T's and CT's there are in the game
@@ -26,6 +26,7 @@ public class MineStrike extends JavaPlugin {
     public static Set<Integer> transparent = Sets.newHashSet();
     public static ArrayList<Player> frozenPlayers = new ArrayList<>();
     public static ArrayList<Player> coolDown = new ArrayList<>();
+    public static ArrayList<NadeKillCreditor> killers = new ArrayList<>();
     public static HashMap<Arrow, Item> launchedProjectiles = new HashMap<>();
     public static boolean isGameActive = false;
     public static boolean canBuy = false;

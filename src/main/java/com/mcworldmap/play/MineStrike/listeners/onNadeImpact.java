@@ -3,6 +3,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Tasks.DelayedBoom;
 import com.mcworldmap.play.MineStrike.Tasks.DelayedFlash;
+import com.mcworldmap.play.MineStrike.Tasks.DelayedSmoke;
 import com.mcworldmap.play.MineStrike.Tasks.FireExtinguish;
 import com.mcworldmap.play.MineStrike.Util.NadeKillCreditor;
 import org.bukkit.*;
@@ -92,6 +93,7 @@ public class onNadeImpact implements Listener {
             }
             //Smoke Grenade
             if (effect.getType().equals(PotionEffectType.SLOW)) {
+                Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedSmoke(w, loc), 20);
                 //TODO: Implement smoke grenade
             }
         }

@@ -14,7 +14,7 @@ public class DelayedBoom implements Runnable {
 
     /**
      * @param world   The world of which the explosion is to occur in
-     * @param loc     The Location fo the explosion
+     * @param loc     The Location of the explosion
      * @param damager The person that triggered this explosion
      */
     public DelayedBoom(World world, Location loc, Entity damager) {
@@ -32,7 +32,7 @@ public class DelayedBoom implements Runnable {
 
         nearExplosion.stream().filter(e -> e instanceof Player).forEach(e -> {
             Player p = (Player) e;
-            p.damage(18, damager);
+            p.damage(15, damager);
         });
     }
 }

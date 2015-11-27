@@ -99,7 +99,7 @@ public class onNadeImpact implements Listener {
                 int z = (int) loc.getZ();
                 for (int ix = -5; ix < 5; ix++)
                     for (int iz = -5; iz < 5; iz++)
-                        if (Math.abs(iz) + Math.abs(ix) <= 5)
+                        if (Math.abs(iz) + Math.abs(ix) <= 6)
                             for (int iy = 0; iy < 4; iy++) {
                                 int checkX = x + ix;
                                 int checkZ = z + iz;

@@ -2,7 +2,7 @@ package com.mcworldmap.play.MineStrike;
 
 import com.google.common.collect.Sets;
 import com.mcworldmap.play.MineStrike.PlayerData.Config;
-import com.mcworldmap.play.MineStrike.PlayerData.Team;
+import com.mcworldmap.play.MineStrike.PlayerData.Teams;
 import com.mcworldmap.play.MineStrike.commands.*;
 import com.mcworldmap.play.MineStrike.listeners.*;
 import com.mcworldmap.play.MineStrike.network.Network;
@@ -16,7 +16,7 @@ import java.util.Set;
 public class MineStrike extends JavaPlugin {
 
     public static String gamemode = "";
-    public static Team teams;
+    public static Teams teams;
     public static int ts = 0, cts = 0;
     public static Config config;
     public static Set<Integer> transparent = Sets.newHashSet();
@@ -46,7 +46,7 @@ public class MineStrike extends JavaPlugin {
         populateConfig();
         saveConfig();
         config = new Config(getConfig());
-        teams = new Team();
+        teams = new Teams();
 
         //create network.
         network = new Network(getConfig().getString("network.ip"), getConfig().getString("network.database"), getConfig().getString("network.username"), getConfig().getString("network.password"));

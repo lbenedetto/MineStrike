@@ -4,13 +4,13 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import org.bukkit.entity.Player;
 
-public class Team {
+public class Teams {
     private Person[] T;
     private Person[] CT;
     public int CTscore;
     public int Tscore;
 
-    public Team() {
+    public Teams() {
         T = new Person[MineStrike.config.getInt("teamsize")];
         CT = new Person[MineStrike.config.getInt("teamsize")];
         CTscore = 0;

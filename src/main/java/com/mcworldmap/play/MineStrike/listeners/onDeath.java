@@ -53,7 +53,7 @@ public class onDeath implements Listener {
             if (predatorPerson.getTeamKills() >= MineStrike.config.getInt("teamsize")) {
                 //Put player in jail
             }
-        } else if (prey.getLastDamageCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) {
+        } else if (prey.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.FIRE) {
             //if the player dies by fire, and it was by a players molotov.
             //Get the location of the prey
             Location playerLocation = prey.getLocation();

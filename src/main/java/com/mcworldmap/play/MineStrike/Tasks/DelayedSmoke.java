@@ -3,7 +3,7 @@ package com.mcworldmap.play.MineStrike.Tasks;
 import org.bukkit.Location;
 import org.bukkit.World;
 
-public class DelayedSmoke {
+public class DelayedSmoke implements Runnable{
     World world;
     Location loc;
 

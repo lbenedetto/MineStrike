@@ -39,31 +39,22 @@ public class Person {
 
     }
 
-    public void respawnT() {
-        Location location = MineStrike.config.getRandTSpawn();
-        player.teleport(location);
-        player.setHealth(player.getMaxHealth());
-        player.setFoodLevel(4);
-        boolean givePistol = true;
-        for (ItemStack item : player.getInventory()) {
-            if (item == null) continue;
-            if (!item.getType().equals(Material.BOW)) continue;
-            Item gun = Item.getItem(item.getItemMeta().getDisplayName());
-            if (gun == null) continue;
-            item.setDurability((short) (item.getType().getMaxDurability() - gun.getAmmo()));
-            if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol"))
-                givePistol = false;
-        }
-        if (givePistol)
-            creditItem("Glock");
-    }
-
-    public void respawnCT() {
+    /**
+     * Resets players for new round
+     * Gives pistol if they don't have one
+     */
+    public void respawnPlayer() {
+        String team = MineStrike.teams.getTeam(getPlayer());
         Location location = MineStrike.config.getRandCTSpawn();
+        if (team.equalsIgnoreCase("T")) {
+            location = MineStrike.config.getRandTSpawn();
+        }
+        //Teleports them to their teams spawn, resets their health and hunger
         player.teleport(location);
         player.setHealth(player.getMaxHealth());
         player.setFoodLevel(4);
         boolean givePistol = true;
+        //Resets ammo, checks  if they have a pistol
         for (ItemStack item : player.getInventory()) {
             if (item == null) continue;
             if (!item.getType().equals(Material.BOW)) continue;
@@ -73,8 +64,11 @@ public class Person {
             if (ChatColor.stripColor(item.getItemMeta().getLore().get(0)).equalsIgnoreCase("Pistol"))
                 givePistol = false;
         }
-        if (givePistol)
-            creditItem("USP");
+        //Gives them a pistol if they don't have one
+        if (givePistol) {
+            if (team.equals("T")) creditItem("USP");
+            if (team.equals("CT")) creditItem("Glock");
+        }
     }
 
     public boolean isAlive() {
@@ -142,6 +136,13 @@ public class Person {
         return player;
     }
 
+    /**
+     * Checks if this person can see a given entity
+     * (Probably doesn't work)
+     *
+     * @param b Entity to check
+     * @return true if can see
+     */
     public boolean canSee(Entity b) {
         // Checking A - B is the same as B - A, so skip those
         if (this.player.getWorld().equals(b.getWorld())) {
@@ -149,23 +150,17 @@ public class Person {
             Location targetAA = b.getLocation().add(-0.5, 0, -0.5);
             Location targetBB = b.getLocation().add(0.5, .5, 0.5);
             int distance = (int) this.player.getLocation().distance(targetAA);
-
             // No need to check this
             if (distance > 120)
                 return false;
-
-            if (getTargetBlock(lookAt(this.player.getLocation(), targetAA), MineStrike.transparent, distance) == null ||
-                    getTargetBlock(lookAt(this.player.getLocation(), targetBB), MineStrike.transparent, distance) == null) {
+            if (getTargetBlock(lookAt(this.player.getLocation(), targetAA), distance) == null ||
+                    getTargetBlock(lookAt(this.player.getLocation(), targetBB), distance) == null) {
                 // All air - we can probably see this player
                 Bukkit.getServer().getLogger().info(this.player.getDisplayName() + " can see " + b);
                 return true;
             }
         }
         return true;
-    }
-
-    public void updateExpBar() {
-        player.setLevel(getMoney());
     }
 
     private Location lookAt(Location loc, Location lookat) {
@@ -193,18 +188,22 @@ public class Person {
         return loc;
     }
 
-    private Block getTargetBlock(Location direction, Set<Integer> transparent, int maxDistance) {
+    private Block getTargetBlock(Location direction, int maxDistance) {
         for (Iterator<Block> it = new BlockIterator(direction, 0, maxDistance); it.hasNext(); ) {
             Block block = it.next();
             int id = block.getTypeId();
 
             // Determine if this is a non-air block
-            if (transparent == null ? id != 0 : !transparent.contains(id)) {
+            if (MineStrike.transparent == null ? id != 0 : !MineStrike.transparent.contains(id)) {
                 return block;
             }
         }
         // No target block found
         return null;
+    }
+
+    public void updateExpBar() {
+        player.setLevel(getMoney());
     }
 
     public int getRoundKills() {

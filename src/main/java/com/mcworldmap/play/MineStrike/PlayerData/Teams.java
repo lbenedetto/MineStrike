@@ -220,7 +220,7 @@ public class Teams {
         for (Person p : T) {
             p.setRoundKills(0);
             p.setAlive(true);
-            p.respawnT();
+            p.respawnPlayer();
         }
     }
 
@@ -231,7 +231,7 @@ public class Teams {
         for (Person p : CT) {
             p.setRoundKills(0);
             p.setAlive(true);
-            p.respawnCT();
+            p.respawnPlayer();
         }
     }
 

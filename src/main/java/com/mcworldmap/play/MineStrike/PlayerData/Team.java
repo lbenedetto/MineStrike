@@ -2,7 +2,6 @@ package com.mcworldmap.play.MineStrike.PlayerData;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class Team {
@@ -90,20 +89,20 @@ public class Team {
     }
 
     public String getTeam(Player player) {
-        for (Person p : MineStrike.team.getCT())
+        for (Person p : MineStrike.teams.getCT())
             if (p != null && p.getPlayer().equals(player))
                 return "CT";
-        for (Person p : MineStrike.team.getT())
+        for (Person p : MineStrike.teams.getT())
             if (p != null && p.getPlayer().equals(player))
                 return "T";
         return "";
     }
 
     public Person findPerson(Player player) {
-        for (Person p : MineStrike.team.getCT())
+        for (Person p : MineStrike.teams.getCT())
             if (p != null && p.getPlayer().equals(player))
                 return p;
-        for (Person p : MineStrike.team.getT())
+        for (Person p : MineStrike.teams.getT())
             if (p != null && p.getPlayer().equals(player))
                 return p;
         return null;

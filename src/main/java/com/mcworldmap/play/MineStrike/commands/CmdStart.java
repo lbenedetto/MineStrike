@@ -30,7 +30,7 @@ public class CmdStart implements CommandExecutor {
                 online.setScoreboard(board);
                 online.setHealth(online.getHealth());
             }
-            MineStrike.team.resetMoney();
+            MineStrike.teams.resetMoney();
             Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(1), 1);
             return true;
         }

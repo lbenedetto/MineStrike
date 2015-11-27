@@ -30,7 +30,7 @@ public class DelayedFlash implements Runnable {
         for (Entity e : nearbyEntities) {
             if (e instanceof Player) {
                 try {
-                    if (MineStrike.team.findPerson((Player) e).canSee(pot)) {
+                    if (MineStrike.teams.findPerson((Player) e).canSee(pot)) {
                         eLoc = e.getLocation();
                         flashLoc = pot.getLocation();
                         eDir = Util.getCardinalDirection((Player) e);

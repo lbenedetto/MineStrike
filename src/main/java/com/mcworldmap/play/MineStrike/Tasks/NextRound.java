@@ -17,16 +17,16 @@ public class NextRound implements Runnable {
     @Override
     public void run() {
         if (rounds == 1 + (MineStrike.config.getInt("maxrounds") / 2)) {
-            MineStrike.team.switchTeams();
+            MineStrike.teams.switchTeams();
         }
-        MineStrike.team.respawnCTTeam();
-        MineStrike.team.respawnTTeam();
+        MineStrike.teams.respawnCTTeam();
+        MineStrike.teams.respawnTTeam();
         MineStrike.canBuy = true;
-        for (Person p : MineStrike.team.getCT()) {
+        for (Person p : MineStrike.teams.getCT()) {
             Util.sendTitle(p.getPlayer(), 20, 50, 20, "Round " + rounds, RoundManager.stringify());
             MineStrike.frozenPlayers.add(p.getPlayer());
         }
-        for (Person p : MineStrike.team.getT()) {
+        for (Person p : MineStrike.teams.getT()) {
             Util.sendTitle(p.getPlayer(), 20, 50, 20, "Round " + rounds, RoundManager.stringify());
             MineStrike.frozenPlayers.add(p.getPlayer());
         }

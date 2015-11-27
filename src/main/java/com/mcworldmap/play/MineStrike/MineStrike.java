@@ -16,7 +16,7 @@ import java.util.Set;
 public class MineStrike extends JavaPlugin {
 
     public static String gamemode = "";
-    public static Team team;
+    public static Team teams;
     public static int ts = 0, cts = 0;
     public static Config config;
     public static Set<Integer> transparent = Sets.newHashSet();
@@ -26,21 +26,27 @@ public class MineStrike extends JavaPlugin {
     public static boolean canBuy = false;
     private static Network network;
 
+    /**
+     * Boot procedures for plugin
+     */
     @Override
     public void onEnable() {
+        //Register event listeners
         getServer().getPluginManager().registerEvents(new EventListener(), this);
         getServer().getPluginManager().registerEvents(new onDeath(), this);
         getServer().getPluginManager().registerEvents(new onNadeImpact(), this);
         getServer().getPluginManager().registerEvents(new ArrowFire(), this);
+        //Register Command Executors
         getCommand("buy").setExecutor(new CmdBuy());
         getCommand("start").setExecutor(new CmdStart());
         getCommand("join").setExecutor(new CmdJoin(this));
         getCommand("scoreboard").setExecutor(new CmdScoreboard());
         getCommand("givemoney").setExecutor(new CmdGiveMoney());
+        //Populate the config with default values and save it
         populateConfig();
         saveConfig();
         config = new Config(getConfig());
-        team = new Team();
+        teams = new Team();
 
         //create network.
         network = new Network(getConfig().getString("network.ip"), getConfig().getString("network.database"), getConfig().getString("network.username"), getConfig().getString("network.password"));
@@ -64,7 +70,7 @@ public class MineStrike extends JavaPlugin {
     }
 
     /**
-     * Adds default values to config before
+     * Adds default values to config
      */
     public void populateConfig() {
         getConfig().options().copyDefaults(true);

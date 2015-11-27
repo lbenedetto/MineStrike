@@ -30,13 +30,13 @@ public class onDeath implements Listener {
         }
         if (e1 instanceof Player)
             predator = (Player) e1;
-        Person preyPerson = MineStrike.team.findPerson(prey);
-        Person predatorPerson = MineStrike.team.findPerson(predator);
+        Person preyPerson = MineStrike.teams.findPerson(prey);
+        Person predatorPerson = MineStrike.teams.findPerson(predator);
         event.getDrops().clear();
         Bukkit.getServer().broadcastMessage(prey.getDisplayName() + " was killed by " + predator.getDisplayName());
         if (predator.getDisplayName().equals(prey.getDisplayName()))
             predatorPerson.setScore(predatorPerson.getScore() - 1);
-        else if (MineStrike.team.getTeam(predator).equals(MineStrike.team.getTeam(prey))) {
+        else if (MineStrike.teams.getTeam(predator).equals(MineStrike.teams.getTeam(prey))) {
             predatorPerson.setScore(predatorPerson.getScore() - 1);
             predatorPerson.incrementTeamKills();
             if (predatorPerson.getTeamKills() >= MineStrike.config.getInt("teamsize")) {
@@ -51,16 +51,16 @@ public class onDeath implements Listener {
             predatorPerson.addMoney(700);
         }
         prey.setHealth(20.0D);
-        if (MineStrike.team.getTeam(prey.getPlayer()).equals("T"))
+        if (MineStrike.teams.getTeam(prey.getPlayer()).equals("T"))
             prey.getPlayer().teleport(MineStrike.config.getLocation("TBox"));
         else
             prey.getPlayer().teleport(MineStrike.config.getLocation("CTBox"));
         event.setDroppedExp(0);
-        if (MineStrike.team.isTTeamDead()) {
+        if (MineStrike.teams.isTTeamDead()) {
             RoundManager.newRound("CT");
             return;
         }
-        if (MineStrike.team.isCTTeamDead()) {
+        if (MineStrike.teams.isCTTeamDead()) {
             RoundManager.newRound("T");
             return;
         }

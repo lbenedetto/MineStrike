@@ -27,7 +27,7 @@ public class CmdBuy implements CommandExecutor
 			return true;
 		} else
 		{
-			Person p = MineStrike.team.findPerson((Player) sender);
+			Person p = MineStrike.teams.findPerson((Player) sender);
 			sender.sendMessage("You have $" + p.getMoney());
 			if (Item.getItem(args[0].toUpperCase()) != null)
 			{

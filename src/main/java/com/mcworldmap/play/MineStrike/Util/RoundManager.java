@@ -70,10 +70,9 @@ public class RoundManager {
      * @param s String of the team name
      * @return Boolean true if T's won, false if CT's won, null if something else
      */
-    public static Boolean booleanify(String s) {
+    public static boolean booleanify(String s) {
         if (s.equalsIgnoreCase("CT")) return false;
-        if (s.equalsIgnoreCase("T")) return true;
-        return null;
+        return true;
     }
 
 

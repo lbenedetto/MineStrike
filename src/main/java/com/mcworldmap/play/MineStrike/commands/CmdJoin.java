@@ -25,7 +25,6 @@ public class CmdJoin implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-
         if (!(sender instanceof Player))
             sender.sendMessage("This command can only be run by a player.");
         if (args.length > 1)
@@ -37,7 +36,6 @@ public class CmdJoin implements CommandExecutor {
             if (MineStrike.teams.findPerson(player) == null) {
                 //Join specified team
                 if (args[0].equalsIgnoreCase("t") && MineStrike.ts < p.getConfig().getInt("teamsize")) {
-
                     MineStrike.teams.getT()[MineStrike.ts] = new Person(player);
                     MineStrike.teams.getT()[MineStrike.ts].respawnPlayer();
                     MineStrike.teams.getT()[MineStrike.ts].setMoney(16000);

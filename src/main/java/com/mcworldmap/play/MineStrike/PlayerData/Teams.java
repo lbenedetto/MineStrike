@@ -4,17 +4,15 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+
 public class Teams {
-    //TODO: Switch to using a single array of all players in the game
-    //What team a person is on should be stored in the player class
-    private Person[] T;
-    private Person[] CT;
+    public Person[] allPlayers;
     public int CTscore;
     public int Tscore;
 
     public Teams() {
-        T = new Person[MineStrike.config.getInt("teamsize")];
-        CT = new Person[MineStrike.config.getInt("teamsize")];
+        allPlayers = new Person[MineStrike.config.getInt("teamsize") * 2];
         CTscore = 0;
         Tscore = 0;
     }
@@ -24,16 +22,11 @@ public class Teams {
      * Teleports players to the pregame spawn location
      */
     public void reset() {
-        for (Person p : T) {
+        for (Person p : allPlayers) {
             p.getPlayer().teleport(MineStrike.config.getLocation("pregameSpawn"));
             p.setTeamKills(0);
         }
-        for (Person p : CT) {
-            p.getPlayer().teleport(MineStrike.config.getLocation("pregameSpawn"));
-            p.setTeamKills(0);
-        }
-        T = new Person[MineStrike.config.getInt("teamsize")];
-        CT = new Person[MineStrike.config.getInt("teamsize")];
+        allPlayers = new Person[MineStrike.config.getInt("teamsize") * 2];
         CTscore = 0;
         Tscore = 0;
         RoundManager.round = 1;
@@ -42,30 +35,16 @@ public class Teams {
     }
 
     /**
-     * @return Person[] Array of Terrorist Person's
-     */
-    public Person[] getT() {
-        return T;
-    }
-
-    /**
-     * @return Person[] Array of Counter-Terrorist Person's
-     */
-    public Person[] getCT() {
-        return CT;
-    }
-
-    /**
-     * Finds person with most round kills on T side
-     * Based on RoundKills
+     * Finds MVP on winning side based on round kills
      *
+     * @param winningTeam String of which team won. T or CT.
      * @return Person
      */
-    public Person getRoundTMVP() {
+    public Person getRoundMVP(String winningTeam) {
         int mostKills = 0;
         Person MVP = null;
-        for (Person p : T) {
-            if (p.getRoundKills() >= mostKills) {
+        for (Person p : allPlayers) {
+            if (p.getRoundKills() >= mostKills && p.getTeam().equals(winningTeam)) {
                 MVP = p;
                 mostKills = p.getRoundKills();
             }
@@ -74,50 +53,16 @@ public class Teams {
     }
 
     /**
-     * Finds person with most round kills on T side
-     * Based on total score
+     * Finds MVP on winning side based on total score
      *
+     * @param winningTeam String of which team won. T or CT.
      * @return Person
      */
-    public Person getGameTMVP() {
+    public Person getGameMVP(String winningTeam) {
         int highScore = 0;
         Person MVP = null;
-        for (Person p : T)
-            if (p.getScore() >= highScore) {
-                MVP = p;
-                highScore = p.getScore();
-            }
-        return MVP;
-    }
-
-    /**
-     * Finds person with most round kills on CT side
-     * Based on RoundKills
-     *
-     * @return Person
-     */
-    public Person getRoundCTMVP() {
-        int mostKills = 0;
-        Person MVP = null;
-        for (Person p : CT)
-            if (p.getRoundKills() >= mostKills) {
-                MVP = p;
-                mostKills = p.getRoundKills();
-            }
-        return MVP;
-    }
-
-    /**
-     * Finds person with most round kills on CT side
-     * Based on total score
-     *
-     * @return Person
-     */
-    public Person getGameCTMVP() {
-        int highScore = 0;
-        Person MVP = null;
-        for (Person p : CT)
-            if (p.getScore() >= highScore) {
+        for (Person p : allPlayers)
+            if (p.getScore() >= highScore && p.getTeam().equals(winningTeam)) {
                 MVP = p;
                 highScore = p.getScore();
             }
@@ -131,12 +76,11 @@ public class Teams {
      * @return String representing which team given player is on
      */
     public String getTeam(Player player) {
-        for (Person p : MineStrike.teams.getCT())
-            if (p != null && p.getPlayer().equals(player))
-                return "CT";
-        for (Person p : MineStrike.teams.getT())
-            if (p != null && p.getPlayer().equals(player))
-                return "T";
+        for (Person p : allPlayers) {
+            if (p != null && p.getPlayer().equals(player)) {
+                return p.getTeam();
+            }
+        }
         return "";
     }
 
@@ -147,10 +91,7 @@ public class Teams {
      * @return Person
      */
     public Person findPerson(Player player) {
-        for (Person p : MineStrike.teams.getCT())
-            if (p != null && p.getPlayer().equals(player))
-                return p;
-        for (Person p : MineStrike.teams.getT())
+        for (Person p : allPlayers)
             if (p != null && p.getPlayer().equals(player))
                 return p;
         return null;
@@ -161,9 +102,11 @@ public class Teams {
      */
     public void switchTeams() {
         //Swap teams
-        Person[] temp = T;
-        T = CT;
-        CT = temp;
+        for (Person p : allPlayers)
+            if (p.getTeam().equals("T"))
+                p.setTeam("CT");
+            else
+                p.setTeam("T");
         //Swap scores
         int tem = Tscore;
         Tscore = CTscore;
@@ -173,44 +116,30 @@ public class Teams {
     }
 
     /**
-     * resets the inventory of both teams
+     * Resets the inventory of both teams
      */
     public void resetInventory() {
-        for (Person p : T) p.getPlayer().getInventory().clear();
-        for (Person p : CT) p.getPlayer().getInventory().clear();
+        for (Person p : allPlayers) p.getPlayer().getInventory().clear();
     }
 
     /**
-     * resets everyones money to starting value
+     * Resets everyones money to starting value
      */
     public void resetMoney() {
-        for (Person p : CT)
-            p.setMoney(800);
-        for (Person p : T)
+        for (Person p : allPlayers)
             p.setMoney(800);
     }
 
     /**
      * Checks if everyone on T side is dead
      *
+     * @param team Team to check if dead CT or T
      * @return boolean true if everyone is dead
      */
-    public boolean isTTeamDead() {
+    public boolean isTeamDead(String team) {
         boolean out = true;
-        for (Person p : T)
-            if (p.isAlive())
-                out = false;
-        return out;
-    }
-
-    /**
-     * Checks if everyone on CT side is dead
-     * @return boolean true if everyone is dead
-     */
-    public boolean isCTTeamDead() {
-        boolean out = true;
-        for (Person p : CT)
-            if (p.isAlive())
+        for (Person p : allPlayers)
+            if (p.isAlive() && p.getTeam().equals(team))
                 out = false;
         return out;
     }
@@ -218,13 +147,8 @@ public class Teams {
     /**
      * Respawns everyone
      */
-    public void respawnTeams(){
-        for (Person p : CT) {
-            p.setRoundKills(0);
-            p.setAlive(true);
-            p.respawnPlayer();
-        }
-        for (Person p : T) {
+    public void respawnTeams() {
+        for (Person p : allPlayers) {
             p.setRoundKills(0);
             p.setAlive(true);
             p.respawnPlayer();
@@ -232,33 +156,14 @@ public class Teams {
     }
 
     /**
-     * Rewards T side with money
-     * @param reward int, how much to give
+     * Rewards a team with money
+     *
+     * @param reward Amount to award
+     * @param team   Team to award money to. T or CT.
      */
-    public void rewardT(int reward) {
-        for (Person p : T)
-            p.addMoney(reward);
-    }
-
-    /**
-     * Rewards CT side with money
-     * @param reward int, how much to give
-     */
-    public void rewardCT(int reward) {
-        for (Person p : CT)
-            p.addMoney(reward);
-    }
-    public Person[] getAllPlayers(){
-        Person[] everyone = new Person[MineStrike.config.getInt("teamsize")*2];
-        int index = 0;
-        for(Person p : CT){
-            everyone[index] = p;
-            index++;
-        }
-        for(Person p : T){
-            everyone[index] = p;
-            index++;
-        }
-        return everyone;
+    public void reward(int reward, String team) {
+        for (Person p : allPlayers)
+            if (p.getTeam().equals(team))
+                p.addMoney(reward);
     }
 }

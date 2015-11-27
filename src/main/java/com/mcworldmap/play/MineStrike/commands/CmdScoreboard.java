@@ -16,11 +16,11 @@ public class CmdScoreboard implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
         sender.sendMessage("State | Name | Money | Kills | Deaths | Score");
         sender.sendMessage("Terrorists:");
-        for (Person p : MineStrike.teams.getT())
-            if (p != null) sender.sendMessage(p.toString());
+        for (Person p : MineStrike.teams.allPlayers)
+            if (p != null && p.getTeam().equals("T")) sender.sendMessage(p.toString());
         sender.sendMessage("Counter-Terrorists:");
-        for (Person p : MineStrike.teams.getCT())
-            if (p != null) sender.sendMessage(p.toString());
+        for (Person p : MineStrike.teams.allPlayers)
+            if (p != null && p.getTeam().equals("T")) sender.sendMessage(p.toString());
         return true;
     }
 }

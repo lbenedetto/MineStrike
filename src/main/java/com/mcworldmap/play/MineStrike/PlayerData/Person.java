@@ -17,10 +17,12 @@ import java.util.Set;
 
 public class Person {
     private int score, roundKills, kills, deaths, money, teamKills;
+    private String team;
     private Player player;
     private boolean alive;
 
-    public Person(Player player) {
+    public Person(Player player, String team) {
+        this.team = team;
         this.player = player;
         this.score = 0;
         this.kills = 0;
@@ -114,6 +116,14 @@ public class Person {
     public void creditItem(String itemName) {
         ItemStack item = ItemFactory.createItem(itemName);
         player.getInventory().addItem(item);
+    }
+
+    public String getTeam() {
+        return team;
+    }
+
+    public void setTeam(String team) {
+        this.team = team;
     }
 
     public void setMoney(int money) {

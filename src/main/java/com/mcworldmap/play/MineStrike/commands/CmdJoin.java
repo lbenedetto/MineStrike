@@ -34,19 +34,20 @@ public class CmdJoin implements CommandExecutor {
         else {
             Player player = (Player) sender;
             if (MineStrike.teams.findPerson(player) == null) {
+                int index = MineStrike.ts + MineStrike.cts;
                 //Join specified team
                 if (args[0].equalsIgnoreCase("t") && MineStrike.ts < p.getConfig().getInt("teamsize")) {
-                    MineStrike.teams.getT()[MineStrike.ts] = new Person(player);
-                    MineStrike.teams.getT()[MineStrike.ts].respawnPlayer();
-                    MineStrike.teams.getT()[MineStrike.ts].setMoney(16000);
+                    MineStrike.teams.allPlayers[index] = new Person(player, "T");
+                    MineStrike.teams.allPlayers[index].respawnPlayer();
+                    MineStrike.teams.allPlayers[index].setMoney(16000);
                     Util.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
                     MineStrike.ts += 1;
                     MineStrike.canBuy = true;
                     sender.sendMessage("Joined Terrorist Team");
                 } else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < p.getConfig().getInt("teamsize")) {
-                    MineStrike.teams.getCT()[MineStrike.cts] = new Person(player);
-                    MineStrike.teams.getCT()[MineStrike.cts].respawnPlayer();
-                    MineStrike.teams.getCT()[MineStrike.cts].setMoney(16000);
+                    MineStrike.teams.allPlayers[index] = new Person(player, "CT");
+                    MineStrike.teams.allPlayers[index].respawnPlayer();
+                    MineStrike.teams.allPlayers[index].setMoney(16000);
                     Util.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
                     MineStrike.canBuy = true;
                     MineStrike.cts += 1;

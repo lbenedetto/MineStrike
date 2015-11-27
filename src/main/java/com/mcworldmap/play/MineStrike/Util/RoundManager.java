@@ -12,6 +12,7 @@ public class RoundManager {
     /**
      * Create a new round, or not depending on the scores
      * Notifies players of the scores
+     *
      * @param winner Who won?
      */
     public static void newRound(String winner) {
@@ -32,30 +33,31 @@ public class RoundManager {
             if (MineStrike.teams.CTscore == 1 + (maxrounds / 2))
                 winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
             //Send out the GG message
-            for (Person p : MineStrike.teams.getAllPlayers()) {
+            for (Person p : MineStrike.teams.allPlayers) {
+                //TODO: booleanify should return true if that players team won
                 MineStrike.getNetwork().updatePlayerScore(p, booleanifyT(ChatColor.stripColor(winMessage)));
-                Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.teams.getGameTMVP().getPlayer().getDisplayName() + " for highest score");
+                Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score");
                 p.getPlayer().performCommand("scoreboard");
             }
             MineStrike.teams.reset();
-        } else if (winner.equals("CT")) {
-            //If the game isn't over and the CT's won
-            for (Person p : MineStrike.teams.getAllPlayers()) {
-                Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.DARK_BLUE + "Counter-Terrorists Win", "MVP: " + MineStrike.teams.getRoundCTMVP().getPlayer().getName() + " for most eliminations");
-                p.getPlayer().performCommand("scoreboard");
-            }
-            MineStrike.teams.rewardCT(3250);
-            MineStrike.teams.rewardT(1400);
-            Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(round), 200);
-
         } else {
-            //If the game isn't over and the CT's won
-            for (Person p : MineStrike.teams.getAllPlayers()) {
-                Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.GOLD + "Terrorists Win", "MVP: " + MineStrike.teams.getRoundTMVP().getPlayer().getName() + " for most eliminations");
-                p.getPlayer().performCommand("scoreboard");
+            if (winner.equals("CT")) {
+                //Game isn't over and the CT's won the round
+                for (Person p : MineStrike.teams.allPlayers) {
+                    Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.DARK_BLUE + "Counter-Terrorists Win", "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations");
+                    p.getPlayer().performCommand("scoreboard");
+                }
+                MineStrike.teams.reward(3250, "CT");
+                MineStrike.teams.reward(1400, "T");
+            } else {
+                //Game isn't over and the T's won the round
+                for (Person p : MineStrike.teams.allPlayers) {
+                    Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.GOLD + "Terrorists Win", "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations");
+                    p.getPlayer().performCommand("scoreboard");
+                }
+                MineStrike.teams.reward(1400, "CT");
+                MineStrike.teams.reward(3250, "T");
             }
-            MineStrike.teams.rewardCT(1400);
-            MineStrike.teams.rewardT(3250);
             Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(round), 200);
         }
     }
@@ -86,6 +88,7 @@ public class RoundManager {
 
     /**
      * Creates a colored string of the current scores
+     *
      * @return String
      */
     public static String stringify() {

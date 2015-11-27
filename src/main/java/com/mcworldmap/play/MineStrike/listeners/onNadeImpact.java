@@ -60,13 +60,13 @@ public class onNadeImpact implements Listener {
                 Bukkit.getLogger().info("Decoy Detected");
                 List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
                 nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
-                w.playEffect(loc, Effect.FOOTSTEP, 1);
+                //w.playEffect(loc, Effect.FOOTSTEP, 1);
                 w.playSound(loc, Sound.ARROW_HIT, 1, 1);
                 w.playSound(loc, Sound.FALL_BIG, 1, 1);
-                w.playEffect(loc, Effect.FOOTSTEP, 1);
+                //w.playEffect(loc, Effect.FOOTSTEP, 1);
                 w.playSound(loc, Sound.ARROW_HIT, 1, 1);
                 w.playSound(loc, Sound.FALL_BIG, 1, 1);
-                w.playEffect(loc, Effect.FOOTSTEP, 1);
+                //w.playEffect(loc, Effect.FOOTSTEP, 1);
                 w.playSound(loc, Sound.ARROW_HIT, 1, 1);
                 w.playSound(loc, Sound.FALL_BIG, 1, 1);
             }

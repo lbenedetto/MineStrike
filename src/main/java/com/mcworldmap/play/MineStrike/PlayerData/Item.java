@@ -33,6 +33,14 @@ public enum Item {
     private double fireRate;
     private String type;
 
+    /**
+     * @param price    the price of the gun
+     * @param ammo     the ammount of ammo the gun should have
+     * @param fireRate the firerate of the gun
+     * @param range    the range of the gun
+     * @param damage   the damage the gun deals
+     * @param type     the type of gun
+     */
     Item(int price, int ammo, double fireRate, double range, int damage, String type) {
 
         this.price = price;

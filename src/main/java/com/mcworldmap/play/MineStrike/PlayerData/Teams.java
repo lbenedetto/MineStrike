@@ -214,21 +214,15 @@ public class Teams {
     }
 
     /**
-     *  Respawns everyone on T side
+     * Respawns everyone
      */
-    public void respawnTTeam() {
-        for (Person p : T) {
+    public void respawnTeams(){
+        for (Person p : CT) {
             p.setRoundKills(0);
             p.setAlive(true);
             p.respawnPlayer();
         }
-    }
-
-    /**
-     * Respawns everyone on CT side
-     */
-    public void respawnCTTeam() {
-        for (Person p : CT) {
+        for (Person p : T) {
             p.setRoundKills(0);
             p.setAlive(true);
             p.respawnPlayer();

@@ -22,31 +22,32 @@ public class DelayedFlash implements Runnable {
     @Override
     public void run() {
         //Flash Player
-        Location eLoc = null;
-        Location flashLoc = null;
-        String eDir = "";
-        String flashDir = "";
-        Location loc = pot.getLocation();
+        Location eLoc;
+        Location flashLoc;
+        String eDir;
         for (Entity e : nearbyEntities) {
             if (e instanceof Player) {
                 try {
+                    //If its possible for the player to see the flashbang
                     if (MineStrike.teams.findPerson((Player) e).canSee(pot)) {
                         eLoc = e.getLocation();
                         flashLoc = pot.getLocation();
                         eDir = Util.getCardinalDirection((Player) e);
+                        //Check if the player actually can see the flashbang
+                        //If they are, flash them
                         if (eLoc.getZ() > flashLoc.getZ()) {
                             if (eDir.equals("North") || eDir.equals("Northwest") || eDir.equals("Northeast")) {
-                                ((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
-                            }
-                        } else if (eLoc.getX() > flashLoc.getX()) {
-                            if (eDir.equals("West") || eDir.equals("Northwest") || eDir.equals("Southwest")) {
                                 ((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
                             }
                         } else if (eLoc.getZ() < flashLoc.getZ()) {
                             if (eDir.equals("South") || eDir.equals("Southeast") || eDir.equals("Southwest")) {
                                 ((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
                             }
-                        } else if (eLoc.getZ() < flashLoc.getZ()) {
+                        } else if (eLoc.getX() > flashLoc.getX()) {
+                            if (eDir.equals("West") || eDir.equals("Northwest") || eDir.equals("Southwest")) {
+                                ((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
+                            }
+                        } else if (eLoc.getX() < flashLoc.getX()) {
                             if (eDir.equals("East") || eDir.equals("Southeast") || eDir.equals("Northeast")) {
                                 ((Player) e).addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
                             }

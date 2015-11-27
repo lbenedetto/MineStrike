@@ -2,13 +2,17 @@ package com.mcworldmap.play.MineStrike.listeners;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import com.mcworldmap.play.MineStrike.Util.NadeKillCreditor;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.block.Block;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 @SuppressWarnings("unused")
@@ -48,16 +52,29 @@ public class onDeath implements Listener {
             predatorPerson.incrementTeamKills();
             if (predatorPerson.getTeamKills() >= MineStrike.config.getInt("teamsize")) {
                 //Put player in jail
-            }
-        } else {
-            //Else it was a normal PvP kill
-            //Update the appropriate variables
-            preyPerson.setDeaths(preyPerson.getDeaths() + 1);
-            preyPerson.setAlive(false);
-            predatorPerson.setKills(predatorPerson.getKills() + 1);
-            predatorPerson.setRoundKills(predatorPerson.getRoundKills() + 1);
-            predatorPerson.setScore(predatorPerson.getScore() + 2);
-            predatorPerson.addMoney(700);
+
+                //if the player dies by fire, and it was by a players molotov.
+            } else if (prey.getLastDamageCause().equals(EntityDamageEvent.DamageCause.FIRE_TICK)) {
+                //Get the location of the prey
+                Location playerLocation = prey.getLocation();
+                //Get the block that the prey is standing on
+                Block playerBlock = playerLocation.getBlock();
+
+                //Loop through all NadeKillCreditor classes in the killers arraylist
+                for (NadeKillCreditor kills : MineStrike.killers) {
+                    //Loop through all locations in the getLocations() array list in the kills variable.
+                    for (Location location : kills.getLocations()) {
+                        if (location.getBlock().equals(playerBlock)) {
+                            //If they are standing on a block of fire created by another player, then update the kills
+                            updatePlayerVariables(preyPerson, MineStrike.teams.findPerson(kills.getPlayer()));
+                        }
+                    }
+                }
+            } else
+                //Else it was a normal PvP kill
+                //Update the appropriate variables
+                updatePlayerVariables(preyPerson, predatorPerson);
+
         }
         //Teleport the killed player to their teams spawnbox
         prey.setHealth(20.0D);
@@ -76,5 +93,14 @@ public class onDeath implements Listener {
             RoundManager.newRound("T");
             return;
         }
+    }
+
+    public void updatePlayerVariables(Person preyPerson, Person predatorPerson) {
+        preyPerson.setDeaths(preyPerson.getDeaths() + 1);
+        preyPerson.setAlive(false);
+        predatorPerson.setKills(predatorPerson.getKills() + 1);
+        predatorPerson.setRoundKills(predatorPerson.getRoundKills() + 1);
+        predatorPerson.setScore(predatorPerson.getScore() + 2);
+        predatorPerson.addMoney(700);
     }
 }

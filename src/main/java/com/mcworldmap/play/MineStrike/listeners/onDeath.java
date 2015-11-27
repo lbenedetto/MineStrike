@@ -62,12 +62,11 @@ public class onDeath implements Listener {
             //Loop through all NadeKillCreditor classes in the killers arraylist
             for (NadeKillCreditor kills : MineStrike.killers) {
                 //Loop through all locations in the getLocations() array list in the kills variable.
-                for (Location location : kills.getLocations()) {
-                    if (location.getBlock().equals(playerBlock)) {
-                        //If they were standing on a block of fire created by another player, then update the kills
-                        updatePlayerVariables(preyPerson, MineStrike.teams.findPerson(kills.getPlayer()));
-                    }
-                }
+                //If they were standing on a block of fire created by another player, then update the kills
+                kills.getLocations().stream().filter(location -> location.getBlock().equals(playerBlock)).forEach(location -> {
+                    //If they were standing on a block of fire created by another player, then update the kills
+                    updatePlayerVariables(preyPerson, MineStrike.teams.findPerson(kills.getPlayer()));
+                });
             }
         } else
             //Else it was a normal PvP kill

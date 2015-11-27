@@ -18,6 +18,13 @@ import java.util.Random;
 
 @SuppressWarnings("unused")
 public class onNadeImpact implements Listener {
+
+
+    /**
+     * This function controls the various effects of grenades, that trigger when the PotionSplashEvent is fired.
+     *
+     * @param event
+     */
     @EventHandler
     public void nadeImpact(PotionSplashEvent event) {
         ThrownPotion pot = event.getPotion();
@@ -33,13 +40,17 @@ public class onNadeImpact implements Listener {
                 nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE, 2, 1));
                 nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.FIRE_IGNITE, 2, 1));
                 int spread;
+
+                //loop through a 4x4 set of blocks and set them to fire.
                 for (int x = -2; x <= 2; x++) {
                     for (int z = -2; z <= 2; z++) {
                         if (loc.getWorld().getBlockAt((int) loc.getX() + x, (int) loc.getY(), (int) loc.getZ() + z).getType().equals(Material.AIR)) {
                             spread = new Random().nextInt(100);
                             if (spread < (100 - (Math.abs(z) + Math.abs(x) * 20))) {
                                 Block block = loc.getWorld().getBlockAt((int) loc.getX() + x, (int) loc.getY(), (int) loc.getZ() + z);
+                                //create a 4x4 square that is set to fire.
                                 block.setType(Material.FIRE);
+                                // create a task that will remove the fire block after a random amount of time, to give an effect of the fire extinguishing.
                                 Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new FireExtinguish(block), (new Random().nextInt(10) + 10) * 20);
                             }
                         }
@@ -48,14 +59,18 @@ public class onNadeImpact implements Listener {
             }
             //HE Grenade
             if (effect.getType().equals(PotionEffectType.HARM)) {
+                //make it go boom after a certain amount of time
                 Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedBoom(w, loc, (Player) pot.getShooter()), 20);
             }
             //Flashbang
             if (effect.getType().equals(PotionEffectType.NIGHT_VISION)) {
                 Bukkit.getLogger().info("Flashbang Detected");
+                //get all nearby entities
                 List<Entity> nearbyEntities = pot.getNearbyEntities(50, 50, 50);
+                //delay the flash bang by x amount
                 Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedFlash(nearbyEntities, pot), 20);
             }
+            //Decoy grenade, all it does is play sounds.
             if (effect.getType().equals(PotionEffectType.JUMP)) {
                 Bukkit.getLogger().info("Decoy Detected");
                 List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
@@ -70,6 +85,7 @@ public class onNadeImpact implements Listener {
                 w.playSound(loc, Sound.ARROW_HIT, 1, 1);
                 w.playSound(loc, Sound.FALL_BIG, 1, 1);
             }
+            //???
             if (effect.getType().equals(PotionEffectType.SLOW)) {
 
             }

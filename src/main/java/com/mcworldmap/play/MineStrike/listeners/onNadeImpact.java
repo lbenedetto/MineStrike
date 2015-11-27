@@ -94,6 +94,21 @@ public class onNadeImpact implements Listener {
             //Smoke Grenade
             if (effect.getType().equals(PotionEffectType.SLOW)) {
                 Bukkit.getLogger().info("Smoke Detected");
+                int x = (int) loc.getX();
+                int y = (int) loc.getY();
+                int z = (int) loc.getZ();
+                for (int ix = -5; ix < 5; ix++)
+                    for (int iz = -5; iz < 5; iz++)
+                        if (Math.abs(iz) + Math.abs(ix) <= 5)
+                            for (int iy = 0; iy < 4; iy++) {
+                                int checkX = x + ix;
+                                int checkZ = z + iz;
+                                int checkY = y + iy;
+                                Block b = w.getBlockAt(checkX, checkY, checkZ);
+                                if (b.getType().equals(Material.FIRE)) {
+                                    b.setType(Material.AIR);
+                                }
+                            }
                 for (int t = 20; t < 380; t+=10)
                     Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedSmoke(w, loc), t);
             }

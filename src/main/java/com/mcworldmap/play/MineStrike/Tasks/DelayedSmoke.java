@@ -32,17 +32,6 @@ public class DelayedSmoke implements Runnable {
         int z = (int) loc.getZ();
         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
                 "particle hugeexplosion " + x + " " + y + " " + z + " 1 1 1 0 10 force");
-        for (int ix = -5; ix < 5; ix++)
-            for (int iz = -5; iz < 5; iz++)
-                if (Math.abs(iz) + Math.abs(ix) <= 5)
-                    for (int iy = 0; iy < 4; iy++) {
-                        int checkX = x + ix;
-                        int checkZ = z + iz;
-                        int checkY = y + iy;
-                        Block b = world.getBlockAt(checkX, checkY, checkZ);
-                        if (b.getType().equals(Material.FIRE)) {
-                            b.setType(Material.AIR);
-                        }
-                    }
+
     }
 }

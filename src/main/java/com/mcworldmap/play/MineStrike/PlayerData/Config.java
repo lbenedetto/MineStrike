@@ -11,6 +11,9 @@ import java.util.Random;
 public class Config {
     public HashMap<String, Object> config = new HashMap<>();
 
+    /**
+     * @param config The configuration file that is used to store this data
+     */
     public Config(FileConfiguration config) {
         World w = Bukkit.getWorld(config.getString("world"));
         //T spawns
@@ -43,6 +46,9 @@ public class Config {
         return (Location) config.get(s);
     }
 
+    /**
+     * @return a Location randomly chosen from the Config that is terrorists
+     */
     public Location getRandTSpawn() {
         Random rg = new Random();
         int randInt = rg.nextInt(5);
@@ -61,6 +67,10 @@ public class Config {
         return null;
     }
 
+
+    /**
+     * @return a Location randomly chosen from the Config that is counter-terrorists
+     */
     public Location getRandCTSpawn() {
         Random rg = new Random();
         int randInt = rg.nextInt(5);

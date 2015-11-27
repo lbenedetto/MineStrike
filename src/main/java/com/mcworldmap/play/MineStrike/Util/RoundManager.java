@@ -34,8 +34,10 @@ public class RoundManager {
                 winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
             //Send out the GG message
             for (Person p : MineStrike.teams.allPlayers) {
-                //TODO: booleanify should return true if that players team won
-                MineStrike.getNetwork().updatePlayerScore(p, booleanifyT(ChatColor.stripColor(winMessage)));
+                if(p.getTeam().equals("T"))
+                    MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
+                if(p.getTeam().equals("CT"))
+                    MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
                 Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score");
                 p.getPlayer().performCommand("scoreboard");
             }
@@ -68,23 +70,12 @@ public class RoundManager {
      * @param s String of the team name
      * @return Boolean true if T's won, false if CT's won, null if something else
      */
-    public static Boolean booleanifyT(String s) {
-        if (s.equalsIgnoreCase("Counter-Terrorists Win")) return false;
-        if (s.equalsIgnoreCase("Terrorists Win")) return true;
+    public static Boolean booleanify(String s) {
+        if (s.equalsIgnoreCase("CT")) return false;
+        if (s.equalsIgnoreCase("T")) return true;
         return null;
     }
 
-    /**
-     * If the terrorists won, return true
-     *
-     * @param s String of the team name
-     * @return Boolean true if T's won, false if CT's won, null if something else
-     */
-    public static Boolean booleanifyCT(String s) {
-        if (s.equalsIgnoreCase("Counter-Terrorists Win")) return true;
-        if (s.equalsIgnoreCase("Terrorists Win")) return false;
-        return null;
-    }
 
     /**
      * Creates a colored string of the current scores

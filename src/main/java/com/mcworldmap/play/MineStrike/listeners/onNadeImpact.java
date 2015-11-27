@@ -93,8 +93,9 @@ public class onNadeImpact implements Listener {
             }
             //Smoke Grenade
             if (effect.getType().equals(PotionEffectType.SLOW)) {
-                Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedSmoke(w, loc), 20);
-                //TODO: Implement smoke grenade
+                Bukkit.getLogger().info("Smoke Detected");
+                for (int t = 20; t < 380; t+=10)
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedSmoke(w, loc), t);
             }
         }
     }

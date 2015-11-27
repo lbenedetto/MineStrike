@@ -14,6 +14,9 @@ public class FireExtinguish implements Runnable {
         //this.extTime = extTime;
     }
 
+    /**
+     * Extinguishes flames at the scheduled block
+     */
     @Override
     public void run() {
         block.setType(Material.AIR);

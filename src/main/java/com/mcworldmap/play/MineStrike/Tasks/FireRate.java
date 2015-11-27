@@ -11,6 +11,9 @@ public class FireRate implements Runnable {
         this.p = p;
     }
 
+    /**
+     * Removes a player from cooldown
+     */
     @Override
     public void run() {
         MineStrike.coolDown.remove(p);

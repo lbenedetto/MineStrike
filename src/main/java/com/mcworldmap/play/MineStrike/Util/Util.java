@@ -84,6 +84,10 @@ public class Util {
         return getDirection(rot);
     }
 
+    /**
+     * @param rot
+     * @return the direction that they are facing
+     */
     private static String getDirection(double rot) {
         if (0 <= rot && rot < 22.5) {
             return "North";
@@ -107,6 +111,7 @@ public class Util {
             return null;
         }
     }
+
 
     public static int getWeaponDamage(Item weapon) {
         return weapon.getDamage();

@@ -20,7 +20,7 @@ public class CmdScoreboard implements CommandExecutor {
             if (p != null && p.getTeam().equals("T")) sender.sendMessage(p.toString());
         sender.sendMessage("Counter-Terrorists:");
         for (Person p : MineStrike.teams.allPlayers)
-            if (p != null && p.getTeam().equals("T")) sender.sendMessage(p.toString());
+            if (p != null && p.getTeam().equals("CT")) sender.sendMessage(p.toString());
         return true;
     }
 }

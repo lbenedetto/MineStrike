@@ -41,7 +41,7 @@ public class onDeath implements Listener {
         Person preyPerson = MineStrike.teams.findPerson(prey);
         Person predatorPerson = MineStrike.teams.findPerson(predator);
         event.getDrops().clear();
-        Bukkit.getServer().broadcastMessage(prey.getDisplayName() + " was killed by " + predator.getDisplayName());
+
         if (predator.getDisplayName().equals(prey.getDisplayName()))
             //If the kill was a suicide, dock their score
             predatorPerson.setScore(predatorPerson.getScore() - 1);
@@ -62,16 +62,19 @@ public class onDeath implements Listener {
             //Loop through all NadeKillCreditor classes in the killers arraylist
             for (NadeKillCreditor kills : MineStrike.killers) {
                 //Loop through all locations in the getLocations() array list in the kills variable.
-                //If they were standing on a block of fire created by another player, then update the kills
-                kills.getLocations().stream().filter(location -> location.getBlock().equals(playerBlock)).forEach(location -> {
-                    //If they were standing on a block of fire created by another player, then update the kills
-                    updatePlayerVariables(preyPerson, MineStrike.teams.findPerson(kills.getPlayer()));
-                });
+                for (Location location : kills.getLocations()) {
+                    if (location.getBlock().equals(playerBlock)) {
+                        //If they were standing on a block of fire created by another player, then update the kills
+                        updatePlayerVariables(preyPerson, MineStrike.teams.findPerson(kills.getPlayer()));
+                        predator = kills.getPlayer();
+                    }
+                }
             }
         } else
             //Else it was a normal PvP kill
             //Update the appropriate variables
             updatePlayerVariables(preyPerson, predatorPerson);
+        Bukkit.getServer().broadcastMessage(prey.getDisplayName() + " was killed by " + predator.getDisplayName());
         //Teleport the killed player to their teams spawnbox
         prey.setHealth(20.0D);
         if (MineStrike.teams.getTeam(prey.getPlayer()).equals("T"))

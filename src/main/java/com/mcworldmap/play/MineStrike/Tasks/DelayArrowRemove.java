@@ -11,6 +11,9 @@ public class DelayArrowRemove implements Runnable {
         this.arrow = arrow;
     }
 
+    /**
+     * remove the arrow
+     */
     @Override
     public void run() {
         arrow.remove();

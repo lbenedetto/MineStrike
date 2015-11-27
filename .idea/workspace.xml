@@ -8,9 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ced0fd70-94ff-46bc-8179-7537c5ed4695" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdBuy.java" afterPath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdBuy.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java" afterPath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdJoin.java" afterPath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdJoin.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onDeath.java" afterPath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onDeath.java" />
     </list>
     <ignored path="CounterCraft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,54 +31,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CmdJoin.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdJoin.java">
+      <file leaf-file-name="onDeath.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onDeath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="94" selection-start-line="26" selection-start-column="94" selection-end-line="26" selection-end-column="94" />
-              <folding>
-                <element signature="e#512#513#0" expanded="true" />
-                <element signature="e#538#539#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CmdGiveMoney.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CmdBuy.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdBuy.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2777778">
-              <caret line="23" column="54" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CmdScoreboard.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdScoreboard.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CmdStart.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdStart.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.12962963">
+              <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -134,8 +89,6 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/ArrowFire.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onDeath.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onNadeImpact.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/network/Network.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Config.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Team.java" />
@@ -158,6 +111,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdJoin.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdBuy.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onNadeImpact.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onDeath.java" />
       </list>
     </option>
   </component>
@@ -386,7 +341,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="listeners" />
+              <option name="myItemId" value="PlayerData" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -416,7 +371,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="commands" />
+              <option name="myItemId" value="listeners" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -719,12 +674,6 @@
       <option name="number" value="Default" />
       <updated>1433359256485</updated>
     </task>
-    <task id="LOCAL-00022" summary="Properly implemented nameplate hiding">
-      <created>1433535580856</created>
-      <option name="number" value="00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1433535580856</updated>
-    </task>
     <task id="LOCAL-00023" summary="Fixed crash if /start is passed non existant gamemode">
       <created>1433622835489</created>
       <option name="number" value="00023" />
@@ -1013,7 +962,13 @@
       <option name="project" value="LOCAL" />
       <updated>1448650444781</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Changed formatting in some commands">
+      <created>1448650641614</created>
+      <option name="number" value="00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1448650641614</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1068,7 +1023,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="Flashbang now crashes server????" />
     <MESSAGE value="try catch" />
     <MESSAGE value="Separated event listener into multiple classes&#10;Changed /join command; players are now teleported to the map for warmup&#10;Removed unecessary imports" />
     <MESSAGE value="A potential fix for nameplate visibility&#10;Also, added player health under their nameplate" />
@@ -1093,7 +1047,8 @@
     <MESSAGE value="Added JavaDocs to Team.java" />
     <MESSAGE value="Condensed respawnT and respawnCT into respawnPlayer" />
     <MESSAGE value="Added Javadocs for a few commands" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Javadocs for a few commands" />
+    <MESSAGE value="Changed formatting in some commands" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed formatting in some commands" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1296,30 +1251,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/ArrowFire.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onDeath.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onNadeImpact.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="111" selection-start-line="37" selection-start-column="111" selection-end-line="37" selection-end-column="111" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Teams.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1349,7 +1280,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1452,17 +1383,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42592594">
-          <caret line="48" column="41" selection-start-line="48" selection-start-column="41" selection-end-line="48" selection-end-column="41" />
-          <folding>
-            <element signature="e#6366#6367#0" expanded="true" />
-            <element signature="e#6409#6410#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/MineStrike.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1497,17 +1417,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdJoin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="94" selection-start-line="26" selection-start-column="94" selection-end-line="26" selection-end-column="94" />
-          <folding>
-            <element signature="e#512#513#0" expanded="true" />
-            <element signature="e#538#539#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1520,6 +1429,51 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2777778">
           <caret line="23" column="54" selection-start-line="23" selection-start-column="54" selection-end-line="23" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdJoin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.33333334">
+          <caret line="26" column="94" selection-start-line="26" selection-start-column="94" selection-end-line="26" selection-end-column="94" />
+          <folding>
+            <element signature="e#512#513#0" expanded="false" />
+            <element signature="e#538#539#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/ArrowFire.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onNadeImpact.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
+          <folding>
+            <element signature="e#589#616#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3148148">
+          <caret line="197" column="29" selection-start-line="197" selection-start-column="29" selection-end-line="197" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onDeath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12962963">
+          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
           <folding />
         </state>
       </provider>

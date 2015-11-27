@@ -5,6 +5,8 @@ import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import org.bukkit.entity.Player;
 
 public class Teams {
+    //TODO: Switch to using a single array of all players in the game
+    //What team a person is on should be stored in the player class
     private Person[] T;
     private Person[] CT;
     public int CTscore;
@@ -245,5 +247,18 @@ public class Teams {
     public void rewardCT(int reward) {
         for (Person p : CT)
             p.addMoney(reward);
+    }
+    public Person[] getAllPlayers(){
+        Person[] everyone = new Person[MineStrike.config.getInt("teamsize")*2];
+        int index = 0;
+        for(Person p : CT){
+            everyone[index] = p;
+            index++;
+        }
+        for(Person p : T){
+            everyone[index] = p;
+            index++;
+        }
+        return everyone;
     }
 }

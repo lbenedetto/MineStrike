@@ -8,7 +8,7 @@ public class DecoyNade implements Runnable
     @Override
 	public void run()
 	{
-
+		//TODO: Implment decoy nades
 	}
 }
 

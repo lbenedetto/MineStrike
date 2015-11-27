@@ -2,15 +2,18 @@ package com.mcworldmap.play.MineStrike;
 
 import com.google.common.collect.Sets;
 import com.mcworldmap.play.MineStrike.PlayerData.Config;
+import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.PlayerData.Teams;
 import com.mcworldmap.play.MineStrike.commands.*;
 import com.mcworldmap.play.MineStrike.listeners.*;
 import com.mcworldmap.play.MineStrike.network.Network;
 import org.bukkit.Material;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Set;
 
 public class MineStrike extends JavaPlugin {
@@ -23,6 +26,7 @@ public class MineStrike extends JavaPlugin {
     public static Set<Integer> transparent = Sets.newHashSet();
     public static ArrayList<Player> frozenPlayers = new ArrayList<>();
     public static ArrayList<Player> coolDown = new ArrayList<>();
+    public static HashMap<Arrow, Item> launchedProjectiles = new HashMap<>();
     public static boolean isGameActive = false;
     public static boolean canBuy = false;
     private static Network network;
@@ -36,7 +40,10 @@ public class MineStrike extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EventListener(), this);
         getServer().getPluginManager().registerEvents(new onDeath(), this);
         getServer().getPluginManager().registerEvents(new onNadeImpact(), this);
-        getServer().getPluginManager().registerEvents(new ArrowFire(), this);
+        getServer().getPluginManager().registerEvents(new CommandListener(), this);
+        getServer().getPluginManager().registerEvents(new DespawnArrowsListener(), this);
+        getServer().getPluginManager().registerEvents(new OnJoinListener(), this);
+        getServer().getPluginManager().registerEvents(new PotionThrowListener(), this);
         //Register Command Executors
         getCommand("buy").setExecutor(new CmdBuy());
         getCommand("start").setExecutor(new CmdStart());

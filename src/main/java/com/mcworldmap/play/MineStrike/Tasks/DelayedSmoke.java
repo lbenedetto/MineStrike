@@ -27,6 +27,6 @@ public class DelayedSmoke implements Runnable {
         int y = (int) loc.getY();
         int z = (int) loc.getZ();
         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                "particle hugeexplosion" + x + " " + y + " " + z + "2 2 2 0 10 force");
+                "particle hugeexplosion " + x + " " + y + " " + z + " 1 1 1 0 10 force");
     }
 }

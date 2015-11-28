@@ -148,7 +148,7 @@ public class Teams {
      */
     public void respawnTeams() {
         boolean bombGiven = false;
-        String giveBomb = Util.randomIntGuaranteed(1 / 5);
+        String giveBomb = Util.randomIntGuaranteed(1 / MineStrike.config.getInt("teamsize"));
         int counter = 0;
         for (Person p : allPlayers) {
             p.setRoundKills(0);

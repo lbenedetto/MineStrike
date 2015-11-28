@@ -25,9 +25,5 @@ public class NadeKillCreditor {
     public ArrayList<Location> getLocations() {
         return locations;
     }
-
-    public void setLocations(ArrayList<Location> locations) {
-        this.locations = locations;
-    }
 }
 

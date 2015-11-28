@@ -16,14 +16,20 @@ public class RoundManager {
      * @param winner Who won?
      */
     public static void newRound(String winner) {
+        //TODO: Clear drops at end of round
         round += 1;
         int maxrounds = MineStrike.config.getInt("maxrounds");
         if (winner.equals("CT"))
             MineStrike.teams.CTscore += 1;
         if (winner.equals("T"))
             MineStrike.teams.Tscore += 1;
+        boolean didSomeoneWin = false;
+        if (MineStrike.teams.Tscore == 1 + (maxrounds / 2)) didSomeoneWin = true;
+        if (MineStrike.teams.CTscore == 1 + (maxrounds / 2)) didSomeoneWin = true;
+        boolean isTie = MineStrike.teams.CTscore >= maxrounds / 2 && MineStrike.teams.Tscore >= maxrounds / 2;
         //If the game is over
-        if (round > maxrounds || (MineStrike.teams.CTscore >= maxrounds / 2 && MineStrike.teams.Tscore >= maxrounds / 2)) {
+        if (round > maxrounds || isTie || didSomeoneWin) {
+            Bukkit.getLogger().info("GG detected");
             //Build the components of the GG message
             String winMessage = "";
             if (MineStrike.teams.CTscore == MineStrike.teams.Tscore)
@@ -34,10 +40,10 @@ public class RoundManager {
                 winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
             //Send out the GG message
             for (Person p : MineStrike.teams.allPlayers) {
-                if(p.getTeam().equals("T"))
-                    MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
-                if(p.getTeam().equals("CT"))
-                    MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
+                //if (p.getTeam().equals("T"))
+                    //MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
+                //if (p.getTeam().equals("CT"))
+                    //MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
                 Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score");
                 p.getPlayer().performCommand("scoreboard");
             }
@@ -68,11 +74,10 @@ public class RoundManager {
      * If the terrorists won, return true
      *
      * @param s String of the team name
-     * @return Boolean true if T's won, false if CT's won, null if something else
+     * @return Boolean true if T's won, false if CT's won
      */
     public static boolean booleanify(String s) {
-        if (s.equalsIgnoreCase("CT")) return false;
-        return true;
+        return !s.equalsIgnoreCase("CT");
     }
 
     /**

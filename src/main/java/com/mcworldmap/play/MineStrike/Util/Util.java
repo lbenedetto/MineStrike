@@ -85,8 +85,8 @@ public class Util {
     }
 
     /**
-     * @param rot
-     * @return the direction that they are facing
+     * @param rot The players rotation
+     * @return The cardinal direction that they are facing as a String
      */
     private static String getDirection(double rot) {
         if (0 <= rot && rot < 22.5) {
@@ -115,5 +115,27 @@ public class Util {
 
     public static int getWeaponDamage(Item weapon) {
         return weapon.getDamage();
+    }
+
+    public static int randomInt(double odds) {
+        if (Math.random() < odds) {
+            return 1;
+        }
+        return 0;
+    }
+
+    /**
+     * (
+     * A string of 1's and 0's with guaranteed at least one 1.
+     *
+     * @return A string 5 chars long
+     */
+    public static String randomIntGuaranteed(double odds) {
+        String out = "";
+        for (int x = 0; x < 5; x++) {
+            out += randomInt(odds);
+        }
+        if(out.contains("1"))return out;
+        return randomIntGuaranteed(odds);
     }
 }

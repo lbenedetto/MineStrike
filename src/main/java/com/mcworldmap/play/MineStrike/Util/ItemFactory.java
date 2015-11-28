@@ -21,9 +21,10 @@ public class ItemFactory {
      * @param name the name of the item
      * @return a new ItemStack of the correct item
      */
-    public static ItemStack createItem(String name) {
+    public static ItemStack createItem(String owner, String name) {
         for (Item item : Item.values()) {
             if (item.name().equalsIgnoreCase(name)) {
+                name = owner + "'s "+ name;
                 switch (item) {
                     //TODO:Balance values
                     //region Gear
@@ -39,6 +40,8 @@ public class ItemFactory {
                         return createCustomItem(Material.SHEARS, name, "Gear", Material.SHEARS.getMaxDurability());
                     case ZEUS:
                         return createCustomGun(Material.BOW, name, "Gear");
+                    case BOMB:
+                        return createCustomItem(Material.TNT, name, "Gear", 0);
                     //endregion
                     //region Grenades
                     case FRAG:
@@ -150,7 +153,7 @@ public class ItemFactory {
      * @param type The type of the item
      * @param durability The durability of the item
      * @param isT Is the item for Terrorists or Counter Terrorists.
-     * @return
+     * @return The ItemStack that was created
      */
     public static ItemStack createCustomArmor(Material m, String name, String type, int durability, boolean isT) {
         //This is for armor
@@ -178,7 +181,7 @@ public class ItemFactory {
      * @param name       The name of the item
      * @param type       The type of the item
      * @param durability The amount of durability it is used to be
-     * @return the itemstack that was created
+     * @return the ItemStack that was created
      */
     public static ItemStack createCustomItem(Material m, String name, String type, int durability) {
         // this is for items..

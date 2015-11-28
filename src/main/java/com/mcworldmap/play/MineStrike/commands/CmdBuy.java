@@ -57,7 +57,7 @@ public class CmdBuy implements CommandExecutor {
                     sender.sendMessage("$" + p.getMoney() + " remaining");
 
                     //give them the item
-                    p.creditItem(args[0]);
+                    p.creditItem(p.getPlayer().getDisplayName(), args[0]);
                 } else {
                     sender.sendMessage("You do not have enough money");
                 }

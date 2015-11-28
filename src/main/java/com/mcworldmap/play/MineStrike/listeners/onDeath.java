@@ -50,7 +50,7 @@ public class onDeath implements Listener {
             //If it exceeds the size of their team, put them in ?jail?
             predatorPerson.setScore(predatorPerson.getScore() - 1);
             predatorPerson.incrementTeamKills();
-            if (predatorPerson.getTeamKills() >= MineStrike.config.getInt("teamsize")) {
+            if (predatorPerson.getTeamKills() >= MineStrike.config.getInt("maxTeamKills")) {
                 //Put player in jail
             }
         } else if (prey.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.FIRE) {

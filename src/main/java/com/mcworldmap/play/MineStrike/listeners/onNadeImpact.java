@@ -5,10 +5,7 @@ import com.mcworldmap.play.MineStrike.Tasks.*;
 import com.mcworldmap.play.MineStrike.Util.NadeKillCreditor;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.ThrownPotion;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PotionSplashEvent;
@@ -91,9 +88,12 @@ public class onNadeImpact implements Listener {
                 List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
                 nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
                 //random bow shoot sounds in the vicinity of where the grenade landed for about 30ish seconds
-                for (int t = 20; t < 600; t += ThreadLocalRandom.current().nextInt(10, 30 + 1))
+                for (int t = 20; t < 600; t += ThreadLocalRandom.current().nextInt(10, 30 + 1)) {
                     Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"),
-                            new DelayedSound(w, loc, pot), t);
+                            new DelayedSound(w, loc, pot, Sound.SHOOT_ARROW), t);
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"),
+                            new DelayedSound(w, loc, pot, Sound.ARROW_HIT), t+ThreadLocalRandom.current().nextInt(10, 40 + 1));
+                }
             }
             //Smoke Grenade
             if (effect.getType().equals(PotionEffectType.SLOW)) {
@@ -109,8 +109,9 @@ public class onNadeImpact implements Listener {
                                 int checkZ = z + iz;
                                 int checkY = y + iy;
                                 Block b = w.getBlockAt(checkX, checkY, checkZ);
-                                if (b.getType().equals(Material.FIRE))
+                                if (b.getType().equals(Material.FIRE)) {
                                     b.setType(Material.AIR);
+                                }
                             }
                 for (int t = 20; t < 380; t += 10)
                     Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"),

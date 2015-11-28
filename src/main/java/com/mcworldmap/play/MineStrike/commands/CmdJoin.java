@@ -38,7 +38,7 @@ public class CmdJoin implements CommandExecutor {
                 //Join specified team
                 if (args[0].equalsIgnoreCase("t") && MineStrike.ts < p.getConfig().getInt("teamsize")) {
                     MineStrike.teams.allPlayers[index] = new Person(player, "T");
-                    MineStrike.teams.allPlayers[index].respawnPlayer();
+                    MineStrike.teams.allPlayers[index].respawnPlayer(false);
                     MineStrike.teams.allPlayers[index].setMoney(16000);
                     Util.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
                     MineStrike.ts += 1;
@@ -46,7 +46,7 @@ public class CmdJoin implements CommandExecutor {
                     sender.sendMessage("Joined Terrorist Team");
                 } else if (args[0].equalsIgnoreCase("ct") && MineStrike.cts < p.getConfig().getInt("teamsize")) {
                     MineStrike.teams.allPlayers[index] = new Person(player, "CT");
-                    MineStrike.teams.allPlayers[index].respawnPlayer();
+                    MineStrike.teams.allPlayers[index].respawnPlayer(false);
                     MineStrike.teams.allPlayers[index].setMoney(16000);
                     Util.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
                     MineStrike.canBuy = true;

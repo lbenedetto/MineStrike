@@ -6,7 +6,8 @@ public enum Item {
     //Gear
     CTKEVLAR(650), CTHELMET(350),
     TKEVLAR(650), THELMET(350),
-    KIT(400), ZEUS(400, 1, 1, .2, 100, "Kit"),
+    KIT(400), ZEUS(400, 1, 1, .5, 100, "Kit"),
+    BOMB(0),
     //Grenades
     FRAG(300), DECOY(50), MOLOTOV(400),
     FLASHBANG(200), SMOKE(300), INCENDIARY(600),
@@ -24,7 +25,7 @@ public enum Item {
     //Rifles
     FAMAS(2250, 115, .1, 1.5, 2, "Rifle"), GALIL(2000, 125, .1, 1.5, 2, "Rifle"), AK47(2700, 120, .1, 1.5, 2, "Rifle"),
     M4A1S(2700, 60, .1, 1.5, 2, "Rifle"), SSG(1700, 100, 2, 2, 17, "Sniper-Rifle"), AUG(3300, 120, .1, 1.5, 2, "Rifle"),
-    SG(3000, 120, .1, 1.5, 2, "Sniper-Rifle"), AWP(4750, 40, 2, 10, 20, "Sniper-Rifle"),
+    SG(3000, 120, .1, 1.5, 2, "Sniper-Rifle"), AWP(4750, 40, 2, 10, 25, "Sniper-Rifle"),
     G3SG1(5000, 110, .25, 10, 18, "Sniper-Rifle"), SCAR20(5000, 110, .25, 10, 18, "Sniper-Rifle");
     //TODO:Maybe load stats from config instead?
     private int price;

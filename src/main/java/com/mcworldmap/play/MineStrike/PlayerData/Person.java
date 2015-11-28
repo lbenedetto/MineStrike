@@ -68,8 +68,8 @@ public class Person {
         }
         //Gives them a pistol if they don't have one
         if (givePistol) {
-            if (team.equals("T")) creditItem("USP");
-            if (team.equals("CT")) creditItem("Glock");
+            if (team.equals("CT")) creditItem("USP");
+            if (team.equals("T")) creditItem("Glock");
         }
     }
 

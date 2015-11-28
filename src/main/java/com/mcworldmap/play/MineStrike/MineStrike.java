@@ -92,13 +92,13 @@ public class MineStrike extends JavaPlugin {
 
         //Storage
         getConfig().addDefault("network.username", "root");
-        getConfig().addDefault("network.password", "password");
+        getConfig().addDefault("network.password", "");
         getConfig().addDefault("network.ip", "localhost");
         getConfig().addDefault("network.database", "minestrike");
         getConfig().addDefault("network.enable", "true");
 
         getConfig().addDefault("maxrounds", 4);
-        getConfig().addDefault("teamsize", 2);
+        getConfig().addDefault("teamsize", 1);
         getConfig().addDefault("maxTeamKills", 3);
         getConfig().addDefault("world", "de_dust2");
         getConfig().addDefault("pregameSpawn.x", -33);

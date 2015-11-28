@@ -58,6 +58,7 @@ public class CmdJoin implements CommandExecutor {
                 }
                 //If both teams full, start the game
                 if (MineStrike.cts == p.getConfig().getInt("teamsize") && MineStrike.ts == p.getConfig().getInt("teamsize")) {
+                    Bukkit.getLogger().info("Starting game");
                     MineStrike.teams.resetInventory();
                     Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "start competitive");
                     MineStrike.isGameActive = true;

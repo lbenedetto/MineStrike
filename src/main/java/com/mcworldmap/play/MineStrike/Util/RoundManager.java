@@ -40,10 +40,10 @@ public class RoundManager {
                 winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
             //Send out the GG message
             for (Person p : MineStrike.teams.allPlayers) {
-                //if (p.getTeam().equals("T"))
-                    //MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
-                //if (p.getTeam().equals("CT"))
-                    //MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
+                if (p.getTeam().equals("T"))
+                    MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
+                if (p.getTeam().equals("CT"))
+                    MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
                 Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score");
                 p.getPlayer().performCommand("scoreboard");
             }

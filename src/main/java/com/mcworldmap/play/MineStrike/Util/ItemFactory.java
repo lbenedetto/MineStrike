@@ -24,7 +24,7 @@ public class ItemFactory {
     public static ItemStack createItem(String owner, String name) {
         for (Item item : Item.values()) {
             if (item.name().equalsIgnoreCase(name)) {
-                name = owner + "'s "+ name;
+                name = ChatColor.stripColor(owner) + "'s "+ name;
                 switch (item) {
                     //TODO:Balance values
                     //region Gear

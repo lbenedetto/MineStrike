@@ -1,6 +1,7 @@
 package com.mcworldmap.play.MineStrike.commands;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
+import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.NextRound;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -17,6 +18,10 @@ public class CmdStart implements CommandExecutor {
      */
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
+        for(Person p : MineStrike.teams.allPlayers){
+            Bukkit.getLogger().info("Tried to start game with partially filled teams");
+            if(p==null)return false;
+        }
         if (args[0].equalsIgnoreCase("deathmatch")) {
             MineStrike.gamemode = "deathmatch";
             return true;

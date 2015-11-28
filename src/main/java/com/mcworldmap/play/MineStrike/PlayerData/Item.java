@@ -84,7 +84,11 @@ public enum Item {
     public static Item getItem(String name) {
         if (name == null)
             return null;
+        try {
+            name = name.split(" ")[1];
+        }catch(ArrayIndexOutOfBoundsException e){
 
+        }
         for (Item item : Item.values())
             if (item.name().equalsIgnoreCase(ChatColor.stripColor(name)))
                 return item;

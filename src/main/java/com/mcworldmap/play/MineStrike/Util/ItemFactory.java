@@ -51,6 +51,8 @@ public class ItemFactory {
                         return createCustomNade(PotionType.NIGHT_VISION, name);
                     case DECOY:
                         return createCustomNade(PotionType.JUMP, name);
+                    case SMOKE:
+                        return createCustomNade(PotionType.SLOWNESS, name);
                     //endregion
                     //region Pistols
                     case GLOCK:

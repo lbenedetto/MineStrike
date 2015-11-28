@@ -81,7 +81,7 @@ public enum Item {
         return type;
     }
 
-    public static Item getItem(final String name) {
+    public static Item getItem(String name) {
         if (name == null)
             return null;
 

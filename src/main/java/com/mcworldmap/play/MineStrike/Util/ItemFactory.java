@@ -142,7 +142,7 @@ public class ItemFactory {
         loreList.add(ChatColor.DARK_AQUA + name);
         im.setLore(loreList);
         i.setItemMeta(im);
-        i.setDurability((short) (i.getType().getMaxDurability() - Item.getItem(name).getAmmo()));
+        i.setDurability((short) (i.getType().getMaxDurability() - Item.getItem(name.split(" ")[1]).getAmmo()));
         return i;
     }
 

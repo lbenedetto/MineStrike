@@ -62,15 +62,17 @@ public class BombListener implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-        Location to = event.getTo();
-        Location from = event.getFrom();
-        if (to.equals(from)) {
+//        Location to = event.getTo();
+//        Location from = event.getFrom();
+//        if (to.equals(from)) {
+//            return;
+//        }
+        if (event.getFrom().getBlockX() == event.getTo().getBlockX() && event.getFrom().getBlockZ() == event.getTo().getBlockZ() && event.getFrom().getBlockY() == event.getTo().getBlockY())
             return;
-        }
-        if (MineStrike.isGameActive) {
+        if (MineStrike.isGameActive && MineStrike.bombDiffusing) {
             Person person = MineStrike.teams.findPerson(event.getPlayer());
 
-            if (MineStrike.diffuser != null && person.equals(MineStrike.diffuser)) {
+            if (person != null && MineStrike.diffuser != null && person.equals(MineStrike.diffuser)) {
                 MineStrike.bombDiffusing = false;
                 Bukkit.getScheduler().cancelTask(MineStrike.bombDiffusedTaskID);
                 Bukkit.broadcastMessage(ChatColor.RED + "Bomb diffusal cancelled.");

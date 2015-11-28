@@ -153,7 +153,7 @@ public class ItemFactory {
      * @param type The type of the item
      * @param durability The durability of the item
      * @param isT Is the item for Terrorists or Counter Terrorists.
-     * @return
+     * @return The ItemStack that was created
      */
     public static ItemStack createCustomArmor(Material m, String name, String type, int durability, boolean isT) {
         //This is for armor
@@ -181,7 +181,7 @@ public class ItemFactory {
      * @param name       The name of the item
      * @param type       The type of the item
      * @param durability The amount of durability it is used to be
-     * @return the itemstack that was created
+     * @return the ItemStack that was created
      */
     public static ItemStack createCustomItem(Material m, String name, String type, int durability) {
         // this is for items..

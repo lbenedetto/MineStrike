@@ -85,8 +85,8 @@ public class Util {
     }
 
     /**
-     * @param rot
-     * @return the direction that they are facing
+     * @param rot The players rotation
+     * @return The cardinal direction that they are facing as a String
      */
     private static String getDirection(double rot) {
         if (0 <= rot && rot < 22.5) {

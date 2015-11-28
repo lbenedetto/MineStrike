@@ -11,9 +11,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockIterator;
-
 import java.util.Iterator;
-import java.util.Set;
 
 public class Person {
     private int score, roundKills, kills, deaths, money, teamKills;

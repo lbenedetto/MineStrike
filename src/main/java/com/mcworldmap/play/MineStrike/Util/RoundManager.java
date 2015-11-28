@@ -77,8 +77,7 @@ public class RoundManager {
      * @return Boolean true if T's won, false if CT's won
      */
     public static boolean booleanify(String s) {
-        if (s.equalsIgnoreCase("CT")) return false;
-        return true;
+        return !s.equalsIgnoreCase("CT");
     }
 
     /**

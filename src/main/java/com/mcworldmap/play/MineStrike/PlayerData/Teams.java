@@ -5,8 +5,6 @@ import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-
 public class Teams {
     public Person[] allPlayers;
     public int CTscore;
@@ -88,7 +86,7 @@ public class Teams {
     /**
      * Given a player Object, find the corresponding Person object
      *
-     * @param player
+     * @param player The player to find
      * @return Person
      */
     public Person findPerson(Player player) {
@@ -155,10 +153,10 @@ public class Teams {
         for (Person p : allPlayers) {
             p.setRoundKills(0);
             p.setAlive(true);
-            if (!bombGiven && p.getTeam().equals("T") && giveBomb.charAt(counter)=='1') {
+            if (!bombGiven && p.getTeam().equals("T") && giveBomb.charAt(counter) == '1') {
                 bombGiven = true;
-            }else{
-                counter+=1;
+            } else {
+                counter += 1;
             }
             p.respawnPlayer(bombGiven);
         }

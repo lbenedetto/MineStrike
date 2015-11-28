@@ -2,6 +2,7 @@ package com.mcworldmap.play.MineStrike.PlayerData;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
+import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -145,13 +146,21 @@ public class Teams {
     }
 
     /**
-     * Respawns everyone
+     * Respawns everyone, gives a bomb to a random T
      */
     public void respawnTeams() {
+        boolean bombGiven = false;
+        String giveBomb = Util.randomIntGuaranteed(1 / 5);
+        int counter = 0;
         for (Person p : allPlayers) {
             p.setRoundKills(0);
             p.setAlive(true);
-            p.respawnPlayer();
+            if (!bombGiven && p.getTeam().equals("T") && giveBomb.charAt(counter)=='1') {
+                bombGiven = true;
+            }else{
+                counter+=1;
+            }
+            p.respawnPlayer(bombGiven);
         }
     }
 

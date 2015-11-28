@@ -45,7 +45,7 @@ public class Person {
      * Resets players for new round
      * Gives pistol if they don't have one
      */
-    public void respawnPlayer() {
+    public void respawnPlayer(boolean giveBomb) {
         String team = MineStrike.teams.getTeam(getPlayer());
         Location location = MineStrike.config.getRandCTSpawn();
         if (team.equalsIgnoreCase("T")) {
@@ -68,8 +68,11 @@ public class Person {
         }
         //Gives them a pistol if they don't have one
         if (givePistol) {
-            if (team.equals("CT")) creditItem("USP");
-            if (team.equals("T")) creditItem("Glock");
+            if (team.equals("CT")) creditItem(player.getDisplayName(), "USP");
+            if (team.equals("T")) creditItem(player.getDisplayName(), "Glock");
+        }
+        if (giveBomb) {
+            creditItem(player.getDisplayName(), "C4");
         }
     }
 
@@ -113,8 +116,8 @@ public class Person {
         return money;
     }
 
-    public void creditItem(String itemName) {
-        ItemStack item = ItemFactory.createItem(itemName);
+    public void creditItem(String owner, String itemName) {
+        ItemStack item = ItemFactory.createItem(owner, itemName);
         player.getInventory().addItem(item);
     }
 

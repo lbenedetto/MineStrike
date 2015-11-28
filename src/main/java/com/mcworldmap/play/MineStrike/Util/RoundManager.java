@@ -16,6 +16,7 @@ public class RoundManager {
      * @param winner Who won?
      */
     public static void newRound(String winner) {
+        //TODO: Clear drops at end of round
         round += 1;
         int maxrounds = MineStrike.config.getInt("maxrounds");
         if (winner.equals("CT"))
@@ -73,7 +74,7 @@ public class RoundManager {
      * If the terrorists won, return true
      *
      * @param s String of the team name
-     * @return Boolean true if T's won, false if CT's won, null if something else
+     * @return Boolean true if T's won, false if CT's won
      */
     public static boolean booleanify(String s) {
         if (s.equalsIgnoreCase("CT")) return false;

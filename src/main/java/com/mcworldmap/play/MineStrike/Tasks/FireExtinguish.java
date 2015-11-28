@@ -25,11 +25,8 @@ public class FireExtinguish implements Runnable {
         block.setType(Material.AIR);
         for (NadeKillCreditor kills : MineStrike.killers) {
             //Loop through all locations in the getLocations() array list in the kills variable.
-            for (Location location : kills.getLocations()) {
-                if (location.equals(block.getLocation())) {
-                    kills.getLocations().remove(block.getLocation());
-                }
-            }
+            kills.getLocations().stream().filter(location -> location.equals(block.getLocation())).forEach(location ->
+                    kills.getLocations().remove(block.getLocation()));
         }
     }
 }

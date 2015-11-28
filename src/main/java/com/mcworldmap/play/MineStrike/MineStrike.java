@@ -3,6 +3,7 @@ package com.mcworldmap.play.MineStrike;
 import com.google.common.collect.Sets;
 import com.mcworldmap.play.MineStrike.PlayerData.Config;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
+import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.PlayerData.Teams;
 import com.mcworldmap.play.MineStrike.Util.NadeKillCreditor;
 import com.mcworldmap.play.MineStrike.commands.*;
@@ -30,6 +31,9 @@ public class MineStrike extends JavaPlugin {
     public static HashMap<Arrow, Item> launchedProjectiles = new HashMap<>();
     public static boolean isGameActive = false;
     public static boolean canBuy = false;
+    public static boolean bombDiffusing = false;
+    public static int bombDiffusedTaskID = 0;
+    public static Person diffuser;
     private static Network network;
 
     /**
@@ -46,6 +50,7 @@ public class MineStrike extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new OnJoinListener(), this);
         getServer().getPluginManager().registerEvents(new PotionThrowListener(), this);
         getServer().getPluginManager().registerEvents(new ArrowFire(), this);
+        getServer().getPluginManager().registerEvents(new BombListener(this), this);
         //Register Command Executors
         getCommand("buy").setExecutor(new CmdBuy());
         getCommand("start").setExecutor(new CmdStart());

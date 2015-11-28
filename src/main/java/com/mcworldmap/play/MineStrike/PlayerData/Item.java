@@ -6,7 +6,7 @@ public enum Item {
     //Gear
     CTKEVLAR(650), CTHELMET(350),
     TKEVLAR(650), THELMET(350),
-    KIT(400), ZEUS(400, 1, 1, .5, 100, "Kit"),
+    KIT(400), ZEUS(400, 1, 1, .2, 100, "Kit"),
     //Grenades
     FRAG(300), DECOY(50), MOLOTOV(400),
     FLASHBANG(200), SMOKE(300), INCENDIARY(600),

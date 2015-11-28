@@ -38,40 +38,43 @@ public class BombListener implements Listener {
         Action action = event.getAction();
         Player player = event.getPlayer();
         Person person = MineStrike.teams.findPerson(player);
-        if (!MineStrike.bombDiffusing) {
-            if (person.getTeam().equals("CT"))
-                if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
-                    Block block = event.getClickedBlock();
-                    if (block.getType().equals(Material.TNT)) {
-                        MineStrike.bombDiffusing = true;
-                        int bombDiffusedTaskID = Bukkit.getScheduler()
-                                .scheduleSyncDelayedTask(p, new BombDiffusedTask(person), 100);
-                        MineStrike.bombDiffusedTaskID = bombDiffusedTaskID;
-                        MineStrike.diffuser = person;
+        if (MineStrike.isGameActive)
+            if (!MineStrike.bombDiffusing) {
+                if (person.getTeam().equals("CT"))
+                    if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
+                        Block block = event.getClickedBlock();
+                        if (block.getType().equals(Material.TNT)) {
+                            MineStrike.bombDiffusing = true;
+                            int bombDiffusedTaskID = Bukkit.getScheduler()
+                                    .scheduleSyncDelayedTask(p, new BombDiffusedTask(person), 100);
+                            MineStrike.bombDiffusedTaskID = bombDiffusedTaskID;
+                            MineStrike.diffuser = person;
+                        }
                     }
+            } else {
+                if (person.equals(MineStrike.diffuser)) {
+                    MineStrike.bombDiffusing = false;
+                    Bukkit.getScheduler().cancelTask(MineStrike.bombDiffusedTaskID);
+                    Bukkit.broadcastMessage(ChatColor.RED + "Bomb diffusal cancelled.");
                 }
-        } else {
-            if(person.equals(MineStrike.diffuser)){
+            }
+    }
+
+    @EventHandler
+    public void onMove(PlayerMoveEvent event) {
+        Location to = event.getTo();
+        Location from = event.getFrom();
+        if (to.equals(from)) {
+            return;
+        }
+        if (MineStrike.isGameActive) {
+            Person person = MineStrike.teams.findPerson(event.getPlayer());
+
+            if (MineStrike.diffuser != null && person.equals(MineStrike.diffuser)) {
                 MineStrike.bombDiffusing = false;
                 Bukkit.getScheduler().cancelTask(MineStrike.bombDiffusedTaskID);
                 Bukkit.broadcastMessage(ChatColor.RED + "Bomb diffusal cancelled.");
             }
-        }
-    }
-
-    @EventHandler
-    public void onMove(PlayerMoveEvent event){
-        Location to = event.getTo();
-        Location from = event.getFrom();
-        if(to.equals(from)){
-            return;
-        }
-        Person person = MineStrike.teams.findPerson(event.getPlayer());
-
-        if(person.equals(MineStrike.diffuser)){
-            MineStrike.bombDiffusing = false;
-            Bukkit.getScheduler().cancelTask(MineStrike.bombDiffusedTaskID);
-            Bukkit.broadcastMessage(ChatColor.RED + "Bomb diffusal cancelled.");
         }
     }
 }

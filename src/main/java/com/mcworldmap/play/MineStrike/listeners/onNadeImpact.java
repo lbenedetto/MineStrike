@@ -1,10 +1,7 @@
 package com.mcworldmap.play.MineStrike.listeners;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
-import com.mcworldmap.play.MineStrike.Tasks.DelayedBoom;
-import com.mcworldmap.play.MineStrike.Tasks.DelayedFlash;
-import com.mcworldmap.play.MineStrike.Tasks.DelayedSmoke;
-import com.mcworldmap.play.MineStrike.Tasks.FireExtinguish;
+import com.mcworldmap.play.MineStrike.Tasks.*;
 import com.mcworldmap.play.MineStrike.Util.NadeKillCreditor;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -19,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 @SuppressWarnings("unused")
 public class onNadeImpact implements Listener {
@@ -89,7 +87,10 @@ public class onNadeImpact implements Listener {
                 Bukkit.getLogger().info("Decoy Detected");
                 List<Entity> nearbyEntities = pot.getNearbyEntities(20, 20, 20);
                 nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
-                //Loop random footstep sounds in the vicinity of where the grenade landed
+                //random bow shoot sounds in the vicinity of where the grenade landed for about 30ish seconds
+                for(int t = 20; t < 600; t+=ThreadLocalRandom.current().nextInt(10, 30 + 1))
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"),
+                            new DelayedSound(w,loc, pot), t);
             }
             //Smoke Grenade
             if (effect.getType().equals(PotionEffectType.SLOW)) {
@@ -110,7 +111,8 @@ public class onNadeImpact implements Listener {
                                 }
                             }
                 for (int t = 20; t < 380; t+=10)
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DelayedSmoke(w, loc), t);
+                    Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"),
+                            new DelayedSmoke(w, loc), t);
             }
         }
     }

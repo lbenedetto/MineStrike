@@ -3,6 +3,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.BombDiffusedTask;
+import com.mcworldmap.play.MineStrike.Tasks.BombExplodeTask;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -12,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.Plugin;
@@ -33,6 +35,20 @@ public class BombListener implements Listener {
      *
      * @param event
      */
+
+    @EventHandler
+    public void blockPlaceEvent(BlockPlaceEvent event){
+        Player player = event.getPlayer();
+        Person person = MineStrike.teams.findPerson(player);
+        if(MineStrike.isGameActive){
+            if(person.getTeam().equals("T")){
+                if(event.getBlockPlaced().getType().equals(Material.TNT)){
+                    MineStrike.bombExplodeTaskID = Bukkit.getScheduler().scheduleSyncDelayedTask(p, new BombExplodeTask(person, event.getBlockPlaced()), 20*45);
+                }
+            }
+        }
+    }
+
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
         Action action = event.getAction();

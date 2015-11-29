@@ -5,6 +5,7 @@ import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.BombDiffusedTask;
 import com.mcworldmap.play.MineStrike.Tasks.BombExplodeTask;
 import com.mcworldmap.play.MineStrike.Tasks.BombTimer;
+import com.mcworldmap.play.MineStrike.Tasks.DelayedMessage;
 import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -61,14 +62,23 @@ public class BombListener implements Listener {
                         if (block.getType().equals(Material.TNT)) {
                             MineStrike.bombDiffusing = true;
                             int bombDiffusedTaskID;
-
+                            String bar = "";
                             if (event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
                                 bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 100);
-                                player.sendMessage(ChatColor.GREEN + "Using diffusal kit, 5 seconds until bomb is diffused.");
+                                player.sendMessage(ChatColor.GREEN + "Using diffuse kit, 5 seconds until bomb is diffused.");
+
+                                for(int n = 5; n > 0; n--){
+                                    bar+="=";
+                                    Util.newTask(new DelayedMessage(player, bar, n + " seconds remaining"), n*20);
+                                }
 
                             } else {
                                 bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 200);
-                                player.sendMessage(ChatColor.GREEN + "No diffusal kit, 10 seconds until bomb is diffused.");
+                                player.sendMessage(ChatColor.GREEN + "No diffuse kit, 10 seconds until bomb is diffused.");
+                                for(int n = 5; n > 0; n--){
+                                    bar+="=";
+                                    Util.newTask(new DelayedMessage(player, bar, n + " seconds remaining"), n*20);
+                                }
                             }
                             MineStrike.bombDiffusedTaskID = bombDiffusedTaskID;
                             MineStrike.diffuser = person;

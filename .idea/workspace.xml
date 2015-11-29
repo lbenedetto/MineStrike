@@ -12,7 +12,6 @@
     <list default="true" id="ced0fd70-94ff-46bc-8179-7537c5ed4695" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Util/RoundManager.java" afterPath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Util/RoundManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java" afterPath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java" />
     </list>
     <ignored path="CounterCraft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,10 +37,51 @@
       <file leaf-file-name="RoundManager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Util/RoundManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3226278">
-              <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.73722625">
+              <caret line="119" column="41" selection-start-line="119" selection-start-column="41" selection-end-line="119" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Person.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="146" column="8" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="8" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3692#3693#0" expanded="true" />
+                <element signature="e#3719#3720#0" expanded="true" />
+                <element signature="e#4291#4292#0" expanded="true" />
+                <element signature="e#4320#4321#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Teams.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Teams.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EndRound.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Tasks/EndRound.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="62" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
+              <folding>
+                <element signature="e#170#171#0" expanded="true" />
+                <element signature="e#239#240#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -108,7 +148,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdScoreboard.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Tasks/DelayedSmoke.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Tasks/DelayedSound.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdBuy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Util/NadeKillCreditor.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdJoin.java" />
@@ -133,6 +172,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/BombListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Teams.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Util/RoundManager.java" />
       </list>
     </option>
@@ -884,12 +924,6 @@
       <option name="number" value="Default" />
       <updated>1433359256485</updated>
     </task>
-    <task id="LOCAL-00065" summary="Changed formatting">
-      <created>1448646058936</created>
-      <option name="number" value="00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1448646058937</updated>
-    </task>
     <task id="LOCAL-00066" summary="changed variable name to make more sense">
       <created>1448646361886</created>
       <option name="number" value="00066" />
@@ -1178,7 +1212,13 @@
       <option name="project" value="LOCAL" />
       <updated>1448765152218</updated>
     </task>
-    <option name="localTasksCounter" value="114" />
+    <task id="LOCAL-00114" summary="minor changes to round manager">
+      <created>1448765538934</created>
+      <option name="number" value="00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1448765538934</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1233,7 +1273,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="Changed onDeath and fixed scoreboard" />
     <MESSAGE value="Made smokes extinguish flames" />
     <MESSAGE value="fixed type in for loop" />
     <MESSAGE value="increaseed radius of extinguish effect" />
@@ -1258,7 +1297,8 @@
     <MESSAGE value="Fixed defuse timer, fixed win reasons" />
     <MESSAGE value="Game ends is player disconnects&#10;Increased readability of roundmanager" />
     <MESSAGE value="Added null checks to teams&#10;removed unused stuff in BombListener" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added null checks to teams&#10;removed unused stuff in BombListener" />
+    <MESSAGE value="minor changes to round manager" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor changes to round manager" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1584,17 +1624,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Tasks/EndRound.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12846348">
-          <caret line="6" column="59" selection-start-line="6" selection-start-column="59" selection-end-line="6" selection-end-column="59" />
-          <folding>
-            <element signature="e#170#171#0" expanded="true" />
-            <element signature="e#239#240#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Tasks/NextRound.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1656,36 +1685,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-59.206898">
-          <caret line="121" column="25" selection-start-line="121" selection-start-column="18" selection-end-line="121" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4291#4292#0" expanded="true" />
-            <element signature="e#4320#4321#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/BombListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="97" column="47" selection-start-line="97" selection-start-column="47" selection-end-line="97" selection-end-column="47" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Teams.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5390#5391#0" expanded="true" />
-            <element signature="e#5453#5454#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1703,10 +1708,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Tasks/EndRound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="6" column="62" selection-start-line="6" selection-start-column="62" selection-end-line="6" selection-end-column="62" />
+          <folding>
+            <element signature="e#170#171#0" expanded="true" />
+            <element signature="e#239#240#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Teams.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="36" selection-start-line="26" selection-start-column="36" selection-end-line="26" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="146" column="8" selection-start-line="146" selection-start-column="8" selection-end-line="146" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3692#3693#0" expanded="true" />
+            <element signature="e#3719#3720#0" expanded="true" />
+            <element signature="e#4291#4292#0" expanded="true" />
+            <element signature="e#4320#4321#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Util/RoundManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3226278">
-          <caret line="30" column="42" selection-start-line="30" selection-start-column="42" selection-end-line="30" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.73722625">
+          <caret line="119" column="41" selection-start-line="119" selection-start-column="41" selection-end-line="119" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

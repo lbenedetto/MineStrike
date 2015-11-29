@@ -58,7 +58,9 @@ public class RoundManager {
             subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
         }
         for (Person p : MineStrike.teams.allPlayers) {
-            Util.sendTitle(p.getPlayer(), 20, 100, 20, title, subtitle);
+            Player player = p.getPlayer();
+            if(player==null)continue;
+            Util.sendTitle(player, 20, 100, 20, title, subtitle);
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reward(1400, "CT");
@@ -80,7 +82,9 @@ public class RoundManager {
             subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
         }
         for (Person p : MineStrike.teams.allPlayers) {
-            Util.sendTitle(p.getPlayer(), 20, 100, 20, title, subtitle);
+            Player player = p.getPlayer();
+            if(player==null)continue;
+            Util.sendTitle(player, 20, 100, 20, title, subtitle);
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reward(3250, "CT");
@@ -109,11 +113,13 @@ public class RoundManager {
             subtitle = reason;
         //Send out the GG message
         for (Person p : MineStrike.teams.allPlayers) {
+            Player player = p.getPlayer();
+            if(player==null)continue;
             if (p.getTeam().equals("T"))
                 MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
             if (p.getTeam().equals("CT"))
                 MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
-            Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, subtitle);
+            Util.sendTitle(player, 20, 100, 20, winMessage, subtitle);
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reset();

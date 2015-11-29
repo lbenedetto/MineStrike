@@ -40,6 +40,7 @@ public class RoundManager {
         //If the game is over
         if (round > maxrounds || isTie || didSomeoneWin) {
             Bukkit.getLogger().info("GG detected");
+            MineStrike.isGameActive = false;
             //Build the components of the GG message
             String winMessage = "";
             if (MineStrike.teams.CTscore == MineStrike.teams.Tscore)

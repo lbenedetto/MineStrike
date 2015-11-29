@@ -35,10 +35,11 @@ public class BombExplodeTask implements Runnable {
         World world = bomb.getWorld();
         world.createExplosion(loc, 0.0f);
         Collection<Entity> nearExplosion = world.getNearbyEntities(loc, 10, 10, 10);
-
-        nearExplosion.stream().filter(e -> e instanceof Player).forEach(e -> {
-            Player p = (Player) e;
-            p.damage(20, planter.getPlayer());
-        });
+        for(Entity e : nearExplosion){
+            if(e instanceof Player){
+                Player p = (Player) e;
+                p.damage(20, planter.getPlayer());
+            }
+        }
     }
 }

@@ -31,15 +31,31 @@ public class BombExplodeTask implements Runnable {
         int y = (int) loc.getY();
         int z = (int) loc.getZ();
         Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(),
-                "particle hugeexplosion " + x + " " + y + " " + z + " 10 10 10 0 50 force");
+                "particle hugeexplosion " + x + " " + y + " " + z + " 30 30 30 0 50 force");
         World world = bomb.getWorld();
         world.createExplosion(loc, 0.0f);
-        Collection<Entity> nearExplosion = world.getNearbyEntities(loc, 10, 10, 10);
+        Collection<Entity> nearExplosion = world.getNearbyEntities(loc, 13, 13, 13);
+        for(Entity e : nearExplosion){
+            if(e instanceof Player){
+                Player p = (Player) e;
+                //RIP Player p
+                p.damage(99, planter.getPlayer());
+            }
+        }
+        nearExplosion = world.getNearbyEntities(loc, 20, 20, 20);
         for(Entity e : nearExplosion){
             if(e instanceof Player){
                 Player p = (Player) e;
                 p.damage(20, planter.getPlayer());
             }
         }
+        nearExplosion = world.getNearbyEntities(loc, 30, 30, 30);
+        for(Entity e : nearExplosion){
+            if(e instanceof Player){
+                Player p = (Player) e;
+                p.damage(10, planter.getPlayer());
+            }
+        }
+
     }
 }

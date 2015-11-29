@@ -64,6 +64,9 @@ public class BombListener implements Listener {
                             int bombDiffusedTaskID;
                             String bar = "";
                             int delay = 0;
+                            for(int i = 0; i <= 5; i++){
+                                MineStrike.progressBar.add("=");
+                            }
                             if (event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
                                 bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 100);
                                 player.sendMessage(ChatColor.GREEN + "Using diffuse kit, 5 seconds until bomb is diffused.");
@@ -73,14 +76,12 @@ public class BombListener implements Listener {
 //                                    Util.newTask(new DelayedMessage(player, bar, n + " seconds remaining"), delay);
 //                                    delay+=20;
 //                               }
-                                for(int i = 0; i <= 5; i++){
-                                    MineStrike.progressBar.add("=");
-                                }
                                 MineStrike.diffuseTime = 5;
                                 MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
                                         .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
 
                             } else {
+
                                 bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 200);
                                 player.sendMessage(ChatColor.GREEN + "No diffuse kit, 10 seconds until bomb is diffused.");
                                 MineStrike.diffuseTime = 10;

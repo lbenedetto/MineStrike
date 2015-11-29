@@ -1,5 +1,6 @@
 package com.mcworldmap.play.MineStrike.Tasks;
 
+import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import org.bukkit.Bukkit;
@@ -9,6 +10,7 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import sun.rmi.server.MarshalInputStream;
 
 import java.util.Collection;
 
@@ -26,6 +28,7 @@ public class BombExplodeTask implements Runnable {
     public void run() {
         RoundManager.newRound(planter.getTeam(), "planting the bomb");
         bomb.setType(Material.AIR);
+        Bukkit.getScheduler().cancelTask(MineStrike.bombTimerTaskID);
         Location loc = bomb.getLocation();
         int x = (int) loc.getX();
         int y = (int) loc.getY();

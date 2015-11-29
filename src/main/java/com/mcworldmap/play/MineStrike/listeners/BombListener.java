@@ -4,10 +4,8 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.BombDiffusedTask;
 import com.mcworldmap.play.MineStrike.Tasks.BombExplodeTask;
-import com.mcworldmap.play.MineStrike.Tasks.BombTimer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -19,9 +17,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.Plugin;
 
-/**
- * Created by Apathetic on 11/28/2015.
- */
 public class BombListener implements Listener {
 
 
@@ -36,17 +31,15 @@ public class BombListener implements Listener {
      *
      * @param event
      */
-
     @EventHandler
-    public void blockPlaceEvent(BlockPlaceEvent event){
+    public void blockPlaceEvent(BlockPlaceEvent event) {
         Player player = event.getPlayer();
         Person person = MineStrike.teams.findPerson(player);
-        if(MineStrike.isGameActive){
-            if(person.getTeam().equals("T")){
-                if(event.getBlockPlaced().getType().equals(Material.TNT)){
+        if (MineStrike.isGameActive) {
+            if (person.getTeam().equals("T")) {
+                if (event.getBlockPlaced().getType().equals(Material.TNT)) {
                     MineStrike.bombExplodeTaskID = Bukkit.getScheduler().scheduleSyncDelayedTask(p, new BombExplodeTask(person, event.getBlockPlaced()), 20 * p.getConfig().getInt("bombtimer"));
                     Bukkit.broadcastMessage(ChatColor.RED + "The bomb has been planted.");
-                    MineStrike.bombTimerTaskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(p, new BombTimer(), 0, 20);
                 }
             }
         }
@@ -66,12 +59,12 @@ public class BombListener implements Listener {
                             MineStrike.bombDiffusing = true;
                             int bombDiffusedTaskID;
 
-                            if(event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
+                            if (event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
                                 bombDiffusedTaskID = Bukkit.getScheduler()
                                         .scheduleSyncDelayedTask(p, new BombDiffusedTask(person, event.getClickedBlock()), 100);
                                 player.sendMessage(ChatColor.GREEN + "Using diffusal kit, 5 seconds until bomb is diffused.");
 
-                            }else{
+                            } else {
                                 bombDiffusedTaskID = Bukkit.getScheduler()
                                         .scheduleSyncDelayedTask(p, new BombDiffusedTask(person, event.getClickedBlock()), 200);
                                 player.sendMessage(ChatColor.GREEN + "No diffusal kit, 10 seconds until bomb is diffused.");

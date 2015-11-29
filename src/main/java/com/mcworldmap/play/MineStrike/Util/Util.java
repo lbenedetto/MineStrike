@@ -1,10 +1,12 @@
 package com.mcworldmap.play.MineStrike.Util;
 
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
+import com.mcworldmap.play.MineStrike.Tasks.NextRound;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import net.minecraft.server.v1_8_R3.PlayerConnection;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -137,5 +139,8 @@ public class Util {
         }
         if(out.contains("1"))return out;
         return randomIntGuaranteed(odds);
+    }
+    public static int newTask(Runnable task, int delay){
+        return Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), task, delay);
     }
 }

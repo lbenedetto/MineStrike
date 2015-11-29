@@ -26,7 +26,6 @@ public class RoundManager {
                 continue;
             e.remove();
         }
-
         round += 1;
         int maxrounds = MineStrike.config.getInt("maxrounds");
         if (winner.equals("CT"))

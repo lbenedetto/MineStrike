@@ -20,6 +20,7 @@ public class BombDiffusedTask implements Runnable {
     public void run() {
         RoundManager.newRound(diffuser.getTeam(), "defusing the bomb");
         Bukkit.getScheduler().cancelTask(MineStrike.bombExplodeTaskID);
+        Bukkit.getScheduler().cancelTask(MineStrike.bombTimerTaskID);
         MineStrike.bombDiffusing = false;
         MineStrike.diffuser = null;
         bomb.setType(Material.AIR);

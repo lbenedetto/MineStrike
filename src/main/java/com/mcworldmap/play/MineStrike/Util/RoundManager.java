@@ -47,7 +47,8 @@ public class RoundManager {
             Util.newTask(new NextRound(round), 200);
         }
     }
-    public static void TWinLogic(String reason, String winner){
+
+    public static void TWinLogic(String reason, String winner) {
         String title = "";
         String subtitle = "";
         if (reason.equals("planting the bomb")) {
@@ -59,19 +60,21 @@ public class RoundManager {
         }
         for (Person p : MineStrike.teams.allPlayers) {
             Player player = p.getPlayer();
-            if(player==null)continue;
+            if (player == null) continue;
             Util.sendTitle(player, 20, 100, 20, title, subtitle);
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reward(1400, "CT");
         MineStrike.teams.reward(3250, "T");
     }
+
     /**
      * Logic for if the CT's won the round
+     *
      * @param reason
      * @param winner
      */
-    public static void CTWinLogic(String reason, String winner){
+    public static void CTWinLogic(String reason, String winner) {
         String title = "";
         String subtitle = "";
         if (reason.equals("defusing the bomb")) {
@@ -83,13 +86,14 @@ public class RoundManager {
         }
         for (Person p : MineStrike.teams.allPlayers) {
             Player player = p.getPlayer();
-            if(player==null)continue;
+            if (player == null) continue;
             Util.sendTitle(player, 20, 100, 20, title, subtitle);
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reward(3250, "CT");
         MineStrike.teams.reward(1400, "T");
     }
+
     /**
      * Logic for if the game is over
      *
@@ -107,14 +111,19 @@ public class RoundManager {
             winMessage = ChatColor.GOLD + "Terrorists Win";
         if (MineStrike.teams.CTscore > MineStrike.teams.Tscore)
             winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
-        if(reason.equals(""))
+        if (reason.equals(""))
             subtitle = "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score";
-        if(reason.contains("forfeit"))
+        if (reason.contains("forfeit")) {
+            if(winner.equals("T"))
+                winMessage = "Terrorists Win";
+            if(winner.equals("CT"))
+                winMessage = "Counter-Terrorists Win";
             subtitle = reason;
+        }
         //Send out the GG message
         for (Person p : MineStrike.teams.allPlayers) {
             Player player = p.getPlayer();
-            if(player==null)continue;
+            if (player == null) continue;
             if (p.getTeam().equals("T"))
                 MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
             if (p.getTeam().equals("CT"))

@@ -31,9 +31,9 @@ public class NextRound implements Runnable {
             MineStrike.frozenPlayers.add(p.getPlayer());
         }
         //Schedule a task to unfreeze players and disable the shop
-        Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new UnfreezePlayers(), 10 * 20);
-        Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DisableShop(), 20 * 20);
+        Util.newTask(new UnfreezePlayers(), 10 * 20);
+        Util.newTask(new DisableShop(), 20 * 20);
         //Schedule a task to end the round if none of the other win conditions have been met
-        MineStrike.roundEndTaskID = Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new EndRound(), MineStrike.config.getInt("roundtimer")*20);
+        MineStrike.roundEndTaskID = Util.newTask(new EndRound(), MineStrike.config.getInt("roundtimer")*20);
     }
 }

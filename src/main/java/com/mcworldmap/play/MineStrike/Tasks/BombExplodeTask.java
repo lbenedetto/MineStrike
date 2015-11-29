@@ -29,6 +29,7 @@ public class BombExplodeTask implements Runnable {
         RoundManager.newRound(planter.getTeam(), "planting the bomb");
         bomb.setType(Material.AIR);
         Bukkit.getScheduler().cancelTask(MineStrike.bombTimerTaskID);
+        Bukkit.getScheduler().cancelTask(MineStrike.bombDiffuseDisplayTaskID);
         MineStrike.bombTimer = 45;
         Location loc = bomb.getLocation();
         int x = (int) loc.getX();

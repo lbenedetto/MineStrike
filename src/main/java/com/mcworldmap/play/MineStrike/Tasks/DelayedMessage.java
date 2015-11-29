@@ -1,21 +1,25 @@
 package com.mcworldmap.play.MineStrike.Tasks;
 
+import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+
 public class DelayedMessage implements Runnable {
     Player player;
-    String title;
-    String subtitle;
+    ArrayList<String> progressBar;
+    int diffuseTime;
 
-    public DelayedMessage(Player player, String message, String subtitle) {
+    public DelayedMessage(Player player, ArrayList<String> message, int diffuseTime) {
         this.player = player;
-        this.title = message;
-        this.subtitle = subtitle;
+        this.progressBar = message;
+        this.diffuseTime = diffuseTime;
     }
 
     public void run() {
-        Util.sendTitle(player.getPlayer(), 20, 100, 20, title, subtitle);
+        Util.sendTitle(player.getPlayer(), 20, 100, 20, Util.arrayToString(progressBar), diffuseTime + " second(s) remaining");
+        progressBar.remove(progressBar.size());
     }
 }

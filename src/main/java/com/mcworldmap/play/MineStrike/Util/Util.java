@@ -1,7 +1,6 @@
 package com.mcworldmap.play.MineStrike.Util;
 
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
-import com.mcworldmap.play.MineStrike.Tasks.NextRound;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
@@ -12,6 +11,7 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 
 public class Util {
     @Deprecated
@@ -137,10 +137,20 @@ public class Util {
         for (int x = 0; x < 5; x++) {
             out += randomInt(odds);
         }
-        if(out.contains("1"))return out;
+        if (out.contains("1")) return out;
         return randomIntGuaranteed(odds);
     }
-    public static int newTask(Runnable task, int delay){
+
+    public static int newTask(Runnable task, int delay) {
         return Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), task, delay);
+    }
+
+    public static String arrayToString(ArrayList<String> array) {
+        String s = "";
+        for(String s1 : array)
+        {
+            s += s1;
+        }
+        return s;
     }
 }

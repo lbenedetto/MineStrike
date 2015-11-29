@@ -37,8 +37,11 @@ public class MineStrike extends JavaPlugin {
     public static int roundEndTaskID = 0;
     public static int bombTimer = 45;
     public static int bombTimerTaskID = 0;
+    public static int bombDiffuseDisplayTaskID = 0;
     public static Person diffuser;
     private static Network network;
+    public static ArrayList<String> progressBar = new ArrayList<>();
+    public static int diffuseTime;
 
     /**
      * Boot procedures for plugin

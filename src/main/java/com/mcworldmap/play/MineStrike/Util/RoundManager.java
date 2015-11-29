@@ -21,8 +21,8 @@ public class RoundManager {
     public static void newRound(String winner, String reason) {
         Bukkit.getScheduler().cancelTask(MineStrike.roundEndTaskID);
         //TODO: Clear drops at end of round
-        for(Entity e : Bukkit.getWorld("de_dust2").getEntities()){
-            if(e instanceof Player)
+        for (Entity e : Bukkit.getWorld("de_dust2").getEntities()) {
+            if (e instanceof Player)
                 continue;
             e.remove();
         }
@@ -46,9 +46,9 @@ public class RoundManager {
             if (MineStrike.teams.CTscore == MineStrike.teams.Tscore)
                 winMessage = ChatColor.WHITE + "Tie";
             if (MineStrike.teams.Tscore == 1 + (maxrounds / 2))
-                winMessage = ChatColor.GOLD + "Terrorists Win by " + reason;
+                winMessage = ChatColor.GOLD + "Terrorists Win";
             if (MineStrike.teams.CTscore == 1 + (maxrounds / 2))
-                winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win by " + reason;
+                winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
             //Send out the GG message
             for (Person p : MineStrike.teams.allPlayers) {
                 if (p.getTeam().equals("T"))
@@ -63,7 +63,8 @@ public class RoundManager {
             if (winner.equals("CT")) {
                 //Game isn't over and the CT's won the round
                 for (Person p : MineStrike.teams.allPlayers) {
-                    Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.DARK_BLUE + "Counter-Terrorists Win", "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations");
+                    Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.DARK_BLUE + "Counter-Terrorists Win by " + reason,
+                            "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations");
                     p.getPlayer().performCommand("scoreboard");
                 }
                 MineStrike.teams.reward(3250, "CT");
@@ -71,7 +72,8 @@ public class RoundManager {
             } else {
                 //Game isn't over and the T's won the round
                 for (Person p : MineStrike.teams.allPlayers) {
-                    Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.GOLD + "Terrorists Win", "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations");
+                    Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.GOLD + "Terrorists Win by " + reason,
+                            "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations");
                     p.getPlayer().performCommand("scoreboard");
                 }
                 MineStrike.teams.reward(1400, "CT");

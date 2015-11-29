@@ -62,20 +62,12 @@ public class BombListener implements Listener {
                         if (block.getType().equals(Material.TNT)) {
                             MineStrike.bombDiffusing = true;
                             int bombDiffusedTaskID;
-                            String bar = "";
-                            int delay = 0;
-                            for(int i = 0; i <= 5; i++){
+                            for (int i = 0; i <= 5; i++) {
                                 MineStrike.progressBar.add("=");
                             }
                             if (event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
                                 bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 100);
                                 player.sendMessage(ChatColor.GREEN + "Using diffuse kit, 5 seconds until bomb is diffused.");
-
-//                                for(int n = 5; n > 0; n--){
-//                                    bar+="=";
-//                                    Util.newTask(new DelayedMessage(player, bar, n + " seconds remaining"), delay);
-//                                    delay+=20;
-//                               }
                                 MineStrike.diffuseTime = 5;
                                 MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
                                         .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
@@ -87,11 +79,6 @@ public class BombListener implements Listener {
                                 MineStrike.diffuseTime = 10;
                                 MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
                                         .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
-//                                for(int n = 10; n > 0; n--){
-//                                    bar+="=";
-//                                    Util.newTask(new DelayedMessage(player, bar, n + " seconds remaining"), delay);
-//                                    delay+=20;
-//                                }
                             }
                             MineStrike.bombDiffusedTaskID = bombDiffusedTaskID;
                             MineStrike.diffuser = person;
@@ -109,11 +96,6 @@ public class BombListener implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-//        Location to = event.getTo();
-//        Location from = event.getFrom();
-//        if (to.equals(from)) {
-//            return;
-//        }
         if (event.getFrom().getBlockX() == event.getTo().getBlockX() && event.getFrom().getBlockZ() == event.getTo().getBlockZ() && event.getFrom().getBlockY() == event.getTo().getBlockY())
             return;
         if (MineStrike.isGameActive && MineStrike.bombDiffusing) {

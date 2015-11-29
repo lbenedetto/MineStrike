@@ -24,6 +24,7 @@ public class Teams {
      */
     public void reset() {
         for (Person p : allPlayers) {
+            if (p == null) continue;
             p.getPlayer().teleport(MineStrike.config.getLocation("pregameSpawn"));
             p.setTeamKills(0);
         }
@@ -45,6 +46,7 @@ public class Teams {
         int mostKills = 0;
         Person MVP = null;
         for (Person p : allPlayers) {
+            if (p == null) continue;
             if (p.getRoundKills() >= mostKills && p.getTeam().equals(winningTeam)) {
                 MVP = p;
                 mostKills = p.getRoundKills();
@@ -62,11 +64,13 @@ public class Teams {
     public Person getGameMVP(String winningTeam) {
         int highScore = 0;
         Person MVP = null;
-        for (Person p : allPlayers)
+        for (Person p : allPlayers) {
+            if (p == null) continue;
             if (p.getScore() >= highScore && p.getTeam().equals(winningTeam)) {
                 MVP = p;
                 highScore = p.getScore();
             }
+        }
         return MVP;
     }
 
@@ -103,11 +107,13 @@ public class Teams {
      */
     public void switchTeams() {
         //Swap teams
-        for (Person p : allPlayers)
+        for (Person p : allPlayers) {
+            if (p == null) continue;
             if (p.getTeam().equals("T"))
                 p.setTeam("CT");
             else
                 p.setTeam("T");
+        }
         //Swap scores
         int tem = Tscore;
         Tscore = CTscore;
@@ -127,8 +133,10 @@ public class Teams {
      * Resets everyones money to starting value
      */
     public void resetMoney() {
-        for (Person p : allPlayers)
+        for (Person p : allPlayers) {
+            if (p == null) continue;
             p.setMoney(800);
+        }
     }
 
     /**
@@ -139,9 +147,11 @@ public class Teams {
      */
     public boolean isTeamDead(String team) {
         boolean out = true;
-        for (Person p : allPlayers)
+        for (Person p : allPlayers) {
+            if (p == null) continue;
             if (p.isAlive() && p.getTeam().equals(team))
                 out = false;
+        }
         return out;
     }
 
@@ -154,6 +164,7 @@ public class Teams {
         String bombers = Util.randomIntGuaranteed(1 / MineStrike.config.getInt("teamsize"));
         int counter = 0;
         for (Person p : allPlayers) {
+            if (p == null) continue;
             p.setRoundKills(0);
             p.setAlive(true);
             if (!bombGiven && p.getTeam().equals("T") && bombers.charAt(counter) == '1') {
@@ -163,7 +174,7 @@ public class Teams {
                 counter += 1;
             }
             p.respawnPlayer(giveBomb);
-            giveBomb=false;
+            giveBomb = false;
         }
     }
 
@@ -174,11 +185,14 @@ public class Teams {
      * @param team   Team to award money to. T or CT.
      */
     public void reward(int reward, String team) {
-        for (Person p : allPlayers)
+        for (Person p : allPlayers) {
+            if (p == null) continue;
             if (p.getTeam().equals(team))
                 p.addMoney(reward);
+        }
     }
-    public boolean containsNullPlayers(){
+
+    public boolean containsNullPlayers() {
         return Arrays.asList(allPlayers).contains(null);
     }
 }

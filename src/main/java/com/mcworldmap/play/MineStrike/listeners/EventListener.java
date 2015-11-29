@@ -2,6 +2,8 @@ package com.mcworldmap.play.MineStrike.listeners;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
+import com.mcworldmap.play.MineStrike.PlayerData.Person;
+import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -22,11 +24,23 @@ import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scoreboard.Team;
 
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
-
+    @EventHandler
+    public void onDisconnect(PlayerQuitEvent event){
+        String losingTeam = MineStrike.teams.findPerson(event.getPlayer()).getTeam();
+        String winningTeam;
+        if(losingTeam.equals("T"))
+            winningTeam = "CT";
+        else{
+            winningTeam = "T";
+        }
+        RoundManager.gameOverLogic(winningTeam);
+    }
 
     /**
      * Disable PVP if the game isnt running.

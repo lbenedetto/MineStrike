@@ -20,7 +20,6 @@ public class RoundManager {
      */
     public static void newRound(String winner, String reason) {
         Bukkit.getScheduler().cancelTask(MineStrike.roundEndTaskID);
-        //TODO: Clear drops at end of round
         for (Entity e : Bukkit.getWorld("de_dust2").getEntities()) {
             if (e instanceof Player)
                 continue;
@@ -38,62 +37,81 @@ public class RoundManager {
         boolean isTie = MineStrike.teams.CTscore >= maxrounds / 2 && MineStrike.teams.Tscore >= maxrounds / 2;
         //If the game is over
         if (round > maxrounds || isTie || didSomeoneWin) {
-            Bukkit.getLogger().info("GG detected");
-            MineStrike.isGameActive = false;
-            //Build the components of the GG message
-            String winMessage = "";
-            if (MineStrike.teams.CTscore == MineStrike.teams.Tscore)
-                winMessage = ChatColor.WHITE + "Tie";
-            if (MineStrike.teams.Tscore == 1 + (maxrounds / 2))
-                winMessage = ChatColor.GOLD + "Terrorists Win";
-            if (MineStrike.teams.CTscore == 1 + (maxrounds / 2))
-                winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
-            //Send out the GG message
-            for (Person p : MineStrike.teams.allPlayers) {
-                if (p.getTeam().equals("T"))
-                    MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
-                if (p.getTeam().equals("CT"))
-                    MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
-                Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score");
-                p.getPlayer().performCommand("scoreboard");
-            }
-            MineStrike.teams.reset();
+            gameOverLogic(winner);
         } else {
-            String title = "";
-            String subtitle = "";
             if (winner.equals("CT")) {
-                //Game isn't over and the CT's won the round
-                if (reason.equals("defusing the bomb")) {
-                    title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
-                    subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for defusing the bomb";
-                } else if (reason.equals("eliminating the enemy team")) {
-                    title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
-                    subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
-                }
-                for (Person p : MineStrike.teams.allPlayers) {
-                    Util.sendTitle(p.getPlayer(), 20, 100, 20, title, subtitle);
-                    p.getPlayer().performCommand("scoreboard");
-                }
-                MineStrike.teams.reward(3250, "CT");
-                MineStrike.teams.reward(1400, "T");
+                CTWinLogic(reason, winner);
             } else {
-                //Game isn't over and the T's won the round
-                if (reason.equals("planting the bomb")) {
-                    title = ChatColor.DARK_BLUE + "Terrorists Win";
-                    subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for planting the bomb";
-                } else if (reason.equals("eliminating the enemy team")) {
-                    title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
-                    subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
-                }
-                for (Person p : MineStrike.teams.allPlayers) {
-                    Util.sendTitle(p.getPlayer(), 20, 100, 20, title, subtitle);
-                    p.getPlayer().performCommand("scoreboard");
-                }
-                MineStrike.teams.reward(1400, "CT");
-                MineStrike.teams.reward(3250, "T");
+                TWinLogic(reason, winner);
             }
             Util.newTask(new NextRound(round), 200);
         }
+    }
+    public static void TWinLogic(String reason, String winner){
+        String title = "";
+        String subtitle = "";
+        if (reason.equals("planting the bomb")) {
+            title = ChatColor.DARK_BLUE + "Terrorists Win";
+            subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for planting the bomb";
+        } else if (reason.equals("eliminating the enemy team")) {
+            title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+            subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
+        }
+        for (Person p : MineStrike.teams.allPlayers) {
+            Util.sendTitle(p.getPlayer(), 20, 100, 20, title, subtitle);
+            p.getPlayer().performCommand("scoreboard");
+        }
+        MineStrike.teams.reward(1400, "CT");
+        MineStrike.teams.reward(3250, "T");
+    }
+    /**
+     * Logic for if the CT's won the round
+     * @param reason
+     * @param winner
+     */
+    public static void CTWinLogic(String reason, String winner){
+        String title = "";
+        String subtitle = "";
+        if (reason.equals("defusing the bomb")) {
+            title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+            subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for defusing the bomb";
+        } else if (reason.equals("eliminating the enemy team")) {
+            title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+            subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
+        }
+        for (Person p : MineStrike.teams.allPlayers) {
+            Util.sendTitle(p.getPlayer(), 20, 100, 20, title, subtitle);
+            p.getPlayer().performCommand("scoreboard");
+        }
+        MineStrike.teams.reward(3250, "CT");
+        MineStrike.teams.reward(1400, "T");
+    }
+    /**
+     * Logic for if the game is over
+     *
+     * @param winner
+     */
+    public static void gameOverLogic(String winner) {
+        Bukkit.getLogger().info("GG detected");
+        MineStrike.isGameActive = false;
+        //Build the components of the GG message
+        String winMessage = "";
+        if (MineStrike.teams.CTscore == MineStrike.teams.Tscore)
+            winMessage = ChatColor.WHITE + "Tie";
+        if (MineStrike.teams.Tscore > MineStrike.teams.CTscore)
+            winMessage = ChatColor.GOLD + "Terrorists Win";
+        if (MineStrike.teams.CTscore > MineStrike.teams.Tscore)
+            winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+        //Send out the GG message
+        for (Person p : MineStrike.teams.allPlayers) {
+            if (p.getTeam().equals("T"))
+                MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
+            if (p.getTeam().equals("CT"))
+                MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
+            Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score");
+            p.getPlayer().performCommand("scoreboard");
+        }
+        MineStrike.teams.reset();
     }
 
     /**

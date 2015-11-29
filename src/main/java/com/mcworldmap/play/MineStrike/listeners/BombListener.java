@@ -44,6 +44,7 @@ public class BombListener implements Listener {
             if(person.getTeam().equals("T")){
                 if(event.getBlockPlaced().getType().equals(Material.TNT)){
                     MineStrike.bombExplodeTaskID = Bukkit.getScheduler().scheduleSyncDelayedTask(p, new BombExplodeTask(person, event.getBlockPlaced()), 20 * p.getConfig().getInt("bombtimer"));
+                    Bukkit.broadcastMessage(ChatColor.RED + "The bomb has been planted.");
                 }
             }
         }
@@ -66,10 +67,12 @@ public class BombListener implements Listener {
                             if(event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
                                 bombDiffusedTaskID = Bukkit.getScheduler()
                                         .scheduleSyncDelayedTask(p, new BombDiffusedTask(person, event.getClickedBlock()), 100);
+                                player.sendMessage(ChatColor.GREEN + "Using diffusal kit, 5 seconds until bomb is diffused.");
 
                             }else{
                                 bombDiffusedTaskID = Bukkit.getScheduler()
                                         .scheduleSyncDelayedTask(p, new BombDiffusedTask(person, event.getClickedBlock()), 200);
+                                player.sendMessage(ChatColor.GREEN + "No diffusal kit, 10 seconds until bomb is diffused.");
                             }
                             MineStrike.bombDiffusedTaskID = bombDiffusedTaskID;
                             MineStrike.diffuser = person;

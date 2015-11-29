@@ -6,6 +6,8 @@ import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class NextRound implements Runnable {
     int rounds;
@@ -29,6 +31,7 @@ public class NextRound implements Runnable {
         for (Person p : MineStrike.teams.allPlayers) {
             Util.sendTitle(p.getPlayer(), 20, 50, 20, "Round " + rounds, RoundManager.stringify());
             MineStrike.frozenPlayers.add(p.getPlayer());
+            p.getPlayer().addPotionEffect(PotionEffectType.JUMP.createEffect(999,-10), true);
         }
         //Schedule a task to unfreeze players and disable the shop
         Util.newTask(new UnfreezePlayers(), 10 * 20);

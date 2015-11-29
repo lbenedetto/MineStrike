@@ -4,6 +4,7 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
+import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -141,9 +142,10 @@ public class EventListener implements Listener {
         //Players can move on Y, but its a feature, not a bug
         if (MineStrike.frozenPlayers.contains(event.getPlayer())) {
             //TODO: Maybe remove the cast to int?
-            if ((int) before.getX() == (int) after.getX() && (int) before.getZ() == (int) after.getZ())
-                return;
-            event.getPlayer().teleport(before);
+            boolean differentX = !Util.almostEqual(before.getX(), after.getX(), .01);
+            boolean differentZ = !Util.almostEqual(before.getZ(), after.getZ(), .01);
+            if (differentX || differentZ)
+                event.getPlayer().teleport(before);
         }
     }
 

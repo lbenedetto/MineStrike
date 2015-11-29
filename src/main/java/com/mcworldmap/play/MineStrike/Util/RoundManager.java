@@ -59,20 +59,34 @@ public class RoundManager {
             }
             MineStrike.teams.reset();
         } else {
+            String title = "";
+            String subtitle = "";
             if (winner.equals("CT")) {
                 //Game isn't over and the CT's won the round
+                if (reason.equals("defusing the bomb")) {
+                    title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+                    subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for defusing the bomb";
+                } else if (reason.equals("eliminating the enemy team")) {
+                    title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+                    subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
+                }
                 for (Person p : MineStrike.teams.allPlayers) {
-                    Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.DARK_BLUE + "Counter-Terrorists Win by " + reason,
-                            "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations");
+                    Util.sendTitle(p.getPlayer(), 20, 100, 20, title, subtitle);
                     p.getPlayer().performCommand("scoreboard");
                 }
                 MineStrike.teams.reward(3250, "CT");
                 MineStrike.teams.reward(1400, "T");
             } else {
                 //Game isn't over and the T's won the round
+                if (reason.equals("planting the bomb")) {
+                    title = ChatColor.DARK_BLUE + "Terrorists Win";
+                    subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for planting the bomb";
+                } else if (reason.equals("eliminating the enemy team")) {
+                    title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+                    subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
+                }
                 for (Person p : MineStrike.teams.allPlayers) {
-                    Util.sendTitle(p.getPlayer(), 20, 100, 20, ChatColor.GOLD + "Terrorists Win by " + reason,
-                            "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations");
+                    Util.sendTitle(p.getPlayer(), 20, 100, 20, title, subtitle);
                     p.getPlayer().performCommand("scoreboard");
                 }
                 MineStrike.teams.reward(1400, "CT");

@@ -62,16 +62,16 @@ public class BombListener implements Listener {
                         if (block.getType().equals(Material.TNT)) {
                             MineStrike.bombDiffusing = true;
                             int bombDiffusedTaskID;
-                            for (int i = 0; i <= 5; i++) {
-                                MineStrike.progressBar.add("=");
-                            }
+
                             if (event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
                                 bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 100);
                                 player.sendMessage(ChatColor.GREEN + "Using diffuse kit, 5 seconds until bomb is diffused.");
                                 MineStrike.diffuseTime = 5;
                                 MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
                                         .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
-
+                                for (int i = 0; i <= 5; i++) {
+                                    MineStrike.progressBar.add("=");
+                                }
                             } else {
 
                                 bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 200);
@@ -79,6 +79,9 @@ public class BombListener implements Listener {
                                 MineStrike.diffuseTime = 10;
                                 MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
                                         .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
+                                for (int i = 0; i <= 10; i++) {
+                                    MineStrike.progressBar.add("=");
+                                }
                             }
                             MineStrike.bombDiffusedTaskID = bombDiffusedTaskID;
                             MineStrike.diffuser = person;

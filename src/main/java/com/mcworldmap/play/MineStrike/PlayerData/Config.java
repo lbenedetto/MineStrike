@@ -36,6 +36,8 @@ public class Config {
         this.config.put("teamsize", config.getInt("teamsize"));
         this.config.put("maxTeamKills", config.getInt("maxTeamKills"));
         this.config.put("maxrounds", config.getInt("maxrounds"));
+        this.config.put("roundtimer", config.getInt("roundtimer"));
+        this.config.put("bombtimer", config.getInt("bombtimer"));
     }
 
     public int getInt(String s) {

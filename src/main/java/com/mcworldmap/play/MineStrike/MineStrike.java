@@ -102,6 +102,8 @@ public class MineStrike extends JavaPlugin {
         getConfig().addDefault("maxrounds", 4);
         getConfig().addDefault("teamsize", 1);
         getConfig().addDefault("maxTeamKills", 3);
+        getConfig().addDefault("roundtimer", 120);
+        getConfig().addDefault("bombtimer", 45);
         getConfig().addDefault("world", "de_dust2");
         getConfig().addDefault("pregameSpawn.x", -33);
         getConfig().addDefault("pregameSpawn.y", 42);

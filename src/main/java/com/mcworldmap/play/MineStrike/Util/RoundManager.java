@@ -17,6 +17,7 @@ public class RoundManager {
      * @param reason How did they win?
      */
     public static void newRound(String winner, String reason) {
+        Bukkit.getScheduler().cancelTask(MineStrike.roundEndTaskID);
         //TODO: Clear drops at end of round
         round += 1;
         int maxrounds = MineStrike.config.getInt("maxrounds");

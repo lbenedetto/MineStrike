@@ -20,6 +20,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.Plugin;
 
+@SuppressWarnings("unused")
 public class BombListener implements Listener {
 
 
@@ -41,9 +42,10 @@ public class BombListener implements Listener {
         if (MineStrike.isGameActive) {
             if (person.getTeam().equals("T")) {
                 if (event.getBlockPlaced().getType().equals(Material.TNT)) {
+                    person.addPoints(2);
                     MineStrike.bombExplodeTaskID = Util.newTask(new BombExplodeTask(person, event.getBlockPlaced()), 20 * p.getConfig().getInt("bombtimer"));
                     Bukkit.broadcastMessage(ChatColor.RED + "The bomb has been planted.");
-                    MineStrike.bombTimerTaskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(p, new BombTimer(), 0, 20);
+                    MineStrike.bombTimerTaskID = Util.newRepeatingTask(new BombTimer(), 0, 20);
                 }
             }
         }
@@ -63,24 +65,24 @@ public class BombListener implements Listener {
                         int bombDiffusedTaskID;
 
                         if (event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
-                            bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 100);
+                            bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 5 * 20);
                             player.sendMessage(ChatColor.GREEN + "Using diffuse kit, 5 seconds until bomb is diffused.");
                             for (int i = 0; i < 5; i++) {
                                 MineStrike.progressBar.add("=");
                             }
                             MineStrike.diffuseTime = 5;
-                            MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
-                                    .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
+                            MineStrike.bombDiffuseDisplayTaskID = Util.newRepeatingTask(
+                                    new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
 
                         } else {
-                            bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 200);
+                            bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 10 * 20);
                             player.sendMessage(ChatColor.GREEN + "No diffuse kit, 10 seconds until bomb is diffused.");
                             MineStrike.diffuseTime = 10;
                             for (int i = 0; i < 10; i++) {
                                 MineStrike.progressBar.add("=");
                             }
-                            MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
-                                    .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
+                            MineStrike.bombDiffuseDisplayTaskID = Util.newRepeatingTask(
+                                    new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
 
                         }
                         MineStrike.bombDiffusedTaskID = bombDiffusedTaskID;

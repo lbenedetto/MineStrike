@@ -44,32 +44,19 @@ public class onDeath implements Listener {
 
         if (predator.getDisplayName().equals(prey.getDisplayName()))
             //If the kill was a suicide, dock their score
-            predatorPerson.setScore(predatorPerson.getScore() - 1);
+            predatorPerson.addPoints(-1);
         else if (MineStrike.teams.getTeam(predator).equals(MineStrike.teams.getTeam(prey))) {
             //If the kill was a team kill, dock their score, increment their teamkill counter
             //If it exceeds the size of their team, put them in ?jail?
-            predatorPerson.setScore(predatorPerson.getScore() - 1);
+            predatorPerson.addPoints(-1);
             predatorPerson.incrementTeamKills();
             if (predatorPerson.getTeamKills() >= MineStrike.config.getInt("maxTeamKills")) {
                 //Put player in jail
+                //TODO: Implement this, or something like it
             }
         } else if (prey.getLastDamageCause().getCause() == EntityDamageEvent.DamageCause.FIRE) {
             //if the player dies by fire, and it was by a players molotov.
-            //Get the location of the prey
-            Location playerLocation = prey.getLocation();
-            //Get the block that the prey is standing on
-            Block playerBlock = playerLocation.getBlock();
-            //Loop through all NadeKillCreditor classes in the killers arraylist
-            for (NadeKillCreditor kills : MineStrike.killers) {
-                //Loop through all locations in the getLocations() array list in the kills variable.
-                for (Location location : kills.getLocations()) {
-                    if (location.getBlock().equals(playerBlock)) {
-                        //If they were standing on a block of fire created by another player, then update the kills
-                        updatePlayerVariables(preyPerson, MineStrike.teams.findPerson(kills.getPlayer()));
-                        predator = kills.getPlayer();
-                    }
-                }
-            }
+            predator = killedByFire(prey, preyPerson, predator);
         } else
             //Else it was a normal PvP kill
             //Update the appropriate variables
@@ -93,12 +80,32 @@ public class onDeath implements Listener {
         }
     }
 
+    public Player killedByFire(Player prey, Person preyPerson, Player predator) {
+        //Get the location of the prey
+        Location playerLocation = prey.getLocation();
+        //Get the block that the prey is standing on
+        Block playerBlock = playerLocation.getBlock();
+        //Loop through all NadeKillCreditor classes in the killers arraylist
+        for (NadeKillCreditor kills : MineStrike.killers) {
+            //Loop through all locations in the getLocations() array list in the kills variable.
+            for (Location location : kills.getLocations()) {
+                if (location.getBlock().equals(playerBlock)) {
+                    //If they were standing on a block of fire created by another player, then update the kills
+                    updatePlayerVariables(preyPerson, MineStrike.teams.findPerson(kills.getPlayer()));
+                    predator = kills.getPlayer();
+                }
+            }
+        }
+        return predator;
+    }
+
     public void updatePlayerVariables(Person preyPerson, Person predatorPerson) {
         preyPerson.setDeaths(preyPerson.getDeaths() + 1);
         preyPerson.setAlive(false);
         predatorPerson.setKills(predatorPerson.getKills() + 1);
         predatorPerson.setRoundKills(predatorPerson.getRoundKills() + 1);
-        predatorPerson.setScore(predatorPerson.getScore() + 2);
+        if (MineStrike.bombExplodeTaskID != 0) predatorPerson.addPoints(3);
+        else predatorPerson.addPoints(2);
         predatorPerson.addMoney(700);
     }
 }

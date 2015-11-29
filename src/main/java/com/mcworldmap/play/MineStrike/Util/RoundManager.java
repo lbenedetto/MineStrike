@@ -80,9 +80,18 @@ public class RoundManager {
         if (reason.equals("defusing the bomb")) {
             title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
             subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for defusing the bomb";
+            MineStrike.teams.reward(1400, "T");
         } else if (reason.equals("eliminating the enemy team")) {
             title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
             subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
+            MineStrike.teams.reward(1400, "T");
+        }else if (reason.equals("running down the clock")){
+            for(Person p : MineStrike.teams.allPlayers){
+                Player player = p.getPlayer();
+                if (player == null) continue;
+                //Don't give money to surviving terrorists if the clock runs out
+                if(p.isDead()) p.addMoney(1400);
+            }
         }
         for (Person p : MineStrike.teams.allPlayers) {
             Player player = p.getPlayer();
@@ -91,7 +100,6 @@ public class RoundManager {
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reward(3250, "CT");
-        MineStrike.teams.reward(1400, "T");
     }
 
     /**

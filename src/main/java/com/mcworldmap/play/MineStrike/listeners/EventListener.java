@@ -31,12 +31,16 @@ import org.bukkit.scoreboard.Team;
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
     @EventHandler
-    public void onDisconnect(PlayerQuitEvent event){
+    /**
+     * Handles people abandoning the game
+     * @param event
+     */
+    public void onDisconnect(PlayerQuitEvent event) {
         String losingTeam = MineStrike.teams.findPerson(event.getPlayer()).getTeam();
         String winningTeam;
-        if(losingTeam.equals("T"))
+        if (losingTeam.equals("T"))
             winningTeam = "CT";
-        else{
+        else {
             winningTeam = "T";
         }
         RoundManager.gameOverLogic(winningTeam, losingTeam + " forfeits the game");
@@ -136,6 +140,7 @@ public class EventListener implements Listener {
         Location after = event.getTo();
         //Players can move on Y, but its a feature, not a bug
         if (MineStrike.frozenPlayers.contains(event.getPlayer())) {
+            //TODO: Maybe remove the cast to int?
             if ((int) before.getX() == (int) after.getX() && (int) before.getZ() == (int) after.getZ())
                 return;
             event.getPlayer().teleport(before);

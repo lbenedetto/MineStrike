@@ -144,6 +144,10 @@ public class Util {
     public static int newTask(Runnable task, int delay) {
         return Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), task, delay);
     }
+    public static int newRepeatingTask(Runnable task, int delay, int loopdelay){
+        return Bukkit.getScheduler().scheduleSyncRepeatingTask(Bukkit.getPluginManager().getPlugin("MineStrike"), task, delay, loopdelay);
+
+    }
 
     public static String arrayToString(ArrayList<String> array) {
         String s = "";

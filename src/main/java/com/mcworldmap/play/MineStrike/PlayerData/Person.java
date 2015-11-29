@@ -11,6 +11,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.BlockIterator;
+
 import java.util.Iterator;
 
 public class Person {
@@ -141,6 +142,10 @@ public class Person {
         player.sendMessage(ChatColor.GREEN + "+$" + money);
         player.sendMessage(ChatColor.WHITE + "You now have $" + money);
         updateExpBar();
+    }
+
+    public void addPoints(int points) {
+        this.score += points;
     }
 
     public Player getPlayer() {

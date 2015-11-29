@@ -20,6 +20,7 @@ public class DelayedMessage implements Runnable {
 
     public void run() {
         Util.sendTitle(player.getPlayer(), 20, 100, 20, Util.arrayToString(progressBar), diffuseTime + " second(s) remaining");
-        progressBar.remove(progressBar.size());
+        diffuseTime--;
+        progressBar.remove(progressBar.size() - 1);
     }
 }

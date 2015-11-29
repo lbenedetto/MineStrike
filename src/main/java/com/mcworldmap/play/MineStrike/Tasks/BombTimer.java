@@ -4,9 +4,6 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 
-/**
- * Created by Apathetic on 11/28/2015.
- */
 public class BombTimer  implements Runnable{
 
     @Override

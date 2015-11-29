@@ -45,16 +45,25 @@ public class BombListener implements Listener {
                         Block block = event.getClickedBlock();
                         if (block.getType().equals(Material.TNT)) {
                             MineStrike.bombDiffusing = true;
-                            int bombDiffusedTaskID = Bukkit.getScheduler()
-                                    .scheduleSyncDelayedTask(p, new BombDiffusedTask(person), 100);
+                            int bombDiffusedTaskID;
+
+                            if(event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
+                                bombDiffusedTaskID = Bukkit.getScheduler()
+                                        .scheduleSyncDelayedTask(p, new BombDiffusedTask(person, event.getClickedBlock()), 100);
+
+                            }else{
+                                bombDiffusedTaskID = Bukkit.getScheduler()
+                                        .scheduleSyncDelayedTask(p, new BombDiffusedTask(person, event.getClickedBlock()), 200);
+                            }
                             MineStrike.bombDiffusedTaskID = bombDiffusedTaskID;
                             MineStrike.diffuser = person;
                         }
                     }
             } else {
-                if (person.equals(MineStrike.diffuser)) {
+                if (person.equals(MineStrike.diffuser) && MineStrike.bombDiffusing) {
                     MineStrike.bombDiffusing = false;
                     Bukkit.getScheduler().cancelTask(MineStrike.bombDiffusedTaskID);
+                    MineStrike.diffuser = null;
                     Bukkit.broadcastMessage(ChatColor.RED + "Bomb diffusal cancelled.");
                 }
             }
@@ -74,6 +83,7 @@ public class BombListener implements Listener {
 
             if (person != null && MineStrike.diffuser != null && person.equals(MineStrike.diffuser)) {
                 MineStrike.bombDiffusing = false;
+                MineStrike.diffuser = null;
                 Bukkit.getScheduler().cancelTask(MineStrike.bombDiffusedTaskID);
                 Bukkit.broadcastMessage(ChatColor.RED + "Bomb diffusal cancelled.");
             }

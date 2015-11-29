@@ -148,17 +148,20 @@ public class Teams {
      */
     public void respawnTeams() {
         boolean bombGiven = false;
-        String giveBomb = Util.randomIntGuaranteed(1 / MineStrike.config.getInt("teamsize"));
+        boolean giveBomb = false;
+        String bombers = Util.randomIntGuaranteed(1 / MineStrike.config.getInt("teamsize"));
         int counter = 0;
         for (Person p : allPlayers) {
             p.setRoundKills(0);
             p.setAlive(true);
-            if (!bombGiven && p.getTeam().equals("T") && giveBomb.charAt(counter) == '1') {
+            if (!bombGiven && p.getTeam().equals("T") && bombers.charAt(counter) == '1') {
                 bombGiven = true;
+                giveBomb = true;
             } else {
                 counter += 1;
             }
-            p.respawnPlayer(bombGiven);
+            p.respawnPlayer(giveBomb);
+            giveBomb=false;
         }
     }
 

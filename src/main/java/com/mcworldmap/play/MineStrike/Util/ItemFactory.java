@@ -40,7 +40,7 @@ public class ItemFactory {
                         return createCustomItem(Material.SHEARS, name, "Gear", Material.SHEARS.getMaxDurability());
                     case ZEUS:
                         return createCustomGun(Material.BOW, name, "Gear");
-                    case BOMB:
+                    case C4:
                         return createCustomItem(Material.TNT, name, "Gear", 0);
                     //endregion
                     //region Grenades

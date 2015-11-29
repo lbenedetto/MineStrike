@@ -39,7 +39,7 @@ public class EventListener implements Listener {
         else{
             winningTeam = "T";
         }
-        RoundManager.gameOverLogic(winningTeam);
+        RoundManager.gameOverLogic(winningTeam, losingTeam + " forfeits the game");
     }
 
     /**

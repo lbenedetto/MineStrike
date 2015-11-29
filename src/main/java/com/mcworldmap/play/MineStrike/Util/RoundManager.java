@@ -31,13 +31,13 @@ public class RoundManager {
             MineStrike.teams.CTscore += 1;
         if (winner.equals("T"))
             MineStrike.teams.Tscore += 1;
-        boolean didSomeoneWin = false;
-        if (MineStrike.teams.Tscore == 1 + (maxrounds / 2)) didSomeoneWin = true;
-        if (MineStrike.teams.CTscore == 1 + (maxrounds / 2)) didSomeoneWin = true;
+        boolean someoneWon = false;
+        if (MineStrike.teams.Tscore == 1 + (maxrounds / 2)) someoneWon = true;
+        if (MineStrike.teams.CTscore == 1 + (maxrounds / 2)) someoneWon = true;
         boolean isTie = MineStrike.teams.CTscore >= maxrounds / 2 && MineStrike.teams.Tscore >= maxrounds / 2;
         //If the game is over
-        if (round > maxrounds || isTie || didSomeoneWin) {
-            gameOverLogic(winner);
+        if (round > maxrounds || isTie || someoneWon) {
+            gameOverLogic(winner, "");
         } else {
             if (winner.equals("CT")) {
                 CTWinLogic(reason, winner);
@@ -91,24 +91,29 @@ public class RoundManager {
      *
      * @param winner
      */
-    public static void gameOverLogic(String winner) {
+    public static void gameOverLogic(String winner, String reason) {
         Bukkit.getLogger().info("GG detected");
         MineStrike.isGameActive = false;
         //Build the components of the GG message
         String winMessage = "";
+        String subtitle = "";
         if (MineStrike.teams.CTscore == MineStrike.teams.Tscore)
             winMessage = ChatColor.WHITE + "Tie";
         if (MineStrike.teams.Tscore > MineStrike.teams.CTscore)
             winMessage = ChatColor.GOLD + "Terrorists Win";
         if (MineStrike.teams.CTscore > MineStrike.teams.Tscore)
             winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+        if(reason.equals(""))
+            subtitle = "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score";
+        if(reason.contains("forfeit"))
+            subtitle = reason;
         //Send out the GG message
         for (Person p : MineStrike.teams.allPlayers) {
             if (p.getTeam().equals("T"))
                 MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
             if (p.getTeam().equals("CT"))
                 MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
-            Util.sendTitle(p.getPlayer(), 20, 100, 20, "" + winMessage, "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score");
+            Util.sendTitle(p.getPlayer(), 20, 100, 20, winMessage, subtitle);
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reset();

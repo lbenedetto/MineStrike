@@ -8,9 +8,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class OnJoinListener implements Listener {
     /**
      * Create data in the database for the player on login.
-     *
-     * @param event
      */
+    @SuppressWarnings("unused")
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         MineStrike.getNetwork().createPlayerData(event.getPlayer());

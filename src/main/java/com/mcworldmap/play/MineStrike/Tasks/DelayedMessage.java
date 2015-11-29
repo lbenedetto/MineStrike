@@ -1,8 +1,6 @@
 package com.mcworldmap.play.MineStrike.Tasks;
 
-import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.Util;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;

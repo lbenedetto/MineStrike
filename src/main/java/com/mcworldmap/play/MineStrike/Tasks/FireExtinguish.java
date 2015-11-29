@@ -2,7 +2,6 @@ package com.mcworldmap.play.MineStrike.Tasks;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.NadeKillCreditor;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 

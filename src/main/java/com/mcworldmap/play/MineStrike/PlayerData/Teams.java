@@ -5,8 +5,6 @@ import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
-
 public class Teams {
     public Person[] allPlayers;
     public int CTscore;
@@ -190,9 +188,5 @@ public class Teams {
             if (p.getTeam().equals(team))
                 p.addMoney(reward);
         }
-    }
-
-    public boolean containsNullPlayers() {
-        return Arrays.asList(allPlayers).contains(null);
     }
 }

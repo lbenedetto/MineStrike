@@ -87,7 +87,7 @@ public enum Item {
         try {
             name = name.split(" ")[1];
         }catch(ArrayIndexOutOfBoundsException e){
-
+            //Ignore
         }
         for (Item item : Item.values())
             if (item.name().equalsIgnoreCase(ChatColor.stripColor(name)))

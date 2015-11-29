@@ -71,27 +71,31 @@ public class RoundManager {
     /**
      * Logic for if the CT's won the round
      *
-     * @param reason
-     * @param winner
+     * @param reason How did they win?
+     * @param winner Who won?
      */
     public static void CTWinLogic(String reason, String winner) {
         String title = "";
         String subtitle = "";
-        if (reason.equals("defusing the bomb")) {
-            title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
-            subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for defusing the bomb";
-            MineStrike.teams.reward(1400, "T");
-        } else if (reason.equals("eliminating the enemy team")) {
-            title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
-            subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
-            MineStrike.teams.reward(1400, "T");
-        }else if (reason.equals("running down the clock")){
-            for(Person p : MineStrike.teams.allPlayers){
-                Player player = p.getPlayer();
-                if (player == null) continue;
-                //Don't give money to surviving terrorists if the clock runs out
-                if(p.isDead()) p.addMoney(1400);
-            }
+        switch (reason) {
+            case "defusing the bomb":
+                title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+                subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for defusing the bomb";
+                MineStrike.teams.reward(1400, "T");
+                break;
+            case "eliminating the enemy team":
+                title = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+                subtitle = "MVP: " + MineStrike.teams.getRoundMVP(winner).getPlayer().getName() + " for most eliminations";
+                MineStrike.teams.reward(1400, "T");
+                break;
+            case "running down the clock":
+                for (Person p : MineStrike.teams.allPlayers) {
+                    Player player = p.getPlayer();
+                    if (player == null) continue;
+                    //Don't give money to surviving terrorists if the clock runs out
+                    if (p.isDead()) p.addMoney(1400);
+                }
+                break;
         }
         for (Person p : MineStrike.teams.allPlayers) {
             Player player = p.getPlayer();
@@ -105,7 +109,8 @@ public class RoundManager {
     /**
      * Logic for if the game is over
      *
-     * @param winner
+     * @param winner Who won?
+     * @param reason How did they win?
      */
     public static void gameOverLogic(String winner, String reason) {
         Bukkit.getLogger().info("GG detected");

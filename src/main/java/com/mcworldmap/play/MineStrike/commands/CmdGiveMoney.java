@@ -16,6 +16,7 @@ public class CmdGiveMoney implements CommandExecutor {
      *
      * @return true if ran successfully
      */
+    @SuppressWarnings( "deprecation" )
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player))

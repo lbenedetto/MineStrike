@@ -2,7 +2,6 @@ package com.mcworldmap.play.MineStrike.listeners;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
-import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import com.mcworldmap.play.MineStrike.Util.Util;
 import org.bukkit.Bukkit;
@@ -26,15 +25,12 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.scoreboard.Team;
 
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
     @EventHandler
     /**
      * Handles people abandoning the game
-     * @param event
      */
     public void onDisconnect(PlayerQuitEvent event) {
         String losingTeam = MineStrike.teams.findPerson(event.getPlayer()).getTeam();
@@ -49,8 +45,6 @@ public class EventListener implements Listener {
 
     /**
      * Disable PVP if the game isnt running.
-     *
-     * @param event
      */
     @EventHandler
     public void onDamageByPlayer(EntityDamageByEntityEvent event) {
@@ -62,8 +56,6 @@ public class EventListener implements Listener {
 
     /**
      * Deal custom arrow damage based on the gun that shot it.
-     *
-     * @param event
      */
     @EventHandler
     public void customDamage(EntityDamageByEntityEvent event) {
@@ -83,9 +75,6 @@ public class EventListener implements Listener {
         }
     }
 
-    /**
-     * @param event
-     */
     @EventHandler
     public void projectileLaunchEvent(ProjectileLaunchEvent event) {
         Projectile proj = event.getEntity();
@@ -98,8 +87,6 @@ public class EventListener implements Listener {
 
     /**
      * disable the extinguishing of fire.
-     *
-     * @param event
      */
     @EventHandler
     public void onExtinguish(PlayerInteractEvent event) {
@@ -121,8 +108,6 @@ public class EventListener implements Listener {
 
     /**
      * Make potions not do stuff
-     *
-     * @param event
      */
     @EventHandler(priority = EventPriority.HIGHEST)
     public void potionSplashEvent(PotionSplashEvent event) {
@@ -132,8 +117,6 @@ public class EventListener implements Listener {
 
     /**
      * disable players being able to move.
-     *
-     * @param event
      */
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
@@ -141,7 +124,7 @@ public class EventListener implements Listener {
         Location after = event.getTo();
         //Players can move on Y, but its a feature, not a bug
         if (MineStrike.frozenPlayers.contains(event.getPlayer())) {
-            //TODO: Maybe remove the cast to int?
+            //TODO: Switch back to using ints if players aren't getting frozen properly
             boolean differentX = !Util.almostEqual(before.getX(), after.getX(), .01);
             boolean differentZ = !Util.almostEqual(before.getZ(), after.getZ(), .01);
             if (differentX || differentZ)
@@ -151,8 +134,6 @@ public class EventListener implements Listener {
 
     /**
      * Disable the picking up of items if its an arrow.
-     *
-     * @param event
      */
     @EventHandler
     public void onPickup(PlayerPickupItemEvent event) {
@@ -162,8 +143,6 @@ public class EventListener implements Listener {
 
     /**
      * Players don't lose hunger.
-     *
-     * @param event
      */
     @EventHandler
     public void onHunger(FoodLevelChangeEvent event) {
@@ -171,9 +150,7 @@ public class EventListener implements Listener {
     }
 
     /**
-     * disable lasting fire damage
-     *
-     * @param event
+     * Disable lasting fire damage
      */
     @EventHandler
     public void onEntityDamage(EntityDamageEvent event) {
@@ -188,8 +165,6 @@ public class EventListener implements Listener {
 
     /**
      * Allow the player to break blocks if they are in creative, otherwise disallow it
-     *
-     * @param event
      */
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
@@ -200,8 +175,6 @@ public class EventListener implements Listener {
 
     /**
      * Disable the ignition of blocks. AKA fire spread
-     *
-     * @param event
      */
     @EventHandler
     public void onFireSpread(BlockIgniteEvent event) {

@@ -32,8 +32,6 @@ public class BombListener implements Listener {
 
     /**
      * This listener checks if a player right clicks the bomb and starts a timer to keep checking if they are.
-     *
-     * @param event
      */
     @EventHandler
     public void blockPlaceEvent(BlockPlaceEvent event) {

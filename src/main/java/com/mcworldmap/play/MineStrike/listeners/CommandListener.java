@@ -8,9 +8,8 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 public class CommandListener implements Listener {
     /**
      * Disallow use of the opposing teams shop.
-     *
-     * @param event
      */
+    @SuppressWarnings("unused")
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event) {
         if (!MineStrike.isGameActive)
@@ -23,7 +22,6 @@ public class CommandListener implements Listener {
         if (event.getMessage().equalsIgnoreCase("/shopt") && MineStrike.teams.getTeam(event.getPlayer()).equalsIgnoreCase("ct")) {
             event.setCancelled(true);
             event.getPlayer().sendMessage("You can't open T's shop as CT!");
-            return;
         }
     }
 }

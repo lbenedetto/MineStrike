@@ -25,8 +25,6 @@ public class onNadeImpact implements Listener {
 
     /**
      * This function controls the various effects of grenades, that trigger when the PotionSplashEvent is fired.
-     *
-     * @param event
      */
     @EventHandler
     public void nadeImpact(PotionSplashEvent event) {

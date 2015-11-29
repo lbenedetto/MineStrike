@@ -8,7 +8,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
 public class DespawnArrowsListener implements Listener {
-    //Despawn arrows faster.
+    /**
+     * Schedules a task to remove an arrow as soon as it hits something
+     */
+    @SuppressWarnings("unused")
     @EventHandler
     public void projectileHitEvent(ProjectileHitEvent event) {
         if (event.getEntity() instanceof Arrow) {

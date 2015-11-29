@@ -11,9 +11,8 @@ import org.bukkit.util.Vector;
 public class PotionThrowListener implements Listener {
     /**
      * Modify the speed of which potions are thrown.
-     *
-     * @param event
      */
+    @SuppressWarnings("unused")
     @EventHandler
     public void potionThrowEvent(ProjectileLaunchEvent event) {
         if (event.getEntity() instanceof Firework) {

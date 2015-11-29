@@ -78,7 +78,7 @@ public class RoundManager {
                 MineStrike.teams.reward(1400, "CT");
                 MineStrike.teams.reward(3250, "T");
             }
-            Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new NextRound(round), 200);
+            Util.newTask(new NextRound(round), 200);
         }
     }
 

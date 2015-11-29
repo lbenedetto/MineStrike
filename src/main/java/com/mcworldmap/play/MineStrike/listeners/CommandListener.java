@@ -5,9 +5,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-/**
- * Created by Apathetic on 11/27/2015.
- */
 public class CommandListener implements Listener {
     /**
      * Disallow use of the opposing teams shop.

@@ -8,9 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.util.Vector;
 
-/**
- * Created by Apathetic on 11/27/2015.
- */
 public class PotionThrowListener implements Listener {
     /**
      * Modify the speed of which potions are thrown.

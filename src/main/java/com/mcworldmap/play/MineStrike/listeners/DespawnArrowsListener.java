@@ -7,9 +7,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileHitEvent;
 
-/**
- * Created by Apathetic on 11/27/2015.
- */
 public class DespawnArrowsListener implements Listener {
     //Despawn arrows faster.
     @EventHandler

@@ -56,39 +56,37 @@ public class BombListener implements Listener {
         Person person = MineStrike.teams.findPerson(player);
         if (MineStrike.isGameActive)
             if (!MineStrike.bombDiffusing) {
-                if (person.getTeam().equals("CT"))
-                    if (action.equals(Action.RIGHT_CLICK_BLOCK)) {
-                        Block block = event.getClickedBlock();
-                        if (block.getType().equals(Material.TNT)) {
-                            MineStrike.bombDiffusing = true;
-                            int bombDiffusedTaskID;
+                if (person.getTeam().equals("CT") && action.equals(Action.RIGHT_CLICK_BLOCK)) {
+                    Block block = event.getClickedBlock();
+                    if (block.getType().equals(Material.TNT)) {
+                        MineStrike.bombDiffusing = true;
+                        int bombDiffusedTaskID;
 
-                            if (event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
-                                bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 100);
-                                player.sendMessage(ChatColor.GREEN + "Using diffuse kit, 5 seconds until bomb is diffused.");
-                                for (int i = 0; i <= 5; i++) {
-                                    MineStrike.progressBar.add("=");
-                                }
-                                MineStrike.diffuseTime = 5;
-                                MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
-                                        .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
-
-                            } else {
-
-                                bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 200);
-                                player.sendMessage(ChatColor.GREEN + "No diffuse kit, 10 seconds until bomb is diffused.");
-                                MineStrike.diffuseTime = 10;
-                                for (int i = 0; i <= 10; i++) {
-                                    MineStrike.progressBar.add("=");
-                                }
-                                MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
-                                        .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
-
+                        if (event.getPlayer().getItemInHand().getType().equals(Material.SHEARS)) {
+                            bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 100);
+                            player.sendMessage(ChatColor.GREEN + "Using diffuse kit, 5 seconds until bomb is diffused.");
+                            for (int i = 0; i <= 5; i++) {
+                                MineStrike.progressBar.add("=");
                             }
-                            MineStrike.bombDiffusedTaskID = bombDiffusedTaskID;
-                            MineStrike.diffuser = person;
+                            MineStrike.diffuseTime = 5;
+                            MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
+                                    .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
+
+                        } else {
+                            bombDiffusedTaskID = Util.newTask(new BombDiffusedTask(person, event.getClickedBlock()), 200);
+                            player.sendMessage(ChatColor.GREEN + "No diffuse kit, 10 seconds until bomb is diffused.");
+                            MineStrike.diffuseTime = 10;
+                            for (int i = 0; i <= 10; i++) {
+                                MineStrike.progressBar.add("=");
+                            }
+                            MineStrike.bombDiffuseDisplayTaskID = Bukkit.getScheduler()
+                                    .scheduleSyncRepeatingTask(p, new DelayedMessage(player, MineStrike.progressBar, MineStrike.diffuseTime), 0, 20);
+
                         }
+                        MineStrike.bombDiffusedTaskID = bombDiffusedTaskID;
+                        MineStrike.diffuser = person;
                     }
+                }
             } else {
                 if (person.equals(MineStrike.diffuser) && MineStrike.bombDiffusing) {
                     MineStrike.bombDiffusing = false;

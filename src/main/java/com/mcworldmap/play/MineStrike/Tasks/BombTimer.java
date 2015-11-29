@@ -12,10 +12,10 @@ public class BombTimer  implements Runnable{
     @Override
     public void run() {
         if(MineStrike.bombTimer % 5 == 0){
-            MineStrike.bombTimer--;
             String message = ChatColor.RED + "" + MineStrike.bombTimer + " second(s) until the bomb explodes.";
 
             Bukkit.broadcastMessage(message);
         }
+        MineStrike.bombTimer--;
     }
 }

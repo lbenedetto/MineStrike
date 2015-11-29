@@ -4,6 +4,7 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.BombDiffusedTask;
 import com.mcworldmap.play.MineStrike.Tasks.BombExplodeTask;
+import com.mcworldmap.play.MineStrike.Tasks.BombTimer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -40,6 +41,7 @@ public class BombListener implements Listener {
                 if (event.getBlockPlaced().getType().equals(Material.TNT)) {
                     MineStrike.bombExplodeTaskID = Bukkit.getScheduler().scheduleSyncDelayedTask(p, new BombExplodeTask(person, event.getBlockPlaced()), 20 * p.getConfig().getInt("bombtimer"));
                     Bukkit.broadcastMessage(ChatColor.RED + "The bomb has been planted.");
+                    MineStrike.bombTimerTaskID = Bukkit.getScheduler().scheduleSyncRepeatingTask(p, new BombTimer(), 0, 20);
                 }
             }
         }

@@ -5,6 +5,8 @@ import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Tasks.NextRound;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 
 public class RoundManager {
     public static int round = 1;
@@ -19,6 +21,12 @@ public class RoundManager {
     public static void newRound(String winner, String reason) {
         Bukkit.getScheduler().cancelTask(MineStrike.roundEndTaskID);
         //TODO: Clear drops at end of round
+        for(Entity e : Bukkit.getWorld("de_dust2").getEntities()){
+            if(e instanceof Player)
+                continue;
+            e.remove();
+        }
+
         round += 1;
         int maxrounds = MineStrike.config.getInt("maxrounds");
         if (winner.equals("CT"))

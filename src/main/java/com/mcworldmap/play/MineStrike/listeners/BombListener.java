@@ -43,7 +43,7 @@ public class BombListener implements Listener {
         if(MineStrike.isGameActive){
             if(person.getTeam().equals("T")){
                 if(event.getBlockPlaced().getType().equals(Material.TNT)){
-                    MineStrike.bombExplodeTaskID = Bukkit.getScheduler().scheduleSyncDelayedTask(p, new BombExplodeTask(person, event.getBlockPlaced()), 20*45);
+                    MineStrike.bombExplodeTaskID = Bukkit.getScheduler().scheduleSyncDelayedTask(p, new BombExplodeTask(person, event.getBlockPlaced()), 20 * p.getConfig().getInt("bombtimer"));
                 }
             }
         }

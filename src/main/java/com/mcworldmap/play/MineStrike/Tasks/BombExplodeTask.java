@@ -59,6 +59,5 @@ public class BombExplodeTask implements Runnable {
                 p.damage(10, planter.getPlayer());
             }
         }
-
     }
 }

@@ -14,8 +14,9 @@ public class RoundManager {
      * Notifies players of the scores
      *
      * @param winner Who won?
+     * @param reason How did they win?
      */
-    public static void newRound(String winner) {
+    public static void newRound(String winner, String reason) {
         //TODO: Clear drops at end of round
         round += 1;
         int maxrounds = MineStrike.config.getInt("maxrounds");
@@ -35,9 +36,9 @@ public class RoundManager {
             if (MineStrike.teams.CTscore == MineStrike.teams.Tscore)
                 winMessage = ChatColor.WHITE + "Tie";
             if (MineStrike.teams.Tscore == 1 + (maxrounds / 2))
-                winMessage = ChatColor.GOLD + "Terrorists Win";
+                winMessage = ChatColor.GOLD + "Terrorists Win by " + reason;
             if (MineStrike.teams.CTscore == 1 + (maxrounds / 2))
-                winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win";
+                winMessage = ChatColor.DARK_BLUE + "Counter-Terrorists Win by " + reason;
             //Send out the GG message
             for (Person p : MineStrike.teams.allPlayers) {
                 if (p.getTeam().equals("T"))

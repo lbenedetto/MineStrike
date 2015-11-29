@@ -7,9 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
-/**
- * Created by Apathetic on 11/28/2015.
- */
 public class BombDiffusedTask implements Runnable {
     Person diffuser;
     Block bomb;
@@ -21,7 +18,7 @@ public class BombDiffusedTask implements Runnable {
 
     @Override
     public void run() {
-        RoundManager.newRound(diffuser.getTeam());
+        RoundManager.newRound(diffuser.getTeam(), "defusing the bomb");
         Bukkit.getScheduler().cancelTask(MineStrike.bombExplodeTaskID);
         bomb.setType(Material.AIR);
     }

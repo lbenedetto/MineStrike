@@ -85,12 +85,11 @@ public class onDeath implements Listener {
         event.setDroppedExp(0);
         //Check if one of the teams is dead, if so, start a new round
         if (MineStrike.teams.isTeamDead("T")) {
-            RoundManager.newRound("CT");
+            RoundManager.newRound("CT", "eliminating the enemy team");
             return;
         }
         if (MineStrike.teams.isTeamDead("CT")) {
-            RoundManager.newRound("T");
-            return;
+            RoundManager.newRound("T", "eliminating the enemy team");
         }
     }
 

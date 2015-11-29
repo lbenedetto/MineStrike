@@ -24,18 +24,18 @@ public class ItemFactory {
     public static ItemStack createItem(String owner, String name) {
         for (Item item : Item.values()) {
             if (item.name().equalsIgnoreCase(name)) {
-                name = ChatColor.stripColor(owner) + "'s "+ name;
+                name = ChatColor.stripColor(owner) + "'s " + name;
                 switch (item) {
                     //TODO:Balance values
                     //region Gear
                     case CTKEVLAR:
-                        return createCustomArmor(Material.LEATHER_CHESTPLATE, name, "Gear", 320, false);
+                        return createCustomArmor(Material.LEATHER_CHESTPLATE, name, "Gear", 40, false);
                     case CTHELMET:
-                        return createCustomArmor(Material.LEATHER_HELMET, name, "Gear", 320, false);
+                        return createCustomArmor(Material.LEATHER_HELMET, name, "Gear", 25, false);
                     case TKEVLAR:
-                        return createCustomArmor(Material.LEATHER_CHESTPLATE, name, "Gear", 320, true);
+                        return createCustomArmor(Material.LEATHER_CHESTPLATE, name, "Gear", 40, true);
                     case THELMET:
-                        return createCustomArmor(Material.LEATHER_HELMET, name, "Gear", 320, true);
+                        return createCustomArmor(Material.LEATHER_HELMET, name, "Gear", 25, true);
                     case KIT:
                         return createCustomItem(Material.SHEARS, name, "Gear", Material.SHEARS.getMaxDurability());
                     case ZEUS:
@@ -147,12 +147,11 @@ public class ItemFactory {
     }
 
     /**
-     *
-     * @param m The Material that the armor is to be created from
-     * @param name The name of the item
-     * @param type The type of the item
+     * @param m          The Material that the armor is to be created from
+     * @param name       The name of the item
+     * @param type       The type of the item
      * @param durability The durability of the item
-     * @param isT Is the item for Terrorists or Counter Terrorists.
+     * @param isT        Is the item for Terrorists or Counter Terrorists.
      * @return The ItemStack that was created
      */
     public static ItemStack createCustomArmor(Material m, String name, String type, int durability, boolean isT) {
@@ -201,8 +200,7 @@ public class ItemFactory {
     }
 
     /**
-     *
-     * @param m The type of potion
+     * @param m    The type of potion
      * @param name The name of the potion(Grenade)
      * @return a new ItemStack of the correct 'Nade
      */

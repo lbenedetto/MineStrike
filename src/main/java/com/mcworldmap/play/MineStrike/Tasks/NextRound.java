@@ -26,12 +26,14 @@ public class NextRound implements Runnable {
         MineStrike.teams.respawnTeams();
         MineStrike.canBuy = true;
         //Display the round information to every player
-        for(Person p : MineStrike.teams.allPlayers){
+        for (Person p : MineStrike.teams.allPlayers) {
             Util.sendTitle(p.getPlayer(), 20, 50, 20, "Round " + rounds, RoundManager.stringify());
             MineStrike.frozenPlayers.add(p.getPlayer());
         }
         //Schedule a task to unfreeze players and disable the shop
         Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new UnfreezePlayers(), 10 * 20);
         Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new DisableShop(), 20 * 20);
+        //Schedule a task to end the round if none of the other win conditions have been met
+        Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), new EndRound(), 60 * 2 * 20);
     }
 }

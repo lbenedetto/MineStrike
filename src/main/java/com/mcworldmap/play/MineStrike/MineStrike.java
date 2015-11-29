@@ -34,6 +34,7 @@ public class MineStrike extends JavaPlugin {
     public static boolean bombDiffusing = false;
     public static int bombDiffusedTaskID = 0;
     public static int bombExplodeTaskID = 0;
+    public static int roundEndTaskID = 0;
     public static Person diffuser;
     private static Network network;
 

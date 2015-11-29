@@ -5,9 +5,6 @@ import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 
-/**
- * Created by Apathetic on 11/28/2015.
- */
 public class BombExplodeTask implements Runnable {
 
     Person planter;
@@ -20,7 +17,7 @@ public class BombExplodeTask implements Runnable {
 
     @Override
     public void run() {
-        RoundManager.newRound(planter.getTeam());
+        RoundManager.newRound(planter.getTeam(), "planting the bomb");
         bomb.setType(Material.AIR);
     }
 }

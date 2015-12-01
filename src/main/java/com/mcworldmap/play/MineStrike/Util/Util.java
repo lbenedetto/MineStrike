@@ -114,18 +114,6 @@ public class Util {
         }
     }
 
-
-    public static int getWeaponDamage(Item weapon) {
-        return weapon.getDamage();
-    }
-
-    public static int randomInt(double odds) {
-        if (Math.random() < odds) {
-            return 1;
-        }
-        return 0;
-    }
-
     /**
      * (
      * A string of 1's and 0's with guaranteed at least one 1.
@@ -141,14 +129,40 @@ public class Util {
         return randomIntGuaranteed(odds);
     }
 
+    public static int randomInt(double odds) {
+        if (Math.random() < odds) {
+            return 1;
+        }
+        return 0;
+    }
+
+    /**
+     * Saves typing when scheduling tasks
+     * @param task The Runnable task to run
+     * @param delay The delay before running the task
+     * @return The task ID
+     */
     public static int newTask(Runnable task, int delay) {
         return Bukkit.getScheduler().scheduleSyncDelayedTask(Bukkit.getPluginManager().getPlugin("MineStrike"), task, delay);
     }
+
+    /**
+     * Saves typing  when scheduling repeating tasks
+     * @param task The Runnable task to run
+     * @param delay The delay before running the task the first time
+     * @param loopdelay The delay between each run of the task
+     * @return The task ID
+     */
     public static int newRepeatingTask(Runnable task, int delay, int loopdelay){
         return Bukkit.getScheduler().scheduleSyncRepeatingTask(Bukkit.getPluginManager().getPlugin("MineStrike"), task, delay, loopdelay);
 
     }
 
+    /**
+     * Converts an ArrayList of strings to a string
+     * @param array The ArrayList to convert
+     * @return The string
+     */
     public static String arrayToString(ArrayList<String> array) {
         String s = "";
         for(String s1 : array)
@@ -157,6 +171,14 @@ public class Util {
         }
         return s;
     }
+
+    /**
+     * Returns true if two doubles are almost equal to eachother
+     * @param a double one
+     * @param b double two
+     * @param eps maximum allowable distance
+     * @return true if they are almostEqual
+     */
     public static boolean almostEqual(double a, double b, double eps){
         return Math.abs(a-b)<eps;
     }

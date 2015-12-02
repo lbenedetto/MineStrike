@@ -39,7 +39,7 @@ public class EventListener implements Listener {
     public void onOpen(InventoryOpenEvent event) {
         Player player = (Player) event.getPlayer();
         if (MineStrike.isGameActive)
-            if (event.getInventory().equals(event.getPlayer().getInventory())) {
+            if (event.getInventory().getHolder().equals(player)) {
                 event.setCancelled(true);
                 player.closeInventory();
                 if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope()) {

@@ -28,6 +28,8 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
+
+
     @EventHandler
     /**
      * Handles people abandoning the game

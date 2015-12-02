@@ -76,7 +76,7 @@ public class Network {
      * @param isWin Did the Person win?
      * @return a boolean based on if it could update the player score, false means it couldn't
      */
-    public boolean updatePlayerScore(Person p, Boolean isWin) {
+    public boolean updatePlayerScore(Person p, boolean isWin) {
         String query = "UPDATE playerdata SET kills = ?, deaths = ?, wins = ?, losses = ? WHERE username = ?";
 
         int kills = getTotalKills(p) + p.getKills();
@@ -84,12 +84,10 @@ public class Network {
         int wins = getWins(p);
         int losses = getLosses(p);
 
-        if (isWin == null)
-            wins += 1;
         if (isWin)
-            wins += 1;
+            wins++;
         else
-            losses += 1;
+            losses++;
 
         PreparedStatement ps = getPreparedStatement(query);
         try {

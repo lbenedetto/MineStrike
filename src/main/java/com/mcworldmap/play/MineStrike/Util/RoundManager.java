@@ -139,9 +139,9 @@ public class RoundManager {
             Player player = p.getPlayer();
             if (player == null) continue;
             if (p.getTeam().equals("T"))
-                MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
+                MineStrike.getNetwork().updatePlayerScore(p, p.getTeam().equals(winner));
             if (p.getTeam().equals("CT"))
-                MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
+                MineStrike.getNetwork().updatePlayerScore(p, p.getTeam().equals(winner));
             Utils.sendTitle(player, 20, 100, 20, winMessage, subtitle);
             p.getPlayer().performCommand("scoreboard");
         }

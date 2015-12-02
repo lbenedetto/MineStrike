@@ -23,10 +23,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -36,21 +33,17 @@ public class EventListener implements Listener {
      * Zooms the players view if they have scoped weapon when they try to open their inventory
      */
     @EventHandler
-    public void onOpen(InventoryOpenEvent event) {
-        Player player = (Player) event.getPlayer();
+    public void onOpen(PlayerToggleSneakEvent event) {
+        Player player = event.getPlayer();
         if (MineStrike.isGameActive)
-            if (event.getInventory().getHolder().equals(player)) {
-                event.setCancelled(true);
-                player.closeInventory();
-                if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope()) {
-                    Person person = MineStrike.teams.findPerson(player);
-                    if (person.isScoped()) {
-                        person.setScoped(false);
-                        player.getActivePotionEffects().clear();
-                    } else {
-                        person.setScoped(true);
-                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 10));
-                    }
+            if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope()) {
+                Person person = MineStrike.teams.findPerson(player);
+                if (person.isScoped()) {
+                    person.setScoped(false);
+                    player.getActivePotionEffects().clear();
+                } else {
+                    person.setScoped(true);
+                    player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 10));
                 }
             }
     }

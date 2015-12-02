@@ -26,14 +26,22 @@ import org.bukkit.event.player.*;
 
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
+    /**
+     * Prevents sprinting, zooms the players view if they have scoped weapon
+     *
+     * @param event
+     */
     @EventHandler
     public void onSprint(PlayerToggleSprintEvent event) {
         event.setCancelled(true);
         Player player = event.getPlayer();
         Person person = MineStrike.teams.findPerson(player);
-        if (person != null)
-            if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope())
-                MineStrike.teams.findPerson(player).toggleZoom();
+        if (person != null) {
+            Item item = Item.getItem(player.getItemInHand().getItemMeta().getDisplayName());
+            if (item != null)
+                if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope())
+                    MineStrike.teams.findPerson(player).toggleZoom();
+        }
     }
 
     @EventHandler

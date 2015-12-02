@@ -4,6 +4,7 @@ import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.ItemFactory;
 import com.mcworldmap.play.MineStrike.Util.RayTracer;
 import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -54,7 +55,7 @@ public class Person extends RayTracer {
         //Teleports them to their teams spawn, resets their health and hunger
         player.teleport(location);
         player.setHealth(player.getMaxHealth());
-        player.setFoodLevel(4);
+        player.setFoodLevel(20);
         boolean givePistol = true;
         //Resets ammo, checks  if they have a pistol
         for (ItemStack item : player.getInventory()) {
@@ -185,6 +186,7 @@ public class Person extends RayTracer {
         } else {
             if (player != null) {
                 //sets the walk speed to -0.15, this adds a zoomed in effect
+                Bukkit.getLogger().info("Player scoping in");
                 player.setWalkSpeed(-0.15F);
             }
         }

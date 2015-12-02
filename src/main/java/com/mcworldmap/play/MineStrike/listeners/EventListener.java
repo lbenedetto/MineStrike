@@ -5,7 +5,6 @@ import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import com.mcworldmap.play.MineStrike.Util.Utils;
-import org.apache.commons.lang.ObjectUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -29,6 +28,7 @@ import org.bukkit.event.player.*;
 public class EventListener implements Listener {
     @EventHandler
     public void onSprint(PlayerToggleSprintEvent event) {
+        event.setCancelled(true);
         Player player = event.getPlayer();
         Person person = MineStrike.teams.findPerson(player);
         if (person != null)
@@ -50,7 +50,7 @@ public class EventListener implements Listener {
         else {
             winningTeam = "T";
         }
-        RoundManager.gameOverLogic(winningTeam, losingTeam + " forfeits the game");
+        RoundManager.gameOverLogic(winningTeam, losingTeam + " forfeits the game", false);
     }
 
     /**

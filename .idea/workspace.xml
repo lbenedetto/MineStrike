@@ -9,6 +9,7 @@
     <list default="true" id="ced0fd70-94ff-46bc-8179-7537c5ed4695" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java" afterPath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java" afterPath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java" afterPath="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java" />
     </list>
     <ignored path="CounterCraft.iws" />
@@ -59,12 +60,28 @@
       <file leaf-file-name="Person.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-87.93104">
-              <caret line="188" column="58" selection-start-line="188" selection-start-column="58" selection-end-line="188" selection-end-column="58" />
+            <state vertical-scroll-proportion="-6.827586">
+              <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4758#4759#0" expanded="true" />
-                <element signature="e#4792#4793#0" expanded="true" />
+                <element signature="e#4682#4683#0" expanded="true" />
+                <element signature="e#4716#4717#0" expanded="true" />
+                <element signature="e#4741#4742#0" expanded="true" />
+                <element signature="e#4784#4785#0" expanded="true" />
+                <element signature="e#4811#4812#0" expanded="true" />
+                <element signature="e#4852#4853#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CmdGiveMoney.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,13 +133,15 @@
       <file leaf-file-name="EventListener.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.81778425">
-              <caret line="39" column="92" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="92" />
+            <state vertical-scroll-proportion="0.059766766">
+              <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#944#971#0" expanded="true" />
-                <element signature="e#7105#7106#0" expanded="true" />
-                <element signature="e#7145#7146#0" expanded="true" />
+                <element signature="e#998#1025#0" expanded="true" />
+                <element signature="e#5661#5662#0" expanded="true" />
+                <element signature="e#5701#5702#0" expanded="true" />
+                <element signature="e#6935#6936#0" expanded="true" />
+                <element signature="e#6975#6976#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -174,7 +193,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdBuy.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdStart.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Tasks/BombTimer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/CommandListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/DespawnArrowsListener.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/onDeath.java" />
@@ -208,8 +226,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/MineStrike.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Item.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/Util/RoundManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java" />
       </list>
     </option>
   </component>
@@ -957,12 +976,6 @@
       <option name="number" value="Default" />
       <updated>1433359256485</updated>
     </task>
-    <task id="LOCAL-00078" summary="Fixed updatePlayerScore in RoundManager">
-      <created>1448657383275</created>
-      <option name="number" value="00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1448657383275</updated>
-    </task>
     <task id="LOCAL-00079" summary="Removed dumb">
       <created>1448657457268</created>
       <option name="number" value="00079" />
@@ -1251,7 +1264,13 @@
       <option name="project" value="LOCAL" />
       <updated>1449024107604</updated>
     </task>
-    <option name="localTasksCounter" value="127" />
+    <task id="LOCAL-00127" summary="Attempted fix for sprinting">
+      <created>1449024763477</created>
+      <option name="number" value="00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1449024763477</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1274,6 +1293,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948717" sideWeight="0.5026336" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.108342364" sideWeight="0.49736643" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987553" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17324094" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1282,15 +1302,14 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3997833" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987553" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1306,7 +1325,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="false" />
-    <MESSAGE value="Began implementing round timer, implemented win reasons" />
     <MESSAGE value="Added configurable roundtime" />
     <MESSAGE value="Added explosion to bomb" />
     <MESSAGE value="Made isGameActive actually usable" />
@@ -1331,7 +1349,8 @@
     <MESSAGE value="fixed tie senario" />
     <MESSAGE value="Player scopes by sprinting" />
     <MESSAGE value="Fixed tie logic, again.&#10;Fixed zoom" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed tie logic, again.&#10;Fixed zoom" />
+    <MESSAGE value="Attempted fix for sprinting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Attempted fix for sprinting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1425,13 +1444,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14868805">
-          <caret line="6" column="42" selection-start-line="6" selection-start-column="42" selection-end-line="6" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdScoreboard.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1478,9 +1490,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1749,27 +1759,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/commands/CmdGiveMoney.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-87.93104">
-          <caret line="188" column="58" selection-start-line="188" selection-start-column="58" selection-end-line="188" selection-end-column="58" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4758#4759#0" expanded="true" />
-            <element signature="e#4792#4793#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/PlayerData/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.827586">
+          <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4682#4683#0" expanded="true" />
+            <element signature="e#4716#4717#0" expanded="true" />
+            <element signature="e#4741#4742#0" expanded="true" />
+            <element signature="e#4784#4785#0" expanded="true" />
+            <element signature="e#4811#4812#0" expanded="true" />
+            <element signature="e#4852#4853#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/mcworldmap/play/MineStrike/listeners/EventListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.81778425">
-          <caret line="39" column="92" selection-start-line="39" selection-start-column="10" selection-end-line="39" selection-end-column="92" />
+        <state vertical-scroll-proportion="0.059766766">
+          <caret line="30" column="8" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#944#971#0" expanded="true" />
-            <element signature="e#7105#7106#0" expanded="true" />
-            <element signature="e#7145#7146#0" expanded="true" />
+            <element signature="e#998#1025#0" expanded="true" />
+            <element signature="e#5661#5662#0" expanded="true" />
+            <element signature="e#5701#5702#0" expanded="true" />
+            <element signature="e#6935#6936#0" expanded="true" />
+            <element signature="e#6975#6976#0" expanded="true" />
           </folding>
         </state>
       </provider>

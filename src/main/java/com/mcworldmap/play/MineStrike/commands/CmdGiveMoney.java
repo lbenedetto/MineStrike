@@ -22,6 +22,7 @@ public class CmdGiveMoney implements CommandExecutor {
         if (!(sender instanceof Player))
             return false;
         Person p = MineStrike.teams.findPerson(Bukkit.getPlayer(args[0]));
+        if(p==null)return false;
         p.setMoney(p.getMoney() + Integer.parseInt(args[1]));
         return true;
     }

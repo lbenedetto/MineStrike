@@ -22,25 +22,19 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.event.player.*;
 
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
     /**
-     * Prevents sprinting, zooms the players view if they have scoped weapon
-     *
-     * @param event
+     * Zooms the players view if they have scoped weapon when they try to open their inventory
      */
     @EventHandler
-    public void onSprint(PlayerToggleSprintEvent event) {
-        event.setCancelled(true);
-        Player player = event.getPlayer();
-        Person person = MineStrike.teams.findPerson(player);
-        if (person != null) {
-            Item item = Item.getItem(player.getItemInHand().getItemMeta().getDisplayName());
-            if (item != null)
-                if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope())
-                    MineStrike.teams.findPerson(player).toggleZoom();
+    public void onOpen(InventoryOpenEvent event) {
+        if (event.getInventory().equals(event.getPlayer().getInventory())) {
+            if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope())
+                MineStrike.teams.findPerson(player).toggleZoom();
         }
     }
 

@@ -24,7 +24,7 @@ public class Teams {
         for (Person p : allPlayers) {
             if (p == null) continue;
             p.getPlayer().teleport(MineStrike.config.getLocation("pregameSpawn"));
-            p.setTeamKills(0);
+            p.resetTeamKills();
         }
         allPlayers = new Person[MineStrike.config.getInt("teamsize") * 2];
         CTscore = 0;

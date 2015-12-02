@@ -39,6 +39,7 @@ public class EventListener implements Listener {
     public void onOpen(InventoryOpenEvent event) {
         Player player = (Player) event.getPlayer();
         if (MineStrike.isGameActive)
+            if (event.getInventory().equals(event.getPlayer().getInventory())) {
                 event.setCancelled(true);
                 player.closeInventory();
                 if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope()) {
@@ -51,6 +52,7 @@ public class EventListener implements Listener {
                         player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 10));
                     }
                 }
+            }
     }
 
 

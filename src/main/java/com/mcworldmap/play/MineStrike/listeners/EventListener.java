@@ -40,6 +40,7 @@ public class EventListener implements Listener {
         Player player = (Player) event.getPlayer();
         if (MineStrike.isGameActive)
             if (event.getInventory().equals(event.getPlayer().getInventory())) {
+                event.setCancelled(true);
                 if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope()) {
                     Person person = MineStrike.teams.findPerson(player);
                     if (person.isScoped()) {

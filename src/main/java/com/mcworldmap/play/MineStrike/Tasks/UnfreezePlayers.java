@@ -5,7 +5,7 @@ import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffectType;
 
-public class UnfreezePlayers implements Runnable {
+class UnfreezePlayers implements Runnable {
     /**
      * Unfreezes all players
      */

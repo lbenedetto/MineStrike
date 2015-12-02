@@ -2,7 +2,7 @@ package com.mcworldmap.play.MineStrike.PlayerData;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
-import com.mcworldmap.play.MineStrike.Util.Util;
+import com.mcworldmap.play.MineStrike.Util.Utils;
 import org.bukkit.entity.Player;
 
 public class Teams {
@@ -159,7 +159,7 @@ public class Teams {
     public void respawnTeams() {
         boolean bombGiven = false;
         boolean giveBomb = false;
-        String bombers = Util.randomIntGuaranteed(1 / MineStrike.config.getInt("teamsize"));
+        String bombers = Utils.randomIntGuaranteed(1 / MineStrike.config.getInt("teamsize"));
         int counter = 0;
         for (Person p : allPlayers) {
             if (p == null) continue;

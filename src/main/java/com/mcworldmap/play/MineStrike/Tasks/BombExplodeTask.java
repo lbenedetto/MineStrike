@@ -16,8 +16,8 @@ import java.util.Collection;
 
 public class BombExplodeTask implements Runnable {
 
-    Person planter;
-    Block bomb;
+    private final Person planter;
+    private final Block bomb;
 
     public BombExplodeTask(Person planter, Block bomb) {
         this.planter = planter;

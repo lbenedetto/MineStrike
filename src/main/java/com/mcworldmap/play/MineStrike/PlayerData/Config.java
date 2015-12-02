@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Config {
-    public HashMap<String, Object> config = new HashMap<>();
+    private final HashMap<String, Object> config = new HashMap<>();
 
     /**
      * @param config The configuration file that is used to store this data

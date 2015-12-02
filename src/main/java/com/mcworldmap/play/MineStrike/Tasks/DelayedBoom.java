@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 import java.util.Collection;
 
 public class DelayedBoom implements Runnable {
-    World world;
-    Location loc;
-    Entity damager;
+    private final World world;
+    private final Location loc;
+    private final Entity damager;
 
     /**
      * @param world   The world of which the explosion is to occur in

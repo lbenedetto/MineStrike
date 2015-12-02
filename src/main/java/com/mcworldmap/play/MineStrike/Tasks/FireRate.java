@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 
 public class FireRate implements Runnable {
 
-    Player p;
+    private final Player p;
 
     public FireRate(Player p) {
         this.p = p;

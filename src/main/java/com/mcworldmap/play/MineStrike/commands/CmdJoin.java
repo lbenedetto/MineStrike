@@ -2,16 +2,17 @@ package com.mcworldmap.play.MineStrike.commands;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
-import com.mcworldmap.play.MineStrike.Util.Util;
+import com.mcworldmap.play.MineStrike.Util.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.plugin.Plugin;
 
 public class CmdJoin implements CommandExecutor {
-    Plugin p;
+    private final Plugin p;
 
     public CmdJoin(Plugin p) {
         this.p = p;
@@ -40,7 +41,7 @@ public class CmdJoin implements CommandExecutor {
                     MineStrike.teams.allPlayers[index] = new Person(player, "T");
                     MineStrike.teams.allPlayers[index].respawnPlayer(false);
                     MineStrike.teams.allPlayers[index].setMoney(16000);
-                    Util.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
+                    Utils.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
                     MineStrike.ts += 1;
                     MineStrike.canBuy = true;
                     sender.sendMessage("Joined Terrorist Team");
@@ -48,7 +49,7 @@ public class CmdJoin implements CommandExecutor {
                     MineStrike.teams.allPlayers[index] = new Person(player, "CT");
                     MineStrike.teams.allPlayers[index].respawnPlayer(false);
                     MineStrike.teams.allPlayers[index].setMoney(16000);
-                    Util.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
+                    Utils.sendTitle(player, 20, 50, 20, "Warmup Round", "Please wait for the teams to fill up");
                     MineStrike.canBuy = true;
                     MineStrike.cts += 1;
                     sender.sendMessage("Joined Counter-Terrorist Team");

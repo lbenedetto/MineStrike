@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class NadeKillCreditor {
     private Player player;
-    private ArrayList<Location> locations;
+    private final ArrayList<Location> locations;
 
     public NadeKillCreditor(Player player, ArrayList<Location> locations) {
         this.player = player;

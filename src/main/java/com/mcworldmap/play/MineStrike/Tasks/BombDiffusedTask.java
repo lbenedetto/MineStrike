@@ -8,8 +8,8 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 
 public class BombDiffusedTask implements Runnable {
-    Person diffuser;
-    Block bomb;
+    private final Person diffuser;
+    private final Block bomb;
 
     public BombDiffusedTask(Person diffuser, Block bomb) {
         this.diffuser = diffuser;

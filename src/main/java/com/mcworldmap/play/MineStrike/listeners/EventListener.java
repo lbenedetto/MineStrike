@@ -3,7 +3,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
-import com.mcworldmap.play.MineStrike.Util.Util;
+import com.mcworldmap.play.MineStrike.Util.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -90,12 +90,8 @@ public class EventListener implements Listener {
      */
     @EventHandler
     public void onExtinguish(PlayerInteractEvent event) {
-
         if (event.getAction() != Action.LEFT_CLICK_BLOCK)
             return;
-
-        final Player player = event.getPlayer();
-
         final Block block = event.getClickedBlock();
         final BlockFace blockFace = event.getBlockFace();
         final Block relativeBlock = block.getRelative(blockFace);
@@ -125,8 +121,8 @@ public class EventListener implements Listener {
         //Players can move on Y, but its a feature, not a bug
         if (MineStrike.frozenPlayers.contains(event.getPlayer())) {
             //TODO: Switch back to using ints if players aren't getting frozen properly
-            boolean differentX = !Util.almostEqual(before.getX(), after.getX(), .01);
-            boolean differentZ = !Util.almostEqual(before.getZ(), after.getZ(), .01);
+            boolean differentX = Utils.notAlmostEqual(before.getX(), after.getX(), .01);
+            boolean differentZ = Utils.notAlmostEqual(before.getZ(), after.getZ(), .01);
             if (differentX || differentZ)
                 event.getPlayer().teleport(before);
         }

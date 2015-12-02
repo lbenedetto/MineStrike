@@ -24,11 +24,11 @@ public class MineStrike extends JavaPlugin {
     //How many T's and CT's there are in the game
     public static int ts = 0, cts = 0;
     public static Config config;
-    public static Set<Integer> transparent = Sets.newHashSet();
-    public static ArrayList<Player> frozenPlayers = new ArrayList<>();
-    public static ArrayList<Player> coolDown = new ArrayList<>();
-    public static ArrayList<NadeKillCreditor> killers = new ArrayList<>();
-    public static HashMap<Arrow, Item> launchedProjectiles = new HashMap<>();
+    public static final Set<Integer> transparent = Sets.newHashSet();
+    public static final ArrayList<Player> frozenPlayers = new ArrayList<>();
+    public static final ArrayList<Player> coolDown = new ArrayList<>();
+    public static final ArrayList<NadeKillCreditor> killers = new ArrayList<>();
+    public static final HashMap<Arrow, Item> launchedProjectiles = new HashMap<>();
     public static boolean isGameActive = false;
     public static boolean canBuy = false;
     public static boolean bombDiffusing = false;
@@ -40,7 +40,7 @@ public class MineStrike extends JavaPlugin {
     public static int bombDiffuseDisplayTaskID = 0;
     public static Person diffuser;
     private static Network network;
-    public static ArrayList<String> progressBar = new ArrayList<>();
+    public static final ArrayList<String> progressBar = new ArrayList<>();
     public static int diffuseTime;
 
     /**
@@ -69,7 +69,6 @@ public class MineStrike extends JavaPlugin {
         saveConfig();
         config = new Config(getConfig());
         teams = new Teams();
-
         //create network.
         network = new Network(getConfig().getString("network.ip"), getConfig().getString("network.database"), getConfig().getString("network.username"), getConfig().getString("network.password"));
         //Connect to database
@@ -94,7 +93,7 @@ public class MineStrike extends JavaPlugin {
     /**
      * Adds default values to config
      */
-    public void populateConfig() {
+    private void populateConfig() {
         getConfig().options().copyDefaults(true);
 
         //Storage

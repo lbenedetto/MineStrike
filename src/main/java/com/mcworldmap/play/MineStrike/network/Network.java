@@ -7,8 +7,7 @@ import java.sql.*;
 
 public class Network {
     private Connection c;
-    String ip, database, password, username;
-    String url;
+    final String ip, database, password, username, url;
 
     /**
      * get an instance of this class
@@ -113,7 +112,7 @@ public class Network {
      * @param p Takes a Person
      * @return 0 if there are no wins, or if it cannot find the person in the db.
      */
-    public int getWins(Person p) {
+    private int getWins(Person p) {
         String query = "SELECT * FROM playerdata WHERE username = ?";
 
         try {
@@ -136,7 +135,7 @@ public class Network {
      * @param p Takes a Person
      * @return 0 if there are no kills, or if it cannot find the person in the db.
      */
-    public int getTotalKills(Person p) {
+    private int getTotalKills(Person p) {
         String query = "SELECT * FROM playerdata WHERE username = ?";
 
         try {
@@ -159,7 +158,7 @@ public class Network {
      * @param p Takes a Person
      * @return 0 if there are no deaths, or if it cannot find the person in the db.
      */
-    public int getTotalDeaths(Person p) {
+    private int getTotalDeaths(Person p) {
         String query = "SELECT * FROM playerdata WHERE username = ?";
 
         try {
@@ -182,7 +181,7 @@ public class Network {
      * @param p Takes a Person
      * @return 0 if there are no losses, or if it cannot find the person in the db.
      */
-    public int getLosses(Person p) {
+    private int getLosses(Person p) {
         String query = "SELECT * FROM playerdata WHERE username = ?";
 
         try {
@@ -215,7 +214,7 @@ public class Network {
      * @param query pass in a Query to be executed.
      * @return the prepared statement which is sanitized of all malicious characters
      */
-    public PreparedStatement getPreparedStatement(String query) {
+    private PreparedStatement getPreparedStatement(String query) {
         try {
             return c.prepareStatement(query);
         } catch (SQLException e) {
@@ -228,7 +227,7 @@ public class Network {
      * @param playername This is the name of the player.
      * @return returns a boolean value based on if the player exists in the database
      */
-    public boolean doesExist(String playername) {
+    private boolean doesExist(String playername) {
         try {
             PreparedStatement ps = c
                     .prepareStatement("SELECT * FROM playerdata WHERE username = ?");

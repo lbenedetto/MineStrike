@@ -44,7 +44,7 @@ public class RoundManager {
             } else {
                 TWinLogic(reason, winner);
             }
-            Util.newTask(new NextRound(round), 200);
+            Utils.newTask(new NextRound(round), 200);
         }
     }
 
@@ -61,7 +61,7 @@ public class RoundManager {
         for (Person p : MineStrike.teams.allPlayers) {
             Player player = p.getPlayer();
             if (player == null) continue;
-            Util.sendTitle(player, 20, 100, 20, title, subtitle);
+            Utils.sendTitle(player, 20, 100, 20, title, subtitle);
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reward(1400, "CT");
@@ -100,7 +100,7 @@ public class RoundManager {
         for (Person p : MineStrike.teams.allPlayers) {
             Player player = p.getPlayer();
             if (player == null) continue;
-            Util.sendTitle(player, 20, 100, 20, title, subtitle);
+            Utils.sendTitle(player, 20, 100, 20, title, subtitle);
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reward(3250, "CT");
@@ -141,7 +141,7 @@ public class RoundManager {
                 MineStrike.getNetwork().updatePlayerScore(p, booleanify(winner));
             if (p.getTeam().equals("CT"))
                 MineStrike.getNetwork().updatePlayerScore(p, !booleanify(winner));
-            Util.sendTitle(player, 20, 100, 20, winMessage, subtitle);
+            Utils.sendTitle(player, 20, 100, 20, winMessage, subtitle);
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reset();
@@ -153,7 +153,7 @@ public class RoundManager {
      * @param s String of the team name
      * @return Boolean true if T's won, false if CT's won
      */
-    public static boolean booleanify(String s) {
+    private static boolean booleanify(String s) {
         return !s.equalsIgnoreCase("CT");
     }
 

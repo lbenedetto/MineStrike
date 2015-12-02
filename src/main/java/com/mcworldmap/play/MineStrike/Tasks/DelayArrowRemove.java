@@ -5,7 +5,7 @@ import org.bukkit.entity.Arrow;
 
 public class DelayArrowRemove implements Runnable {
 
-    Arrow arrow;
+    private final Arrow arrow;
 
     public DelayArrowRemove(Arrow arrow) {
         this.arrow = arrow;

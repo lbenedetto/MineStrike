@@ -3,7 +3,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.Tasks.*;
 import com.mcworldmap.play.MineStrike.Util.NadeKillCreditor;
-import com.mcworldmap.play.MineStrike.Util.Util;
+import com.mcworldmap.play.MineStrike.Util.Utils;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
@@ -14,7 +14,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,7 +30,6 @@ public class onNadeImpact implements Listener {
         ThrownPotion pot = event.getPotion();
         Location loc = pot.getLocation();
         World w = pot.getWorld();
-        Collection<LivingEntity> affected = event.getAffectedEntities();
         Player thrower = (Player) pot.getShooter();
         ArrayList<Location> arrayList = new ArrayList<>();
         for (PotionEffect effect : pot.getEffects()) {
@@ -59,7 +57,7 @@ public class onNadeImpact implements Listener {
                                 //create a 4x4 square that is set to fire.
                                 block.setType(Material.FIRE);
                                 // create a task that will remove the fire block after a random amount of time, to give an effect of the fire extinguishing.
-                                Util.newTask(new FireExtinguish(block), (new Random().nextInt(10) + 10) * 20);
+                                Utils.newTask(new FireExtinguish(block), (new Random().nextInt(10) + 10) * 20);
                                 //Add the location of the fire to the location arraylist for nadekillcreditor
                                 arrayList.add(new Location(w, newX, y, newZ));
                             }
@@ -71,7 +69,7 @@ public class onNadeImpact implements Listener {
             //HE Grenade
             if (effect.getType().equals(PotionEffectType.HARM)) {
                 //make it go boom after a certain amount of time
-                Util.newTask(new DelayedBoom(w, loc, (Player) pot.getShooter()), 20);
+                Utils.newTask(new DelayedBoom(w, loc, (Player) pot.getShooter()), 20);
             }
             //Flashbang
             if (effect.getType().equals(PotionEffectType.NIGHT_VISION)) {
@@ -79,7 +77,7 @@ public class onNadeImpact implements Listener {
                 //get all nearby entities
                 List<Entity> nearbyEntities = pot.getNearbyEntities(50, 50, 50);
                 //delay the flash bang by x amount
-                Util.newTask(new DelayedFlash(nearbyEntities, pot), 20);
+                Utils.newTask(new DelayedFlash(nearbyEntities, pot), 20);
             }
             //Decoy grenade, all it does is play sounds.
             if (effect.getType().equals(PotionEffectType.JUMP)) {
@@ -88,8 +86,8 @@ public class onNadeImpact implements Listener {
                 nearbyEntities.stream().filter(e -> e instanceof Player).forEach(e -> ((Player) e).playSound(loc, Sound.ANVIL_LAND, 1, 1));
                 //random bow shoot sounds in the vicinity of where the grenade landed for about 30ish seconds
                 for (int t = 20; t < 600; t += ThreadLocalRandom.current().nextInt(10, 30 + 1)) {
-                    Util.newTask(new DelayedSound(w, loc, pot, Sound.SHOOT_ARROW), t);
-                    Util.newTask(new DelayedSound(w, loc, pot, Sound.ARROW_HIT), t + ThreadLocalRandom.current().nextInt(10, 40 + 1));
+                    Utils.newTask(new DelayedSound(loc, pot, Sound.SHOOT_ARROW), t);
+                    Utils.newTask(new DelayedSound(loc, pot, Sound.ARROW_HIT), t + ThreadLocalRandom.current().nextInt(10, 40 + 1));
                 }
             }
             //Smoke Grenade
@@ -111,7 +109,7 @@ public class onNadeImpact implements Listener {
                                 }
                             }
                 for (int t = 20; t < 380; t += 10)
-                    Util.newTask(new DelayedSmoke(w, loc), t);
+                    Utils.newTask(new DelayedSmoke(loc), t);
             }
         }
     }

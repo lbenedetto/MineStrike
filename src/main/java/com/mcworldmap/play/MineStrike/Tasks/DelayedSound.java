@@ -2,7 +2,6 @@ package com.mcworldmap.play.MineStrike.Tasks;
 
 import org.bukkit.Location;
 import org.bukkit.Sound;
-import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.ThrownPotion;
@@ -10,13 +9,11 @@ import org.bukkit.entity.ThrownPotion;
 import java.util.List;
 
 public class DelayedSound implements Runnable {
-    World world;
-    Location loc;
-    ThrownPotion pot;
-    Sound sound;
+    private final Location loc;
+    private final ThrownPotion pot;
+    private final Sound sound;
 
-    public DelayedSound(World world, Location loc, ThrownPotion pot, Sound sound) {
-        this.world = world;
+    public DelayedSound(Location loc, ThrownPotion pot, Sound sound) {
         this.pot = pot;
         this.loc = loc;
         this.sound = sound;

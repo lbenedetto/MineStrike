@@ -1,6 +1,5 @@
 package com.mcworldmap.play.MineStrike.Util;
 
-import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import net.minecraft.server.v1_8_R3.IChatBaseComponent;
 import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
@@ -13,21 +12,7 @@ import org.bukkit.entity.Player;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-public class Util {
-    @Deprecated
-    public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message) {
-        sendTitle(player, fadeIn, stay, fadeOut, message, null);
-    }
-
-    @Deprecated
-    public static void sendSubtitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String message) {
-        sendTitle(player, fadeIn, stay, fadeOut, null, message);
-    }
-
-    @Deprecated
-    public static void sendFullTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
-        sendTitle(player, fadeIn, stay, fadeOut, title, subtitle);
-    }
+public class Utils {
 
     public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
         PlayerConnection connection = ((CraftPlayer) player).getHandle().playerConnection;
@@ -78,42 +63,6 @@ public class Util {
         }
     }
 
-    public static String getCardinalDirection(Player player) {
-        double rot = (player.getLocation().getYaw() - 90) % 360;
-        if (rot < 0) {
-            rot += 360.0;
-        }
-        return getDirection(rot);
-    }
-
-    /**
-     * @param rot The players rotation
-     * @return The cardinal direction that they are facing as a String
-     */
-    private static String getDirection(double rot) {
-        if (0 <= rot && rot < 22.5) {
-            return "North";
-        } else if (22.5 <= rot && rot < 67.5) {
-            return "Northeast";
-        } else if (67.5 <= rot && rot < 112.5) {
-            return "East";
-        } else if (112.5 <= rot && rot < 157.5) {
-            return "Southeast";
-        } else if (157.5 <= rot && rot < 202.5) {
-            return "South";
-        } else if (202.5 <= rot && rot < 247.5) {
-            return "Southwest";
-        } else if (247.5 <= rot && rot < 292.5) {
-            return "West";
-        } else if (292.5 <= rot && rot < 337.5) {
-            return "Northwest";
-        } else if (337.5 <= rot && rot < 360.0) {
-            return "North";
-        } else {
-            return null;
-        }
-    }
-
     /**
      * (
      * A string of 1's and 0's with guaranteed at least one 1.
@@ -138,7 +87,8 @@ public class Util {
 
     /**
      * Saves typing when scheduling tasks
-     * @param task The Runnable task to run
+     *
+     * @param task  The Runnable task to run
      * @param delay The delay before running the task
      * @return The task ID
      */
@@ -148,25 +98,26 @@ public class Util {
 
     /**
      * Saves typing  when scheduling repeating tasks
-     * @param task The Runnable task to run
-     * @param delay The delay before running the task the first time
+     *
+     * @param task      The Runnable task to run
+     * @param delay     The delay before running the task the first time
      * @param loopdelay The delay between each run of the task
      * @return The task ID
      */
-    public static int newRepeatingTask(Runnable task, int delay, int loopdelay){
+    public static int newRepeatingTask(Runnable task, int delay, int loopdelay) {
         return Bukkit.getScheduler().scheduleSyncRepeatingTask(Bukkit.getPluginManager().getPlugin("MineStrike"), task, delay, loopdelay);
 
     }
 
     /**
      * Converts an ArrayList of strings to a string
+     *
      * @param array The ArrayList to convert
      * @return The string
      */
     public static String arrayToString(ArrayList<String> array) {
         String s = "";
-        for(String s1 : array)
-        {
+        for (String s1 : array) {
             s += s1;
         }
         return s;
@@ -174,12 +125,13 @@ public class Util {
 
     /**
      * Returns true if two doubles are almost equal to eachother
-     * @param a double one
-     * @param b double two
+     *
+     * @param a   double one
+     * @param b   double two
      * @param eps maximum allowable distance
-     * @return true if they are almostEqual
+     * @return true if they are not almost equal
      */
-    public static boolean almostEqual(double a, double b, double eps){
-        return Math.abs(a-b)<eps;
+    public static boolean notAlmostEqual(double a, double b, double eps) {
+        return Math.abs(a - b) >= eps;
     }
 }

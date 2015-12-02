@@ -7,7 +7,7 @@ import org.bukkit.block.Block;
 
 public class FireExtinguish implements Runnable {
     //Location loc;
-    Block block;
+    private final Block block;
     //int extTime;
 
     public FireExtinguish(Block block) {

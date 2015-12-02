@@ -26,7 +26,7 @@ public class ArrowFire implements Listener {
         if (MineStrike.isGameActive) {
             Action a = event.getAction();
 
-            if ((a.equals(Action.LEFT_CLICK_AIR) || a.equals(Action.LEFT_CLICK_BLOCK)) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
+                if ((a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
                 //Get the name of the gun used
                 ItemStack item = event.getPlayer().getItemInHand();
                 Item gun = Item.getItem(ChatColor.stripColor(item.getItemMeta().getDisplayName()));

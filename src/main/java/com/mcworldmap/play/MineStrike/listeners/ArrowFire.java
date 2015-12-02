@@ -21,9 +21,10 @@ public class ArrowFire implements Listener {
      */
     @EventHandler
     public void onArrowFire(PlayerInteractEvent event) {
-        event.setCancelled(true);
 
         if (MineStrike.isGameActive) {
+            event.setCancelled(true);
+
             Action a = event.getAction();
 
                 if ((a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {

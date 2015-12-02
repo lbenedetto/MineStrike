@@ -150,6 +150,7 @@ public class EventListener implements Listener {
         event.setCancelled(true);
     }
 
+
     /**
      * Disable lasting fire damage
      */

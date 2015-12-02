@@ -35,7 +35,7 @@ public class RoundManager {
         if (MineStrike.teams.Tscore == 1 + (maxrounds / 2)) someoneWon = true;
         if (MineStrike.teams.CTscore == 1 + (maxrounds / 2)) someoneWon = true;
         boolean isTie = MineStrike.teams.CTscore >= maxrounds / 2 && MineStrike.teams.Tscore >= maxrounds / 2;
-        if(isTie)winner="tie";
+        if (isTie) winner = "tie";
         //If the game is over
         if (round > maxrounds || isTie || someoneWon) {
             gameOverLogic(winner, "");
@@ -128,9 +128,9 @@ public class RoundManager {
         if (reason.equals(""))
             subtitle = "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score";
         if (reason.contains("forfeit")) {
-            if(winner.equals("T"))
+            if (winner.equals("T"))
                 winMessage = "Terrorists Win";
-            if(winner.equals("CT"))
+            if (winner.equals("CT"))
                 winMessage = "Counter-Terrorists Win";
             subtitle = reason;
         }
@@ -146,16 +146,6 @@ public class RoundManager {
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reset();
-    }
-
-    /**
-     * If the terrorists won, return true
-     *
-     * @param s String of the team name
-     * @return Boolean true if T's won, false if CT's won
-     */
-    private static boolean booleanify(String s) {
-        return !s.equalsIgnoreCase("CT");
     }
 
     /**

@@ -5,6 +5,7 @@ import com.mcworldmap.play.MineStrike.PlayerData.Item;
 import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import com.mcworldmap.play.MineStrike.Util.Utils;
+import org.apache.commons.lang.ObjectUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -22,14 +23,18 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
-
+    @EventHandler
+    public void onSprint(PlayerToggleSprintEvent event) {
+        Player player = event.getPlayer();
+        Person person = MineStrike.teams.findPerson(player);
+        if (person != null)
+            if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope())
+                MineStrike.teams.findPerson(player).toggleZoom();
+    }
 
     @EventHandler
     /**
@@ -37,7 +42,7 @@ public class EventListener implements Listener {
      */
     public void onDisconnect(PlayerQuitEvent event) {
         Person person = MineStrike.teams.findPerson(event.getPlayer());
-        if(person==null)return;
+        if (person == null) return;
         String losingTeam = person.getTeam();
         String winningTeam;
         if (losingTeam.equals("T"))

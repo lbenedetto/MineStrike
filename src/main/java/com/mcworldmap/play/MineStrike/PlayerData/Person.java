@@ -16,6 +16,7 @@ public class Person extends RayTracer {
     private int deaths;
     private int money;
     private int teamKills;
+    private boolean zoomed;
     private String team;
     private boolean alive;
 
@@ -29,6 +30,7 @@ public class Person extends RayTracer {
         money = 800;
         teamKills = 0;
         alive = true;
+        zoomed=false;
     }
 
     public String toString() {
@@ -173,5 +175,19 @@ public class Person extends RayTracer {
 
     public void resetTeamKills() {
         this.teamKills = 0;
+    }
+    public void toggleZoom() {
+        if (zoomed) {
+            if (player != null) {
+                //resets the walking speed to normal
+                player.setWalkSpeed(0.2F);
+            }
+        } else {
+            if (player != null) {
+                //sets the walk speed to -0.15, this adds a zoomed in effect
+                player.setWalkSpeed(-0.15F);
+            }
+        }
+        zoomed = !zoomed;
     }
 }

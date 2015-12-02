@@ -2,6 +2,7 @@ package com.mcworldmap.play.MineStrike.listeners;
 
 import com.mcworldmap.play.MineStrike.MineStrike;
 import com.mcworldmap.play.MineStrike.PlayerData.Item;
+import com.mcworldmap.play.MineStrike.PlayerData.Person;
 import com.mcworldmap.play.MineStrike.Util.RoundManager;
 import com.mcworldmap.play.MineStrike.Util.Utils;
 import org.bukkit.Bukkit;
@@ -35,7 +36,9 @@ public class EventListener implements Listener {
      * Handles people abandoning the game
      */
     public void onDisconnect(PlayerQuitEvent event) {
-        String losingTeam = MineStrike.teams.findPerson(event.getPlayer()).getTeam();
+        Person person = MineStrike.teams.findPerson(event.getPlayer());
+        if(person==null)return;
+        String losingTeam = person.getTeam();
         String winningTeam;
         if (losingTeam.equals("T"))
             winningTeam = "CT";
@@ -46,7 +49,7 @@ public class EventListener implements Listener {
     }
 
     /**
-     * Disable PVP if the game isnt running.
+     * Disable PVP if the game isn't running.
      */
     @EventHandler
     public void onDamageByPlayer(EntityDamageByEntityEvent event) {

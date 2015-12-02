@@ -22,14 +22,19 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
-
+    @EventHandler
+    public void onSprint(PlayerToggleSprintEvent event) {
+        event.setCancelled(true);
+        Player player = event.getPlayer();
+        Person person = MineStrike.teams.findPerson(player);
+        if (person != null)
+            if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope())
+                MineStrike.teams.findPerson(player).toggleZoom();
+    }
 
     @EventHandler
     /**
@@ -45,7 +50,7 @@ public class EventListener implements Listener {
         else {
             winningTeam = "T";
         }
-        RoundManager.gameOverLogic(winningTeam, losingTeam + " forfeits the game");
+        RoundManager.gameOverLogic(winningTeam, losingTeam + " forfeits the game", false);
     }
 
     /**

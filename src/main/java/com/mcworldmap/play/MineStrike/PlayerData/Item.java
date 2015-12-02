@@ -25,7 +25,7 @@ public enum Item {
     //Rifles
     FAMAS(2250, 115, .1, 1.5, 2, "Rifle", false), GALIL(2000, 125, .1, 1.5, 2, "Rifle", false), AK47(2700, 120, .1, 1.5, 2, "Rifle", false),
     M4A1S(2700, 60, .1, 1.5, 2, "Rifle", false), SSG(1700, 100, 2, 2, 17, "Sniper-Rifle", true), AUG(3300, 120, .1, 1.5, 2, "Rifle", true),
-    SG(3000, 120, .1, 1.5, 2, "Sniper-Rifle", true), AWP(4750, 40, 2, 10, 25, "Sniper-Rifle", true),
+    SG(3000, 120, .1, 1.5, 2, "Rifle", true), AWP(4750, 40, 2, 10, 25, "Sniper-Rifle", true),
     G3SG1(5000, 110, .25, 10, 18, "Sniper-Rifle", true), SCAR20(5000, 110, .25, 10, 18, "Sniper-Rifle", true);
     //TODO:Maybe load stats from config instead?
     private final int price;

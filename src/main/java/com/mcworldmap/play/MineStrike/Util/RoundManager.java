@@ -35,10 +35,9 @@ public class RoundManager {
         if (MineStrike.teams.Tscore == 1 + (maxrounds / 2)) someoneWon = true;
         if (MineStrike.teams.CTscore == 1 + (maxrounds / 2)) someoneWon = true;
         boolean isTie = MineStrike.teams.CTscore >= maxrounds / 2 && MineStrike.teams.Tscore >= maxrounds / 2;
-        if(isTie)winner="tie";
         //If the game is over
         if (round > maxrounds || isTie || someoneWon) {
-            gameOverLogic(winner, "");
+            gameOverLogic(winner, "", isTie);
         } else {
             if (winner.equals("CT")) {
                 CTWinLogic(reason, winner);
@@ -109,17 +108,17 @@ public class RoundManager {
 
     /**
      * Logic for if the game is over
-     *
-     * @param winner Who won?
+     *  @param winner Who won?
      * @param reason How did they win?
+     * @param isTie
      */
-    public static void gameOverLogic(String winner, String reason) {
+    public static void gameOverLogic(String winner, String reason, boolean isTie) {
         Bukkit.getLogger().info("GG detected");
         MineStrike.isGameActive = false;
         //Build the components of the GG message
         String winMessage = "";
         String subtitle = "";
-        if (MineStrike.teams.CTscore == MineStrike.teams.Tscore)
+        if (isTie)
             winMessage = ChatColor.WHITE + "Tie";
         if (MineStrike.teams.Tscore > MineStrike.teams.CTscore)
             winMessage = ChatColor.GOLD + "Terrorists Win";
@@ -128,12 +127,13 @@ public class RoundManager {
         if (reason.equals(""))
             subtitle = "MVP: " + MineStrike.teams.getGameMVP(winner).getPlayer().getDisplayName() + " for highest score";
         if (reason.contains("forfeit")) {
-            if(winner.equals("T"))
+            if (winner.equals("T"))
                 winMessage = "Terrorists Win";
-            if(winner.equals("CT"))
+            if (winner.equals("CT"))
                 winMessage = "Counter-Terrorists Win";
             subtitle = reason;
         }
+        if(isTie)winner = "tie";
         //Send out the GG message
         for (Person p : MineStrike.teams.allPlayers) {
             Player player = p.getPlayer();
@@ -146,16 +146,6 @@ public class RoundManager {
             p.getPlayer().performCommand("scoreboard");
         }
         MineStrike.teams.reset();
-    }
-
-    /**
-     * If the terrorists won, return true
-     *
-     * @param s String of the team name
-     * @return Boolean true if T's won, false if CT's won
-     */
-    private static boolean booleanify(String s) {
-        return !s.equalsIgnoreCase("CT");
     }
 
     /**

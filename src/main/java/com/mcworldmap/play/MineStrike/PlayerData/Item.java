@@ -6,33 +6,34 @@ public enum Item {
     //Gear
     CTKEVLAR(650), CTHELMET(350),
     TKEVLAR(650), THELMET(350),
-    KIT(400), ZEUS(400, 1, 1, .5, 100, "Kit"),
+    KIT(400), ZEUS(400, 1, 1, .5, 100, "Kit", false),
     C4(0),
     //Grenades
     FRAG(300), DECOY(50), MOLOTOV(400),
     FLASHBANG(200), SMOKE(300), INCENDIARY(600),
     //Format(Price, ammo, fireRate, range, damage, type)
     //Pistols
-    GLOCK(200, 140, .15, 1d, 5, "Pistol"), USP(500, 36, .17, 1d, 6, "Pistol"), P2000(200, 65, .17, 1d, 6, "Pistol"),
-    BERETTAS(500, 150, .12, 1d, 7, "Pistol"), P250(300, 39, .15, 1d, 6, "Pistol"), TEC9(500, 144, .12, 1d, 5, "Pistol"),
-    DEAGLE(700, 42, .5, 1d, 15, "Pistol"),
+    GLOCK(200, 140, .15, 1d, 5, "Pistol", false), USP(500, 36, .17, 1d, 6, "Pistol", false), P2000(200, 65, .17, 1d, 6, "Pistol", false),
+    BERETTAS(500, 150, .12, 1d, 7, "Pistol", false), P250(300, 39, .15, 1d, 6, "Pistol", false), TEC9(500, 144, .12, 1d, 5, "Pistol", false),
+    DEAGLE(700, 42, .5, 1d, 15, "Pistol", false),
     //Heavy
-    NOVA(1200, 40, .8, .7, 5, "Shotgun"), XM1014(2000, 39, .6, .7, 7, "Shotgun"), SAWNOFF(1200, 39, .84, .7, 6, "Shotgun"),
-    M249(5200, 300, .08, .8, 6, "Heavy"), NEGEV(5700, 350, .05, .8, 7, "Heavy"), MAG7(1800, 37, .84, .7, 6, "Shotgun"),
+    NOVA(1200, 40, .8, .7, 5, "Shotgun", false), XM1014(2000, 39, .6, .7, 7, "Shotgun", false), SAWNOFF(1200, 39, .84, .7, 6, "Shotgun", false),
+    M249(5200, 300, .08, .8, 6, "Heavy", false), NEGEV(5700, 350, .05, .8, 7, "Heavy", false), MAG7(1800, 37, .84, .7, 6, "Shotgun", false),
     //SMG's
-    MAC10(1050, 130, .1, .9, 2, "SMG"), MP7(1700, 150, .1, .9, 2, "SMG"), UMP(1200, 125, .1, .9, 2, "SMG"),
-    P90(2350, 150, .1, .9, 2, "SMG"), BISON(1400, 184, .1, .9, 2, "SMG"), MP9(1250, 184, .1, .9, 2, "SMG"),
+    MAC10(1050, 130, .1, .9, 2, "SMG", false), MP7(1700, 150, .1, .9, 2, "SMG", false), UMP(1200, 125, .1, .9, 2, "SMG", false),
+    P90(2350, 150, .1, .9, 2, "SMG", false), BISON(1400, 184, .1, .9, 2, "SMG", false), MP9(1250, 184, .1, .9, 2, "SMG", false),
     //Rifles
-    FAMAS(2250, 115, .1, 1.5, 2, "Rifle"), GALIL(2000, 125, .1, 1.5, 2, "Rifle"), AK47(2700, 120, .1, 1.5, 2, "Rifle"),
-    M4A1S(2700, 60, .1, 1.5, 2, "Rifle"), SSG(1700, 100, 2, 2, 17, "Sniper-Rifle"), AUG(3300, 120, .1, 1.5, 2, "Rifle"),
-    SG(3000, 120, .1, 1.5, 2, "Sniper-Rifle"), AWP(4750, 40, 2, 10, 25, "Sniper-Rifle"),
-    G3SG1(5000, 110, .25, 10, 18, "Sniper-Rifle"), SCAR20(5000, 110, .25, 10, 18, "Sniper-Rifle");
+    FAMAS(2250, 115, .1, 1.5, 2, "Rifle", false), GALIL(2000, 125, .1, 1.5, 2, "Rifle", false), AK47(2700, 120, .1, 1.5, 2, "Rifle", false),
+    M4A1S(2700, 60, .1, 1.5, 2, "Rifle", false), SSG(1700, 100, 2, 2, 17, "Sniper-Rifle", true), AUG(3300, 120, .1, 1.5, 2, "Rifle", true),
+    SG(3000, 120, .1, 1.5, 2, "Sniper-Rifle", true), AWP(4750, 40, 2, 10, 25, "Sniper-Rifle", true),
+    G3SG1(5000, 110, .25, 10, 18, "Sniper-Rifle", true), SCAR20(5000, 110, .25, 10, 18, "Sniper-Rifle", true);
     //TODO:Maybe load stats from config instead?
     private final int price;
     private int damage;
     private double range;
     private int ammo;
     private double fireRate;
+    private boolean isScoped;
     private String type;
 
     /**
@@ -43,7 +44,7 @@ public enum Item {
      * @param damage   the damage the gun deals
      * @param type     the type of gun
      */
-    Item(int price, int ammo, double fireRate, double range, int damage, String type) {
+    Item(int price, int ammo, double fireRate, double range, int damage, String type, boolean isScoped) {
 
         this.price = price;
         this.damage = damage;
@@ -51,6 +52,7 @@ public enum Item {
         this.ammo = ammo;
         this.fireRate = fireRate;
         this.type = type;
+        this.isScoped = isScoped;
     }
 
     Item(int price) {
@@ -76,6 +78,8 @@ public enum Item {
     public double getFireRate() {
         return fireRate;
     }
+
+    public boolean hasScope(){return isScoped;}
 
     public String getType() {
         return type;

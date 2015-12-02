@@ -35,6 +35,7 @@ public class RoundManager {
         if (MineStrike.teams.Tscore == 1 + (maxrounds / 2)) someoneWon = true;
         if (MineStrike.teams.CTscore == 1 + (maxrounds / 2)) someoneWon = true;
         boolean isTie = MineStrike.teams.CTscore >= maxrounds / 2 && MineStrike.teams.Tscore >= maxrounds / 2;
+        if(isTie)winner="tie";
         //If the game is over
         if (round > maxrounds || isTie || someoneWon) {
             gameOverLogic(winner, "");

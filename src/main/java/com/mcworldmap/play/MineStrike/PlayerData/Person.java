@@ -18,6 +18,7 @@ public class Person extends RayTracer {
     private int teamKills;
     private String team;
     private boolean alive;
+    private boolean isScoped;
 
     public Person(Player player, String team) {
         super(player);
@@ -179,5 +180,12 @@ public class Person extends RayTracer {
     }
     public void unscope(){
         player.setWalkSpeed(0.2F);
+    }
+    public boolean isScoped(){
+        return isScoped;
+    }
+
+    public void setScoped(boolean scoped) {
+        this.isScoped = scoped;
     }
 }

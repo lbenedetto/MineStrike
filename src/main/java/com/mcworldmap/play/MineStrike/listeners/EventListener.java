@@ -23,7 +23,12 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockIgniteEvent;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.*;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 @SuppressWarnings("unused")
 public class EventListener implements Listener {
@@ -32,11 +37,22 @@ public class EventListener implements Listener {
      */
     @EventHandler
     public void onOpen(InventoryOpenEvent event) {
-        if (event.getInventory().equals(event.getPlayer().getInventory())) {
-            if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope())
-                MineStrike.teams.findPerson(player).toggleZoom();
-        }
+        Player player = (Player) event.getPlayer();
+        if (MineStrike.isGameActive)
+            if (event.getInventory().equals(event.getPlayer().getInventory())) {
+                if (Item.getItem(player.getItemInHand().getItemMeta().getDisplayName()).hasScope()) {
+                    Person person = MineStrike.teams.findPerson(player);
+                    if (person.isScoped()) {
+                        person.setScoped(false);
+                        player.getActivePotionEffects().clear();
+                    } else {
+                        person.setScoped(true);
+                        player.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, Integer.MAX_VALUE, 10));
+                    }
+                }
+            }
     }
+
 
     @EventHandler
     /**

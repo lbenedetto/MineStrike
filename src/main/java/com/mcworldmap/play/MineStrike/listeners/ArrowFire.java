@@ -23,17 +23,18 @@ public class ArrowFire implements Listener {
     public void onArrowFire(PlayerInteractEvent event) {
 
         if (MineStrike.isGameActive) {
-            event.setCancelled(true);
+
 
             Action a = event.getAction();
 
-                if ((a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
+            if ((a.equals(Action.RIGHT_CLICK_AIR) || a.equals(Action.RIGHT_CLICK_BLOCK)) && event.getPlayer().getItemInHand().getType().equals(Material.BOW)) {
                 //Get the name of the gun used
                 ItemStack item = event.getPlayer().getItemInHand();
                 Item gun = Item.getItem(ChatColor.stripColor(item.getItemMeta().getDisplayName()));
                 //Cancel the even so we make our own custom event
                 double fireRate = gun.getFireRate();
                 double velChange = gun.getRange();
+                event.setCancelled(true);
                 //If the gun is out of ammo, cancel the event
                 if (item.getDurability() >= item.getType().getMaxDurability()) {
                     return;

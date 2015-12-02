@@ -37,7 +37,7 @@ public class EventListener implements Listener {
      */
     public void onDisconnect(PlayerQuitEvent event) {
         Person person = MineStrike.teams.findPerson(event.getPlayer());
-        if(person==null)return;
+        if (person == null) return;
         String losingTeam = person.getTeam();
         String winningTeam;
         if (losingTeam.equals("T"))
@@ -146,8 +146,14 @@ public class EventListener implements Listener {
      * Players don't lose hunger.
      */
     @EventHandler
-    public void onHunger(FoodLevelChangeEvent event) {
-        event.setCancelled(true);
+//    //public void onHunger(FoodLevelChangeEvent event) {
+//        event.setCancelled(true);
+//    }
+    public void onRegen(EntityRegainHealthEvent event) {
+        if (MineStrike.isGameActive) {
+            if (event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.REGEN))
+                event.setCancelled(true);
+        }
     }
 
 

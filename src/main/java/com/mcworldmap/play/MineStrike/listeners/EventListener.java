@@ -151,12 +151,14 @@ public class EventListener implements Listener {
      * Players don't lose hunger.
      */
     @EventHandler
-//    //public void onHunger(FoodLevelChangeEvent event) {
-//        event.setCancelled(true);
-//    }
+    public void onHunger(FoodLevelChangeEvent event) {
+        event.setCancelled(true);
+    }
+
+    @EventHandler
     public void onRegen(EntityRegainHealthEvent event) {
         if (MineStrike.isGameActive) {
-            if (event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.REGEN))
+            if (event.getRegainReason().equals(EntityRegainHealthEvent.RegainReason.SATIATED))
                 event.setCancelled(true);
         }
     }

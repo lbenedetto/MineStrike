@@ -5,7 +5,6 @@ import net.minecraft.server.v1_8_R3.PacketPlayOutPlayerListHeaderFooter;
 import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
 import net.minecraft.server.v1_8_R3.PlayerConnection;
 import org.bukkit.*;
-import org.bukkit.block.Block;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
@@ -121,29 +120,6 @@ public class Utils {
             s += s1;
         }
         return s;
-    }
-
-    public static Location getNearestAirBlock(double x, double y, double z){
-        Location loc;
-        World world = Bukkit.getWorld("de_dust2");
-
-        Block block1 = world.getBlockAt((int)x + 1,(int)y + 1,(int)z);
-        Block block2 = world.getBlockAt((int)x - 1,(int)y + 1,(int)z);
-        Block block3 = world.getBlockAt((int)x,    (int)y + 1,(int)z + 1);
-        Block block4 = world.getBlockAt((int)x,    (int)y + 1,(int)z - 1);
-
-        if(block1.getType().equals(Material.AIR))
-            loc = block1.getLocation();
-        else if(block2.getType().equals(Material.AIR))
-            loc = block2.getLocation();
-        else if(block3.getType().equals(Material.AIR))
-            loc = block3.getLocation();
-        else if(block4.getType().equals(Material.AIR))
-            loc = block4.getLocation();
-        else
-            loc = null;
-
-        return loc;
     }
 
     /**

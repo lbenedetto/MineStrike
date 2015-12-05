@@ -1,15 +1,12 @@
 package com.mcworldmap.play.MineStrike.Util;
 
-import com.mcworldmap.play.MineStrike.MineStrike;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.entity.Entity;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.util.BlockIterator;
-import java.util.Iterator;
 
 public class RayTracer {
     protected final Player player;
@@ -78,7 +75,52 @@ public class RayTracer {
         }
     }
 
-    //    /**
+    public boolean canSee(Entity entity) {
+        Location newEntityLocation = getNearestAirBlock(entity);
+        boolean out;
+        if (newEntityLocation != null) {
+            entity = player.getWorld().spawn(getNearestAirBlock(entity), Arrow.class);
+            out = player.hasLineOfSight(entity);
+            entity.remove();
+        } else {
+            out = false;
+        }
+        if (out) Bukkit.getLogger().info("Player can see it");
+        else Bukkit.getLogger().info("Player can not see it");
+        return out;
+    }
+
+    public static Location getNearestAirBlock(Entity entity) {
+        Location tempLoc = entity.getLocation();
+        double x = tempLoc.getX();
+        double y = tempLoc.getY();
+        double z = tempLoc.getZ();
+        Location loc;
+        World world = entity.getWorld();
+        Block block1 = world.getBlockAt((int) x + 1, (int) y, (int) z);
+        Block block2 = world.getBlockAt((int) x - 1, (int) y, (int) z);
+        Block block3 = world.getBlockAt((int) x, (int) y, (int) z + 1);
+        Block block4 = world.getBlockAt((int) x, (int) y, (int) z - 1);
+        Block block5 = world.getBlockAt((int) x, (int) y + 1, (int) z);
+        Block block6 = world.getBlockAt((int) x, (int) y - 1, (int) z);
+        if (block1.getType().equals(Material.AIR))
+            loc = block1.getLocation();
+        else if (block2.getType().equals(Material.AIR))
+            loc = block2.getLocation();
+        else if (block3.getType().equals(Material.AIR))
+            loc = block3.getLocation();
+        else if (block4.getType().equals(Material.AIR))
+            loc = block4.getLocation();
+        else if (block5.getType().equals(Material.AIR))
+            loc = block5.getLocation();
+        else if (block6.getType().equals(Material.AIR))
+            loc = block6.getLocation();
+        else
+            loc = null;
+        return loc;
+    }
+
+//    /**
 //     * Checks if this person can see a given entity
 //     * (Probably doesn't work)
 //     *
@@ -109,53 +151,43 @@ public class RayTracer {
 //        }
 //        return true;
 //    }
-
-    public boolean canSee(Entity entity) {
-        entity = player.getWorld().spawn(entity.getLocation(), Ghast.class);
-        ((LivingEntity) entity).addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 1000, 30));
-        boolean out = player.hasLineOfSight(entity);
-        entity.remove();
-        if (out) Bukkit.getLogger().info("Player can see it");
-        else Bukkit.getLogger().info("Player can not see it");
-        return out;
-    }
-
-    public static Block getTargetBlock(Location direction, int maxDistance) {
-        for (Iterator<Block> it = new BlockIterator(direction, 0, maxDistance); it.hasNext(); ) {
-            Block block = it.next();
-            int id = block.getTypeId();
-
-            // Determine if this is a non-air block
-            if (MineStrike.transparent == null ? id != 0 : !MineStrike.transparent.contains(id)) {
-                return block;
-            }
-        }
-        // No target block found
-        return null;
-    }
-
-    public static Location lookAt(Location loc, Location lookat) {
-        double dx = lookat.getX() - loc.getX();
-        double dy = lookat.getY() - loc.getY();
-        double dz = lookat.getZ() - loc.getZ();
-
-        double dxz = Math.sqrt(dx * dx + dz * dz);
-        double pitch = Math.atan(dy / dxz);
-        double yaw = 0;
-
-        if (dx != 0) {
-            if (dx < 0) {
-                yaw = 1.5 * Math.PI;
-            } else {
-                yaw = 0.5 * Math.PI;
-            }
-            yaw -= Math.atan(dz / dx);
-        } else if (dz < 0) {
-            yaw = Math.PI;
-        }
-
-        loc.setYaw((float) Math.toDegrees(-yaw));
-        loc.setPitch((float) Math.toDegrees(-pitch));
-        return loc;
-    }
+//
+//    public static Block getTargetBlock(Location direction, int maxDistance) {
+//        for (Iterator<Block> it = new BlockIterator(direction, 0, maxDistance); it.hasNext(); ) {
+//            Block block = it.next();
+//            int id = block.getTypeId();
+//
+//            // Determine if this is a non-air block
+//            if (MineStrike.transparent == null ? id != 0 : !MineStrike.transparent.contains(id)) {
+//                return block;
+//            }
+//        }
+//        // No target block found
+//        return null;
+//    }
+//
+//    public static Location lookAt(Location loc, Location lookat) {
+//        double dx = lookat.getX() - loc.getX();
+//        double dy = lookat.getY() - loc.getY();
+//        double dz = lookat.getZ() - loc.getZ();
+//
+//        double dxz = Math.sqrt(dx * dx + dz * dz);
+//        double pitch = Math.atan(dy / dxz);
+//        double yaw = 0;
+//
+//        if (dx != 0) {
+//            if (dx < 0) {
+//                yaw = 1.5 * Math.PI;
+//            } else {
+//                yaw = 0.5 * Math.PI;
+//            }
+//            yaw -= Math.atan(dz / dx);
+//        } else if (dz < 0) {
+//            yaw = Math.PI;
+//        }
+//
+//        loc.setYaw((float) Math.toDegrees(-yaw));
+//        loc.setPitch((float) Math.toDegrees(-pitch));
+//        return loc;
+//    }
 }

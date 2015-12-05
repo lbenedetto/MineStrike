@@ -24,9 +24,10 @@ public class DelayedFlash implements Runnable {
             if (entity instanceof Player) {
                 Player player = (Player) entity;
                 Person person = MineStrike.teams.findPerson(player);
+                if(person==null)continue;
                 //If its possible for the player to see the flashbang
-                if (person.canSee(flash))
-                    if (person.isFacing(flash))
+                if (person.isFacing(flash))
+                    if (person.canSee(flash))
                         player.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 50, 30));
             }
     }
